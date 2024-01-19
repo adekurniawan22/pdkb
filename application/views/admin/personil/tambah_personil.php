@@ -36,12 +36,29 @@
                         </div>
                         <div class="form-group">
                             <label for="foto" class="form-control-label">Foto</label>
-                            <input class="form-control" type="file" placeholder="Foto" id="foto" name="foto" required>
+                            <input class="form-control" type="file" placeholder="Foto" id="foto" name="foto" value="<?php echo set_value('foto'); ?>">
+                            <?= form_error('foto', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                             <?= $this->session->flashdata('message');
                             unset($_SESSION['message']); ?>
                         </div>
+                        <div class="form-group" id="sertifikatDiklatContainer">
+                            <label for="s_diklat" class="form-control-label">Sertifikat Diklat</label>
+                            <input class="form-control" type="file" placeholder="Sertifikat Diklat" name="s_diklat[]">
+                            <?= $this->session->flashdata('message');
+                            unset($_SESSION['message']); ?>
+                        </div>
+                        <button type="button" class="btn bg-gradient-dark" onclick="tambahSertifikatD()">+ Tambah Sertifikat Diklat</button>
+
+                        <div class="form-group" id="sertifikatKompetensiContainer">
+                            <label for="s_diklat" class="form-control-label">Sertifikat Kompetensi</label>
+                            <input class="form-control" type="file" placeholder="Sertifikat Kompetensi" name="s_kompetensi[]">
+                            <?= $this->session->flashdata('message');
+                            unset($_SESSION['message']); ?>
+                        </div>
+                        <button type="button" class="btn bg-gradient-dark" onclick="tambahSertifikatK()">+ Tambah Sertifikat Kompetensi</button>
+
                         <div>
-                            <a href="<?= base_url() ?>admin/personil" class="btn btn-primary" type="button">Kembali</a>
+                            <a href=" <?= base_url() ?>admin/personil" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
                     </form>

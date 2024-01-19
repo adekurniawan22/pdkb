@@ -59,5 +59,7 @@ $route['proses-tambah-personil'] = 'admin/proses_tambah_personil';
 $route['edit-personil'] = 'admin/edit_personil';
 $route['proses-edit-personil'] = 'admin/proses_edit_personil';
 
+$route['admin/view-sertifikat'] = 'admin/get_sertifikat';
+
 
 $route['rencana-operasi'] = 'auth/rencana_operasi';

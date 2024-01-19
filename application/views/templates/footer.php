@@ -86,9 +86,30 @@
 <script src="<?= base_url() ?>assets/argon-master/assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="<?= base_url() ?>assets/argon-master/assets/js/plugins/chartjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
 <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.min.js"></script>
 <script>
+    function tambahSertifikatD() {
+        const sertifikatDiklatContainer = document.getElementById('sertifikatDiklatContainer');
+        const newInput = document.createElement('div');
+        newInput.className = 'form-group mt-3';
+        newInput.innerHTML = `
+        <input class="form-control" type="file" placeholder="Sertifikat Diklat" name="s_diklat[]">
+    `;
+        sertifikatDiklatContainer.appendChild(newInput);
+    }
+
+    function tambahSertifikatK() {
+        const sertifikatKompetensiContainer = document.getElementById('sertifikatKompetensiContainer');
+        const newInput2 = document.createElement('div');
+        newInput2.className = 'form-group mt-3';
+        newInput2.innerHTML = `
+        <input class="form-control" type="file" placeholder="Sertifikat Kompetensi" name="s_kompetensi[]">
+    `;
+        sertifikatKompetensiContainer.appendChild(newInput2);
+    }
+
+
     $(document).ready(function() {
         $('#example').DataTable({
             "oLanguage": {

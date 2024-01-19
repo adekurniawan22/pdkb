@@ -26,6 +26,16 @@ class Personil_model extends CI_Model
         return $total_personil;
     }
 
+    public function get_sertifikat_detail($id)
+    {
+        $this->db->select('t_personil.*, t_sertifikat.nama_file'); // Pilih kolom yang Anda butuhkan
+        $this->db->from('t_personil');
+        $this->db->join('t_sertifikat', 't_personil.id_personil = t_sertifikat.id_personil');
+        $this->db->where('t_sertifikat.id_personil', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
     public function tambah_personil($data)
     {

@@ -24,7 +24,7 @@
 
     <style>
         .atur-height {
-            height: 80% !important;
+            height: 85% !important;
         }
 
         .btn-aside {
@@ -134,7 +134,49 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-aside" href="<?= base_url() ?>admin/rencana-operasi">
+                    <a class="nav-link btn-aside dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-paper-diploma text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Dokumen Pekerjaan</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li style="margin-top: -30px;">
+                            <a class="nav-link <?php if ($title == "Dashboard") {
+                                                    echo "active";
+                                                } ?> btn-aside" href="<?= base_url() ?>admin/dashboard">
+                                <div class="ms-4 icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
+                                </div>
+                                <span class="nav-link-text ms-1">SPKI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link <?php if ($title == "Personil") {
+                                                    echo "active";
+                                                } ?> btn-aside" href="<?= base_url() ?>admin/personil">
+                                <div class="ms-4 icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
+                                </div>
+                                <span class="nav-link-text ms-1">Laporan Pekerjaan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link <?php if ($title == "Personil") {
+                                                    echo "active";
+                                                } ?> btn-aside" href="<?= base_url() ?>admin/personil">
+                                <div class="ms-4 icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
+                                </div>
+                                <span class="nav-link-text ms-1">Laporan JSA</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($title == "Personil") {
+                                            echo "active";
+                                        } ?> btn-aside" href="<?= base_url() ?>admin/personil">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
                         </div>
