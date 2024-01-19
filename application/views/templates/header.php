@@ -20,6 +20,8 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="<?= base_url() ?>assets/argon-master/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.min.css" rel="stylesheet">
+
     <style>
         .atur-height {
             height: 80% !important;
@@ -35,6 +37,65 @@
             background-color: #f8f9fa;
             transform: translateY(-3px);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dataTable {
+            padding: 10px;
+        }
+
+        .dataTables_info {
+            margin-left: 20px;
+            padding-bottom: 10px;
+        }
+
+        .dataTables_length {
+            margin-left: 20px;
+        }
+
+        .dataTables_length select {
+            width: 100px !important;
+        }
+
+        .dataTables_filter {
+            margin-right: 20px;
+        }
+
+        .pagination {
+            margin-right: 20px !important;
+            padding-bottom: 10px !;
+        }
+
+        .page-item.active .page-link {
+            color: white !important;
+        }
+
+        .page-item.previous.disabled,
+        .page-item.next.disabled {
+            cursor: no-drop;
+        }
+
+        .page-item.previous .page-link,
+        .page-item.next .page-link,
+        .page-link {
+            background: white;
+            color: #8898aa !important;
+        }
+
+        .page-item.active .page-link:hover,
+        .page-item.previous .page-link:hover,
+        .page-item.next .page-link:hover,
+        .page-link:hover {
+            background-color: #e9ecef;
+            color: #8898aa !important;
+            border-color: #e9ecef !important;
+        }
+
+        #sidenav-main {
+            z-index: 1000 !important;
+        }
+
+        .modal {
+            z-index: 1050
         }
     </style>
 </head>
@@ -53,7 +114,9 @@
         <div class="collapse navbar-collapse w-auto atur-height" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active btn-aside" href="<?= base_url() ?>admin/dashboard">
+                    <a class="nav-link <?php if ($title == "Dashboard") {
+                                            echo "active";
+                                        } ?> btn-aside" href="<?= base_url() ?>admin/dashboard">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
@@ -61,7 +124,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-aside" href="<?= base_url() ?>admin/personil">
+                    <a class="nav-link <?php if ($title == "Personil") {
+                                            echo "active";
+                                        } ?> btn-aside" href="<?= base_url() ?>admin/personil">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
                         </div>
@@ -96,7 +161,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-aside modal-logout" href="" data-bs-toggle="modal" data-bs-target="#logout">
+                    <a class="nav-link btn-aside" href="" data-bs-toggle="modal" data-bs-target="#logout">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="bi bi-box-arrow-left text-dark text-sm opacity-10 pb-1"></i>
                         </div>
@@ -123,7 +188,7 @@
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <span class="d-sm-inline d-none nav-link font-weight-bold px-0" style="color: white !important;"> <i class="ni ni-satisfied"></i>&nbsp; Halo, <?= $_SESSION['username'] ?></span>
+                            <span class="d-sm-inline d-none nav-link font-weight-bold px-0" style="color: white !important;"> <i class="ni ni-satisfied"></i>&nbsp; Halo, <?= $_SESSION['nama'] ?></span>
                         </li>
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">

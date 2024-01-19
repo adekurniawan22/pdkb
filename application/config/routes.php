@@ -54,4 +54,10 @@ $route['404_override'] = 'custom404';
 $route['translate_uri_dashes'] = TRUE;
 
 $route['proses-login'] = 'auth/proses_login';
+$route['tambah-personil'] = 'admin/tambah_personil';
+$route['proses-tambah-personil'] = 'admin/proses_tambah_personil';
+$route['edit-personil'] = 'admin/edit_personil';
+$route['proses-edit-personil'] = 'admin/proses_edit_personil';
+
+
 $route['rencana-operasi'] = 'auth/rencana_operasi';

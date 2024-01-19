@@ -73,7 +73,7 @@
                 Apakah kamu yakin ingin logout?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg-gradient-secondary close-modal-logout" data-bs-dismiss="modal">Batalkan</button>
+                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
                 <a href="<?= base_url() ?>auth/logout" class="btn bg-gradient-primary">Ya</a>
             </div>
         </div>
@@ -86,22 +86,33 @@
 <script src="<?= base_url() ?>assets/argon-master/assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="<?= base_url() ?>assets/argon-master/assets/js/plugins/chartjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.min.js"></script>
 <script>
-    // Temukan tombol yang memicu tampilnya kelas 'show'
-    var openModal = document.querySelector('.modal-logout');
-    var closeModal = document.querySelector('.close-modal-logout');
-    var sidebar = document.getElementById('sidenav-main');
-
-    // Tambahkan event listener untuk tombol
-    openModal.addEventListener('click', function() {
-        sidebar.style.transition = "z-index linear"
-        sidebar.style.zIndex = "0"
-    });
-
-    closeModal.addEventListener('click', function() {
-        setTimeout(function() {
-            sidebar.style.zIndex = "9999"
-        }, 100)
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "oLanguage": {
+                "sLengthMenu": "Tampilkan _MENU_ data",
+                "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                "emptyTable": "Tidak ada data",
+            },
+            "lengthMenu": [
+                [5, 10, 25, 50, -1],
+                ["5", "10", "25", "50", "Semua"]
+            ],
+            // "order": [
+            //     [0, "asc"]
+            // ],
+            language: {
+                "search": "Cari:",
+                "paginate": {
+                    "first": "Pertama",
+                    "last": "Terakhir",
+                    "next": "<i class='fa fa-angle-right'></i>",
+                    "previous": "<i class='fa fa-angle-left'></i>"
+                }
+            },
+        });
     });
 
 

@@ -8,7 +8,7 @@
               <div class="numbers">
                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Personil</p>
                 <h5 class="font-weight-bolder">
-                  50
+                  <?= $jumlah_personil ?>
                 </h5>
               </div>
             </div>

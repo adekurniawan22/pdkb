@@ -26,18 +26,19 @@ class Auth extends CI_Controller
 			$password = $this->input->post('password');
 
 			$this->db->where('username', $username);
-			$user = $this->db->get('t_pegawai')->row_array();
+			$user = $this->db->get('t_personil')->row_array();
 
 			if ($user) {
 				if ($user['status_aktif'] == 1 && password_verify($password, $user['password'])) {
 					$data = [
 						'username' => $user['username'],
-						'id_role' => $user['id_role'],
-						'id_pegawai' => $user['id_pegawai']
+						'nama' => $user['nama'],
+						'id_jabatan' => $user['id_jabatan'],
+						'id_personil' => $user['id_personil']
 					];
 					$this->session->set_userdata($data);
 
-					switch ($user['id_role']) {
+					switch ($user['id_jabatan']) {
 						case 1:
 							redirect('admin/dashboard');
 							break;
@@ -70,8 +71,8 @@ class Auth extends CI_Controller
 	{
 		unset(
 			$_SESSION['username'],
-			$_SESSION['id_role'],
-			$_SESSION['id_pegawai'],
+			$_SESSION['id_jabatan'],
+			$_SESSION['id_personil'],
 		);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" style="color:white">
             <div class="d-flex justify-content-between align-items-center">
