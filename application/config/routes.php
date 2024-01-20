@@ -49,17 +49,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'auth/login';
 $route['404_override'] = 'custom404';
 $route['translate_uri_dashes'] = TRUE;
 
+// Route Login
+$route['default_controller'] = 'auth/login';
 $route['proses-login'] = 'auth/proses_login';
-$route['tambah-personil'] = 'admin/tambah_personil';
-$route['proses-tambah-personil'] = 'admin/proses_tambah_personil';
-$route['edit-personil'] = 'admin/edit_personil';
-$route['proses-edit-personil'] = 'admin/proses_edit_personil';
 
-$route['admin/view-sertifikat'] = 'admin/get_sertifikat';
+// Route Dashboard
+$route['dashboard'] = 'dashboard/dashboard';
 
+// Route Personil
+$route['personil'] = 'personil/personil';
+$route['tambah-personil'] = 'personil/tambah_personil';
+$route['proses-tambah-personil'] = 'personil/proses_tambah_personil';
+$route['edit-personil'] = 'personil/edit_personil';
+$route['proses-edit-personil'] = 'personil/proses_edit_personil';
+$route['personil/view-sertifikat'] = 'personil/get_sertifikat';
 
-$route['rencana-operasi'] = 'auth/rencana_operasi';
+// Route Warehouse Alat Kerja
+$route['alat-kerja'] = 'alat_kerja/alat_kerja';
+$route['tambah-alat-kerja'] = 'alat_kerja/tambah_alat_kerja';
+$route['proses-tambah-alat-kerja'] = 'alat_kerja/proses_tambah_alat_kerja';
+$route['edit-alat-kerja'] = 'alat_kerja/edit_alat_kerja';
+$route['proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat_kerja';
+
+// Route Warehouse Alat Kerja
+$route['histori-alat-kerja'] = 'alat_kerja/histori_alat_kerja';
+$route['tambah-histori-alat-kerja'] = 'alat_kerja/tambah_histori_alat_kerja';
+$route['proses-tambah-histori-alat-kerja'] = 'alat_kerja/proses_tambah_histori_alat_kerja';
+$route['edit-alat-kerja'] = 'alat_kerja/edit_alat_kerja';
+$route['proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat_kerja';

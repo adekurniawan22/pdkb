@@ -40,7 +40,7 @@ class Auth extends CI_Controller
 
 					switch ($user['id_jabatan']) {
 						case 1:
-							redirect('admin/dashboard');
+							redirect('dashboard');
 							break;
 						case 2:
 							redirect('pegawai');

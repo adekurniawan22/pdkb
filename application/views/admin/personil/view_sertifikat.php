@@ -22,6 +22,6 @@
 
   <div class=" row">
     <div class="col-12">
-      <a href=" <?= base_url() ?>admin/personil" class="btn btn-primary btn-lg w-100">Kembali</a>
+      <a href=" <?= base_url() ?>personil" class="btn btn-primary btn-lg w-100">Kembali</a>
     </div>
   </div>

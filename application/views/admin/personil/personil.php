@@ -8,7 +8,7 @@
                 <?= $this->session->flashdata('message');
                 unset($_SESSION['message']); ?>
                 <div class="mx-3 pb-2">
-                    <a href="<?= base_url() ?>admin/tambah-personil" class="btn bg-gradient-dark">+ Tambah Personil</a>
+                    <a href="<?= base_url() ?>personil/tambah-personil" class="btn bg-gradient-dark">+ Tambah Personil</a>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -51,14 +51,14 @@
                                             <?php endif; ?>
                                         </td>
                                         <td class="align-middle">
-                                            <form action="<?= base_url() ?>admin/view-sertifikat" method="post" class="d-inline-block">
+                                            <form action="<?= base_url() ?>personil/view-sertifikat" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_personil" value="<?= $p->id_personil ?>">
                                                 <button type="submit" class="btn btn-link text-dark text-gradient px-3 mb-0"><i class="bi bi-eye me-2"></i>Lihat</button>
                                             </form>
                                         </td>
 
                                         <td class="align-middle">
-                                            <form action="<?= base_url() ?>admin/edit-personil" method="post" class="d-inline-block">
+                                            <form action="<?= base_url() ?>personil/edit-personil" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_personil" value="<?= $p->id_personil ?>">
                                                 <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                             </form>
@@ -89,7 +89,7 @@
                         Apakah kamu yakin ingin menghapus <?= '<span style="color:red">"' . $pm->nama . '"</span>' ?>?
                     </div>
                     <div class="modal-footer">
-                        <form action="<?= base_url() ?>admin/proses_hapus_personil" method="post">
+                        <form action="<?= base_url() ?>personil/proses_hapus_personil" method="post">
                             <input type="hidden" name="id_personil" value="<?= $pm->id_personil ?>">
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
                             <button type="submit" class="btn bg-gradient-primary">Ya</button>
@@ -113,7 +113,7 @@
                         Apakah kamu yakin ingin menghapus <?= '<span style="color:red">"' . $pm->nama . '"</span>' ?>?
                     </div>
                     <div class="modal-footer">
-                        <form action="<?= base_url() ?>admin/proses_hapus_personil" method="post">
+                        <form action="<?= base_url() ?>personil/proses_hapus_personil" method="post">
                             <input type="hidden" name="id_personil" value="<?= $pm->id_personil ?>">
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
                             <button type="submit" class="btn bg-gradient-primary">Ya</button>

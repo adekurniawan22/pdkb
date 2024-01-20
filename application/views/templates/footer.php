@@ -87,8 +87,87 @@
 <script src="<?= base_url() ?>assets/argon-master/assets/js/plugins/chartjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.min.js"></script>
+
 <script>
+    $(document).ready(function() {
+        // Initialize an object to store selected items and their quantities
+        var selectedItems = {};
+
+        // Event handler for checkbox changes
+        $('.select-checkbox').on('change', function() {
+            var id = $(this).val();
+            var name = $(this).data('name'); // Mengambil nama alat dari data-name
+            var row = $(this).closest('tr');
+            var quantityInput = row.find('.obat-quantity');
+
+            if ($(this).prop('checked')) {
+                // Checkbox is checked, create a new <td> element with a new quantity input
+                var newTd = $('<td>');
+                var newQuantityInput = $('<input>', {
+                    type: 'number',
+                    class: 'form-control obat-quantity',
+                    name: 'select_jumlah[]',
+                    min: '0',
+                    value: '0' // Initialize with 0
+                });
+                newTd.append(newQuantityInput);
+                row.find('td:last').replaceWith(newTd); // Replace the existing <td>
+
+                // Add the item to the selectedItems object with a quantity of 0
+                selectedItems[id] = 0;
+
+                // Add the item to the selected items list in the textarea
+                updateSelectedItemsText();
+            } else {
+                // Checkbox is unchecked, remove the quantity input and replace the <td>
+                quantityInput.remove();
+                var newTd = $('<td>');
+                row.find('td:last').replaceWith(newTd);
+
+                // Remove the item from the selectedItems object and the selected items list
+                delete selectedItems[id];
+                updateSelectedItemsText();
+            }
+        });
+
+        // Event handler for quantity changes
+        $(document).on('input', '.obat-quantity', function() {
+            var id = $(this).closest('tr').find('.select-checkbox').val();
+            var quantity = parseInt($(this).val());
+
+            // Update the quantity in the selectedItems object
+            selectedItems[id] = quantity;
+            updateSelectedItemsText();
+        });
+
+        // Function to update selected items list in the textarea
+        function updateSelectedItemsText() {
+            var selectedItemsText = [];
+            for (var id in selectedItems) {
+                var name = $('.select-checkbox[value="' + id + '"]').data('name');
+                selectedItemsText.push(name + ' - ' + selectedItems[id]);
+            }
+            $('#spesifikasi').val(selectedItemsText.join(', '));
+        }
+
+        // Event handler for form submission
+        $('#your-form').on('submit', function() {
+            // Filter out items with a quantity less than or equal to 0
+            var filteredItems = {};
+            for (var id in selectedItems) {
+                if (selectedItems[id] > 0) {
+                    filteredItems[id] = selectedItems[id];
+                }
+            }
+
+            // Convert filteredItems object to JSON and set it as the value of the hidden input
+            $('#selected-items-input').val(JSON.stringify(filteredItems));
+        });
+    });
+
+
     function tambahSertifikatD() {
         const sertifikatDiklatContainer = document.getElementById('sertifikatDiklatContainer');
         const newInput = document.createElement('div');

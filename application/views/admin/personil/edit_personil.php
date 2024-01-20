@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>admin/proses-edit-personil" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url() ?>personil/proses-edit-personil" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama" class="form-control-label">Nama Lengkap</label>
                             <input type="hidden" name="id_personil" value="<?= $personil->id_personil ?>">
@@ -42,7 +42,7 @@
                             unset($_SESSION['message']); ?>
                         </div>
                         <div>
-                            <a href="<?= base_url() ?>admin/personil" class="btn btn-primary" type="button">Kembali</a>
+                            <a href="<?= base_url() ?>personil" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Edit</button>
                         </div>
                     </form>

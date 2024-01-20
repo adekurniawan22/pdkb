@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+class Personil extends CI_Controller
 {
 	public function __construct()
 	{
@@ -9,14 +9,6 @@ class Admin extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->model('Personil_model');
 		$this->load->model('Jabatan_model');
-	}
-	public function dashboard()
-	{
-		$data['title'] = 'Dashboard';
-		$data['jumlah_personil'] = $this->Personil_model->jumlah_personil();
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/dashboard', $data);
-		$this->load->view('templates/footer');
 	}
 
 	public function personil()
@@ -78,7 +70,7 @@ class Admin extends CI_Controller
 					// Jika gagal upload, tampilkan error
 					$error = $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>');
 					$this->session->set_flashdata('message', $error);
-					redirect('admin/proses_tambah_personil');
+					redirect('personil/proses-tambah-personil');
 				}
 			} else {
 				$foto = 'default.jpg';
@@ -124,7 +116,7 @@ class Admin extends CI_Controller
 					} else {
 						$error = $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>');
 						$this->session->set_flashdata('message', $error);
-						redirect('admin/proses_tambah_personil');
+						redirect('personil/proses-tambah-personil');
 					}
 				}
 			}
@@ -154,7 +146,7 @@ class Admin extends CI_Controller
 					} else {
 						$error = $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>');
 						$this->session->set_flashdata('message', $error);
-						redirect('admin/proses_tambah_personil');
+						redirect('personil/proses-tambah-personil');
 					}
 				}
 			}
@@ -166,7 +158,7 @@ class Admin extends CI_Controller
 													<i class="bi bi-check-circle-fill"></i>
 												</div>
 											</div>');
-				redirect('admin/personil');
+				redirect('personil');
 			} else {
 				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
 												<div class="alert alert-danger" role="alert" style="color:white; display: inline-block;">
@@ -174,7 +166,7 @@ class Admin extends CI_Controller
 													<i class="bi bi-exclamation-circle-fill"></i>
 												</div>
 											</div>');
-				redirect('admin/personil');
+				redirect('personil');
 			}
 		}
 	}
@@ -217,7 +209,7 @@ class Admin extends CI_Controller
 													<strong>Kesalahan saat mengedit foto personil :' . $error . '</strong>
 												</div>
 											</div>');
-				redirect('admin/personil');
+				redirect('personil');
 			}
 		} else {
 			$getDataPersonil = $this->Personil_model->dapat_satu_personil($this->input->post('id_personil'));
@@ -244,7 +236,7 @@ class Admin extends CI_Controller
 													<i class="bi bi-check-circle-fill"></i>
 												</div>
 											</div>');
-				redirect('admin/personil');
+				redirect('personil');
 			} else {
 				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
 												<div class="alert alert-danger" role="alert" style="color:white; display: inline-block;">
@@ -252,7 +244,7 @@ class Admin extends CI_Controller
 													<i class="bi bi-exclamation-circle-fill"></i>
 												</div>
 											</div>');
-				redirect('admin/personil');
+				redirect('personil');
 			}
 		}
 	}
@@ -267,15 +259,7 @@ class Admin extends CI_Controller
 													<i class="bi bi-check-circle-fill"></i>
 												</div>
 											</div>');
-		redirect('admin/personil');
-	}
-
-	public function rencana_operasi()
-	{
-		$data['title'] = 'Personil';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/dashboard', $data);
-		$this->load->view('templates/footer');
+		redirect('personil');
 	}
 
 	function file_selected_test()

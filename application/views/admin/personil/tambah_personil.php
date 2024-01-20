@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>admin/proses-tambah-personil" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url() ?>personil/proses-tambah-personil" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama" class="form-control-label">Nama Lengkap</label>
                             <input class="form-control" type="text" placeholder="Nama Lengkap" id="nama" name="nama" value="<?php echo set_value('nama'); ?>">
@@ -58,7 +58,7 @@
                         <button type="button" class="btn bg-gradient-dark" onclick="tambahSertifikatK()">+ Tambah Sertifikat Kompetensi</button>
 
                         <div>
-                            <a href=" <?= base_url() ?>admin/personil" class="btn btn-primary" type="button">Kembali</a>
+                            <a href=" <?= base_url() ?>personil" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
                     </form>
