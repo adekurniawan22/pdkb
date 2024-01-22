@@ -147,7 +147,7 @@
             var selectedItemsText = [];
             for (var id in selectedItems) {
                 var name = $('.select-checkbox[value="' + id + '"]').data('name');
-                selectedItemsText.push(name + ' - ' + selectedItems[id]);
+                selectedItemsText.push(name + ' (jumlah : ' + selectedItems[id] + ')');
             }
             $('#spesifikasi').val(selectedItemsText.join(', '));
         }

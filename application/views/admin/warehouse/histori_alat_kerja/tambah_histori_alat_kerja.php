@@ -16,7 +16,7 @@
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama ALat</th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Spesifikasi</th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
-                                                <th class="text-uppercase text-center text-xxs font-weight-bolder opacity-7" data-sortable="false"><input type="checkbox" id="selectAll"></th>
+                                                <th class="text-uppercase text-center text-xxs font-weight-bolder opacity-7" data-sortable="false">Checklist</th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Jumlah yang dipinjam</th>
                                             </tr>
                                         </thead>
@@ -36,7 +36,7 @@
                                                         <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->jumlah . ' ' . $a->satuan ?></p>
                                                     </td>
                                                     <td style="width: 15%;" class="text-center">
-                                                        <input type="checkbox" class="select-checkbox form text-sm font-weight-bold mb-0" name=" select_alat_kerja[]" value="<?= $a->id_alat_kerja ?>" data-name="<?= $a->nama_alat_kerja ?>">
+                                                        <input type="checkbox" class="select-checkbox form text-sm font-weight-bold mb-0" name="select_alat_kerja[]" value="<?= $a->id_alat_kerja ?>" data-name="<?= $a->nama_alat_kerja ?>">
                                                     </td>
                                                     <td style="width: 15%;">
                                                     </td>
@@ -51,16 +51,18 @@
 
                         <div class="form-group">
                             <label for="spesifikasi" class="form-control-label">Nama Barang Yang Dipinjam</label>
-                            <textarea class="form-control" placeholder="Spesifikasi Alat Kerja" id="spesifikasi" name="spesifikasi" rows="3"><?php echo set_value('spesifikasi'); ?></textarea>
+                            <textarea class="form-control" placeholder="Spesifikasi Alat Kerja" id="spesifikasi" name="spesifikasi" rows="3" disabled></textarea>
+                            <?= form_error('select_alat_kerja[]', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="example-datetime-local-input" class="form-control-label">Tanggal Peminjaman</label>
-                            <input class="form-control" type="datetime-local" value="2018-11-23T10:30:00" id="example-datetime-local-input">
+                            <label for="example-datetime-local-input" class="form-control-label">Tanggal dan Waktu Peminjaman</label>
+                            <input class="form-control" type="datetime-local" name="tanggal_peminjaman" id="example-datetime-local-input" value="<?php echo set_value('tanggal_peminjaman'); ?>">
+                            <?= form_error('tanggal_peminjaman', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="spesifikasi" class="form-control-label">Keterangan Peminjaman</label>
-                            <textarea class="form-control" placeholder="Spesifikasi Alat Kerja" id="spesifikasi" name="spesifikasi" rows="3"><?php echo set_value('spesifikasi'); ?></textarea>
-                            <?= form_error('spesifikasi', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                            <label for="keterangan" class="form-control-label">Keterangan Peminjaman</label>
+                            <textarea class="form-control" placeholder="Keterangan Peminjaman" id="keterangan" name="keterangan" rows="3"><?php echo set_value('keterangan'); ?></textarea>
+                            <?= form_error('keterangan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
 
                         <div>

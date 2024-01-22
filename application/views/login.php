@@ -36,7 +36,7 @@
                                 <div class="card-body">
                                     <?= $this->session->flashdata('message');
                                     unset($_SESSION['message']); ?>
-                                    <form role="form" method="post" action="auth/proses-login">
+                                    <form role="form" method="post" action="proses-login">
                                         <div class="mb-3">
                                             <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Email" name="username">
                                         </div>
