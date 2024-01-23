@@ -70,9 +70,9 @@
                 </tr>
                 <tr>
                     <td style="text-align: left;">Tanggal Keluar</td>
-                    <td class="titikdua">: <?= $query[0]['tanggal_keluar'] ?></td>
+                    <td class="titikdua">: <?= date('d/m/Y', strtotime($query[0]['tanggal_keluar']))  ?></td>
                 </tr>
-                <?php if ($query[0]['tanggal_masuk'] == '0000-00-00') : ?>
+                <?php if ($query[0]['tanggal_masuk'] == '0000-00-00 00:00:00') : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
                         <td class="titikdua">: -</td>
@@ -80,7 +80,7 @@
                 <?php else : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
-                        <td class="titikdua">: <?= $query[0]['tanggal_masuk'] ?></td>
+                        <td class="titikdua">: <?= date('d/m/Y', strtotime($query[0]['tanggal_masuk']))  ?></td>
                     </tr>
                 <?php endif; ?>
                 <tr>

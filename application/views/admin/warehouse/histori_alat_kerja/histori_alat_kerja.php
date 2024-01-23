@@ -2,19 +2,25 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-header pb-0">
-                    <h6>Data Alat Kerja</h6>
-                </div>
-
-                <div class="mx-3 pb-2">
-                    <a href="<?= base_url() ?>histori-alat-kerja/tambah-histori-alat-kerja" class="btn bg-gradient-dark">+ Tambah Histori Alat Kerja</a>
+                <div class="row mb-4">
+                    <div class="col-6 d-flex align-items-center">
+                        <div class="card-header pb-0">
+                            <h5>Data Histori Alat Kerja</h5>
+                        </div>
+                    </div>
+                    <div class="col-6 pt-4 text-end">
+                        <div class="mx-3">
+                            <a href="<?= base_url() ?>histori-alat-kerja/tambah-histori-alat-kerja" class="btn bg-gradient-dark">+ Tambah Histori Alat Kerja</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0" id="example">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Keluar</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Masuk</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Penanggung Jawab</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
@@ -25,7 +31,14 @@
                                 <?php foreach ($histori as $a) : ?>
                                     <tr>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->tanggal_keluar ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($a->tanggal_keluar)) ?></p>
+                                        </td>
+                                        <td>
+                                            <?php if ($a->tanggal_masuk == '0000-00-00 00:00:00') : ?>
+                                                <p class="text-sm font-weight-bold mb-0 text-center">-</p>
+                                            <?php else : ?>
+                                                <p class="ms-3 text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($a->tanggal_masuk)) ?></p>
+                                            <?php endif; ?>
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->penanggung_jawab ?></p>

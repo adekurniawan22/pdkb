@@ -2,12 +2,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-header pb-0">
-                    <h6>Data Personil</h6>
-                </div>
-
-                <div class="mx-3 pb-2">
-                    <a href="<?= base_url() ?>personil/tambah-personil" class="btn bg-gradient-dark">+ Tambah Personil</a>
+                <div class="row mb-4">
+                    <div class="col-6 d-flex align-items-center">
+                        <div class="card-header pb-0">
+                            <h5>Data Personil</h5>
+                        </div>
+                    </div>
+                    <div class="col-6 pt-4 text-end">
+                        <div class="mx-3">
+                            <a href="<?= base_url() ?>personil/tambah-personil" class="btn bg-gradient-dark">+ Tambah Personil</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">

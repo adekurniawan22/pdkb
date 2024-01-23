@@ -74,7 +74,7 @@
                         </div>
                         <div class="form-group">
                             <label for="example-datetime-local-input" class="form-control-label">Tanggal Barang Keluar</label>
-                            <input class="form-control" type="date" name="tanggal_keluar" id="example-datetime-local-input" value="<?php echo set_value('tanggal_keluar'); ?>">
+                            <input class="form-control" type="datetime-local" name="tanggal_keluar" id="example-datetime-local-input" value="<?php echo set_value('tanggal_keluar'); ?>">
                             <?= form_error('tanggal_keluar', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
