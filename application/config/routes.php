@@ -57,26 +57,30 @@ $route['default_controller'] = 'auth/login';
 $route['proses-login'] = 'auth/proses_login';
 
 // Route Dashboard
-$route['dashboard'] = 'dashboard/dashboard';
+$route['dashboard'] = 'dashboard/index';
 
 // Route Personil
-$route['personil'] = 'personil/personil';
-$route['tambah-personil'] = 'personil/tambah_personil';
-$route['proses-tambah-personil'] = 'personil/proses_tambah_personil';
-$route['edit-personil'] = 'personil/edit_personil';
-$route['proses-edit-personil'] = 'personil/proses_edit_personil';
-$route['personil/view-sertifikat'] = 'personil/get_sertifikat';
+$route['personil'] = 'personil/index';
+$route['personil/tambah-personil'] = 'personil/tambah_personil';
+$route['personil/proses-tambah-personil'] = 'personil/proses_tambah_personil';
+$route['personil/edit-personil'] = 'personil/edit_personil';
+$route['personil/proses-edit-personil'] = 'personil/proses_edit_personil';
+$route['personil/lihat-sertifikat'] = 'personil/get_sertifikat';
 
 // Route Warehouse Alat Kerja
-$route['alat-kerja'] = 'alat_kerja/alat_kerja';
-$route['tambah-alat-kerja'] = 'alat_kerja/tambah_alat_kerja';
-$route['proses-tambah-alat-kerja'] = 'alat_kerja/proses_tambah_alat_kerja';
-$route['edit-alat-kerja'] = 'alat_kerja/edit_alat_kerja';
-$route['proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat_kerja';
+$route['alat-kerja'] = 'alat_kerja/index';
+$route['alat-kerja/tambah-alat-kerja'] = 'alat_kerja/tambah_alat_kerja';
+$route['alat-kerja/proses-tambah-alat-kerja'] = 'alat_kerja/proses_tambah_alat_kerja';
+$route['alat-kerja/edit-alat-kerja'] = 'alat_kerja/edit_alat_kerja';
+$route['alat-kerja/proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat_kerja';
 
 // Route Warehouse Alat Kerja
 $route['histori-alat-kerja'] = 'alat_kerja/histori_alat_kerja';
-$route['tambah-histori-alat-kerja'] = 'alat_kerja/tambah_histori_alat_kerja';
-$route['proses-tambah-histori-alat-kerja'] = 'alat_kerja/proses_tambah_histori_alat_kerja';
-$route['edit-alat-kerja'] = 'alat_kerja/edit_alat_kerja';
-$route['proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat_kerja';
+$route['histori-alat-kerja/tambah-histori-alat-kerja'] = 'alat_kerja/tambah_histori_alat_kerja';
+$route['histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'alat_kerja/proses_tambah_histori_alat_kerja';
+$route['histori-alat-kerja/pdf'] = 'alat_kerja/cetak_histori_alat_kerja';
+
+// Route Profil
+$route['profil'] = 'profil/index';
+$route['profil/proses-edit-profil'] = 'profil/proses_edit_profil';
+$route['profil/proses-edit-password'] = 'profil/proses_edit_password';

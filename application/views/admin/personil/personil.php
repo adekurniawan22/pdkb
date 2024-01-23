@@ -5,8 +5,7 @@
                 <div class="card-header pb-0">
                     <h6>Data Personil</h6>
                 </div>
-                <?= $this->session->flashdata('message');
-                unset($_SESSION['message']); ?>
+
                 <div class="mx-3 pb-2">
                     <a href="<?= base_url() ?>personil/tambah-personil" class="btn bg-gradient-dark">+ Tambah Personil</a>
                 </div>
@@ -27,7 +26,7 @@
                                 <?php foreach ($personil as $p) : ?>
                                     <tr>
                                         <td>
-                                            <div class="d-flex px-2 py-1">
+                                            <div class="d-flex ms-3 py-1">
                                                 <div>
                                                     <img src="<?= base_url() ?>assets/img/profil/<?= $p->foto ?>" class="avatar avatar-sm me-3" alt="user1">
                                                 </div>
@@ -38,20 +37,20 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0"><?= $p->nip ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $p->nip ?></p>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0"><?= $p->username ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $p->username ?></p>
                                         </td>
                                         <td class="">
                                             <?php if ($p->status_aktif == '1') : ?>
-                                                <span class="badge badge-sm bg-gradient-success">Aktif</span>
+                                                <span class="ms-3 badge badge-sm bg-gradient-success">Aktif</span>
                                             <?php else : ?>
-                                                <span class="badge badge-sm bg-gradient-danger">Tidak Aktif</span>
+                                                <span class="ms-3 badge badge-sm bg-gradient-danger">Tidak Aktif</span>
                                             <?php endif; ?>
                                         </td>
                                         <td class="align-middle">
-                                            <form action="<?= base_url() ?>personil/view-sertifikat" method="post" class="d-inline-block">
+                                            <form action="<?= base_url() ?>personil/lihat-sertifikat" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_personil" value="<?= $p->id_personil ?>">
                                                 <button type="submit" class="btn btn-link text-dark text-gradient px-3 mb-0"><i class="bi bi-eye me-2"></i>Lihat</button>
                                             </form>

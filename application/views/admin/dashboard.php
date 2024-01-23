@@ -50,7 +50,7 @@
               <div class="numbers">
                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Peralatan</p>
                 <h5 class="font-weight-bolder">
-                  45
+                  <?= $jumlah_alat_kerja ?>
                 </h5>
               </div>
             </div>

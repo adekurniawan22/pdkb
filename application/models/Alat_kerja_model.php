@@ -14,11 +14,11 @@ class Alat_kerja_model extends CI_Model
         return $query->row();
     }
 
-    public function jumlah_personil()
+    public function jumlah_alat_kerja()
     {
-        $this->db->from('t_personil');
-        $total_personil = $this->db->count_all_results();
-        return $total_personil;
+        $this->db->from('t_alat_kerja');
+        $total_alat_kerja = $this->db->count_all_results();
+        return $total_alat_kerja;
     }
 
     public function tambah_alat_kerja($data)

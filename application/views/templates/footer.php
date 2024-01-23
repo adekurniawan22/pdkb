@@ -14,50 +14,29 @@
 </footer>
 </div>
 </main>
-<div class="fixed-plugin h-50">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-        <i class="fa fa-cog py-2"> </i>
-    </a>
-    <div class="card shadow-lg">
-        <div class="card-header pb-0 pt-3 ">
-            <div class="float-start">
-                <h5 class="mt-3 mb-0">Konfigurasi Tampilan</h5>
-            </div>
-            <div class="float-end mt-4">
-                <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-                    <i class="fa fa-close"></i>
-                </button>
-            </div>
-            <!-- End Toggle Button -->
-        </div>
-        <hr class="horizontal dark my-1">
-        <div class="card-body pt-sm-3 pt-0 overflow-auto">
-            <!-- Sidebar Backgrounds -->
-            <div>
-                <h6 class="mb-0">Sidebar Colors</h6>
-            </div>
-            <a href="javascript:void(0)" class="switch-trigger background-color">
-                <div class="badge-colors my-2 text-start">
-                    <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
-                    <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
-                    <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
-                    <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
-                    <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
-                    <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
-                </div>
-            </a>
+</div>
 
-            <hr class="horizontal dark my-sm-4">
-            <div class="mt-2 mb-5 d-flex">
-                <h6 class="mb-0">Mode Gelap</h6>
-                <div class="form-check form-switch ps-0 ms-auto my-auto">
-                    <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
+<?php if ($this->session->flashdata('message')) { ?>
+    <!-- Tampilkan pesan 'flashdata' sebagai modal -->
+    <div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pesan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?= $this->session->flashdata('message') ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">Oke</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
+<?php } ?>
 
 <!-- Modal Logout -->
 <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,6 +70,10 @@
 <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.min.js"></script>
 
 <script>
+    $(document).ready(function() {
+        $('#message').modal('show');
+    });
+
     $(document).ready(function() {
         // Initialize an object to store selected items and their quantities
         var selectedItems = {};
@@ -149,7 +132,7 @@
                 var name = $('.select-checkbox[value="' + id + '"]').data('name');
                 selectedItemsText.push(name + ' (jumlah : ' + selectedItems[id] + ')');
             }
-            $('#spesifikasi').val(selectedItemsText.join(', '));
+            $('#nama_alat_kerja').val(selectedItemsText.join(', '));
         }
 
         // Event handler for form submission

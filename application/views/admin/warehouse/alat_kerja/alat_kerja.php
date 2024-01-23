@@ -5,8 +5,6 @@
                 <div class="card-header pb-0">
                     <h6>Data Alat Kerja</h6>
                 </div>
-                <?= $this->session->flashdata('message');
-                unset($_SESSION['message']); ?>
                 <div class="mx-3 pb-2">
                     <a href="<?= base_url() ?>alat-kerja/tambah-alat-kerja" class="btn bg-gradient-dark">+ Tambah Alat Kerja</a>
                 </div>
@@ -19,6 +17,7 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama ALat</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Spesifikasi</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Sedang Dipinjam</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
@@ -36,6 +35,9 @@
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->jumlah . ' ' . $a->satuan ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->sedang_dipinjam . ' ' . $a->satuan ?></p>
                                         </td>
 
                                         <td class="align-middle">

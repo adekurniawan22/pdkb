@@ -139,7 +139,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php if ($title == "SPKI") {
                                             echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>admin/dashboard">
+                                        } ?> btn-aside" href="<?= base_url() ?>spki">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
                         </div>
@@ -149,7 +149,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php if ($title == "Laporan Pekerjaan") {
                                             echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>admin/personil">
+                                        } ?> btn-aside" href="<?= base_url() ?>laporan-pekerjaan">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
                         </div>
@@ -159,7 +159,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php if ($title == "Laporan JSA") {
                                             echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>admin/personil">
+                                        } ?> btn-aside" href="<?= base_url() ?>laporan-jsa">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
                         </div>
@@ -170,7 +170,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php if ($title == "Rencana Operasi") {
                                             echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>admin/personil">
+                                        } ?> btn-aside" href="<?= base_url() ?>rencana-operasi">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
                         </div>
@@ -204,7 +204,9 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Akun</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-aside" href="<?= base_url() ?>admin/profile">
+                    <a class="nav-link btn-aside <?php if ($title == "Profil") {
+                                                        echo "active";
+                                                    } ?>" href="<?= base_url() ?>profil">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
                         </div>
@@ -224,15 +226,18 @@
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mb-2" id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm text-white "><?= str_replace('-', ' ', ucwords($this->uri->segment(1))) ?></li>
-                        <?php if ($this->uri->segment(2)) { ?>
-                            <li class="breadcrumb-item text-sm text-white active" aria-current="page"> <?= str_replace('-', ' ', ucwords($this->uri->segment(2))) ?></li>
-                        <?php } ?>
+                        <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white" href="javascript:;">PDKB</a></li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= str_replace('-', ' ', ucwords($this->uri->segment(1))) ?></li>
                     </ol>
+                    <?php if ($this->uri->segment(2)) { ?>
+                        <h6 class="font-weight-bolder text-white mb-0"><?= ucwords(str_replace('-', ' ', $this->uri->segment(2))) ?></h6>
+                    <?php } else { ?>
+                        <h6 class="font-weight-bolder text-white mb-0"></h6>
+                    <?php } ?>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">

@@ -11,7 +11,7 @@ class Personil extends CI_Controller
 		$this->load->model('Jabatan_model');
 	}
 
-	public function personil()
+	public function index()
 	{
 		$data['title'] = 'Personil';
 		$data['personil'] = $this->Personil_model->dapat_personil();
@@ -152,20 +152,12 @@ class Personil extends CI_Controller
 			}
 
 			if ($result) {
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-success" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Personil Berhasil Ditambahkan</strong>
-													<i class="bi bi-check-circle-fill"></i>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<strong>Data Personil Berhasil Ditambahkan</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 				redirect('personil');
 			} else {
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-danger" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Personil Gagal Ditambahkan</strong>
-													<i class="bi bi-exclamation-circle-fill"></i>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<strong>Data Personil Gagal Ditambahkan</strong>
+													<i class="bi bi-exclamation-circle-fill"></i>');
 				redirect('personil');
 			}
 		}
@@ -203,12 +195,8 @@ class Personil extends CI_Controller
 				$foto = $foto_data['file_name'];
 			} else {
 				$error = $this->upload->display_errors();
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-danger" role="alert" style="color:white; display: inline-block;">
-												<i class="bi bi-exclamation-circle-fill"></i>
-													<strong>Kesalahan saat mengedit foto personil :' . $error . '</strong>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<i class="bi bi-exclamation-circle-fill"></i> 
+												<strong>Kesalahan saat mengedit foto personil :' . $error . '</strong>');
 				redirect('personil');
 			}
 		} else {
@@ -230,20 +218,12 @@ class Personil extends CI_Controller
 
 			$result = $this->Personil_model->edit_personil($this->input->post('id_personil'), $data);
 			if ($result) {
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-success" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Personil Berhasil Di edit</strong>
-													<i class="bi bi-check-circle-fill"></i>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<strong>Data Personil Berhasil Di edit</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 				redirect('personil');
 			} else {
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-danger" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Personil Gagal Di edit</strong>
-													<i class="bi bi-exclamation-circle-fill"></i>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<strong>Data Personil Gagal Di edit</strong>
+													<i class="bi bi-exclamation-circle-fill"></i>');
 				redirect('personil');
 			}
 		}
@@ -253,12 +233,8 @@ class Personil extends CI_Controller
 	{
 		$this->db->where('id_personil', $this->input->post('id_personil'));
 		$this->db->delete('t_personil');
-		$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-success" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Personil Berhasil Dihapus</strong>
-													<i class="bi bi-check-circle-fill"></i>
-												</div>
-											</div>');
+		$this->session->set_flashdata('message', '<strong>Data Personil Berhasil Dihapus</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 		redirect('personil');
 	}
 

@@ -1,9 +1,11 @@
 <?php
+
 /**
  * @package dompdf
  * @link    https://github.com/dompdf/dompdf
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf;
 
 class Options
@@ -68,15 +70,15 @@ class Options
     private $chroot;
 
     /**
-    * Protocol whitelist
-    *
-    * Protocols and PHP wrappers allowed in URIs, and the validation rules
-    * that determine if a resouce may be loaded. Full support is not guaranteed
-    * for the protocols/wrappers specified
-    * by this array.
-    *
-    * @var array
-    */
+     * Protocol whitelist
+     *
+     * Protocols and PHP wrappers allowed in URIs, and the validation rules
+     * that determine if a resouce may be loaded. Full support is not guaranteed
+     * for the protocols/wrappers specified
+     * by this array.
+     *
+     * @var array
+     */
     private $allowedProtocols = [
         "file://" => ["rules" => []],
         "http://" => ["rules" => []],
@@ -174,7 +176,7 @@ class Options
      *
      * @var bool
      */
-    private $isPhpEnabled = false;
+    private $isPhpEnabled = true;
 
     /**
      * Enable remote file access
@@ -196,7 +198,7 @@ class Options
      *
      * @var bool
      */
-    private $isRemoteEnabled = false;
+    private $isRemoteEnabled = true;
 
     /**
      * Enable inline JavaScript

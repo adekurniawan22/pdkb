@@ -14,7 +14,7 @@ class Alat_kerja extends CI_Controller
 		$this->load->library('pdfgenerator');
 	}
 
-	public function alat_kerja()
+	public function index()
 	{
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_alat_kerja();
 		$data['title'] = 'Alat Kerja';
@@ -53,20 +53,12 @@ class Alat_kerja extends CI_Controller
 			$result = $this->Alat_kerja_model->tambah_alat_kerja($data);
 
 			if ($result) {
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-success" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Alat Kerja Berhasil Ditambahkan</strong>
-													<i class="bi bi-check-circle-fill"></i>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<strong>Data Alat Kerja Berhasil Ditambahkan</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 				redirect('alat-kerja');
 			} else {
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-danger" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Alat Kerja Gagal Ditambahkan</strong>
-													<i class="bi bi-exclamation-circle-fill"></i>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<strong>Data Alat Kerja Gagal Ditambahkan</strong>
+													<i class="bi bi-exclamation-circle-fill"></i>');
 				redirect('alat-kerja');
 			}
 		}
@@ -103,20 +95,12 @@ class Alat_kerja extends CI_Controller
 			$result = $this->Alat_kerja_model->edit_alat_kerja($this->input->post('id_alat_kerja'), $data);
 
 			if ($result) {
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-success" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Alat Kerja Berhasil Di edit</strong>
-													<i class="bi bi-check-circle-fill"></i>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<strong>Data Alat Kerja Berhasil Di edit</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 				redirect('alat-kerja');
 			} else {
-				$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-danger" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Alat Kerja Gagal Di edit</strong>
-													<i class="bi bi-exclamation-circle-fill"></i>
-												</div>
-											</div>');
+				$this->session->set_flashdata('message', '<strong>Data Alat Kerja Gagal Di edit</strong>
+													<i class="bi bi-exclamation-circle-fill"></i>');
 				redirect('alat-kerja');
 			}
 		}
@@ -126,12 +110,8 @@ class Alat_kerja extends CI_Controller
 	{
 		$this->db->where('id_alat_kerja', $this->input->post('id_alat_kerja'));
 		$this->db->delete('t_alat_kerja');
-		$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-success" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Alat Kerja Berhasil Dihapus</strong>
-													<i class="bi bi-check-circle-fill"></i>
-												</div>
-											</div>');
+		$this->session->set_flashdata('message', '<strong>Data Alat Kerja Berhasil Dihapus</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 		redirect('alat-kerja');
 	}
 
@@ -157,9 +137,9 @@ class Alat_kerja extends CI_Controller
 	public function proses_tambah_histori_alat_kerja()
 	{
 		$this->form_validation->set_rules('select_alat_kerja[]', 'Daftar Alat Kerja', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan Peminjaman', 'required');
-		$this->form_validation->set_rules('tanggal_peminjaman', 'Tanggal Peminjaman', 'required');
-
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+		$this->form_validation->set_rules('penanggung_jawab', 'Penanggung Jawab', 'required');
+		$this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar Alat Kerja', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->tambah_histori_alat_kerja();
@@ -176,32 +156,68 @@ class Alat_kerja extends CI_Controller
 					'id_alat_kerja' => $_POST["select_alat_kerja"][$i],
 					'jumlah' => $_POST["select_jumlah"][$i] . ' ' . $satuan['satuan'],
 					'keterangan' => $this->input->post('keterangan'),
-					'tanggal_peminjaman' => $this->input->post('tanggal_peminjaman'),
+					'penanggung_jawab' => $this->input->post('penanggung_jawab'),
+					'tanggal_keluar' => $this->input->post('tanggal_keluar'),
+					'status' => 'keluar'
 				];
 
 				$this->db->insert('t_histori_alat_kerja', $data);
+
+				$this->Alat_kerja_model->edit_alat_kerja($_POST["select_alat_kerja"][$i], ['sedang_dipinjam' => $satuan['sedang_dipinjam'] + $_POST["select_jumlah"][$i]]);
 			}
 
-			$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-success" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Histori Alat Kerja Berhasil Ditambahkan</strong>
-													<i class="bi bi-check-circle-fill"></i>
-												</div>
-											</div>');
+			$this->session->set_flashdata('message', '<strong>Data Histori Alat Kerja Berhasil Ditambahkan</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 			redirect('histori-alat-kerja');
 		}
 	}
 
+	public function proses_edit_status_histori()
+	{
+		$status = ($this->input->post('status') == 'on') ? 'masuk' : 'keluar';
+		$tanggal_sekarang = date('Y-m-d H:i:s');
+		$this->db->where('id_histori_alat_kerja', $this->input->post('id_histori_alat_kerja'));
+		$this->db->update('t_histori_alat_kerja', ['status' => $status, 'tanggal_masuk' => $tanggal_sekarang]);
+
+		$this->db->where('id_histori_alat_kerja =', $this->input->post('id_histori_alat_kerja'));
+		$query = $this->db->get('t_histori_alat_kerja')->result();
+
+		foreach ($query as $row) {
+			$id_alat_kerja = $row->id_alat_kerja;
+			$jumlah = $row->jumlah;
+			$angka = preg_replace("/[^0-9]/", '', $jumlah);
+
+			$this->db->set('sedang_dipinjam', 'sedang_dipinjam - ' . $angka, false);
+			$this->db->where('id_alat_kerja', $id_alat_kerja);
+			$this->db->update('t_alat_kerja');
+		}
+
+		$this->session->set_flashdata('message', '<strong>Status Histori Alat Kerja Berhasil Diedit</strong>
+													<i class="bi bi-check-circle-fill"></i>');
+		redirect('histori-alat-kerja');
+	}
+
 	public function proses_hapus_histori_alat_kerja()
 	{
+		$this->db->where('id_histori_alat_kerja =', $this->input->post('id_histori_alat_kerja'));
+		$query = $this->db->get('t_histori_alat_kerja')->result();
+
+		if ($query->status == 'keluar') {
+			foreach ($query as $row) {
+				$id_alat_kerja = $row->id_alat_kerja;
+				$jumlah = $row->jumlah;
+				$angka = preg_replace("/[^0-9]/", '', $jumlah);
+
+				$this->db->set('sedang_dipinjam', 'sedang_dipinjam - ' . $angka, false);
+				$this->db->where('id_alat_kerja', $id_alat_kerja);
+				$this->db->update('t_alat_kerja');
+			}
+		}
+
 		$this->db->where('id_histori_alat_kerja', $this->input->post('id_histori_alat_kerja'));
 		$this->db->delete('t_histori_alat_kerja');
-		$this->session->set_flashdata('message', '<div class="mx-3 p-0">
-												<div class="alert alert-success" role="alert" style="color:white; display: inline-block;">
-													<strong>Data Histori Alat Kerja Berhasil Dihapus</strong>
-													<i class="bi bi-check-circle-fill"></i>
-												</div>
-											</div>');
+		$this->session->set_flashdata('message', '<strong>Data Histori Alat Kerja Berhasil Dihapus</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 		redirect('histori-alat-kerja');
 	}
 
@@ -210,24 +226,38 @@ class Alat_kerja extends CI_Controller
 		$id_histori_alat_kerja = $this->input->post('id_histori_alat_kerja');
 		$nama_file_pdf = "Histori_Alat_Kerja_" . $id_histori_alat_kerja;
 
-		$this->db->select('t_histori_alat_kerja.*, t_alat_kerja.nama_alat_kerja');
+		$this->db->select('t_histori_alat_kerja.*, t_histori_alat_kerja.jumlah as jumlah_barang_keluar, t_alat_kerja.*');
 		$this->db->from('t_histori_alat_kerja');
 		$this->db->join('t_alat_kerja', 't_histori_alat_kerja.id_alat_kerja = t_alat_kerja.id_alat_kerja');
 		$this->db->where('id_histori_alat_kerja =', $id_histori_alat_kerja);
-		$query = $this->db->get()->result_array(); // Menggunakan result_array() agar data dalam bentuk array asosiatif
+		$query = $this->db->get()->result_array();
 		$tanggal_sekarang = date('Y-M-d');
-		$html = $this->load->view('admin/warehouse/histori_alat_kerja/pdf', ['query' => $query, 'tanggal_sekarang' => $tanggal_sekarang], true);
+		$foto = $this->encode_img_base64(base_url('assets/img/logo.png'));
+
+		if ($query) {
+			$html = $this->load->view('admin/warehouse/histori_alat_kerja/pdf', ['query' => $query, 'tanggal_sekarang' => $tanggal_sekarang, 'foto' => $foto], true);
+		} else {
+			$this->load->view('admin/warehouse/histori_alat_kerja/pdf', $query);
+		}
 
 		$filename = $nama_file_pdf;
 		$paper = 'A4';
 		$orientation = 'portrait';
 		$stream = true;
 
-		// Pastikan $data['pendaftaran'] masih berisi data
 		if (!empty($query)) {
 			$this->pdfgenerator->generate($html, $filename, $paper, $orientation, $stream);
-		} else {
-			echo "Data PDF belum dimuat seluruhnya. Silahkan tunggu 5 detik setelah halaman menampilkan file PDF lalu coba download lagi!";
 		}
+	}
+
+	function encode_img_base64($img_path = false): string
+	{
+		if ($img_path) {
+			$path = $img_path;
+			$type = pathinfo($path, PATHINFO_EXTENSION);
+			$data = file_get_contents($path);
+			return 'data:image/' . $type . ';base64,' . base64_encode($data);
+		}
+		return '';
 	}
 }
