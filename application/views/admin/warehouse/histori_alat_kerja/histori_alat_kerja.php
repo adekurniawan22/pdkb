@@ -57,7 +57,7 @@
                                         </td>
                                         <td class="align-middle">
                                             <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_alat<?= $a->id_histori_alat_kerja ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Daftar Alat</button>
-                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_alat_kerja<?= $a->id_histori_alat_kerja ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</button>
+                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_alat_kerja<?= $a->id_histori_alat_kerja ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <form action="<?= base_url() ?>histori-alat-kerja/pdf" method="post" class="d-inline-block" target="_blank">
                                                 <input type="hidden" name="id_histori_alat_kerja" value="<?= $a->id_histori_alat_kerja ?>">
                                                 <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>

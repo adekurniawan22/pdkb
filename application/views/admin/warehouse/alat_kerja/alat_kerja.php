@@ -37,7 +37,7 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->nama_alat_kerja ?></p>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->spesifikasi ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($a->spesifikasi) ?></p>
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->jumlah . ' ' . $a->satuan ?></p>
@@ -51,7 +51,7 @@
                                                 <input type="hidden" name="id_alat_kerja" value="<?= $a->id_alat_kerja ?>">
                                                 <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                             </form>
-                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_alat_kerja<?= $a->id_alat_kerja ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</button>
+                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_alat_kerja<?= $a->id_alat_kerja ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

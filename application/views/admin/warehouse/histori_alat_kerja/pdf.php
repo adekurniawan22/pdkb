@@ -16,6 +16,7 @@
     .table-content {
         border-collapse: collapse;
         width: 100%;
+        margin-bottom: 150px;
     }
 
     .table-content th,
@@ -23,18 +24,29 @@
         border: 1px solid #000;
         padding: 8px;
         text-align: left;
+        vertical-align: top;
     }
 
-    .footer-kanan {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
+    footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
     }
 
-    .footer-kiri {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
+    .signatures {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .left-signature {
+        margin-left: 50px;
+        float: left;
+    }
+
+    .right-signature {
+        margin-right: 50px;
+        float: right;
     }
 
     .styled-list li {
@@ -122,24 +134,27 @@
                         </tr>
                         <?php $nomor++; ?>
                     <?php endforeach; ?>
-                    <!-- Anda dapat menambahkan lebih banyak baris transaksi di sini -->
                 </tbody>
             </table>
         </div>
 
-        <div class="footer-kiri">
-            <div style="margin-bottom: 120px; text-align: center;">
-                <?= $query[0]['penanggung_jawab'] ?>
+        <footer>
+            <div class="signatures">
+                <div class="left-signature">
+                    <div style="margin-bottom: 120px; text-align: center;">
+                        <?= $query[0]['penanggung_jawab'] ?>
+                    </div>
+                    <div style="border-top: 1px solid #000; width: 100px;"></div>
+                </div>
+                <div class="right-signature">
+                    <div style="margin-bottom: 120px; text-align: center;">
+                        Atasan
+                    </div>
+                    <div style="border-top: 1px solid #000; width: 100px;"></div>
+                </div>
             </div>
-            <div style="border-top: 1px solid #000; width: 100px;"></div>
-        </div>
+        </footer>
 
-        <div class="footer-kanan">
-            <div style="margin-bottom: 120px; text-align: center;">
-                Atasan
-            </div>
-            <div style="border-top: 1px solid #000; width: 100px;"></div>
-        </div>
     <?php } else { ?>
         <h2 style="text-align: center;">Gagal Memuat PDF</h2>
     <?php } ?>

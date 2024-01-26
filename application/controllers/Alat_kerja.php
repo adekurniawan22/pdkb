@@ -82,7 +82,7 @@ class Alat_kerja extends CI_Controller
 		$this->form_validation->set_rules('satuan', 'Satuan Alat', 'required');
 
 		if ($this->form_validation->run() == false) {
-			$this->tambah_alat_kerja();
+			$this->edit_alat_kerja();
 		} else {
 			$data = array(
 				'jenis' => $this->input->post('jenis'),

@@ -67,6 +67,12 @@ $route['personil/edit-personil'] = 'personil/edit_personil';
 $route['personil/proses-edit-personil'] = 'personil/proses_edit_personil';
 $route['personil/lihat-sertifikat'] = 'personil/get_sertifikat';
 
+// Route SPKI
+$route['spki'] = 'spki/index';
+$route['spki/tambah-spki'] = 'spki/tambah_spki';
+$route['spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
+$route['spki/pdf'] = 'spki/cetak_spki';
+
 // Route Warehouse Alat Kerja
 $route['alat-kerja'] = 'alat_kerja/index';
 $route['alat-kerja/tambah-alat-kerja'] = 'alat_kerja/tambah_alat_kerja';

@@ -37,7 +37,7 @@
                                         <option value="Bh" <?php echo set_select('satuan', "Bh"); ?>>Bh</option>
                                         <option value="Pasang" <?php echo set_select('satuan', "Pasang"); ?>>Pasang</option>
                                         <option value="Set" <?php echo set_select('satuan', "Set"); ?>>Set</option>
-                                        <option value="Lbr" <?php echo set_select('satuan', "Lbr"); ?>>Lbr</option>
+                                        <option value="Lembar   " <?php echo set_select('satuan', "Lembar  "); ?>>Lembar </option>
                                         <option value="Karung" <?php echo set_select('satuan', "Karung"); ?>>Karung</option>
                                     </select>
                                     <?= form_error('satuan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>

@@ -40,6 +40,8 @@ class Auth extends CI_Controller
 
 					switch ($user['id_jabatan']) {
 						case 1:
+							$this->session->set_flashdata('message', '<strong>Login Berhasil</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 							redirect('dashboard');
 							break;
 						case 2:
@@ -74,13 +76,8 @@ class Auth extends CI_Controller
 			$_SESSION['id_jabatan'],
 			$_SESSION['id_personil'],
 		);
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" style="color:white">
-            <div class="d-flex justify-content-between align-items-center">
-				<strong>Kamu berhasil Logout!</strong>
-                <i class="bi bi-check-circle-fill"></i>
-            </div>
-        </div>
-        ');
+		$this->session->set_flashdata('logout', '<strong>Kamu Berhasil Logout</strong>
+													<i class="bi bi-check-circle-fill"></i>');
 		redirect(base_url());
 	}
 }
