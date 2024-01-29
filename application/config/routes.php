@@ -71,7 +71,17 @@ $route['personil/lihat-sertifikat'] = 'personil/get_sertifikat';
 $route['spki'] = 'spki/index';
 $route['spki/tambah-spki'] = 'spki/tambah_spki';
 $route['spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
+$route['spki/edit-spki'] = 'spki/edit_spki';
+$route['spki/proses-edit-spki'] = 'spki/proses_edit_spki';
 $route['spki/pdf'] = 'spki/cetak_spki';
+
+// Route laporan_pekerjaan
+$route['laporan-pekerjaan'] = 'laporan_pekerjaan/index';
+$route['laporan-pekerjaan/tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/tambah_laporan_pekerjaan';
+$route['laporan-pekerjaan/proses-tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_tambah_laporan_pekerjaan';
+$route['laporan-pekerjaan/edit-laporan-pekerjaan'] = 'laporan_pekerjaan/edit_laporan_pekerjaan';
+$route['laporan-pekerjaan/proses-edit-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_edit_laporan_pekerjaan';
+$route['laporan-pekerjaan/pdf'] = 'laporan_pekerjaan/cetak_laporan_pekerjaan';
 
 // Route Warehouse Alat Kerja
 $route['alat-kerja'] = 'alat_kerja/index';

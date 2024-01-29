@@ -19,8 +19,6 @@
                         <table class="table align-items-center mb-0" id="example">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dari</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Kepada</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Pekerjaan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
@@ -30,12 +28,6 @@
                                 <?php foreach ($spki as $s) : ?>
                                     <tr>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $s->dari ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $s->kepada ?></p>
-                                        </td>
-                                        <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $s->macam_pekerjaan ?></p>
                                         </td>
                                         <td>
@@ -44,10 +36,10 @@
 
                                         <td class="align-middle">
                                             <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $s->id_spki ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
-                                            <!-- <form action="#" method="post" class="d-inline-block">
+                                            <form action="<?= base_url('spki/edit-spki') ?>" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_spki" value="<?= $s->id_spki ?>">
                                                 <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
-                                            </form> -->
+                                            </form>
                                             <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_spki<?= $s->id_spki ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <form action="<?= base_url() ?>spki/pdf" method="post" class="d-inline-block" target="_blank">
                                                 <input type="hidden" name="id_spki" value="<?= $s->id_spki ?>">

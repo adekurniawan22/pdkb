@@ -31,10 +31,10 @@ class SPKI_model extends CI_Model
         }
     }
 
-    public function edit_alat_kerja($id_alat_kerja, $data)
+    public function edit_spki($id_spki, $data)
     {
-        $this->db->where('id_alat_kerja', $id_alat_kerja);
-        $this->db->update('t_alat_kerja', $data);
+        $this->db->where('id_spki', $id_spki);
+        $this->db->update('t_spki', $data);
         if ($this->db->affected_rows() > 0) {
             return true;
         } else {

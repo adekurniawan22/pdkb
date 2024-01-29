@@ -231,6 +231,7 @@ class Alat_kerja extends CI_Controller
 		$this->db->join('t_alat_kerja', 't_histori_alat_kerja.id_alat_kerja = t_alat_kerja.id_alat_kerja');
 		$this->db->where('id_histori_alat_kerja =', $id_histori_alat_kerja);
 		$query = $this->db->get()->result_array();
+		date_default_timezone_set('Asia/Jakarta');
 		$tanggal_sekarang = date('Y-M-d');
 		$foto = $this->encode_img_base64(base_url('assets/img/logo.png'));
 
