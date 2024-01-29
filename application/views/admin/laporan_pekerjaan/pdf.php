@@ -6,21 +6,13 @@
 </head>
 
 <style>
-    .table-header {
-        border-collapse: collapse;
-        /* Menggabungkan border-cells untuk hasil yang lebih konsisten */
+    .table-content {
         width: 100%;
         padding: 10px;
     }
 
-    .table-content {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
     .table-content th,
     .table-content td {
-        border: 1px solid #000;
         padding: 8px;
         text-align: left;
         vertical-align: top;
@@ -34,128 +26,246 @@
         page-break-inside: avoid;
     }
 
-    .styled-list li {
-        margin-left: -20px;
+    .table-sampul {
+        border-collapse: collapse;
+        width: 100%;
     }
 
-    .titikdua {
-        padding: 0 5px;
+    .table-sampul td,
+    .table-sampul th {
+        border: 1px solid black;
+        padding: 8px;
     }
 
-    .bn {
-        border-top: none !important;
-        border-bottom: none !important;
-        ;
-        border-left: none !important;
-        ;
-        border-right: none !important;
-        ;
+    .table-lampiran {
+        border-collapse: collapse;
+        width: 100%;
     }
 
-    .bn-xr {
-        border-top: none !important;
-        border-bottom: none !important;
-        ;
-        border-left: none !important;
-        ;
+    .table-lampiran td,
+    .table-lampiran th {
+        border: 1px solid black;
+        padding: 8px;
+    }
+
+    .page-break {
+        page-break-after: always;
+    }
+
+    .fixed-element {
+        position: relative;
+        /* Ubah posisi menjadi relative */
+        height: 50px;
+        /* Sesuaikan tinggi elemen sesuai kebutuhan */
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .header {
+        font-size: 12px;
+    }
+
+    .header-table {
+        font-size: 15px;
+        font-weight: bold;
     }
 </style>
 
 <body>
     <?php if (!empty($query)) { ?>
         <div class="container mt-5">
-            <table class="table-header" style="background-color: #2f519e; color: white; border: 0px !important">
+
+            <!-- SAMPUL -->
+            <table class="table-sampul">
                 <tr>
-                    <td rowspan="4">
-                        <img src="<?= $foto ?>" style="width: 80px;">
+                    <th style="text-align: center;">
+                        <h3>LAPORAN PEKERJAAN</h3>
+                        <div style="width: 500px; display:inline-block; margin-top:-20px">
+                            <h3 style="text-transform: uppercase;"><?= $query->dasar_pelaksanaan ?></h3>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        <img src="<?= base_url('assets/img/sampul_laporan_pekerjaan.jpg') ?>" style="width: 350px;  margin: 100px 50px;">
                     </td>
-                    <td rowspan="4" style="padding-left:20px; text-align:left">
-                        <h4>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</h4>
-                        <h4>UNIT PEMELIHARAAN TRANSMISI</h4>
+                </tr>
+                <tr>
+                    <th style="text-align: center; ">
+                        <h3>PT. PLN (PERSERO) UPT KALTIMRA</h3>
+                        <h3>BIDANG PDKB </h3>
+                    </th>
+                </tr>
+            </table>
+            <!-- END SAMPUL -->
+
+            <div class="page-break"></div>
+
+            <!-- HEADER -->
+            <table class="table-header" style="background-color: white; color: black; border: 0px !important">
+                <tr>
+                    <td style="margin: 0px !important;">
+                        <img src="<?= base_url('assets/img/logo_pln.png') ?>" style="width: 40px;">
+                    </td>
+                    <td style="padding-left:20px; text-align:left">
+                        <span class="header"><b>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</b></span>
+                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI KALIMANTAN TIMUR DAN KALIMANTAN UTARA</b></span>
                     </td>
                 </tr>
             </table>
-            <br>
+            <!-- END HEADER -->
+            <div style="margin-bottom: 40px;"></div>
 
-            <table>
+            <table class="table-content">
                 <tr>
-                    <td style="text-align: left;">Dasar Pelaksanaan</td>
-                    <td class="titikdua">: <?= $query->dasar_pelaksanaan ?></td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">Dari</td>
-                    <td class="titikdua">: <?= $query->dari ?></td>
+                    <td style="text-align: center;">
+                        <span class="header-table">LAPORAN PELAKSANAAN PEKERJAAN</span>
+                    </td>
                 </tr>
             </table>
             <br>
             <table class="table-content">
+                <!-- ISI -->
                 <tr>
-                    <th>Macam Pekerjaan</th>
-                    <td colspan="3"><?= $query->macam_pekerjaan ?></td>
-                </tr>
-                <tr>
-                    <th>Lokasi Pekerjaan</th>
-                    <td colspan="3"><?= nl2br($query->lokasi_pekerjaan) ?></td>
-                </tr>
-                <tr>
-                    <th>Waktu Pelaksanaan</th>
-                    <td colspan="3"><?= date('d/m/Y', strtotime($query->mulai_pelaksanaan)) . ' - ' . date('d/m/Y', strtotime($query->selesai_pelaksanaan)) ?></td>
-                </tr>
-                <tr>
-                    <th rowspan="4">Nama / Jumlah Pelaksana</th>
-                    <td style="width: 25%;" class="bn">
-                        <b>PJ Pekerjaan</b>
+                    <td style="width: 5px">
+                        <span class="header-table">I.</span>
                     </td>
-                    <td style="width: 2px;" class="bn">:</td>
-                    <td class="bn-xr"><?= nl2br($query->pj) ?></td>
-                </tr>
-                <tr>
-                    <td class="bn">
-                        <b>Pengawas Pekerjaan</b>
+                    <td style="width: 5px;"></td>
+                    <td>
+                        <span class="header-table">DASAR PELAKSANAAN</span>
                     </td>
-                    <td class="bn">:</td>
-                    <td class="bn-xr"><?= nl2br($query->pengawas) ?></td>
                 </tr>
                 <tr>
-                    <td class="bn">
-                        <b>Pengawas K3</b>
+                    <td></td>
+                    <td></td>
+                    <td><?= $query->dasar_pelaksanaan ?></td>
+                </tr>
+
+                <!-- ISI -->
+                <tr>
+                    <td style="width: 5px">
+                        <span class="header-table">II.</span>
                     </td>
-                    <td class="bn">:</td>
-                    <td class="bn-xr"><?= nl2br($query->pengawas_k3) ?></td>
-                </tr>
-                <tr>
-                    <td class="bn">
-                        <b>Pelaksana</b>
+                    <td style="width: 5px;"></td>
+                    <td>
+                        <span class="header-table">WAKTU PELAKSANAAN</span>
                     </td>
-                    <td class="bn">:</td>
-                    <td class="bn-xr"><?= nl2br($query->pelaksana) ?></td>
                 </tr>
                 <tr>
-                    <th>Peralatan Yang Dipakai</th>
-                    <td colspan="3"><?= nl2br($query->alat_kerja) ?></td>
+                    <td></td>
+                    <td></td>
+                    <td>Pelaksanaan pekerjaan pada tanggal <?= $query->waktu_pelaksanaan ?></td>
+                </tr>
+
+                <!-- ISI -->
+                <tr>
+                    <td style="width: 5px">
+                        <span class="header-table">III.</span>
+                    </td>
+                    <td style="width: 5px;"></td>
+                    <td>
+                        <span class="header-table">LINGKUP PEKERJAAN</span>
+                    </td>
                 </tr>
                 <tr>
-                    <th>Uraian Kerja</th>
-                    <td colspan="3"><?= nl2br($query->uraian_kerja) ?></td>
+                    <td></td>
+                    <td></td>
+                    <td><?= $query->lingkup_pekerjaan ?></td>
+                </tr>
+
+                <!-- ISI -->
+                <tr>
+                    <td style="width: 5px">
+                        <span class="header-table">IV.</span>
+                    </td>
+                    <td style="width: 5px;"></td>
+                    <td>
+                        <span class="header-table">HASIL PEKERJAAN</span>
+                    </td>
                 </tr>
                 <tr>
-                    <th>Catatan</th>
-                    <td colspan="3"><?= nl2br($query->catatan) ?></td>
+                    <td></td>
+                    <td></td>
+                    <td><?= nl2br($query->hasil_pekerjaan) ?></td>
+                </tr>
+
+                <!-- ISI -->
+                <tr>
+                    <td style="width: 5px">
+                        <span class="header-table">V.</span>
+                    </td>
+                    <td style="width: 5px;"></td>
+                    <td>
+                        <span class="header-table">PENUTUP</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><?= nl2br($query->penutup) ?></td>
                 </tr>
             </table>
-        </div>
 
-        <div class="signature">
-            <div style="margin-bottom: 10px;">Balikpapan, <?= $tanggal_sekarang ?></div>
-            <div style="margin-bottom: 120px; text-align: center;">
-                <b><?= nl2br($query->dari) ?></b>
+            <div class="signature">
+                <div style="margin-bottom: 10px;">Balikpapan, <?= $tanggal_sekarang ?></div>
+                <div style="margin-bottom: 120px; text-align: center;">
+                    <b>MANAGER BAGIAN PDKB</b>
+                </div>
+                <hr style="width: 150px;">
             </div>
-            <b><?= nl2br($query->pj) ?></b>
-        </div>
 
-    <?php } else { ?>
-        <h2 style="text-align: center;">Gagal Memuat PDF</h2>
-    <?php } ?>
+            <div class="page-break"></div>
+
+            <!-- HEADER -->
+            <table class="table-header" style="background-color: white; color: black; border: 0px !important">
+                <tr>
+                    <td style="margin: 0px !important;">
+                        <img src="<?= base_url('assets/img/logo_pln.png') ?>" style="width: 40px;">
+                    </td>
+                    <td style="padding-left:20px; text-align:left">
+                        <span class="header"><b>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</b></span>
+                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI KALIMANTAN TIMUR DAN KALIMANTAN UTARA</b></span>
+                    </td>
+                </tr>
+            </table>
+            <!-- END HEADER -->
+            <div style="margin-bottom: 40px;"></div>
+
+            <table class="table-content">
+                <tr>
+                    <td style="text-align: center;" colspan="3">
+                        <span class="header-table">LAMPIRAN</span>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <?php foreach ($lampiran as $l) : ?>
+                <table class="table-lampiran">
+                    <tr>
+                        <td style=" text-align: center;" colspan="3">
+                            <span class="header-table" style="text-transform: uppercase;"><?= $l->judul_lampiran ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_sebelum ?>" alt="" width="150px">
+                        </td>
+                        <td style="text-align: center;">
+                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_proses ?>" alt="" width="150px">
+                        </td>
+                        <td style="text-align: center;">
+                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_setelah ?>" alt="" width="150px">
+                        </td>
+                    </tr>
+
+                </table>
+                <br>
+            <?php endforeach; ?>
+            <br>
+
+        <?php } else { ?>
+            <h2 style="text-align: center;">Gagal Memuat PDF</h2>
+        <?php } ?>
 </body>
 
 </html>

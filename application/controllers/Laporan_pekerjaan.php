@@ -102,7 +102,7 @@ class Laporan_pekerjaan extends CI_Controller
 			$id_laporan_pekerjaan = $this->input->post('id_laporan_pekerjaan');
 			$result = $this->Laporan_pekerjaan_model->edit_laporan_pekerjaan($id_laporan_pekerjaan, $data);
 
-			if ($result or $_FILES['lampiran_sebelum'] != NULL and $_FILES['lampiran_proses'] != NULL and $_FILES['lampiran_setelah'] != NULL) {
+			if ($id_laporan_pekerjaan or $_FILES['lampiran_sebelum'] != NULL and $_FILES['lampiran_proses'] != NULL and $_FILES['lampiran_setelah'] != NULL) {
 				$this->handleFileUpload('lampiran_sebelum', $_FILES['lampiran_sebelum'], $data_lampiran_sebelum);
 				$this->handleFileUpload('lampiran_proses', $_FILES['lampiran_proses'], $data_lampiran_proses);
 				$this->handleFileUpload('lampiran_setelah', $_FILES['lampiran_setelah'], $data_lampiran_setelah);
@@ -137,12 +137,21 @@ class Laporan_pekerjaan extends CI_Controller
 		$this->db->where('id_laporan_pekerjaan =', $id_laporan_pekerjaan);
 		$query = $this->db->get('t_laporan_pekerjaan')->row();
 
+		$this->db->where('id_laporan_pekerjaan =', $id_laporan_pekerjaan);
+		$lampiran = $this->db->get('t_lampiran_laporan_pekerjaan')->result();
+
+		foreach ($lampiran as $l) {
+			$this->encode_img_base64(base_url('assets/img/lampiran-pekerjaan/' . $l->foto_sebelum));
+			$this->encode_img_base64(base_url('assets/img/lampiran-pekerjaan/' . $l->foto_proses));
+			$this->encode_img_base64(base_url('assets/img/lampiran-pekerjaan/' . $l->foto_setelah));
+		}
+
 		date_default_timezone_set('Asia/Jakarta');
 		$tanggal_sekarang = date('d F Y');
 		$foto = $this->encode_img_base64(base_url('assets/img/logo_pln.png'));
 
 		if ($query) {
-			$html = $this->load->view('admin/laporan_pekerjaan/pdf', ['query' => $query, 'tanggal_sekarang' => $tanggal_sekarang, 'foto' => $foto], true);
+			$html = $this->load->view('admin/laporan_pekerjaan/pdf', ['query' => $query, 'lampiran' => $lampiran, 'tanggal_sekarang' => $tanggal_sekarang, 'foto' => $foto], true);
 		} else {
 			$this->load->view('admin/laporan_pekerjaan/pdf', ['query' => $query], true);
 		}
@@ -171,7 +180,7 @@ class Laporan_pekerjaan extends CI_Controller
 	private function handleFileUpload($uploadConfig, $fileData, &$dataArray)
 	{
 		$config_lampiran = array(
-			'upload_path' => './assets/img/profil',
+			'upload_path' => './assets/img/lampiran-pekerjaan',
 			'allowed_types' => 'jpg|jpeg|png',
 			'max_size' => 2048, // 2MB
 		);
