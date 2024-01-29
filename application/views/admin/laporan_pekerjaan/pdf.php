@@ -154,7 +154,7 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>Pelaksanaan pekerjaan pada tanggal <?= $query->waktu_pelaksanaan ?></td>
+                    <td>Pelaksanaan pekerjaan pada tanggal <?= date('d/m/Y', strtotime($query->waktu_pelaksanaan)) ?></td>
                 </tr>
 
                 <!-- ISI -->

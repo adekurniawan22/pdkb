@@ -231,6 +231,16 @@ class Personil extends CI_Controller
 
 	public function proses_hapus_personil()
 	{
+		$sertifikat = $this->Personil_model->get_sertifikat_detail($this->input->post('id_personil'));
+
+		foreach ($sertifikat as $s) {
+			$sertifikatPath = FCPATH . 'assets/img/sertifikat/' . $s->nama_file;
+			unlink($sertifikatPath);
+		}
+
+		$personil = $this->Personil_model->dapat_satu_personil($this->input->post('id_personil'));
+		unlink(FCPATH . 'assets/img/profil/' . $personil->foto);
+
 		$this->db->where('id_personil', $this->input->post('id_personil'));
 		$this->db->delete('t_personil');
 		$this->session->set_flashdata('message', '<strong>Data Personil Berhasil Dihapus</strong>

@@ -123,6 +123,18 @@ class Laporan_pekerjaan extends CI_Controller
 	public function proses_hapus_laporan_pekerjaan()
 	{
 		$this->db->where('id_laporan_pekerjaan', $this->input->post('id_laporan_pekerjaan'));
+		$lampiran = $this->db->get('t_lampiran_laporan_pekerjaan')->result();
+
+		foreach ($lampiran as $l) {
+			$lampiranSebelum = FCPATH . 'assets/img/lampiran-pekerjaan/' . $l->foto_sebelum;
+			$lampiranproses = FCPATH . 'assets/img/lampiran-pekerjaan/' . $l->foto_proses;
+			$lampiransetelah = FCPATH . 'assets/img/lampiran-pekerjaan/' . $l->foto_setelah;
+			unlink($lampiranSebelum);
+			unlink($lampiranproses);
+			unlink($lampiransetelah);
+		}
+
+		$this->db->where('id_laporan_pekerjaan', $this->input->post('id_laporan_pekerjaan'));
 		$this->db->delete('t_laporan_pekerjaan');
 		$this->session->set_flashdata('message', '<strong>Data Laporan Pekerjaan Berhasil Dihapus</strong>
 		<i class="bi bi-check-circle-fill"></i>');

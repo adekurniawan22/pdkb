@@ -63,8 +63,8 @@
                         <button type="button" class="btn btn-primary bg-dark" onclick="tambahLampiran()">+ Tambah Lampiran</button>
 
                         <div>
-                            <a href=" <?= base_url() ?>spki" class="btn btn-primary" type="button">Kembali</a>
-                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            <a href=" <?= base_url() ?>laporan-pekerjaan" class="btn btn-primary" type="button">Kembali</a>
+                            <button class="btn btn-primary" type="submit">Edit</button>
                         </div>
                     </form>
                 </div>
