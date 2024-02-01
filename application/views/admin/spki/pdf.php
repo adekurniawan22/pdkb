@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>PDF Histori Alat Kerja</title>
+    <title>PDF SPKI</title>
 </head>
 
 <style>

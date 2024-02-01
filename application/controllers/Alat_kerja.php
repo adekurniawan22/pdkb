@@ -10,7 +10,7 @@ class Alat_kerja extends CI_Controller
 		$this->load->model('Personil_model');
 		$this->load->model('Jabatan_model');
 		$this->load->model('Alat_kerja_model');
-		$this->load->model('Histori_alat_kerja_model');
+		$this->load->model('Histori_alat_model');
 		$this->load->library('pdfgenerator');
 	}
 
@@ -117,8 +117,8 @@ class Alat_kerja extends CI_Controller
 
 	public function histori_alat_kerja()
 	{
-		$data['histori'] = $this->Histori_alat_kerja_model->dapat_histori_alat_kerja();
-		$data['daftar_alat'] = $this->Histori_alat_kerja_model->dapat_daftar_alat_kerja();
+		$data['histori'] = $this->Histori_alat_model->dapat_histori_alat_kerja();
+		$data['daftar_alat'] = $this->Histori_alat_model->dapat_daftar_alat_kerja();
 		$data['title'] = 'Histori Alat Kerja';
 		$this->load->view('templates/header', $data);
 		$this->load->view('admin/warehouse/histori_alat_kerja/histori_alat_kerja', $data);
@@ -136,6 +136,13 @@ class Alat_kerja extends CI_Controller
 
 	public function proses_tambah_histori_alat_kerja()
 	{
+		$signatureData = $this->input->post('signature_image');
+		if (!empty($signatureData)) {
+			$randomBytes = random_bytes(16); // Mendapatkan 16 byte nilai acak
+			$fileName = 'signature_' . bin2hex($randomBytes) . '.png';
+			file_put_contents('./assets/img/tanda-tangan/' . $fileName, base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $signatureData)));
+		}
+
 		$this->form_validation->set_rules('select_alat_kerja[]', 'Daftar Alat Kerja', 'required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 		$this->form_validation->set_rules('penanggung_jawab', 'Penanggung Jawab', 'required');

@@ -8,11 +8,6 @@
                             <h5>Data Histori Alat Kerja</h5>
                         </div>
                     </div>
-                    <div class="col-6 pt-4 text-end">
-                        <div class="mx-3">
-                            <a href="<?= base_url() ?>histori-alat-kerja/tambah-histori-alat-kerja" class="btn bg-gradient-dark">+ Tambah Histori Alat Kerja</a>
-                        </div>
-                    </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -47,24 +42,22 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $h->keterangan ?></p>
                                         </td>
                                         <td>
-                                            <?php if ($h->status == 'keluar') : ?>
-
-                                                <span class="ms-3 badge badge-sm bg-gradient-danger">Belum Dikembalikan</span>
+                                            <?php if ($h->sudah_disetujui == '0') : ?>
+                                                <span class="ms-3 badge badge-sm bg-gradient-danger">Belum Disetujui</span>
                                                 <button class="btn btn-link text-dark text-gradient px-3 mb-0"><i class="fas fa-pencil-alt me-2" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#status<?= $h->id_histori_alat ?>"></i></button>
                                             <?php else : ?>
-                                                <span class="ms-3 badge badge-sm bg-gradient-success">Sudah Dikembalikan</span>
+                                                <span class="ms-3 badge badge-sm bg-gradient-success">Sudah Disetujui</span>
                                             <?php endif; ?>
                                         </td>
                                         <td class="align-middle">
                                             <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_alat<?= $h->id_histori_alat ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Daftar Alat</button>
-                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_histori_alat<?= $h->id_histori_alat ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
-                                            <?php if ($h->sudah_disetujui == '1') : ?>
-                                                <form action="<?= base_url() ?>histori-alat-kerja/pdf" method="post" class="d-inline-block" target="_blank">
-                                                    <input type="hidden" name="id_histori_alat" value="<?= $h->id_histori_alat ?>">
-                                                    <input type="hidden" name="id_atasan" value="<?= $h->id_atasan ?>">
-                                                    <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
-                                                </form>
-                                            <?php endif; ?>
+
+                                            <form action="<?= base_url() ?>histori-alat-kerja/pdf" method="post" class="d-inline-block" target="_blank">
+                                                <input type="hidden" name="id_atasan" value="<?= $h->id_atasan ?>">
+                                                <input type="hidden" name="id_histori_alat" value="<?= $h->id_histori_alat ?>">
+                                                <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>Lihat PDF</Button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -77,29 +70,6 @@
     </div>
 
     <?php foreach ($histori_alat as $am) : ?>
-        <!-- Modal Delete Akun -->
-        <div class="modal fade" id="hapus_histori_alat<?= $am->id_histori_alat ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Hapus Histori Alat Kerja</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Apakah kamu yakin ingin menghapus histori alat kerja ini?
-                    </div>
-                    <div class="modal-footer">
-                        <form action="<?= base_url() ?>histori_alat/proses_hapus_histori_alat" method="post">
-                            <input type="hidden" name="id_histori_alat" value="<?= $am->id_histori_alat ?>">
-                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
-                            <button type="submit" class="btn bg-gradient-primary">Ya</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Modal Lihat Daftar Alat -->
         <div class="modal fade" id="lihat_alat<?= $am->id_histori_alat ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -145,10 +115,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <form action="<?= base_url() ?>histori_alat/proses_edit_status_histori" method="post">
-                                <label for="status" class="form-control-label">Apakah sudah dikembalikan?</label>
+                            <form action="<?= base_url() ?>histori_alat/proses_edit_status_disetujui_histori" method="post">
+                                <label for="status" class="form-control-label">Apakah disetujui?</label>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckDefault" <?php echo ($am->status == 'masuk') ? 'checked' : ''; ?>>
+                                    <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckDefault" <?php echo ($am->sudah_disetujui == '1') ? 'checked' : ''; ?>>
                                 </div>
                         </div>
                     </div>

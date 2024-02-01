@@ -41,9 +41,12 @@ class Personil extends CI_Controller
 	public function proses_tambah_personil()
 	{
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-		$this->form_validation->set_rules('nip', 'NIP', 'required|trim|integer');
-		$this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[t_personil.username]|regex_match[/^[a-z0-9]+$/]');
-		// $this->form_validation->set_rules('username', 'Username', 'required|trim|regex_match[/^[a-z0-9]+$/]');
+		$this->form_validation->set_rules('nip', 'NIP', 'required|trim|integer|is_unique[t_personil.nip]');
+		$this->form_validation->set_rules(
+			'username',
+			'Username',
+			'required|trim|is_unique[t_personil.username]|regex_match[/^[a-z0-9_\.]+$/]'
+		);
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]');
 		$this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
 		$this->form_validation->set_rules('foto', 'Foto', 'callback_file_selected_test');
@@ -52,7 +55,6 @@ class Personil extends CI_Controller
 			$this->tambah_personil();
 		} else {
 			if (!empty($_FILES['foto']['name'])) {
-				// Konfigurasi upload
 				$config_foto = array(
 					'upload_path' => './assets/img/profil',
 					'allowed_types' => 'jpg|jpeg|png',
@@ -62,12 +64,10 @@ class Personil extends CI_Controller
 				$this->load->library('upload', $config_foto);
 
 				if ($this->upload->do_upload('foto')) {
-					// Jika berhasil diupload, ambil nama file
 					$foto_data = $this->upload->data();
 					$foto = $foto_data['file_name'];
 					unset($this->upload);
 				} else {
-					// Jika gagal upload, tampilkan error
 					$error = $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>');
 					$this->session->set_flashdata('message', $error);
 					redirect('personil/proses-tambah-personil');
@@ -175,8 +175,11 @@ class Personil extends CI_Controller
 
 	public function proses_edit_personil()
 	{
+		$check_data_user = $this->Personil_model->dapat_satu_personil($this->input->post('id_personil'));
+		if ($this->input->post('nip') != $check_data_user->nip) {
+			$this->form_validation->set_rules('nip', 'NIP', 'required|trim|integer|is_unique[t_personil.nip]');
+		}
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-		$this->form_validation->set_rules('nip', 'NIP', 'required|trim|integer');
 		$this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
 
 		$status_aktif = ($this->input->post('status_aktif') == 'on') ? '1' : '0';

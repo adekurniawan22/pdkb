@@ -21,6 +21,7 @@ class Personil_model extends CI_Model
 
     public function jumlah_personil()
     {
+        $this->db->where('id_jabatan !=', 1);
         $this->db->from('t_personil');
         $total_personil = $this->db->count_all_results();
         return $total_personil;

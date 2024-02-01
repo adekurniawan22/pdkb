@@ -57,8 +57,8 @@
                             <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('<?= base_url() ?>assets/img/banner.jpg');
           background-size: cover;">
                                 <span class="mask bg-gradient-primary opacity-6"></span>
-                                <h4 class="mt-5 text-white font-weight-bolder position-relative">"PDKB"</h4>
-                                <p class="text-white position-relative">Bekerja dengan semangat juang tinggi!</p>
+                                <h4 class="mt-5 text-white font-weight-bolder position-relative">PDKB</h4>
+                                <p class="text-white position-relative">Menjaga Listrik Tetap Nyala Meski Harus Bertaruh Nyawa</p>
                             </div>
                         </div>
                     </div>

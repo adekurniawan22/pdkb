@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>histori-alat-kerja/proses-tambah-histori-alat-kerja" method="post">
+                    <form action="<?= base_url() ?>histori-alat-kerja/proses-tambah-histori-alat-kerja" method="post" onsubmit="updateSignatureInput()">
                         <div class="card mb-4">
                             <div class="card-body px-0 pb-3">
                                 <h4 class="ms-4">Data Alat Kerja</h4>
@@ -72,6 +72,13 @@
                             <input class="form-control" type="text" name="penanggung_jawab" id="penanggung_jawab" value="<?php echo set_value('penanggung_jawab'); ?>" placeholder="Penanggung Jawab">
                             <?= form_error('penanggung_jawab', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label">Tanda Tangan Penanggung Jawab</label>
+                        </div>
+                        <input type="hidden" name="signature_image" id="signatureImageInput" />
+                        <canvas id="signatureCanvas" class="mb-3" width="300" height="150" style="border:1px solid #000; margin-top: -15px"></canvas>
+
                         <div class="form-group">
                             <label for="example-datetime-local-input" class="form-control-label">Tanggal Barang Keluar</label>
                             <input class="form-control" type="datetime-local" name="tanggal_keluar" id="example-datetime-local-input" value="<?php echo set_value('tanggal_keluar'); ?>">
@@ -92,3 +99,90 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var canvas = document.getElementById('signatureCanvas');
+        var ctx = canvas.getContext('2d');
+        var drawing = false;
+
+        // Menangani sentuhan pada perangkat mobile
+        canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Mencegah peristiwa default sentuhan
+            var touch = e.touches[0];
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(touch.clientX, touch.clientY);
+        });
+
+        canvas.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            if (drawing) {
+                var touch = e.touches[0];
+                ctx.lineTo(touch.clientX, touch.clientY);
+                ctx.stroke();
+            }
+        });
+
+        canvas.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            drawing = false;
+            updateSignatureInput();
+        });
+
+        // Menangani interaksi mouse pada desktop
+        canvas.addEventListener('mousedown', function(e) {
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+        });
+
+        canvas.addEventListener('mousemove', function(e) {
+            if (drawing) {
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.stroke();
+            }
+        });
+
+        canvas.addEventListener('mouseup', function() {
+            drawing = false;
+            updateSignatureInput();
+        });
+
+
+        function updateSignatureInput() {
+            var signatureImageInput = document.getElementById('signatureImageInput');
+            var signatureData = canvas.toDataURL('image/png');
+
+            // Check if the canvas is empty
+            if (isCanvasEmpty()) {
+                // If the canvas is empty, do not update the signature input
+                signatureImageInput.value = '';
+            } else {
+                // If the canvas is filled, update the signature input with the data URL
+                signatureImageInput.value = signatureData;
+            }
+        }
+
+        function isCanvasEmpty() {
+            var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+            for (var i = 0; i < imageData.length; i += 4) {
+                if (imageData[i + 3] !== 0) {
+                    // If the alpha channel is not transparent, the canvas is not empty
+                    return false;
+                }
+            }
+
+            // If the loop completes without returning false, the canvas is empty
+            return true;
+        }
+
+        function clearSignature() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            updateSignatureInput();
+        }
+
+        function getSignatureImage() {
+            return canvas.toDataURL('image/png');
+        }
+    </script>

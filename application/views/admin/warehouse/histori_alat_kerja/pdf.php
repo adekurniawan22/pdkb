@@ -78,13 +78,13 @@
             <table>
                 <tr>
                     <td style="text-align: left;">Petugas</td>
-                    <td class="titikdua">: <?= $query[0]['penanggung_jawab'] ?></td>
+                    <td class="titikdua">: <?= $histori_alat->penanggung_jawab ?></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;">Tanggal Keluar</td>
-                    <td class="titikdua">: <?= date('d/m/Y', strtotime($query[0]['tanggal_keluar']))  ?></td>
+                    <td class="titikdua">: <?= date('d/m/Y', strtotime($histori_alat->tanggal_keluar)) . ', Jam ' . date('H:i', strtotime($histori_alat->tanggal_keluar))  ?></td>
                 </tr>
-                <?php if ($query[0]['tanggal_masuk'] == '0000-00-00 00:00:00') : ?>
+                <?php if ($histori_alat->tanggal_masuk == '0000-00-00 00:00:00') : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
                         <td class="titikdua">: -</td>
@@ -92,16 +92,16 @@
                 <?php else : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
-                        <td class="titikdua">: <?= date('d/m/Y', strtotime($query[0]['tanggal_masuk']))  ?></td>
+                        <td class="titikdua">: <?= date('d/m/Y', strtotime($histori_alat->tanggal_masuk))  ?></td>
                     </tr>
                 <?php endif; ?>
                 <tr>
                     <td style="text-align: left;">Jenis Pekerjaan</td>
-                    <td class="titikdua">: <?= $query[0]['keterangan'] ?></td>
+                    <td class="titikdua">: <?= $histori_alat->keterangan ?></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;">Status</td>
-                    <td class="titikdua">: <?= $query[0]['status'] ?></td>
+                    <td class="titikdua">: <?= $histori_alat->status ?></td>
                 </tr>
             </table>
 
@@ -141,16 +141,29 @@
         <footer>
             <div class="signatures">
                 <div class="left-signature">
-                    <div style="margin-bottom: 120px; text-align: center;">
-                        <?= $query[0]['penanggung_jawab'] ?>
+                    <div style="text-align: center;">
+                        Penanggung Jawab
+                        <div>
+                            <img width="200px" src="<?= base_url() ?>assets/img/tanda-tangan/<?= $histori_alat->tanda_tangan ?>" alt="" style="margin-top: 20px;">
+                        </div>
                     </div>
-                    <div style="border-top: 1px solid #000; width: 100px;"></div>
+                    <p style="text-align: center;"><?= $histori_alat->penanggung_jawab ?></p>
                 </div>
                 <div class="right-signature">
-                    <div style="margin-bottom: 120px; text-align: center;">
-                        Atasan
-                    </div>
-                    <div style="border-top: 1px solid #000; width: 100px;"></div>
+                    <?php if ($atasan) : ?>
+                        <div style="text-align: center;">
+                            Atasan
+                            <div>
+                                <img width="200px" src="<?= base_url() ?>assets/img/tanda-tangan/<?= $atasan->tanda_tangan ?>" alt="" style="margin-top: 20px;">
+                            </div>
+                        </div>
+                        <p style="text-align: center;"><?= $atasan->nama ?></p>
+                    <?php else : ?>
+                        <div style="margin-bottom: 150px; text-align: center;">
+                            Atasan
+                        </div>
+                        <div style="border-top: 1px solid #000; width: 100px;"></div>
+                    <?php endif ?>
                 </div>
             </div>
         </footer>

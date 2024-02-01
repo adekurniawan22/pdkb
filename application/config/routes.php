@@ -91,10 +91,11 @@ $route['alat-kerja/edit-alat-kerja'] = 'alat_kerja/edit_alat_kerja';
 $route['alat-kerja/proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat_kerja';
 
 // Route Warehouse Alat Kerja
-$route['histori-alat-kerja'] = 'alat_kerja/histori_alat_kerja';
-$route['histori-alat-kerja/tambah-histori-alat-kerja'] = 'alat_kerja/tambah_histori_alat_kerja';
-$route['histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'alat_kerja/proses_tambah_histori_alat_kerja';
-$route['histori-alat-kerja/pdf'] = 'alat_kerja/cetak_histori_alat_kerja';
+$route['atasan/histori-alat-kerja'] = 'histori_alat/atasan';
+$route['histori-alat-kerja'] = 'histori_alat/index';
+$route['histori-alat-kerja/tambah-histori-alat-kerja'] = 'histori_alat/tambah_histori_alat_kerja';
+$route['histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'histori_alat/proses_tambah_histori_alat_kerja';
+$route['histori-alat-kerja/pdf'] = 'histori_alat/cetak_histori_alat_kerja';
 
 // Route Profil
 $route['profil'] = 'profil/index';

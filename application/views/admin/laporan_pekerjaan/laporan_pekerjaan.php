@@ -131,13 +131,13 @@
                                     <span class="px-3 pt-3">Judul Lampiran : <br> <?php echo $lampiran->judul_lampiran ?></span>
                                     <div class="row">
                                         <div class="col-4 text-center p-3">
-                                            <img src="<?= base_url() ?>assets/img/profil/<?= $lampiran->foto_sebelum ?>" alt="" class="d-inline-block" width="100px">
+                                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $lampiran->foto_sebelum ?>" alt="" class="d-inline-block" width="100px">
                                         </div>
                                         <div class="col-4 text-center p-3">
-                                            <img src="<?= base_url() ?>assets/img/profil/<?= $lampiran->foto_proses ?>" alt="" class="d-inline-block" width="100px">
+                                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $lampiran->foto_proses ?>" alt="" class="d-inline-block" width="100px">
                                         </div>
                                         <div class="col-4 text-center p-3">
-                                            <img src="<?= base_url() ?>assets/img/profil/<?= $lampiran->foto_setelah ?>" alt="" class="d-inline-block" width="100px">
+                                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $lampiran->foto_setelah ?>" alt="" class="d-inline-block" width="100px">
                                         </div>
                                     </div>
                                 </div>
