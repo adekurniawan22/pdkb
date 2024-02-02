@@ -3,12 +3,7 @@ class Personil_model extends CI_Model
 {
     public function dapat_personil()
     {
-        $this->db->select('t_personil.*, t_jabatan.*'); // Gunakan * untuk memilih semua kolom
-        $this->db->from('t_personil');
-        $this->db->join('t_jabatan', 't_personil.id_jabatan = t_jabatan.id_jabatan');
-        $this->db->where('t_personil.id_jabatan !=', 1);
-        $this->db->group_by('t_personil.id_personil'); // Gunakan GROUP BY agar tidak ada duplikat
-        $query = $this->db->get();
+        $query = $this->db->get('t_personil');
         return $query->result();
     }
 
@@ -21,20 +16,9 @@ class Personil_model extends CI_Model
 
     public function jumlah_personil()
     {
-        $this->db->where('id_jabatan !=', 1);
         $this->db->from('t_personil');
         $total_personil = $this->db->count_all_results();
         return $total_personil;
-    }
-
-    public function get_sertifikat_detail($id)
-    {
-        $this->db->select('t_personil.*, t_sertifikat.nama_file'); // Pilih kolom yang Anda butuhkan
-        $this->db->from('t_personil');
-        $this->db->join('t_sertifikat', 't_personil.id_personil = t_sertifikat.id_personil');
-        $this->db->where('t_sertifikat.id_personil', $id);
-        $query = $this->db->get();
-        return $query->result();
     }
 
 

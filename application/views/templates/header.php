@@ -113,103 +113,130 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse w-auto atur-height" id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "Dashboard") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>dashboard">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "Personil") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>personil">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Data Personil</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "Personil") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>atasan/histori-alat-kerja">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Data Atasan</span>
-                    </a>
-                </li>
-                <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Dokumen Pekerjaan</h6>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "SPKI") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>spki">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">SPKI</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "Laporan Pekerjaan") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>laporan-pekerjaan">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Laporan Pekerjaan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "Laporan JSA") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>laporan-jsa">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Laporan JSA</span>
-                    </a>
-                </li>
+                <?php if ($this->session->userdata('id_jabatan') == '3') : ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Dashboard") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>dashboard">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Personil") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/personil">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Personil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Dokumen Pekerjaan</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "SPKI") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>spki">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">SPKI</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Laporan Pekerjaan") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>laporan-pekerjaan">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Laporan Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Laporan JSA") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>laporan-jsa">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Laporan JSA</span>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "Rencana Operasi") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>rencana-operasi">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Rencana Operasi</span>
-                    </a>
-                </li>
-                <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Warehouse</h6>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "Alat Kerja") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-app text-info text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Alat kerja</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($title == "Histori Alat Kerja") {
-                                            echo "active";
-                                        } ?> btn-aside" href="<?= base_url() ?>histori-alat-kerja">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-app text-info text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Histori Alat Kerja</span>
-                    </a>
-                </li>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Warehouse</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Alat Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Alat kerja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Riwayat Alat Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>histori-alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Riwayat Alat Kerja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Tower ERS") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Tower ERS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Riwayat Gudang") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>histori-alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Riwayat Gudang</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Anomali</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Gardu Induk") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Gardu Induk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Jaringan") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Jaringan</span>
+                        </a>
+                    </li>
+                <?php endif ?>
+
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Akun</h6>
                 </li>
@@ -241,10 +268,10 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white" href="javascript:;">PDKB</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= str_replace('-', ' ', ucwords($this->uri->segment(1))) ?></li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= str_replace('-', ' ', ucwords($this->uri->segment(2))) ?></li>
                     </ol>
-                    <?php if ($this->uri->segment(2)) { ?>
-                        <h6 class="font-weight-bolder text-white mb-0"><?= ucwords(str_replace('-', ' ', $this->uri->segment(2))) ?></h6>
+                    <?php if ($this->uri->segment(3)) { ?>
+                        <h6 class="font-weight-bolder text-white mb-0"><?= ucwords(str_replace('-', ' ', $this->uri->segment(3))) ?></h6>
                     <?php } else { ?>
                         <h6 class="font-weight-bolder text-white mb-0"></h6>
                     <?php } ?>

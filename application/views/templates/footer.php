@@ -150,28 +150,6 @@
         });
     });
 
-
-    function tambahSertifikatD() {
-        const sertifikatDiklatContainer = document.getElementById('sertifikatDiklatContainer');
-        const newInput = document.createElement('div');
-        newInput.className = 'form-group mt-3';
-        newInput.innerHTML = `
-        <input class="form-control" type="file" placeholder="Sertifikat Diklat" name="s_diklat[]">
-    `;
-        sertifikatDiklatContainer.appendChild(newInput);
-    }
-
-    function tambahSertifikatK() {
-        const sertifikatKompetensiContainer = document.getElementById('sertifikatKompetensiContainer');
-        const newInput2 = document.createElement('div');
-        newInput2.className = 'form-group mt-3';
-        newInput2.innerHTML = `
-        <input class="form-control" type="file" placeholder="Sertifikat Kompetensi" name="s_kompetensi[]">
-    `;
-        sertifikatKompetensiContainer.appendChild(newInput2);
-    }
-
-
     $(document).ready(function() {
         $('#example').DataTable({
             "oLanguage": {

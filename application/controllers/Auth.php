@@ -16,7 +16,7 @@ class Auth extends CI_Controller
 
 	public function proses_login()
 	{
-		$this->form_validation->set_rules('username', 'Username', 'required|trim|regex_match[/^[a-z0-9]+$/]');
+		$this->form_validation->set_rules('username', 'Username', 'required|trim|regex_match[/^[a-z0-9_]+$/]');
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
 
 		if ($this->form_validation->run() == false) {
@@ -26,44 +26,48 @@ class Auth extends CI_Controller
 			$password = $this->input->post('password');
 
 			$this->db->where('username', $username);
-			$user = $this->db->get('t_personil')->row_array();
+			$personil = $this->db->get('t_personil')->row();
 
-			if ($user) {
-				if ($user['status_aktif'] == 1 && password_verify($password, $user['password'])) {
-					$data = [
-						'username' => $user['username'],
-						'nama' => $user['nama'],
-						'id_jabatan' => $user['id_jabatan'],
-						'id_personil' => $user['id_personil']
-					];
-					$this->session->set_userdata($data);
+			if ($personil) {
+				if ($personil->status_aktif == '1') {
 
-					switch ($user['id_jabatan']) {
-						case 1:
-							$this->session->set_flashdata('message', '<strong>Login Berhasil</strong>
-													<i class="bi bi-check-circle-fill"></i>');
-							redirect('dashboard');
-							break;
-						case 2:
-							redirect('pegawai');
-							break;
+					if (password_verify($password, $personil->password)) {
+						$data = [
+							'username' => $personil->username,
+							'nama' => $personil->nama,
+							'id_jabatan' => $personil->id_jabatan,
+							'id_personil' => $personil->id_personil
+						];
+						$this->session->set_userdata($data);
+						$this->session->set_flashdata('message', '<strong>Login Berhasil</strong>
+																<i class="bi bi-check-circle-fill"></i><br>
+																Selamat Datang Kembali <strong>' . $personil->nama . '</strong>');
+
+						switch ($personil->id_jabatan) {
+							case 1:
+							case 2:
+								redirect('atasan/dashboard');
+								break;
+							case 3:
+								redirect('admin/dashboard');
+								break;
+							case 4:
+								redirect('jtc/dashboard');
+								break;
+						}
+					} else {
+						$this->session->set_flashdata('message', '<strong>Maaf, password anda salah!</strong>
+		                    <i class="bi bi-exclamation-circle-fill"></i>');
+						redirect(base_url());
 					}
 				} else {
-					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="color:white">
-		                <div class="d-flex justify-content-between align-items-center">
-		                    <strong>Password kamu salah!</strong>
-		                    <i class="bi bi-exclamation-circle-fill"></i>
-		                </div>
-		                </div>');
+					$this->session->set_flashdata('message', '<strong>Maaf, akun anda dinonaktifkan!</strong>
+		                    <i class="bi bi-exclamation-circle-fill"></i>');
 					redirect(base_url());
 				}
 			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="color:white">
-		            <div class="d-flex justify-content-between align-items-center">
-						<strong>Akun tidak ditemukan!</strong>
-		                <i class="bi bi-exclamation-circle-fill"></i>
-		            </div>
-		            </div>');
+				$this->session->set_flashdata('message', '<strong>Akun anda tidak ditemukan!</strong>
+		                <i class="bi bi-exclamation-circle-fill"></i>');
 				redirect(base_url());
 			}
 		}
@@ -73,6 +77,7 @@ class Auth extends CI_Controller
 	{
 		unset(
 			$_SESSION['username'],
+			$_SESSION['nama'],
 			$_SESSION['id_jabatan'],
 			$_SESSION['id_personil'],
 		);

@@ -56,48 +56,18 @@ $route['translate_uri_dashes'] = TRUE;
 $route['default_controller'] = 'auth/login';
 $route['proses-login'] = 'auth/proses_login';
 
-// Route Dashboard
-$route['dashboard'] = 'dashboard/index';
+// Atasan
+$route['atasan/dashboard'] = 'dashboard/index';
 
-// Route Personil
-$route['personil'] = 'personil/index';
-$route['personil/tambah-personil'] = 'personil/tambah_personil';
-$route['personil/proses-tambah-personil'] = 'personil/proses_tambah_personil';
-$route['personil/edit-personil'] = 'personil/edit_personil';
-$route['personil/proses-edit-personil'] = 'personil/proses_edit_personil';
-$route['personil/lihat-sertifikat'] = 'personil/get_sertifikat';
+// Admin
+$route['admin/dashboard'] = 'dashboard/index';
+$route['admin/personil'] = 'personil/index';
+$route['admin/personil/tambah-personil'] = 'personil/tambah_personil';
+$route['admin/personil/proses-tambah-personil'] = 'personil/proses_tambah_personil';
+$route['admin/personil/edit-personil'] = 'personil/edit_personil';
+$route['admin/personil/proses-edit-personil'] = 'personil/proses_edit_personil';
+$route['admin/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
+$route['admin/personil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat';
 
-// Route SPKI
-$route['spki'] = 'spki/index';
-$route['spki/tambah-spki'] = 'spki/tambah_spki';
-$route['spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
-$route['spki/edit-spki'] = 'spki/edit_spki';
-$route['spki/proses-edit-spki'] = 'spki/proses_edit_spki';
-$route['spki/pdf'] = 'spki/cetak_spki';
-
-// Route laporan_pekerjaan
-$route['laporan-pekerjaan'] = 'laporan_pekerjaan/index';
-$route['laporan-pekerjaan/tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/tambah_laporan_pekerjaan';
-$route['laporan-pekerjaan/proses-tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_tambah_laporan_pekerjaan';
-$route['laporan-pekerjaan/edit-laporan-pekerjaan'] = 'laporan_pekerjaan/edit_laporan_pekerjaan';
-$route['laporan-pekerjaan/proses-edit-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_edit_laporan_pekerjaan';
-$route['laporan-pekerjaan/pdf'] = 'laporan_pekerjaan/cetak_laporan_pekerjaan';
-
-// Route Warehouse Alat Kerja
-$route['alat-kerja'] = 'alat_kerja/index';
-$route['alat-kerja/tambah-alat-kerja'] = 'alat_kerja/tambah_alat_kerja';
-$route['alat-kerja/proses-tambah-alat-kerja'] = 'alat_kerja/proses_tambah_alat_kerja';
-$route['alat-kerja/edit-alat-kerja'] = 'alat_kerja/edit_alat_kerja';
-$route['alat-kerja/proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat_kerja';
-
-// Route Warehouse Alat Kerja
-$route['atasan/histori-alat-kerja'] = 'histori_alat/atasan';
-$route['histori-alat-kerja'] = 'histori_alat/index';
-$route['histori-alat-kerja/tambah-histori-alat-kerja'] = 'histori_alat/tambah_histori_alat_kerja';
-$route['histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'histori_alat/proses_tambah_histori_alat_kerja';
-$route['histori-alat-kerja/pdf'] = 'histori_alat/cetak_histori_alat_kerja';
-
-// Route Profil
-$route['profil'] = 'profil/index';
-$route['profil/proses-edit-profil'] = 'profil/proses_edit_profil';
-$route['profil/proses-edit-password'] = 'profil/proses_edit_password';
+// JTC
+$route['jtc/dashboard'] = 'dashboard/index';
