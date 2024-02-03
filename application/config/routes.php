@@ -69,5 +69,16 @@ $route['admin/personil/proses-edit-personil'] = 'personil/proses_edit_personil';
 $route['admin/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
 $route['admin/personil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat';
 
+$route['admin/alat-kerja'] = 'alat_kerja/index';
+$route['admin/alat-kerja/tambah-alat-kerja'] = 'alat_kerja/tambah_alat_kerja';
+$route['admin/alat-kerja/proses-tambah-alat-kerja'] = 'alat_kerja/proses_tambah_alat_kerja';
+$route['admin/alat-kerja/edit-alat-kerja'] = 'alat_kerja/edit_alat_kerja';
+$route['admin/alat-kerja/proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat_kerja';
+
+$route['admin/histori-alat-kerja'] = 'histori_alat/index';
+$route['admin/histori-alat-kerja/tambah-histori-alat-kerja'] = 'histori_alat/tambah_histori_alat';
+$route['admin/histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'histori_alat/proses_tambah_histori_alat';
+$route['admin/histori-alat-kerja/pdf'] = 'histori_alat/cetak_histori_alat';
+
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';

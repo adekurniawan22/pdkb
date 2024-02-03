@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>histori-alat-kerja/proses-tambah-histori-alat-kerja" method="post" onsubmit="updateSignatureInput()">
+                    <form action="<?= base_url() ?>admin/histori-alat-kerja/proses-tambah-histori-alat-kerja" method="post" onsubmit="return updateSignatureInput()">
                         <div class="card mb-4">
                             <div class="card-body px-0 pb-3">
                                 <h4 class="ms-4">Data Alat Kerja</h4>
@@ -75,9 +75,10 @@
 
                         <div class="form-group">
                             <label class="form-control-label">Tanda Tangan Penanggung Jawab</label>
+                            <input type="hidden" name="signature_image" id="signatureImageInput" />
                         </div>
-                        <input type="hidden" name="signature_image" id="signatureImageInput" />
                         <canvas id="signatureCanvas" class="mb-3" width="300" height="150" style="border:1px solid #000; margin-top: -15px"></canvas>
+                        <p id="textAlertCanvas" style="display: none; font-size:12px; color:red;  margin-top: -15px">Harap Mengisi Tanda Tangan</p>
 
                         <div class="form-group">
                             <label for="example-datetime-local-input" class="form-control-label">Tanggal Barang Keluar</label>
@@ -90,8 +91,8 @@
                             <?= form_error('keterangan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
 
-                        <div>
-                            <a href=" <?= base_url() ?>histori-alat-kerja" class="btn btn-primary" type="button">Kembali</a>
+                        <div class="mt-4 text-end">
+                            <a href=" <?= base_url() ?>admin/histori-alat-kerja" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
                     </form>
@@ -101,6 +102,7 @@
     </div>
 
     <script>
+        var textAlertCanvas = document.getElementById('textAlertCanvas');
         var canvas = document.getElementById('signatureCanvas');
         var ctx = canvas.getContext('2d');
         var drawing = false;
@@ -155,11 +157,14 @@
 
             // Check if the canvas is empty
             if (isCanvasEmpty()) {
-                // If the canvas is empty, do not update the signature input
-                signatureImageInput.value = '';
+                // If the canvas is empty, show a warning message
+                textAlertCanvas.style.display = 'block';
+                // Prevent form submission
+                return false;
             } else {
                 // If the canvas is filled, update the signature input with the data URL
                 signatureImageInput.value = signatureData;
+                return true; // Allow form submission
             }
         }
 
@@ -175,11 +180,6 @@
 
             // If the loop completes without returning false, the canvas is empty
             return true;
-        }
-
-        function clearSignature() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            updateSignatureInput();
         }
 
         function getSignatureImage() {

@@ -3,13 +3,14 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>alat-kerja/proses-tambah-alat-kerja" method="post">
+                    <form action="<?= base_url() ?>admin/alat-kerja/proses-tambah-alat-kerja" method="post">
                         <div class="form-group">
                             <label for="jenis" class="form-control-label">Jenis Alat kerja</label>
                             <select class="form-select" aria-label="Default select example" name="jenis" id="jenis">
                                 <option value="" selected>Pilih Alat Kerja</option>
                                 <option value="Metal" <?php echo set_select('jenis', "Metal"); ?>>Metal</option>
                                 <option value="Isolasi" <?php echo set_select('jenis', "Isolasi"); ?>>Isolasi</option>
+                                <option value="APD" <?php echo set_select('jenis', "APD"); ?>>APD</option>
                             </select>
                             <?= form_error('jenis', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
@@ -44,8 +45,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <a href=" <?= base_url() ?>alat-kerja" class="btn btn-primary" type="button">Kembali</a>
+                        <div class="form-group">
+                            <label for="tanggal_kadaluarsa" class="form-control-label">Tanggal Kadaluarsa Alat <em>(jika ada)</em></label>
+                            <input class="form-control" type="date" name="tanggal_kadaluarsa" id="tanggal_kadaluarsa" value="<?php echo set_value('tanggal_kadaluarsa'); ?>">
+                        </div>
+
+                        <div class="text-end mt-5">
+                            <a href=" <?= base_url() ?>admin/alat-kerja" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
                     </form>

@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-6 pt-4 text-end">
                         <div class="mx-3">
-                            <a href="<?= base_url() ?>histori-alat-kerja/tambah-histori-alat-kerja" class="btn bg-gradient-dark">+ Tambah Histori Alat Kerja</a>
+                            <a href="<?= base_url() ?>admin/histori-alat-kerja/tambah-histori-alat-kerja" class="btn bg-gradient-dark">+ Tambah Histori Alat Kerja</a>
                         </div>
                     </div>
                 </div>
@@ -48,9 +48,12 @@
                                         </td>
                                         <td>
                                             <?php if ($h->status == 'keluar') : ?>
-
-                                                <span class="ms-3 badge badge-sm bg-gradient-danger">Belum Dikembalikan</span>
-                                                <button class="btn btn-link text-dark text-gradient px-3 mb-0"><i class="fas fa-pencil-alt me-2" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#status<?= $h->id_histori_alat ?>"></i></button>
+                                                <?php if ($h->sudah_disetujui == '1') : ?>
+                                                    <span class="ms-3 badge badge-sm bg-gradient-danger">Belum Dikembalikan</span>
+                                                    <button class="btn btn-link text-dark text-gradient px-3 mb-0"><i class="fas fa-pencil-alt me-2" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#status<?= $h->id_histori_alat ?>"></i></button>
+                                                <?php else : ?>
+                                                    <span class="ms-3 badge badge-sm bg-gradient-warning"><i class="bi bi-hourglass-split me-2"></i>Menunggu Disetujui</span>
+                                                <?php endif; ?>
                                             <?php else : ?>
                                                 <span class="ms-3 badge badge-sm bg-gradient-success">Sudah Dikembalikan</span>
                                             <?php endif; ?>
@@ -59,7 +62,7 @@
                                             <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_alat<?= $h->id_histori_alat ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Daftar Alat</button>
                                             <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_histori_alat<?= $h->id_histori_alat ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <?php if ($h->sudah_disetujui == '1') : ?>
-                                                <form action="<?= base_url() ?>histori-alat-kerja/pdf" method="post" class="d-inline-block" target="_blank">
+                                                <form action="<?= base_url() ?>histori_alat/cetak_histori_alat_kerja" method="post" class="d-inline-block" target="_blank">
                                                     <input type="hidden" name="id_histori_alat" value="<?= $h->id_histori_alat ?>">
                                                     <input type="hidden" name="id_atasan" value="<?= $h->id_atasan ?>">
                                                     <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>

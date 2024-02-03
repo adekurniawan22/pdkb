@@ -11,6 +11,7 @@
                                 <option value="" selected>Pilih Alat Kerja</option>
                                 <option value="Metal" <?php echo set_select('jenis', "Metal", $alat_kerja->jenis == "Metal"); ?>>Metal</option>
                                 <option value="Isolasi" <?php echo set_select('jenis', "Isolasi", $alat_kerja->jenis == "Isolasi"); ?>>Isolasi</option>
+                                <option value="APD" <?php echo set_select('jenis', "APD", $alat_kerja->jenis == "APD"); ?>>APD</option>
                             </select>
                             <?= form_error('jenis', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
@@ -45,8 +46,19 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if ($alat_kerja->tanggal_kadaluarsa != null) : ?>
+                            <div class="form-group">
+                                <label for="tanggal_kadaluarsa" class="form-control-label">Tanggal Kadaluarsa Alat</label>
+                                <input class="form-control" type="date" name="tanggal_kadaluarsa" id="tanggal_kadaluarsa" value="<?php echo set_value('tanggal_kadaluarsa', $alat_kerja->tanggal_kadaluarsa); ?>">
+                            </div>
+                        <?php else : ?>
+                            <div class="form-group">
+                                <label for="tanggal_kadaluarsa" class="form-control-label">Tanggal Kadaluarsa Alat <em>(jika ada)</em></label>
+                                <input class="form-control" type="date" name="tanggal_kadaluarsa" id="tanggal_kadaluarsa" value="<?php echo set_value('tanggal_kadaluarsa'); ?>">
+                            </div>
+                        <?php endif; ?>
                         <div>
-                            <a href=" <?= base_url() ?>alat-kerja" class="btn btn-primary" type="button">Kembali</a>
+                            <a href=" <?= base_url() ?>admin/alat-kerja" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Edit</button>
                         </div>
                     </form>

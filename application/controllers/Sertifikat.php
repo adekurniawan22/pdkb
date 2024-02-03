@@ -7,8 +7,6 @@ class Sertifikat extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
-		$this->load->model('Personil_model');
-		$this->load->model('Alat_kerja_model');
 		$this->load->model('Sertifikat_model');
 		$this->load->library('upload');
 	}

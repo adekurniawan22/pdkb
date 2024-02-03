@@ -140,7 +140,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "SPKI") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>spki">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/spki">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
                             </div>
@@ -150,7 +150,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Laporan Pekerjaan") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>laporan-pekerjaan">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/laporan-pekerjaan">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
                             </div>
@@ -160,7 +160,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Laporan JSA") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>laporan-jsa">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/laporan-jsa">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
                             </div>
@@ -174,7 +174,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Alat Kerja") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
@@ -184,7 +184,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Riwayat Alat Kerja") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>histori-alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/histori-alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
@@ -194,7 +194,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Tower ERS") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
@@ -204,7 +204,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Riwayat Gudang") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>histori-alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/histori-alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
@@ -218,7 +218,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Gardu Induk") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
@@ -228,7 +228,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Jaringan") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
