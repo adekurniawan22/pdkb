@@ -62,6 +62,14 @@ $route['atasan/dashboard'] = 'dashboard/index';
 // Admin
 $route['admin/dashboard'] = 'dashboard/index';
 
+$route['admin/personil'] = 'personil/index';
+$route['admin/personil/tambah-personil'] = 'personil/tambah_personil';
+$route['admin/personil/proses-tambah-personil'] = 'personil/proses_tambah_personil';
+$route['admin/personil/edit-personil'] = 'personil/edit_personil';
+$route['admin/personil/proses-edit-personil'] = 'personil/proses_edit_personil';
+$route['admin/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
+$route['admin/personil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat';
+
 $route['admin/spki'] = 'spki/index';
 $route['admin/spki/tambah-spki'] = 'spki/tambah_spki';
 $route['admin/spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
@@ -74,13 +82,11 @@ $route['admin/laporan-pekerjaan/proses-tambah-laporan-pekerjaan'] = 'laporan_pek
 $route['admin/laporan-pekerjaan/edit-laporan-pekerjaan'] = 'laporan_pekerjaan/edit_laporan_pekerjaan';
 $route['admin/laporan-pekerjaan/proses-edit-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_edit_laporan_pekerjaan';
 
-$route['admin/personil'] = 'personil/index';
-$route['admin/personil/tambah-personil'] = 'personil/tambah_personil';
-$route['admin/personil/proses-tambah-personil'] = 'personil/proses_tambah_personil';
-$route['admin/personil/edit-personil'] = 'personil/edit_personil';
-$route['admin/personil/proses-edit-personil'] = 'personil/proses_edit_personil';
-$route['admin/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
-$route['admin/personil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat';
+$route['admin/jsa'] = 'jsa/index';
+$route['admin/jsa/tambah-jsa'] = 'jsa/tambah_jsa';
+$route['admin/jsa/proses-tambah-jsa'] = 'jsa/proses_tambah_jsa';
+$route['admin/jsa/edit-jsa'] = 'jsa/edit_jsa';
+$route['admin/jsa/proses-edit-jsa'] = 'jsa/proses_edit_jsa';
 
 $route['admin/alat-kerja'] = 'alat_kerja/index';
 $route['admin/alat-kerja/tambah-alat-kerja'] = 'alat_kerja/tambah_alat_kerja';

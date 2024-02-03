@@ -160,7 +160,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Laporan JSA") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/laporan-jsa">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/jsa">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
                             </div>
