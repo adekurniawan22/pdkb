@@ -152,7 +152,7 @@
                 <div class="right-signature">
                     <?php if ($atasan) : ?>
                         <div style="text-align: center;">
-                            Atasan
+                            <?= $atasan->nama_jabatan ?>
                             <div>
                                 <img width="200px" src="<?= base_url() ?>assets/img/tanda-tangan/<?= $atasan->tanda_tangan ?>" alt="" style="margin-top: 20px;">
                             </div>

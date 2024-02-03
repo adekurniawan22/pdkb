@@ -26,7 +26,6 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Username</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Alamat</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Status Akun</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Sertifikat</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7 text-center" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
@@ -70,14 +69,12 @@
                                                 <span class="ms-3 badge badge-sm bg-gradient-danger">Tidak Aktif</span>
                                             <?php endif; ?>
                                         </td>
+
                                         <td class="align-middle">
                                             <form action="<?= base_url() ?>admin/personil/lihat-sertifikat" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_personil" value="<?= $p->id_personil ?>">
-                                                <button type="submit" class="btn btn-link text-dark text-gradient mb-0"><i class="bi bi-eye me-2"></i>Lihat</button>
+                                                <button type="submit" class="btn btn-link text-dark text-gradient mb-0"><i class="bi bi-eye me-2"></i>Sertifikat</button>
                                             </form>
-                                        </td>
-
-                                        <td class="align-middle">
                                             <form action="<?= base_url() ?>admin/personil/edit-personil" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_personil" value="<?= $p->id_personil ?>">
                                                 <button type="submit" class="btn btn-link text-dark pe-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>

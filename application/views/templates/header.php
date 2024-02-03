@@ -117,7 +117,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Dashboard") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>dashboard">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/dashboard">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                             </div>
@@ -268,7 +268,11 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white" href="javascript:;">PDKB</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= str_replace('-', ' ', ucwords($this->uri->segment(2))) ?></li>
+                        <?php if ($this->uri->segment(2)) { ?>
+                            <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= str_replace('-', ' ', ucwords($this->uri->segment(2))) ?></li>
+                        <?php } else { ?>
+                            <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= str_replace('-', ' ', ucwords($this->uri->segment(1))) ?></li>
+                        <?php } ?>
                     </ol>
                     <?php if ($this->uri->segment(3)) { ?>
                         <h6 class="font-weight-bolder text-white mb-0"><?= ucwords(str_replace('-', ' ', $this->uri->segment(3))) ?></h6>

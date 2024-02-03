@@ -61,6 +61,19 @@ $route['atasan/dashboard'] = 'dashboard/index';
 
 // Admin
 $route['admin/dashboard'] = 'dashboard/index';
+
+$route['admin/spki'] = 'spki/index';
+$route['admin/spki/tambah-spki'] = 'spki/tambah_spki';
+$route['admin/spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
+$route['admin/spki/edit-spki'] = 'spki/edit_spki';
+$route['admin/spki/proses-edit-spki'] = 'spki/proses_edit_spki';
+
+$route['admin/laporan-pekerjaan'] = 'laporan_pekerjaan/index';
+$route['admin/laporan-pekerjaan/tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/tambah_laporan_pekerjaan';
+$route['admin/laporan-pekerjaan/proses-tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_tambah_laporan_pekerjaan';
+$route['admin/laporan-pekerjaan/edit-laporan-pekerjaan'] = 'laporan_pekerjaan/edit_laporan_pekerjaan';
+$route['admin/laporan-pekerjaan/proses-edit-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_edit_laporan_pekerjaan';
+
 $route['admin/personil'] = 'personil/index';
 $route['admin/personil/tambah-personil'] = 'personil/tambah_personil';
 $route['admin/personil/proses-tambah-personil'] = 'personil/proses_tambah_personil';
@@ -78,7 +91,6 @@ $route['admin/alat-kerja/proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat
 $route['admin/histori-alat-kerja'] = 'histori_alat/index';
 $route['admin/histori-alat-kerja/tambah-histori-alat-kerja'] = 'histori_alat/tambah_histori_alat';
 $route['admin/histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'histori_alat/proses_tambah_histori_alat';
-$route['admin/histori-alat-kerja/pdf'] = 'histori_alat/cetak_histori_alat';
 
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';

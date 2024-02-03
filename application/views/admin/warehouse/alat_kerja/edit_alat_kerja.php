@@ -57,7 +57,7 @@
                                 <input class="form-control" type="date" name="tanggal_kadaluarsa" id="tanggal_kadaluarsa" value="<?php echo set_value('tanggal_kadaluarsa'); ?>">
                             </div>
                         <?php endif; ?>
-                        <div>
+                        <div class="mt-4 text-end">
                             <a href=" <?= base_url() ?>admin/alat-kerja" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Edit</button>
                         </div>

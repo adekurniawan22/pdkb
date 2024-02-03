@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-6 pt-4 text-end">
                         <div class="mx-3">
-                            <a href="<?= base_url() ?>spki/tambah-spki" class="btn bg-gradient-dark">+ Tambah SPKI</a>
+                            <a href="<?= base_url() ?>admin/spki/tambah-spki" class="btn bg-gradient-dark">+ Tambah SPKI</a>
                         </div>
                     </div>
                 </div>
@@ -19,32 +19,60 @@
                         <table class="table align-items-center mb-0" id="example">
                             <thead>
                                 <tr>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Pekerjaan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($spki as $s) : ?>
                                     <tr>
                                         <td>
+                                            <div class="d-flex ms-3 py-1">
+                                                <?php
+                                                $this->load->model('Personil_model');
+                                                $personil = $this->Personil_model->dapat_satu_personil_dan_jabatan($s->id_personil);
+                                                ?>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm"><?= $personil->nama ?></h6>
+                                                    <p class="text-xs text-secondary mb-0"><?= $personil->nama_jabatan ?></p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $s->macam_pekerjaan ?></p>
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($s->mulai_pelaksanaan)) . ' - ' . date('d/m/Y', strtotime($s->selesai_pelaksanaan)) ?></p>
                                         </td>
+                                        <td>
+                                            <?php if ($s->sudah_disetujui == '1') : ?>
+                                                <span class="ms-3 badge badge-sm bg-gradient-success">Sudah Disetujui</span>
+                                            <?php else : ?>
+                                                <span class="ms-3 badge badge-sm bg-gradient-warning"><i class="bi bi-hourglass-split me-2"></i>Menunggu Disetujui</span>
+                                            <?php endif; ?>
+                                        </td>
 
                                         <td class="align-middle">
-                                            <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $s->id_spki ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
-                                            <form action="<?= base_url('spki/edit-spki') ?>" method="post" class="d-inline-block">
-                                                <input type="hidden" name="id_spki" value="<?= $s->id_spki ?>">
-                                                <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
-                                            </form>
-                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_spki<?= $s->id_spki ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
-                                            <form action="<?= base_url() ?>spki/pdf" method="post" class="d-inline-block" target="_blank">
-                                                <input type="hidden" name="id_spki" value="<?= $s->id_spki ?>">
-                                                <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
-                                            </form>
+                                            <button class="btn btn-link text-dark text-gradient pe-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $s->id_spki ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
+
+                                            <?php if ($s->sudah_disetujui == 0) : ?>
+                                                <form action="<?= base_url('admin/spki/edit-spki') ?>" method="post" class="d-inline-block">
+                                                    <input type="hidden" name="id_spki" value="<?= $s->id_spki ?>">
+                                                    <button type="submit" class="btn btn-link text-dark pe-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
+                                                </form>
+                                            <?php endif ?>
+                                            <button class="btn btn-link text-danger text-gradient pe-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_spki<?= $s->id_spki ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
+
+                                            <?php if ($s->sudah_disetujui == '1') : ?>
+                                                <form action="<?= base_url() ?>spki/cetak_spki" method="post" class="d-inline-block" target="_blank">
+                                                    <input type="hidden" name="id_spki" value="<?= $s->id_spki ?>">
+                                                    <input type="hidden" name="id_atasan" value="<?= $s->id_atasan ?>">
+                                                    <button type="submit" class="btn btn-link text-dark pe-2 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
+                                                </form>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

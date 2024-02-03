@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>laporan-pekerjaan/proses-tambah-laporan-pekerjaan" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url() ?>admin/laporan-pekerjaan/proses-tambah-laporan-pekerjaan" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="dasar_pelaksanaan" class="form-control-label">Dasar Pelaksanaan</label>
                             <input class="form-control" type="text" placeholder="Dasar Pelaksanaan" id="dasar_pelaksanaan" name="dasar_pelaksanaan" value="<?php echo set_value('dasar_pelaksanaan'); ?>">
@@ -36,15 +36,15 @@
                                     <textarea class="form-control" type="text" placeholder="Judul Lampiran" id="judul_lampiran" name="judul_lampiran[]" rows="3" required oninvalid="this.setCustomValidity('Harap Masukkan Nama Judul Lampiran')" oninput="setCustomValidity('')"></textarea>
                                 </div>
                                 <div class="col-3">
-                                    <label for="lampiran_sebelum" class="form-control-label">Foto Lampiran Sebelum Pekerjaan</label>
-                                    <input class="form-control" type="file" name="lampiran_sebelum[]" required oninvalid="this.setCustomValidity('Harap Masukkan File Lampiran')" oninput="setCustomValidity('')">
+                                    <label for="lampiran_sebelum" class="form-control-label">Foto Lampiran Sebelum Pekerjaan <br><em>(maksimal ukuran file 2MB)</em></label>
+                                    <input accept=".jpg, .jpeg, .png" class="form-control" type="file" name="lampiran_sebelum[]" required oninvalid="this.setCustomValidity('Harap Masukkan File Lampiran')" oninput="setCustomValidity('')">
                                 </div>
                                 <div class="col-3">
-                                    <label for="lampiran_proses" class="form-control-label">Foto Lampiran Proses Pekerjaan</label>
+                                    <label for="lampiran_proses" class="form-control-label">Foto Lampiran Proses Pekerjaan <br><em>(maksimal ukuran file 2MB)</em></label>
                                     <input class="form-control" type="file" name="lampiran_proses[]" required oninvalid="this.setCustomValidity('Harap Masukkan File Lampiran')" oninput="setCustomValidity('')">
                                 </div>
                                 <div class="col-3">
-                                    <label for="lampiran_setelah" class="form-control-label">Foto Lampiran Setelah Pekerjaan</label>
+                                    <label for="lampiran_setelah" class="form-control-label">Foto Lampiran Setelah Pekerjaan <br><em>(maksimal ukuran file 2MB)</em></label>
                                     <input class="form-control" type="file" name="lampiran_setelah[]" required oninvalid="this.setCustomValidity('Harap Masukkan File Lampiran')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
@@ -52,8 +52,8 @@
 
                         <button type="button" class="btn btn-primary bg-dark" onclick="tambahLampiran()">+ Tambah Lampiran</button>
 
-                        <div>
-                            <a href=" <?= base_url() ?>laporan-pekerjaan" class="btn btn-primary" type="button">Kembali</a>
+                        <div class="mt-4 text-end">
+                            <a href=" <?= base_url() ?>admin/laporan-pekerjaan" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
                     </form>
@@ -63,24 +63,26 @@
     </div>
 
     <script>
+        // Fungsi untuk menambahkan lampiran baru
         function tambahLampiran() {
             var container = document.getElementById('lampiran-container');
             var newRow = document.createElement('div');
             newRow.className = 'row';
 
             var textareaInput = createTextareaInput('judul_lampiran', 'Judul Lampiran');
-            var newInput1 = createFileInput('lampiran_sebelum[]', 'Foto Lampiran Sebelum Pekerjaan');
-            var newInput2 = createFileInput('lampiran_proses[]', 'Foto Lampiran Proses Pekerjaan');
-            var newInput3 = createFileInput('lampiran_setelah[]', 'Foto Lampiran Setelah Pekerjaan');
+            var fotoSebelumInput = createFileInput('lampiran_sebelum[]', 'Foto Lampiran Sebelum Pekerjaan <br><em>(maksimal ukuran file 2MB)</em>');
+            var fotoProsesInput = createFileInput('lampiran_proses[]', 'Foto Lampiran Proses Pekerjaan <br><em>(maksimal ukuran file 2MB)</em>');
+            var fotoSetelahInput = createFileInput('lampiran_setelah[]', 'Foto Lampiran Setelah Pekerjaan <br><em>(maksimal ukuran file 2MB)</em>');
 
             newRow.appendChild(textareaInput);
-            newRow.appendChild(newInput1);
-            newRow.appendChild(newInput2);
-            newRow.appendChild(newInput3);
+            newRow.appendChild(fotoSebelumInput);
+            newRow.appendChild(fotoProsesInput);
+            newRow.appendChild(fotoSetelahInput);
 
             container.insertBefore(newRow, container.lastChild);
         }
 
+        // Fungsi untuk membuat input file
         function createFileInput(name, label) {
             var col = document.createElement('div');
             col.className = 'col-3 mt-3';
@@ -88,7 +90,7 @@
             var labelElement = document.createElement('label');
             labelElement.htmlFor = name;
             labelElement.className = 'form-control-label';
-            labelElement.innerText = label;
+            labelElement.innerHTML = label; // Menggunakan innerHTML agar tag HTML seperti <em> terbaca
 
             var inputElement = document.createElement('input');
             inputElement.className = 'form-control';
@@ -97,6 +99,7 @@
             inputElement.setAttribute('required', 'true');
             inputElement.setAttribute('oninvalid', "this.setCustomValidity('Harap Masukkan File Lampiran')");
             inputElement.setAttribute('oninput', "setCustomValidity('')")
+            inputElement.setAttribute('accept', ".jpg, .jpeg, .png");
 
             col.appendChild(labelElement);
             col.appendChild(inputElement);
@@ -104,6 +107,7 @@
             return col;
         }
 
+        // Fungsi untuk membuat input textarea
         function createTextareaInput(name, label) {
             var col = document.createElement('div');
             col.className = 'col-3 mt-3';

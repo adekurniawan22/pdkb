@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>spki/proses-edit-spki" method="post">
+                    <form action="<?= base_url() ?>admin/spki/proses-edit-spki" method="post">
                         <div class="form-group">
                             <label for="kepada" class="form-control-label">Kepada</label>
                             <input type="hidden" name="id_spki" value="<?= $spki->id_spki ?>">
@@ -79,8 +79,8 @@
                             <textarea class="form-control" placeholder="Catatan" id="catatan" name="catatan" rows="3"><?php echo set_value('catatan', $spki->catatan); ?></textarea>
                             <?= form_error('catatan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
-                        <div>
-                            <a href=" <?= base_url() ?>spki" class="btn btn-primary" type="button">Kembali</a>
+                        <div class="mt-4 text-end">
+                            <a href=" <?= base_url() ?>admin/spki" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Edit</button>
                         </div>
                     </form>

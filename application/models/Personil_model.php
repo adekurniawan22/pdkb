@@ -14,6 +14,16 @@ class Personil_model extends CI_Model
         return $query->row();
     }
 
+    public function dapat_satu_personil_dan_jabatan($id_satu_personil)
+    {
+        $this->db->select('t_personil.*, t_jabatan.nama_jabatan');
+        $this->db->from('t_personil');
+        $this->db->join('t_jabatan', 't_personil.id_jabatan = t_jabatan.id_jabatan');
+        $this->db->where('id_personil', $id_satu_personil);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
     public function jumlah_personil()
     {
         $this->db->from('t_personil');

@@ -71,7 +71,7 @@
                             <input class="form-control" type="file" name="foto">
                             <?= form_error('foto', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
-                        <div>
+                        <div class="mt-4 text-end">
                             <a href="<?= base_url() ?>admin/personil" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Edit</button>
                         </div>

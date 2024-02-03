@@ -19,17 +19,30 @@
                         <table class="table align-items-center mb-0" id="example">
                             <thead>
                                 <tr>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Keluar</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Masuk</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Penanggung Jawab</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
-                                    <th style="width:30%" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($histori_alat as $h) : ?>
                                     <tr>
+                                        <td>
+                                            <div class="d-flex ms-3 py-1">
+                                                <?php
+                                                $this->load->model('Personil_model');
+                                                $personil = $this->Personil_model->dapat_satu_personil_dan_jabatan($h->id_personil);
+                                                ?>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm"><?= $personil->nama ?></h6>
+                                                    <p class="text-xs text-secondary mb-0"><?= $personil->nama_jabatan ?></p>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($h->tanggal_keluar)) ?></p>
                                         </td>
@@ -59,13 +72,13 @@
                                             <?php endif; ?>
                                         </td>
                                         <td class="align-middle">
-                                            <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_alat<?= $h->id_histori_alat ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Daftar Alat</button>
-                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_histori_alat<?= $h->id_histori_alat ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
+                                            <button class="btn btn-link text-dark text-gradient pe-1 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_alat<?= $h->id_histori_alat ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Alat</button>
+                                            <button class="btn btn-link text-danger text-gradient pe-1 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_histori_alat<?= $h->id_histori_alat ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <?php if ($h->sudah_disetujui == '1') : ?>
                                                 <form action="<?= base_url() ?>histori_alat/cetak_histori_alat_kerja" method="post" class="d-inline-block" target="_blank">
                                                     <input type="hidden" name="id_histori_alat" value="<?= $h->id_histori_alat ?>">
                                                     <input type="hidden" name="id_atasan" value="<?= $h->id_atasan ?>">
-                                                    <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
+                                                    <button type="submit" class="btn btn-link text-dark pe-1 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
                                                 </form>
                                             <?php endif; ?>
                                         </td>

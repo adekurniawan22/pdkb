@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>PDF Histori Alat Kerja</title>
+    <title>PDF Laporan Pekerjaan</title>
 </head>
 
 <style>
@@ -208,10 +208,20 @@
 
             <div class="signature">
                 <div style="margin-bottom: 10px;">Balikpapan, <?= $tanggal_sekarang ?></div>
-                <div style="margin-bottom: 120px; text-align: center;">
-                    <b>MANAGER BAGIAN PDKB</b>
-                </div>
-                <hr style="width: 150px;">
+                <?php if ($atasan) : ?>
+                    <div style="margin-bottom: 10px; text-align: center;">
+                        <b><?= $atasan->nama_jabatan ?></b>
+                    </div>
+                    <div>
+                        <img width="200px" src="<?= base_url() ?>assets/img/tanda-tangan/<?= $atasan->tanda_tangan ?>" alt="" style="margin-top: 20px;">
+                    </div>
+                    <b><?= $atasan->nama ?></b>
+                <?php else : ?>
+                    <div style="margin-bottom: 120px; text-align: center;">
+                        <b>Atasan</b>
+                    </div>
+                    <b>Nama Atasan</b>
+                <?php endif ?>
             </div>
 
             <div class="page-break"></div>

@@ -150,7 +150,7 @@ class Histori_alat extends CI_Controller
 		$id_atasan = $this->input->post('id_atasan');
 		$nama_file_pdf = "Histori_Alat_" . $id_histori_alat;
 
-		$atasan = $this->Personil_model->dapat_satu_personil($id_atasan);
+		$atasan = $this->Personil_model->dapat_satu_personil_dan_jabatan($id_atasan);
 		$histori_alat = $this->Histori_alat_model->dapat_satu_histori_alat($id_histori_alat);
 
 		$this->db->select('t_detail_histori_alat.*, t_detail_histori_alat.jumlah as jumlah_barang_keluar, t_alat_kerja.*');
@@ -158,6 +158,7 @@ class Histori_alat extends CI_Controller
 		$this->db->join('t_alat_kerja', 't_detail_histori_alat.id_alat_kerja = t_alat_kerja.id_alat_kerja');
 		$this->db->where('id_histori_alat =', $id_histori_alat);
 		$query = $this->db->get()->result_array();
+
 		date_default_timezone_set('Asia/Jakarta');
 		$tanggal_sekarang = date('Y-M-d');
 		$foto = $this->encode_img_base64(base_url('assets/img/logo.png'));

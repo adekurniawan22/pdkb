@@ -2,14 +2,14 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card card-profile">
-                <img src="<?= base_url() ?>assets/img/profil/<?= $profil[0]->foto ?>" alt="Image placeholder" class="card-img-top">
+                <img src="<?= base_url() ?>assets/img/profil/<?= $profil->foto ?>" alt="Image placeholder" class="card-img-top">
                 <div class="card-body pt-0">
                     <div class="text-center">
                         <h5>
-                            <?= $profil[0]->nama ?>
+                            <?= $profil->nama ?>
                         </h5>
                         <div class="h6 mt-4">
-                            Jabatan : <i class="ni business_briefcase-24 mr-2"></i><?= $profil[0]->nama_jabatan ?>
+                            Jabatan : <i class="ni business_briefcase-24 mr-2"></i><?= $profil->nama_jabatan ?>
                         </div>
                     </div>
                 </div>
@@ -24,21 +24,21 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Nama</label>
-                                    <input class="form-control" type="text" name="nama" value="<?= set_value('nama', $profil[0]->nama) ?>">
+                                    <input class="form-control" type="text" name="nama" value="<?= set_value('nama', $profil->nama) ?>">
                                     <?= form_error('nama', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">NIP</label>
-                                    <input class="form-control" type="text" name="nip" value="<?= set_value('nip', $profil[0]->nip) ?>">
+                                    <input class="form-control" type="text" name="nip" value="<?= set_value('nip', $profil->nip) ?>">
                                     <?= form_error('nip', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Username</label>
-                                    <input class="form-control" type="text" name="username" value="<?= set_value('username', $profil[0]->username) ?>">
+                                    <input class="form-control" type="text" name="username" value="<?= set_value('username', $profil->username) ?>">
                                     <?= form_error('username', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                                 </div>
                             </div>

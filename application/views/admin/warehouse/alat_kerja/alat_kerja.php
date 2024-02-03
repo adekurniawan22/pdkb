@@ -32,8 +32,8 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Spesifikasi</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Sedang Dipinjam</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Kadaluarsa</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Kadaluarsa</th>
+                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,9 +54,9 @@
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->sedang_dipinjam . ' ' . $a->satuan ?></p>
                                         </td>
-                                        <td>
+                                        <td style="text-align: center;">
                                             <?php if ($a->tanggal_kadaluarsa == null) : ?>
-                                                <p class="ms-3 text-sm font-weight-bold mb-0">Tidak ada</p <?php else : ?> <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->tanggal_kadaluarsa ?></p>
+                                                <p class="text-sm font-weight-bold mb-0">Tidak ada</p <?php else : ?> <p class="text-sm font-weight-bold mb-0"><?= $a->tanggal_kadaluarsa ?></p>
                                             <?php endif ?>
                                         </td>
 
@@ -128,11 +128,3 @@
             </div>
         </div>
     <?php endforeach; ?>
-
-    <form id="emailForm" action="<?= base_url() ?>alat_kerja/kirim_email_ke_atasan" method="post">
-        <?php foreach ($id_alat_kerja as $id) : ?>
-            <input type="hidden" name="id_alat_kerja[]" value="<?= $id ?>">
-        <?php endforeach; ?>
-        <button type="submit" class="btn btn-link text-dark px-3 mb-0" id="kirimEmailBtn"> KIRIM EMAIL
-        </button>
-    </form>
