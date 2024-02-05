@@ -2,84 +2,107 @@
 <html>
 
 <head>
-    <title>PDF Laporan Pekerjaan</title>
+    <style>
+        .table-content {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .table-content th,
+        .table-content td {
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .signature {
+            margin-top: 30px;
+            float: right;
+            padding-top: 10px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        .table-sampul {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table-sampul td,
+        .table-sampul th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        .table-lampiran {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+
+        .table-lampiran th {
+            border: 1pxpx solid black;
+            padding: 8px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .table-lampiran td {
+            border-top: 0px solid black;
+            border-bottom: 0px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            padding: 8px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        .fixed-element {
+            position: relative;
+            /* Ubah posisi menjadi relative */
+            height: 50px;
+            /* Sesuaikan tinggi elemen sesuai kebutuhan */
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .header {
+            font-size: 12px;
+        }
+
+        .header-table {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .photo {
+            display: inline;
+            text-align: center;
+            width: 200px;
+            margin: 15px
+        }
+
+        .container {
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+    <title>PDF Laporan JSA</title>
 </head>
 
-<style>
-    .table-content {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .table-content th,
-    .table-content td {
-        padding: 8px;
-        text-align: left;
-        vertical-align: top;
-    }
-
-    .signature {
-        margin-top: 30px;
-        float: right;
-        padding-top: 10px;
-        text-align: center;
-        page-break-inside: avoid;
-    }
-
-    .table-sampul {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    .table-sampul td,
-    .table-sampul th {
-        border: 1px solid black;
-        padding: 8px;
-    }
-
-    .table-lampiran {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    .table-lampiran td,
-    .table-lampiran th {
-        border: 1px solid black;
-        padding: 8px;
-    }
-
-    .page-break {
-        page-break-after: always;
-    }
-
-    .fixed-element {
-        position: relative;
-        /* Ubah posisi menjadi relative */
-        height: 50px;
-        /* Sesuaikan tinggi elemen sesuai kebutuhan */
-        text-align: center;
-        line-height: 50px;
-    }
-
-    .header {
-        font-size: 12px;
-    }
-
-    .header-table {
-        font-size: 15px;
-        font-weight: bold;
-    }
-</style>
-
 <body>
-    <?php if (!empty($query)) { ?>
+    <?php if (!empty($temuan_jsa) and !empty($foto_jsa)) { ?>
         <div class="container mt-5">
 
             <!-- SAMPUL -->
             <table class="table-sampul">
                 <tr>
                     <th style="text-align: center;">
-                        <h3>LAPORAN PEKERJAAN</h3>
+                        <h3>BERITA ACARA PELAKSANAAN HASIL JSA</h3>
                         <div style="width: 500px; display:inline-block; margin-top:-20px">
                             <h3 style="text-transform: uppercase;"><?= $query->dasar_pelaksanaan ?></h3>
                         </div>
@@ -92,7 +115,7 @@
                 </tr>
                 <tr>
                     <th style="text-align: center; ">
-                        <h3>PT. PLN (PERSERO) UPT KALTIMRA</h3>
+                        <h3>PT. PLN (PERSERO) UPT BALIKPAPAN</h3>
                         <h3>BIDANG PDKB </h3>
                     </th>
                 </tr>
@@ -109,7 +132,7 @@
                     </td>
                     <td style="padding-left:20px; text-align:left">
                         <span class="header"><b>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</b></span>
-                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI KALIMANTAN TIMUR DAN KALIMANTAN UTARA</b></span>
+                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI BALIKPAPAN</b></span>
                     </td>
                 </tr>
             </table>
@@ -196,13 +219,13 @@
                     </td>
                     <td style="width: 5px;"></td>
                     <td>
-                        <span class="header-table">PENUTUP</span>
+                        <span class="header-table">KESIMPULAN</span>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
-                    <td><?= nl2br($query->penutup) ?></td>
+                    <td><?= nl2br($query->kesimpulan) ?></td>
                 </tr>
             </table>
 
@@ -234,7 +257,7 @@
                     </td>
                     <td style="padding-left:20px; text-align:left">
                         <span class="header"><b>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</b></span>
-                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI KALIMANTAN TIMUR DAN KALIMANTAN UTARA</b></span>
+                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI BALIKPAPAN</b></span>
                     </td>
                 </tr>
             </table>
@@ -243,39 +266,108 @@
 
             <table class="table-content">
                 <tr>
-                    <td style="text-align: center;" colspan="3">
-                        <span class="header-table">LAMPIRAN</span>
+                    <td style="text-align: center;">
+                        <span class="header-table">HASIL TEMUAN JSA</span>
                     </td>
                 </tr>
             </table>
             <br>
-            <?php foreach ($lampiran as $l) : ?>
-                <table class="table-lampiran">
+            <!-- <table class="table-lampiran">
+                <tr>
+                    <th>Analisia Kondisi <?= $query->dasar_pelaksanaan ?></th>
+                    <th style="width: 60%;">Keterangan</th>
+                </tr>
+                <?php $i = 1 ?>
+                <?php $rowspan = count($temuan_jsa) ?>
+                <?php foreach ($temuan_jsa as $t) : ?>
                     <tr>
-                        <td style=" text-align: center;" colspan="3">
-                            <span class="header-table" style="text-transform: uppercase;"><?= $l->judul_lampiran ?></span>
+                        <td style="text-align: left;">
+                            <span><?= $t->temuan ?></span>
+                        </td>
+                        <td style="text-align: left;">
+                            <span><?= $t->keterangan ?></span>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="text-align: center;">
-                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_sebelum ?>" alt="" width="150px">
-                        </td>
-                        <td style="text-align: center;">
-                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_proses ?>" alt="" width="150px">
-                        </td>
-                        <td style="text-align: center;">
-                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_setelah ?>" alt="" width="150px">
-                        </td>
-                    </tr>
+                    <?php $i++ ?>
+                <?php endforeach; ?>
+            </table>
+            <br> -->
 
-                </table>
-                <br>
-            <?php endforeach; ?>
-            <br>
+            <table class="table-lampiran">
+                <tr>
+                    <th>Analisia Kondisi <?= $query->dasar_pelaksanaan ?></th>
+                    <th style="width: 40%;">Keterangan</th>
+                    <th>Foto</th>
+                </tr>
+                <?php
+                $jumlah_temuan_jsa = count($temuan_jsa);
+                $jumlah_foto_jsa = count($foto_jsa);
+
+                if ($jumlah_temuan_jsa > $jumlah_foto_jsa) {
+                    $count = $jumlah_temuan_jsa;
+                } else {
+                    $count = $jumlah_foto_jsa;
+                };
+                ?>
+
+                <?php for ($i = 0; $i < $count; $i++) : ?>
+                    <tr>
+                        <?php if (!empty($temuan_jsa[$i])) : ?>
+                            <?php if (($count - 1) == $i) : ?>
+                                <td style="text-align: left;vertical-align:top;border-bottom: 1px solid black">
+                                    <span><?= $temuan_jsa[$i]->temuan ?></span>
+                                </td>
+                                <td style="text-align: left;vertical-align:top;border-bottom: 1px solid black">
+                                    <span><?= $temuan_jsa[$i]->keterangan ?></span>
+                                </td>
+                            <?php else : ?>
+                                <td style="text-align: left;vertical-align:top b">
+                                    <span><?= $temuan_jsa[$i]->temuan ?></span>
+                                </td>
+                                <td style="text-align: left;">
+                                    <span><?= $temuan_jsa[$i]->keterangan ?></span>
+                                </td>
+                            <?php endif ?>
+                        <?php else : ?>
+                            <?php if (($count - 1) == $i) : ?>
+                                <td style="border-bottom: 1px solid black"></td>
+                                <td style="border-bottom: 1px solid black"></td>
+                            <?php else : ?>
+                                <td></td>
+                                <td></td>
+                            <?php endif ?>
+                        <?php endif ?>
+
+                        <?php if (!empty($foto_jsa[$i])) : ?>
+                            <?php if (($count - 1) == $i) : ?>
+                                <td style="border-bottom: 1px solid black">
+                                    <div style="text-align: center;">
+                                        <img src="<?= base_url() ?>assets/img/jsa/<?= $foto_jsa[$i]->foto ?>" alt="" height="150px" style="padding: 10px">
+                                    </div>
+                                </td>
+                            <?php else : ?>
+                                <td>
+                                    <div style="text-align: center;">
+                                        <img src="<?= base_url() ?>assets/img/jsa/<?= $foto_jsa[$i]->foto ?>" alt="" height="150px" style="padding: 10px">
+                                    </div>
+                                </td>
+                            <?php endif ?>
+                        <?php else : ?>
+                            <?php if (($count - 1) == $i) : ?>
+                                <td style="border-bottom: 1px solid black"></td>
+                            <?php else : ?>
+                                <td></td>
+                            <?php endif ?>
+                        <?php endif ?>
+                    </tr>
+                <?php endfor ?>
+            </table>
+
 
         <?php } else { ?>
             <h2 style="text-align: center;">Gagal Memuat PDF</h2>
         <?php } ?>
+        </div>
 </body>
 
 </html>

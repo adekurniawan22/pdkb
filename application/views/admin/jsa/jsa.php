@@ -63,7 +63,7 @@
                                             <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $j->id_jsa ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
 
                                             <?php if ($j->sudah_disetujui == 0) : ?>
-                                                <form action="<?= base_url('admin/laporan-pekerjaan/edit-laporan-pekerjaan') ?>" method="post" class="d-inline-block">
+                                                <form action="<?= base_url('admin/jsa/edit-jsa') ?>" method="post" class="d-inline-block">
                                                     <input type="hidden" name="id_jsa" value="<?= $j->id_jsa ?>">
                                                     <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                                 </form>
@@ -71,7 +71,7 @@
 
                                             <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_jsa<?= $j->id_jsa ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <?php if ($j->sudah_disetujui == '1') : ?>
-                                                <form action="<?= base_url() ?>laporan_pekerjaan/cetak_laporan_pekerjaan" method="post" class="d-inline-block" target="_blank">
+                                                <form action="<?= base_url() ?>jsa/cetak_jsa" method="post" class="d-inline-block" target="_blank">
                                                     <input type="hidden" name="id_jsa" value="<?= $j->id_jsa ?>">
                                                     <input type="hidden" name="id_atasan" value="<?= $j->id_atasan ?>">
                                                     <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>

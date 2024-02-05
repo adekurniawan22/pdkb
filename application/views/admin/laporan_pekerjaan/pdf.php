@@ -92,7 +92,7 @@
                 </tr>
                 <tr>
                     <th style="text-align: center; ">
-                        <h3>PT. PLN (PERSERO) UPT KALTIMRA</h3>
+                        <h3>PT. PLN (PERSERO) UPT BALIKPAPAN</h3>
                         <h3>BIDANG PDKB </h3>
                     </th>
                 </tr>
@@ -109,7 +109,7 @@
                     </td>
                     <td style="padding-left:20px; text-align:left">
                         <span class="header"><b>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</b></span>
-                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI KALIMANTAN TIMUR DAN KALIMANTAN UTARA</b></span>
+                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI BALIKPAPAN</b></span>
                     </td>
                 </tr>
             </table>
@@ -234,7 +234,7 @@
                     </td>
                     <td style="padding-left:20px; text-align:left">
                         <span class="header"><b>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</b></span>
-                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI KALIMANTAN TIMUR DAN KALIMANTAN UTARA</b></span>
+                        <span class="header" style="padding: 0px; margin-top:10px; display: inline-block"><b>UNIT PELAKSANA TRANSMISI BALIKPAPAN</b></span>
                     </td>
                 </tr>
             </table>

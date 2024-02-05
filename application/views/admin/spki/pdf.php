@@ -71,7 +71,7 @@
                     </td>
                     <td rowspan="4" style="padding-left:20px; text-align:left">
                         <h4>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</h4>
-                        <h4>UNIT PEMELIHARAAN TRANSMISI</h4>
+                        <h4>UNIT PEMELIHARAAN TRANSMISI BALIKPAPAN</h4>
                     </td>
                 </tr>
             </table>

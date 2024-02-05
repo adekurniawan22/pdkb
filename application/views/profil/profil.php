@@ -9,7 +9,8 @@
                             <?= $profil->nama ?>
                         </h5>
                         <div class="h6 mt-4">
-                            Jabatan : <i class="ni business_briefcase-24 mr-2"></i><?= $profil->nama_jabatan ?>
+                            <span>Jabatan : <i class="ni business_briefcase-24 mr-2"></i><?= $profil->nama_jabatan ?></span><br>
+                            <span>NIP : <i class="ni business_briefcase-24 mr-2"></i><?= $profil->nip ?></span>
                         </div>
                     </div>
                 </div>
@@ -30,16 +31,30 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">NIP</label>
-                                    <input class="form-control" type="text" name="nip" value="<?= set_value('nip', $profil->nip) ?>">
-                                    <?= form_error('nip', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                    <label for="example-text-input" class="form-control-label">Username</label>
+                                    <input class="form-control" type="text" name="username" value="<?= set_value('username', $profil->username) ?>">
+                                    <?= form_error('username', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Username</label>
-                                    <input class="form-control" type="text" name="username" value="<?= set_value('username', $profil->username) ?>">
-                                    <?= form_error('username', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                    <label for="example-text-input" class="form-control-label">Email</label>
+                                    <input class="form-control" type="text" name="email" value="<?= set_value('email', $profil->email) ?>">
+                                    <?= form_error('email', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Nomor Handphone</label>
+                                    <input class="form-control" type="text" name="no_hp" value="<?= set_value('no_hp', $profil->no_hp) ?>">
+                                    <?= form_error('no_hp', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Alamat</label>
+                                    <textarea name="alamat" rows="3" class="form-control"><?= set_value('alamat', $profil->alamat) ?></textarea>
+                                    <?= form_error('alamat', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                                 </div>
                             </div>
                             <div class="col-md-12">

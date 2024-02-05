@@ -85,12 +85,8 @@
                     label.textContent = label.textContent.replace(currentLabelNumber, newLabelNumber);
                 });
 
-                // Tambah tombol hapus
-                var deleteButton = createDeleteButton(clone, hapusTemuanButton);
-
                 // Tambahkan elemen dan tombol hapus setelah elemen pertama
                 temuanContainer.appendChild(clone);
-                temuanContainer.appendChild(deleteButton);
             });
 
             // Tambah Foto Hasil Temuan
@@ -104,29 +100,9 @@
                 // Tambah class mb-3 pada elemen yang diduplikasi
                 clone.classList.add('mb-3');
 
-                // Tambah tombol hapus
-                var deleteButton = createDeleteButton(clone, hapusFotoButton);
-
                 // Tambahkan elemen dan tombol hapus setelah elemen pertama
                 fotoContainer.parentNode.insertBefore(clone, fotoContainer.nextSibling);
-                fotoContainer.parentNode.insertBefore(deleteButton, clone.nextSibling);
             });
 
-            // Fungsi untuk membuat tombol hapus
-            function createDeleteButton(targetElement, hapusButton) {
-                var deleteButton = document.createElement('button');
-                deleteButton.innerHTML = 'Hapus';
-                deleteButton.classList.add('btn', 'btn-danger', 'me-2');
-                deleteButton.addEventListener('click', function() {
-                    targetElement.parentNode.removeChild(targetElement);
-                    deleteButton.parentNode.removeChild(deleteButton);
-
-                    // Cek apakah elemen pertama masih ada, jika tidak, sembunyikan tombol hapus
-                    if (targetElement.parentNode.children.length <= 1) {
-                        hapusButton.style.display = 'none';
-                    }
-                });
-                return deleteButton;
-            }
         });
     </script>

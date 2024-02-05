@@ -98,5 +98,11 @@ $route['admin/histori-alat-kerja'] = 'histori_alat/index';
 $route['admin/histori-alat-kerja/tambah-histori-alat-kerja'] = 'histori_alat/tambah_histori_alat';
 $route['admin/histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'histori_alat/proses_tambah_histori_alat';
 
+$route['admin/tower-ers'] = 'tower_ers/index';
+$route['admin/tower-ers/tambah-tower-ers'] = 'tower_ers/tambah_tower_ers';
+$route['admin/tower-ers/proses-tambah-tower-ers'] = 'tower_ers/proses_tambah_tower_ers';
+$route['admin/tower-ers/edit-tower-ers'] = 'tower_ers/edit_tower_ers';
+$route['admin/tower-ers/proses-edit-tower-ers'] = 'tower_ers/proses_edit_tower_ers';
+
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';
