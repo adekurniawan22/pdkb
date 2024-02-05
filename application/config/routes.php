@@ -70,6 +70,12 @@ $route['admin/personil/proses-edit-personil'] = 'personil/proses_edit_personil';
 $route['admin/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
 $route['admin/personil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat';
 
+$route['admin/rencana-operasi'] = 'rencana_operasi/index';
+$route['admin/rencana-operasi/tambah-rencana-operasi'] = 'rencana_operasi/tambah_rencana_operasi';
+$route['admin/rencana-operasi/proses-tambah-rencana-operasi'] = 'rencana_operasi/proses_tambah_rencana_operasi';
+$route['admin/rencana-operasi/edit-rencana-operasi'] = 'rencana_operasi/edit_rencana_operasi';
+$route['admin/rencana-operasi/proses-edit-rencana-operasi'] = 'rencana_operasi/proses_edit_rencana_operasi';
+
 $route['admin/spki'] = 'spki/index';
 $route['admin/spki/tambah-spki'] = 'spki/tambah_spki';
 $route['admin/spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
@@ -97,12 +103,6 @@ $route['admin/alat-kerja/proses-edit-alat-kerja'] = 'alat_kerja/proses_edit_alat
 $route['admin/histori-alat-kerja'] = 'histori_alat/index';
 $route['admin/histori-alat-kerja/tambah-histori-alat-kerja'] = 'histori_alat/tambah_histori_alat';
 $route['admin/histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'histori_alat/proses_tambah_histori_alat';
-
-$route['admin/tower-ers'] = 'tower_ers/index';
-$route['admin/tower-ers/tambah-tower-ers'] = 'tower_ers/tambah_tower_ers';
-$route['admin/tower-ers/proses-tambah-tower-ers'] = 'tower_ers/proses_tambah_tower_ers';
-$route['admin/tower-ers/edit-tower-ers'] = 'tower_ers/edit_tower_ers';
-$route['admin/tower-ers/proses-edit-tower-ers'] = 'tower_ers/proses_edit_tower_ers';
 
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';
