@@ -114,5 +114,17 @@ $route['admin/riwayat-gudang'] = 'riwayat_gudang/index';
 $route['admin/riwayat-gudang/tambah-riwayat-gudang'] = 'riwayat_gudang/tambah_riwayat_gudang';
 $route['admin/riwayat-gudang/proses-tambah-riwayat-gudang'] = 'riwayat_gudang/proses_tambah_riwayat_gudang';
 
+$route['admin/gardu-induk'] = 'gardu_induk/index';
+$route['admin/gardu-induk/tambah-gardu-induk'] = 'gardu_induk/tambah_gardu_induk';
+$route['admin/gardu-induk/proses-tambah-gardu-induk'] = 'gardu_induk/proses_tambah_gardu_induk';
+$route['admin/gardu-induk/edit-gardu-induk'] = 'gardu_induk/edit_gardu_induk';
+$route['admin/gardu-induk/proses-edit-gardu-induk'] = 'gardu_induk/proses_edit_gardu_induk';
+
+$route['admin/jaringan'] = 'jaringan/index';
+$route['admin/jaringan/tambah-jaringan'] = 'jaringan/tambah_jaringan';
+$route['admin/jaringan/proses-tambah-jaringan'] = 'jaringan/proses_tambah_jaringan';
+$route['admin/jaringan/edit-jaringan'] = 'jaringan/edit_jaringan';
+$route['admin/jaringan/proses-edit-jaringan'] = 'jaringan/proses_edit_jaringan';
+
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';

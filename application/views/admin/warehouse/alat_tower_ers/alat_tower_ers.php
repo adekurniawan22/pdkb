@@ -23,11 +23,11 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Alat</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Merk</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Spesifikasi</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Sedang Dipinjam</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tahun Pengadaan</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Kadaluarsa</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Sedang Dipinjam</th>
+                                    <th class="text-center text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tahun Pengadaan</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Kadaluarsa</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,30 +42,30 @@
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->merk ?></p>
                                         </td>
-                                        <td>
+                                        <td style="word-wrap: break-word; white-space: pre-line;">
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($a->spesifikasi) ?></p>
                                         </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->jumlah . ' ' . $a->satuan ?></p>
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0"><?= $a->jumlah . ' ' . $a->satuan ?></p>
                                         </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->sedang_dipinjam . ' ' . $a->satuan ?></p>
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0"><?= $a->sedang_dipinjam . ' ' . $a->satuan ?></p>
                                         </td>
                                         <td class="text-center">
                                             <p class=" text-sm font-weight-bold mb-0"><?= $a->tahun_pengadaan ?></p>
                                         </td>
-                                        <td style="text-align: center;">
+                                        <td class="text-center">
                                             <?php if ($a->tanggal_kadaluarsa == null) : ?>
                                                 <p class="text-sm font-weight-bold mb-0">Tidak ada</p <?php else : ?> <p class="text-sm font-weight-bold mb-0"><?= $a->tanggal_kadaluarsa ?></p>
                                             <?php endif ?>
                                         </td>
 
-                                        <td class="align-middle">
+                                        <td class="text-center">
                                             <form action="<?= base_url() ?>admin/alat-tower-ers/edit-alat-tower-ers" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_alat_tower_ers" value="<?= $a->id_alat_tower_ers ?>">
-                                                <button type="submit" class="btn btn-link text-dark pe-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
+                                                <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                             </form>
-                                            <button class="btn btn-link text-danger text-gradient pe-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_alat_tower_ers<?= $a->id_alat_tower_ers ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
+                                            <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_alat_tower_ers<?= $a->id_alat_tower_ers ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

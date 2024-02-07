@@ -82,17 +82,17 @@
                 </tr>
                 <tr>
                     <td style="text-align: left;">Tanggal Keluar</td>
-                    <td class="titikdua">: <?= date('d/m/Y', strtotime($riwayat_gudang->tanggal_keluar)) . ', Jam ' . date('H:i', strtotime($riwayat_gudang->tanggal_keluar))  ?></td>
+                    <td class="titikdua">: <?= date('d/m/Y', strtotime($riwayat_gudang->tanggal_keluar))  ?></td>
                 </tr>
-                <?php if ($riwayat_gudang->tanggal_masuk == '0000-00-00 00:00:00') : ?>
+                <?php if ($riwayat_gudang->tanggal_masuk == null) : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
-                        <td class="titikdua">: -</td>
+                        <td class="titikdua">: -- / -- / ----</td>
                     </tr>
                 <?php else : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
-                        <td class="titikdua">: <?= date('d/m/Y', strtotime($riwayat_gudang->tanggal_masuk)) . ', Jam ' . date('H:i', strtotime($riwayat_gudang->tanggal_masuk))  ?></td>
+                        <td class="titikdua">: <?= date('d/m/Y', strtotime($riwayat_gudang->tanggal_masuk)) ?></td>
                     </tr>
                 <?php endif; ?>
                 <tr>

@@ -8,7 +8,6 @@ class Histori_alat extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model('Personil_model');
-		$this->load->model('Jabatan_model');
 		$this->load->model('Alat_kerja_model');
 		$this->load->model('Histori_alat_model');
 		$this->load->library('pdfgenerator');
@@ -93,7 +92,7 @@ class Histori_alat extends CI_Controller
 	{
 		$status = ($this->input->post('status') == 'on') ? 'masuk' : 'keluar';
 		date_default_timezone_set('Asia/Jakarta');
-		$tanggal_sekarang = date('Y-m-d H:i:s');
+		$tanggal_sekarang = date('Y-m-d');
 		$this->db->where('id_histori_alat', $this->input->post('id_histori_alat'));
 		$this->db->update('t_histori_alat', ['status' => $status, 'tanggal_masuk' => $tanggal_sekarang]);
 

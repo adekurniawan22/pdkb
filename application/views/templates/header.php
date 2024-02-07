@@ -139,7 +139,7 @@
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/rencana-operasi">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
+                                <i class="bi bi-list-stars text-success text-sm opacity-10 pb-1"></i>
                             </div>
                             <span class="nav-link-text ms-1">Rencana Operasi</span>
                         </a>
@@ -152,7 +152,7 @@
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/spki">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">SPKI</span>
                         </a>
@@ -162,7 +162,7 @@
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/laporan-pekerjaan">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10 pb-1"></i>
                             </div>
                             <span class="nav-link-text ms-1">Laporan Pekerjaan</span>
                         </a>
@@ -172,7 +172,7 @@
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/jsa">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-people-fill text-dark text-sm opacity-10 pb-1"></i>
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10 pb-1"></i>
                             </div>
                             <span class="nav-link-text ms-1">Laporan JSA</span>
                         </a>
@@ -186,7 +186,7 @@
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                                <i class="bi bi-tools text-info text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Alat kerja</span>
                         </a>
@@ -206,7 +206,7 @@
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/alat-tower-ers">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                                <i class="bi bi-tools text-info text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Alat Tower ERS</span>
                         </a>
@@ -228,9 +228,9 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Gardu Induk") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/gardu-induk">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                                <i class="bi bi-ethernet text-danger text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Gardu Induk</span>
                         </a>
@@ -238,9 +238,9 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Jaringan") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/jaringan">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                                <i class="bi bi-joystick text-danger text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Jaringan</span>
                         </a>

@@ -8,7 +8,7 @@
                             <label for="jenis" class="form-control-label">Jenis Alat kerja</label>
                             <input type="hidden" name="id_alat_kerja" value="<?= $alat_kerja->id_alat_kerja ?>">
                             <select class="form-select" aria-label="Default select example" name="jenis" id="jenis">
-                                <option value="" selected>Pilih Alat Kerja</option>
+                                <option value="" selected>Pilih Jenis Alat Kerja</option>
                                 <option value="Metal" <?php echo set_select('jenis', "Metal", $alat_kerja->jenis == "Metal"); ?>>Metal</option>
                                 <option value="Isolasi" <?php echo set_select('jenis', "Isolasi", $alat_kerja->jenis == "Isolasi"); ?>>Isolasi</option>
                                 <option value="APD" <?php echo set_select('jenis', "APD", $alat_kerja->jenis == "APD"); ?>>APD</option>

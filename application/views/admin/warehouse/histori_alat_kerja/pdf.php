@@ -82,12 +82,12 @@
                 </tr>
                 <tr>
                     <td style="text-align: left;">Tanggal Keluar</td>
-                    <td class="titikdua">: <?= date('d/m/Y', strtotime($histori_alat->tanggal_keluar)) . ', Jam ' . date('H:i', strtotime($histori_alat->tanggal_keluar))  ?></td>
+                    <td class="titikdua">: <?= date('d/m/Y', strtotime($histori_alat->tanggal_keluar)) ?></td>
                 </tr>
-                <?php if ($histori_alat->tanggal_masuk == '0000-00-00 00:00:00') : ?>
+                <?php if ($histori_alat->tanggal_masuk == null) : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
-                        <td class="titikdua">: -</td>
+                        <td class="titikdua">: -- / -- / ----</td>
                     </tr>
                 <?php else : ?>
                     <tr>
@@ -110,27 +110,24 @@
             <table class=" table-content">
                 <tbody>
                     <tr>
-                        <th>No.</th>
+                        <th style="text-align: center;">No.</th>
                         <th>Nama Alat</th>
                         <th>Jenis</th>
                         <th>Spesifikasi</th>
-                        <th>Stok</th>
-                        <th>Jumlah Alat Keluar</th>
+                        <th style="text-align: center;">Stok</th>
+                        <th style="text-align: center;">Jumlah Alat Keluar</th>
                     </tr>
                     <?php $nomor = 1; ?>
                     <?php foreach ($query as $q) : ?>
                         <tr>
-                            <td><?= $nomor ?></td>
+                            <td style="text-align: center;"><?= $nomor ?></td>
                             <td>
-                                <!-- <ul class="styled-list">
-                                    <li><= $q['nama_alat_kerja'] . ' (' . $q['jumlah'] . ')' ?></li>
-                                </ul> -->
                                 <?= $q['nama_alat_kerja'] ?>
                             </td>
                             <td><?= $q['jenis'] ?></td>
                             <td><?= $q['spesifikasi'] ?></td>
-                            <td><?= $q['jumlah'] ?></td>
-                            <td><?= $q['jumlah_barang_keluar'] ?></td>
+                            <td style="text-align: center;"><?= $q['jumlah'] ?></td>
+                            <td style="text-align: center;"><?= $q['jumlah_barang_keluar'] ?></td>
                         </tr>
                         <?php $nomor++; ?>
                     <?php endforeach; ?>

@@ -21,10 +21,10 @@
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dasar Pelaksanaan</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Hasil Pekerjaan</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,36 +45,36 @@
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $j->dasar_pelaksanaan ?></p>
                                         </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($j->waktu_pelaksanaan)) ?></p>
+                                        <td class="text-center">
+                                            <p class=" text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($j->waktu_pelaksanaan)) ?></p>
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($j->hasil_pekerjaan) ?></p>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <?php if ($j->sudah_disetujui == '1') : ?>
-                                                <span class="ms-3 badge badge-sm bg-gradient-success">Sudah Disetujui</span>
+                                                <span class="badge badge-sm bg-gradient-success">Sudah Disetujui</span>
                                             <?php else : ?>
-                                                <span class="ms-3 badge badge-sm bg-gradient-warning"><i class="bi bi-hourglass-split me-2"></i>Menunggu Disetujui</span>
+                                                <span class="badge badge-sm bg-gradient-warning"><i class="bi bi-hourglass-split me-2"></i>Menunggu Disetujui</span>
                                             <?php endif; ?>
                                         </td>
 
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $j->id_jsa ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
+                                        <td class="text-center">
+                                            <button class="btn btn-link text-dark text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $j->id_jsa ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
 
                                             <?php if ($j->sudah_disetujui == 0) : ?>
                                                 <form action="<?= base_url('admin/jsa/edit-jsa') ?>" method="post" class="d-inline-block">
                                                     <input type="hidden" name="id_jsa" value="<?= $j->id_jsa ?>">
-                                                    <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
+                                                    <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                                 </form>
                                             <?php endif ?>
 
-                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_jsa<?= $j->id_jsa ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
+                                            <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_jsa<?= $j->id_jsa ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <?php if ($j->sudah_disetujui == '1') : ?>
                                                 <form action="<?= base_url() ?>jsa/cetak_jsa" method="post" class="d-inline-block" target="_blank">
                                                     <input type="hidden" name="id_jsa" value="<?= $j->id_jsa ?>">
                                                     <input type="hidden" name="id_atasan" value="<?= $j->id_atasan ?>">
-                                                    <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
+                                                    <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
                                                 </form>
                                             <?php endif; ?>
                                         </td>

@@ -7,7 +7,7 @@
                         <div class="form-group">
                             <label for="jenis" class="form-control-label">Jenis Alat kerja</label>
                             <select class="form-select" aria-label="Default select example" name="jenis" id="jenis">
-                                <option value="" selected>Pilih Alat Kerja</option>
+                                <option value="" selected>Pilih Jenis Alat Kerja</option>
                                 <option value="Metal" <?php echo set_select('jenis', "Metal"); ?>>Metal</option>
                                 <option value="Isolasi" <?php echo set_select('jenis', "Isolasi"); ?>>Isolasi</option>
                                 <option value="APD" <?php echo set_select('jenis', "APD"); ?>>APD</option>

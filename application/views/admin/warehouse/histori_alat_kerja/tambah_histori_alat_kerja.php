@@ -77,13 +77,19 @@
                             <label class="form-control-label">Tanda Tangan Penanggung Jawab</label>
                             <input type="hidden" name="signature_image" id="signatureImageInput" />
                         </div>
-                        <canvas id="signatureCanvas" class="mb-3" width="300" height="150" style="border:1px solid #000; margin-top: -15px"></canvas>
-                        <button type="button" class="btn position-absolute btn-danger ms-2 mt-0" onclick="resetCanvas()">Reset Tanda Tangan</button>
+                        <div class="row">
+                            <div class="col-3 me-3">
+                                <canvas id="signatureCanvas" class="mb-3" width="300" height="150" style="border:1px solid #000; margin-top: -15px"></canvas>
+                            </div>
+                            <div class="col-3 ">
+                                <button type="button" class="btn btn-danger ms-2 m-0 text-start" onclick="resetCanvas()">Reset Tanda Tangan</button>
+                            </div>
+                        </div>
                         <p id="textAlertCanvas" style="display: none; font-size:12px; color:red;  margin-top: -15px">Harap Mengisi Tanda Tangan</p>
 
                         <div class="form-group">
                             <label for="example-datetime-local-input" class="form-control-label">Tanggal Barang Keluar</label>
-                            <input class="form-control" type="datetime-local" name="tanggal_keluar" id="example-datetime-local-input" value="<?php echo set_value('tanggal_keluar'); ?>">
+                            <input class="form-control" type="date" name="tanggal_keluar" id="example-datetime-local-input" value="<?php echo set_value('tanggal_keluar'); ?>">
                             <?= form_error('tanggal_keluar', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">

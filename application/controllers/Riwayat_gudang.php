@@ -8,7 +8,6 @@ class Riwayat_gudang extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model('Personil_model');
-		$this->load->model('Jabatan_model');
 		$this->load->model('Alat_tower_ers_model');
 		$this->load->model('Riwayat_gudang_model');
 		$this->load->library('pdfgenerator');
@@ -93,7 +92,7 @@ class Riwayat_gudang extends CI_Controller
 	{
 		$status = ($this->input->post('status') == 'on') ? 'masuk' : 'keluar';
 		date_default_timezone_set('Asia/Jakarta');
-		$tanggal_sekarang = date('Y-m-d H:i:s');
+		$tanggal_sekarang = date('Y-m-d');
 		$this->db->where('id_riwayat_gudang', $this->input->post('id_riwayat_gudang'));
 		$this->db->update('t_riwayat_gudang', ['status' => $status, 'tanggal_masuk' => $tanggal_sekarang]);
 

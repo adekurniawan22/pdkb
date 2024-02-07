@@ -1,7 +1,4 @@
 <div class="container-fluid py-0">
-    <?php
-    $id_rencana_operasi = [];
-    ?>
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
@@ -27,7 +24,7 @@
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Dikerjakan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Selesai</th>
                                     <th style="width: 10%;" class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status Dikerjakan</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,18 +45,18 @@
                                         </td>
                                         <td class="text-center">
                                             <?php if ($r->status == '1') : ?>
-                                                <button class="btn badge badge-sm bg-gradient-success mt-2">Selesai</button>
+                                                <button class="btn badge badge-sm bg-gradient-success mt-3">Selesai</button>
                                             <?php else : ?>
-                                                <button class="btn badge badge-sm bg-gradient-warning mt-2 " data-bs-toggle="modal" data-bs-target="#status<?= $r->id_rencana_operasi ?>"></i>Belum <i class="fas fa-pencil-alt ms-2" aria-hidden="true"></i></button>
+                                                <button class="btn badge badge-sm bg-gradient-warning mt-3 " data-bs-toggle="modal" data-bs-target="#status<?= $r->id_rencana_operasi ?>"></i>Belum <i class="fas fa-pencil-alt ms-2" aria-hidden="true"></i></button>
                                             <?php endif; ?>
                                         </td>
 
-                                        <td class="align-middle text-center">
+                                        <td class="text-center">
                                             <form action="<?= base_url() ?>admin/rencana-operasi/edit-rencana-operasi" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_rencana_operasi" value="<?= $r->id_rencana_operasi ?>">
-                                                <button type="submit" class="btn btn-link text-dark pe-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
+                                                <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                             </form>
-                                            <button class="btn btn-link text-danger text-gradient pe-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_rencana_operasi<?= $r->id_rencana_operasi ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
+                                            <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_rencana_operasi<?= $r->id_rencana_operasi ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

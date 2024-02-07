@@ -9,7 +9,6 @@ class Spki extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->model('SPKI_model');
 		$this->load->model('Personil_model');
-		$this->load->model('Jabatan_model');
 		$this->load->library('pdfgenerator');
 	}
 

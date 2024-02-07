@@ -25,7 +25,7 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">No. HP</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Username</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Alamat</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Status Akun</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status Akun</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7 text-center" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
@@ -62,24 +62,24 @@
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($p->alamat) ?></p>
                                         </td>
-                                        <td class="">
+                                        <td class="text-center">
                                             <?php if ($p->status_aktif == '1') : ?>
-                                                <span class="ms-3 badge badge-sm bg-gradient-success">Aktif</span>
+                                                <span class="badge badge-sm bg-gradient-success">Aktif</span>
                                             <?php else : ?>
-                                                <span class="ms-3 badge badge-sm bg-gradient-danger">Tidak Aktif</span>
+                                                <span class="badge badge-sm bg-gradient-danger">Tidak Aktif</span>
                                             <?php endif; ?>
                                         </td>
 
-                                        <td class="align-middle">
+                                        <td class="text-center">
                                             <form action="<?= base_url() ?>admin/personil/lihat-sertifikat" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_personil" value="<?= $p->id_personil ?>">
-                                                <button type="submit" class="btn btn-link text-dark text-gradient mb-0"><i class="bi bi-eye me-2"></i>Sertifikat</button>
+                                                <button type="submit" class="btn btn-link text-dark text-gradient m-0 p-2"><i class="bi bi-eye me-2"></i>Sertifikat</button>
                                             </form>
                                             <form action="<?= base_url() ?>admin/personil/edit-personil" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_personil" value="<?= $p->id_personil ?>">
-                                                <button type="submit" class="btn btn-link text-dark pe-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
+                                                <button type="submit" class="btn btn-link text-dark m-0 p-2"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                             </form>
-                                            <button class="btn btn-link text-danger text-gradient pe-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_personil<?= $p->id_personil ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
+                                            <button class="btn btn-link text-danger text-gradient m-0 p-2" data-bs-toggle="modal" data-bs-target="#hapus_personil<?= $p->id_personil ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -92,7 +92,7 @@
     </div>
 
     <?php foreach ($personil as $pm) : ?>
-        <!-- Modal Delete Akun -->
+        <!-- Modal Delete Personil -->
         <div class="modal fade" id="hapus_personil<?= $pm->id_personil ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

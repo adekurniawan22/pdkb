@@ -8,8 +8,6 @@ class Jsa extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->library('upload');
-		$this->load->model('Laporan_pekerjaan_model');
-		$this->load->model('SPKI_model');
 		$this->load->model('Jsa_model');
 		$this->load->model('Personil_model');
 		$this->load->library('pdfgenerator');

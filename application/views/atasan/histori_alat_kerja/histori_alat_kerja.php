@@ -49,7 +49,7 @@
                                                 <span class="ms-3 badge badge-sm bg-gradient-success">Sudah Disetujui</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td class="align-middle">
+                                        <td class="text-center">
                                             <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_alat<?= $h->id_histori_alat ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Daftar Alat</button>
 
                                             <form action="<?= base_url() ?>histori-alat-kerja/pdf" method="post" class="d-inline-block" target="_blank">

@@ -21,10 +21,10 @@
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dasar Pelaksanaan</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Hasil Pekerjaan</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,8 +45,8 @@
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $l->dasar_pelaksanaan ?></p>
                                         </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($l->waktu_pelaksanaan)) ?></p>
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($l->waktu_pelaksanaan)) ?></p>
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($l->hasil_pekerjaan) ?></p>
@@ -59,22 +59,22 @@
                                             <?php endif; ?>
                                         </td>
 
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-dark text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $l->id_laporan_pekerjaan ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
+                                        <td class="text-center">
+                                            <button class="btn btn-link text-dark text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $l->id_laporan_pekerjaan ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
 
                                             <?php if ($l->sudah_disetujui == 0) : ?>
                                                 <form action="<?= base_url('admin/laporan-pekerjaan/edit-laporan-pekerjaan') ?>" method="post" class="d-inline-block">
                                                     <input type="hidden" name="id_laporan_pekerjaan" value="<?= $l->id_laporan_pekerjaan ?>">
-                                                    <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
+                                                    <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                                 </form>
                                             <?php endif ?>
 
-                                            <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_laporan_pekerjaan<?= $l->id_laporan_pekerjaan ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
+                                            <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_laporan_pekerjaan<?= $l->id_laporan_pekerjaan ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <?php if ($l->sudah_disetujui == '1') : ?>
                                                 <form action="<?= base_url() ?>laporan_pekerjaan/cetak_laporan_pekerjaan" method="post" class="d-inline-block" target="_blank">
                                                     <input type="hidden" name="id_laporan_pekerjaan" value="<?= $l->id_laporan_pekerjaan ?>">
                                                     <input type="hidden" name="id_atasan" value="<?= $l->id_atasan ?>">
-                                                    <button type="submit" class="btn btn-link text-dark px-3 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
+                                                    <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
                                                 </form>
                                             <?php endif; ?>
                                         </td>

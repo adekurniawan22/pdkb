@@ -1,7 +1,4 @@
 <div class="container-fluid py-0">
-    <?php
-    $id_alat_kerja = [];
-    ?>
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
@@ -17,11 +14,6 @@
                         </div>
                     </div>
                 </div>
-                <style>
-                    .table td {
-                        vertical-align: top !important;
-                    }
-                </style>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0" id="example">
@@ -30,10 +22,10 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama ALat</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Spesifikasi</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Sedang Dipinjam</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Kadaluarsa</th>
-                                    <th style="text-align: center;" class="text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Sedang Dipinjam</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Kadaluarsa</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,55 +37,29 @@
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->nama_alat_kerja ?></p>
                                         </td>
-                                        <td>
+                                        <td style="word-wrap: break-word; white-space: pre-line;">
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($a->spesifikasi) ?></p>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->jumlah . ' ' . $a->satuan ?></p>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->sedang_dipinjam . ' ' . $a->satuan ?></p>
                                         </td>
-                                        <td style="text-align: center;">
+                                        <td class="text-center">
                                             <?php if ($a->tanggal_kadaluarsa == null) : ?>
                                                 <p class="text-sm font-weight-bold mb-0">Tidak ada</p <?php else : ?> <p class="text-sm font-weight-bold mb-0"><?= $a->tanggal_kadaluarsa ?></p>
                                             <?php endif ?>
                                         </td>
 
-                                        <td class="align-middle">
+                                        <td class="text-center">
                                             <form action="<?= base_url() ?>admin/alat-kerja/edit-alat-kerja" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_alat_kerja" value="<?= $a->id_alat_kerja ?>">
-                                                <button type="submit" class="btn btn-link text-dark pe-3 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
+                                                <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                             </form>
-                                            <button class="btn btn-link text-danger text-gradient pe-3 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_alat_kerja<?= $a->id_alat_kerja ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
+                                            <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_alat_kerja<?= $a->id_alat_kerja ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                         </td>
                                     </tr>
-                                    <?php if ($a->tanggal_kadaluarsa != null) : ?>
-                                        <?php
-                                        $timezone = new DateTimeZone('Asia/Jakarta');
-
-                                        $tanggal_kadaluarsa = DateTime::createFromFormat('Y-m-d', $a->tanggal_kadaluarsa, $timezone);
-                                        $tanggal_sekarang = new DateTime('now', $timezone);
-
-                                        // Menambahkan 1 bulan ke tanggal kadaluarsa
-                                        $tanggal_kadaluarsa->modify('-1 month');
-
-                                        ?>
-                                        <div id="loading" class="d-none">
-                                            <div class="spinner-border text-primary" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                        </div>
-                                        <?php if ($tanggal_sekarang > $tanggal_kadaluarsa) : ?>
-                                            <form id="emailForm" action="<?= base_url() ?>alat_kerja/kirim_email_ke_atasan" method="post" style="display: none;">
-                                                <button type="submit" class="btn btn-link text-dark px-3 mb-0" id="kirimEmailBtn">
-                                                </button>
-                                            </form>
-                                            <?php
-                                            array_push($id_alat_kerja, $a->id_alat_kerja);
-                                            ?>
-                                        <?php endif ?>
-                                    <?php endif ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

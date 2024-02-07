@@ -9,7 +9,6 @@ class Profil extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->library('upload');
 		$this->load->model('Personil_model');
-		$this->load->model('Jabatan_model');
 	}
 
 	public function index()

@@ -6,9 +6,9 @@
                     <form action="<?= base_url() ?>admin/alat-tower-ers/proses-edit-alat-tower-ers" method="post">
                         <input type="hidden" name="id_alat_tower_ers" value="<?= $alat_tower_ers->id_alat_tower_ers ?>">
                         <div class="form-group">
-                            <label for="jenis" class="form-control-label">Jenis Alat kerja</label>
+                            <label for="jenis" class="form-control-label">Jenis Alat</label>
                             <select class="form-select" aria-label="Default select example" name="jenis" id="jenis">
-                                <option value="" selected>Pilih Alat Kerja</option>
+                                <option value="" selected>Pilih Jenis Alat</option>
                                 <option value="Metal" <?php echo set_select('jenis', "Metal", $alat_tower_ers->jenis == "Metal"); ?>>Metal</option>
                                 <option value="Isolasi" <?php echo set_select('jenis', "Isolasi", $alat_tower_ers->jenis == "Isolasi"); ?>>Isolasi</option>
                                 <option value="APD" <?php echo set_select('jenis', "APD", $alat_tower_ers->jenis == "APD"); ?>>APD</option>
@@ -16,18 +16,18 @@
                             <?= form_error('jenis', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="nama_alat_tower_ers" class="form-control-label">Nama Alat Kerja</label>
-                            <input class="form-control" type="text" placeholder="Nama Alat Kerja" id="nama_alat_tower_ers" name="nama_alat_tower_ers" value="<?php echo set_value('nama_alat_tower_ers', $alat_tower_ers->nama_alat_tower_ers); ?>">
+                            <label for="nama_alat_tower_ers" class="form-control-label">Nama Alat</label>
+                            <input class="form-control" type="text" placeholder="Nama Alat" id="nama_alat_tower_ers" name="nama_alat_tower_ers" value="<?php echo set_value('nama_alat_tower_ers', $alat_tower_ers->nama_alat_tower_ers); ?>">
                             <?= form_error('nama_alat_tower_ers', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="merk" class="form-control-label">Merk</label>
-                            <input class="form-control" type="text" placeholder="Nama Alat Kerja" id="merk" name="merk" value="<?php echo set_value('merk', $alat_tower_ers->merk); ?>">
+                            <input class="form-control" type="text" placeholder="Merk" id="merk" name="merk" value="<?php echo set_value('merk', $alat_tower_ers->merk); ?>">
                             <?= form_error('merk', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="spesifikasi" class="form-control-label">Spesifikasi Alat Kerja</label>
-                            <textarea class="form-control" placeholder="Spesifikasi Alat Kerja" id="spesifikasi" name="spesifikasi" rows="3"><?php echo set_value('spesifikasi', $alat_tower_ers->spesifikasi); ?></textarea>
+                            <label for="spesifikasi" class="form-control-label">Spesifikasi</label>
+                            <textarea class="form-control" placeholder="Spesifikasi" id="spesifikasi" name="spesifikasi" rows="3"><?php echo set_value('spesifikasi', $alat_tower_ers->spesifikasi); ?></textarea>
                             <?= form_error('spesifikasi', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
