@@ -69,7 +69,7 @@
                         <img src="<?= $foto ?>" style="width: 80px;">
                     </td>
                     <td rowspan="4" style=" text-align:center">
-                        <h2>FORM STOK KELUAR/MASUK GUDANG</h2>
+                        <h3>FORM STOK KELUAR/MASUK GUDANG TOWER ERS</h3>
                     </td>
                 </tr>
             </table>
@@ -78,13 +78,13 @@
             <table>
                 <tr>
                     <td style="text-align: left;">Petugas</td>
-                    <td class="titikdua">: <?= $histori_alat->penanggung_jawab ?></td>
+                    <td class="titikdua">: <?= $riwayat_gudang->penanggung_jawab ?></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;">Tanggal Keluar</td>
-                    <td class="titikdua">: <?= date('d/m/Y', strtotime($histori_alat->tanggal_keluar)) . ', Jam ' . date('H:i', strtotime($histori_alat->tanggal_keluar))  ?></td>
+                    <td class="titikdua">: <?= date('d/m/Y', strtotime($riwayat_gudang->tanggal_keluar)) . ', Jam ' . date('H:i', strtotime($riwayat_gudang->tanggal_keluar))  ?></td>
                 </tr>
-                <?php if ($histori_alat->tanggal_masuk == '0000-00-00 00:00:00') : ?>
+                <?php if ($riwayat_gudang->tanggal_masuk == '0000-00-00 00:00:00') : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
                         <td class="titikdua">: -</td>
@@ -92,16 +92,16 @@
                 <?php else : ?>
                     <tr>
                         <td style="text-align: left;">Tanggal Masuk</td>
-                        <td class="titikdua">: <?= date('d/m/Y', strtotime($histori_alat->tanggal_masuk))  ?></td>
+                        <td class="titikdua">: <?= date('d/m/Y', strtotime($riwayat_gudang->tanggal_masuk)) . ', Jam ' . date('H:i', strtotime($riwayat_gudang->tanggal_masuk))  ?></td>
                     </tr>
                 <?php endif; ?>
                 <tr>
                     <td style="text-align: left;">Jenis Pekerjaan</td>
-                    <td class="titikdua">: <?= $histori_alat->keterangan ?></td>
+                    <td class="titikdua">: <?= $riwayat_gudang->keterangan ?></td>
                 </tr>
                 <tr>
                     <td style="text-align: left;">Status</td>
-                    <td class="titikdua">: <?= $histori_alat->status ?></td>
+                    <td class="titikdua">: <?= $riwayat_gudang->status ?></td>
                 </tr>
             </table>
 
@@ -113,6 +113,7 @@
                         <th>No.</th>
                         <th>Nama Alat</th>
                         <th>Jenis</th>
+                        <th>Merk</th>
                         <th>Spesifikasi</th>
                         <th>Stok</th>
                         <th>Jumlah Alat Keluar</th>
@@ -125,9 +126,10 @@
                                 <!-- <ul class="styled-list">
                                     <li><= $q['nama_alat_kerja'] . ' (' . $q['jumlah'] . ')' ?></li>
                                 </ul> -->
-                                <?= $q['nama_alat_kerja'] ?>
+                                <?= $q['nama_alat_tower_ers'] ?>
                             </td>
                             <td><?= $q['jenis'] ?></td>
+                            <td><?= $q['merk'] ?></td>
                             <td><?= $q['spesifikasi'] ?></td>
                             <td><?= $q['jumlah'] ?></td>
                             <td><?= $q['jumlah_barang_keluar'] ?></td>
@@ -144,10 +146,10 @@
                     <div style="text-align: center;">
                         Penanggung Jawab
                         <div>
-                            <img width="200px" src="<?= base_url() ?>assets/img/tanda-tangan/<?= $histori_alat->tanda_tangan ?>" alt="" style="margin-top: 20px;">
+                            <img width="200px" src="<?= base_url() ?>assets/img/tanda-tangan/<?= $riwayat_gudang->tanda_tangan ?>" alt="" style="margin-top: 20px;">
                         </div>
                     </div>
-                    <p style="text-align: center;"><?= $histori_alat->penanggung_jawab ?></p>
+                    <p style="text-align: center;"><?= $riwayat_gudang->penanggung_jawab ?></p>
                 </div>
                 <div class="right-signature">
                     <?php if ($atasan) : ?>

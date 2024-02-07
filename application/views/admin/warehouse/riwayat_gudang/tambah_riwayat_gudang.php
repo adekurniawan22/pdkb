@@ -3,10 +3,10 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>admin/histori-alat-kerja/proses-tambah-histori-alat-kerja" method="post" onsubmit="return updateSignatureInput()">
+                    <form action="<?= base_url() ?>admin/riwayat-gudang/proses-tambah-riwayat-gudang" method="post" onsubmit="return updateSignatureInput()">
                         <div class="card mb-4">
                             <div class="card-body px-0 pb-3">
-                                <h4 class="ms-4">Data Alat Kerja</h4>
+                                <h4 class="ms-4">Data Alat Tower ERS</h4>
                                 <hr class="bg-dark mx-4 mb-4">
                                 <div class="table-responsive">
                                     <table class="table align-items-center mb-0" id="example">
@@ -21,7 +21,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($alat_kerja as $a) : ?>
+                                            <?php foreach ($alat_tower_ers as $a) : ?>
                                                 <?php
                                                 $warning =  $a->jumlah - $a->sedang_dipinjam;
                                                 if ($warning == 0) { ?>
@@ -33,7 +33,7 @@
                                                         <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->jenis ?></p>
                                                     </td>
                                                     <td>
-                                                        <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->nama_alat_kerja ?></p>
+                                                        <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->nama_alat_tower_ers ?></p>
                                                     </td>
                                                     <td>
                                                         <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->spesifikasi ?></p>
@@ -44,11 +44,11 @@
 
                                                     <?php if ($warning == 0) { ?>
                                                         <td style="width: 15%;" class="text-center">
-                                                            <input type="checkbox" class="select-checkbox form text-sm font-weight-bold mb-0" name="select_alat_kerja[]" value="<?= $a->id_alat_kerja ?>" data-name="<?= $a->nama_alat_kerja ?>" disabled>
+                                                            <input type="checkbox" class="select-checkbox form text-sm font-weight-bold mb-0" name="select_alat_kerja[]" value="<?= $a->id_alat_tower_ers ?>" data-name="<?= $a->nama_alat_tower_ers ?>" disabled>
                                                         </td>
                                                     <?php } else { ?>
                                                         <td style="width: 15%;" class="text-center">
-                                                            <input type="checkbox" class="select-checkbox form text-sm font-weight-bold mb-0" name="select_alat_kerja[]" value="<?= $a->id_alat_kerja ?>" data-name="<?= $a->nama_alat_kerja ?>">
+                                                            <input type="checkbox" class="select-checkbox form text-sm font-weight-bold mb-0" name="select_alat_kerja[]" value="<?= $a->id_alat_tower_ers ?>" data-name="<?= $a->nama_alat_tower_ers ?>">
                                                         </td>
                                                     <?php } ?>
                                                     <td style="width: 15%;">
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="mt-4 text-end">
-                            <a href=" <?= base_url() ?>admin/histori-alat-kerja" class="btn btn-primary" type="button">Kembali</a>
+                            <a href=" <?= base_url() ?>admin/riwayat-gudang" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
                     </form>

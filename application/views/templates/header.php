@@ -24,7 +24,7 @@
 
     <style>
         .atur-height {
-            height: 85% !important;
+            height: 100% !important;
         }
 
         .btn-aside {
@@ -202,19 +202,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Tower ERS") {
+                        <a class="nav-link <?php if ($title == "Alat Tower ERS") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/tower-ers">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/alat-tower-ers">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Tower ERS</span>
+                            <span class="nav-link-text ms-1">Alat Tower ERS</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Riwayat Gudang") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/histori-alat-kerja">
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/riwayat-gudang">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>

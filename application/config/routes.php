@@ -104,5 +104,15 @@ $route['admin/histori-alat-kerja'] = 'histori_alat/index';
 $route['admin/histori-alat-kerja/tambah-histori-alat-kerja'] = 'histori_alat/tambah_histori_alat';
 $route['admin/histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'histori_alat/proses_tambah_histori_alat';
 
+$route['admin/alat-tower-ers'] = 'alat_tower_ers/index';
+$route['admin/alat-tower-ers/tambah-alat-tower-ers'] = 'alat_tower_ers/tambah_alat_tower_ers';
+$route['admin/alat-tower-ers/proses-tambah-alat-tower-ers'] = 'alat_tower_ers/proses_tambah_alat_tower_ers';
+$route['admin/alat-tower-ers/edit-alat-tower-ers'] = 'alat_tower_ers/edit_alat_tower_ers';
+$route['admin/alat-tower-ers/proses-edit-alat-tower-ers'] = 'alat_tower_ers/proses_edit_alat_tower_ers';
+
+$route['admin/riwayat-gudang'] = 'riwayat_gudang/index';
+$route['admin/riwayat-gudang/tambah-riwayat-gudang'] = 'riwayat_gudang/tambah_riwayat_gudang';
+$route['admin/riwayat-gudang/proses-tambah-riwayat-gudang'] = 'riwayat_gudang/proses_tambah_riwayat_gudang';
+
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';

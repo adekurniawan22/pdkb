@@ -92,6 +92,7 @@ class Histori_alat extends CI_Controller
 	public function proses_edit_status_histori()
 	{
 		$status = ($this->input->post('status') == 'on') ? 'masuk' : 'keluar';
+		date_default_timezone_set('Asia/Jakarta');
 		$tanggal_sekarang = date('Y-m-d H:i:s');
 		$this->db->where('id_histori_alat', $this->input->post('id_histori_alat'));
 		$this->db->update('t_histori_alat', ['status' => $status, 'tanggal_masuk' => $tanggal_sekarang]);

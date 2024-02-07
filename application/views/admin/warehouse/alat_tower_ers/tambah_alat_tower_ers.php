@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>admin/alat-kerja/proses-tambah-alat-kerja" method="post">
+                    <form action="<?= base_url() ?>admin/alat-tower-ers/proses-tambah-alat-tower-ers" method="post">
                         <div class="form-group">
                             <label for="jenis" class="form-control-label">Jenis Alat kerja</label>
                             <select class="form-select" aria-label="Default select example" name="jenis" id="jenis">
@@ -15,9 +15,14 @@
                             <?= form_error('jenis', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="nama_alat_kerja" class="form-control-label">Nama Alat Kerja</label>
-                            <input class="form-control" type="text" placeholder="Nama Alat Kerja" id="nama_alat_kerja" name="nama_alat_kerja" value="<?php echo set_value('nama_alat_kerja'); ?>">
-                            <?= form_error('nama_alat_kerja', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                            <label for="nama_alat_tower_ers" class="form-control-label">Nama Alat Kerja</label>
+                            <input class="form-control" type="text" placeholder="Nama Alat Kerja" id="nama_alat_tower_ers" name="nama_alat_tower_ers" value="<?php echo set_value('nama_alat_tower_ers'); ?>">
+                            <?= form_error('nama_alat_tower_ers', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="merk" class="form-control-label">Merk</label>
+                            <input class="form-control" type="text" placeholder="Nama Alat Kerja" id="merk" name="merk" value="<?php echo set_value('merk'); ?>">
+                            <?= form_error('merk', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="spesifikasi" class="form-control-label">Spesifikasi Alat Kerja</label>
@@ -46,12 +51,17 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="tahun_pengadaan" class="form-control-label">Tahun Pengadaan</label>
+                            <input class="form-control" type="text" placeholder="Tahun Pengadaan" name="tahun_pengadaan" id="tahun_pengadaan" value="<?php echo set_value('tahun_pengadaan'); ?>">
+                            <?= form_error('tahun_pengadaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+                        <div class="form-group">
                             <label for="tanggal_kadaluarsa" class="form-control-label">Tanggal Kadaluarsa Alat <em>(jika ada)</em></label>
                             <input class="form-control" type="date" name="tanggal_kadaluarsa" id="tanggal_kadaluarsa" value="<?php echo set_value('tanggal_kadaluarsa'); ?>">
                         </div>
 
                         <div class="text-end mt-5">
-                            <a href=" <?= base_url() ?>admin/alat-kerja" class="btn btn-primary" type="button">Kembali</a>
+                            <a href=" <?= base_url() ?>admin/alat-tower-ers" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
                     </form>
