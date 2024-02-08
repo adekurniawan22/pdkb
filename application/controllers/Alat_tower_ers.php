@@ -15,17 +15,37 @@ class Alat_tower_ers extends CI_Controller
 	{
 		$data['alat_tower_ers'] = $this->Alat_tower_ers_model->dapat_alat_tower_ers();
 		$data['title'] = 'Alat Tower ERS';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/warehouse/alat_tower_ers/alat_tower_ers', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/warehouse/alat_tower_ers/alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/warehouse/alat_tower_ers/alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/warehouse/alat_tower_ers/alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function tambah_alat_tower_ers()
 	{
 		$data['title'] = 'Alat Tower ERS';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/warehouse/alat_tower_ers/tambah_alat_tower_ers', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/warehouse/alat_tower_ers/tambah_alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/warehouse/alat_tower_ers/tambah_alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/warehouse/alat_tower_ers/tambah_alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_tambah_alat_tower_ers()
@@ -64,7 +84,13 @@ class Alat_tower_ers extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Alat Tower ERS Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/alat-tower-ers');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/alat-tower-ers');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/alat-tower-ers');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/alat-tower-ers');
+			}
 		}
 	}
 
@@ -72,9 +98,19 @@ class Alat_tower_ers extends CI_Controller
 	{
 		$data['title'] = 'Alat Tower ERS';
 		$data['alat_tower_ers'] = $this->Alat_tower_ers_model->dapat_satu_alat_tower_ers($this->input->post('id_alat_tower_ers'));
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/warehouse/alat_tower_ers/edit_alat_tower_ers', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/warehouse/alat_tower_ers/edit_alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/warehouse/alat_tower_ers/edit_alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/warehouse/alat_tower_ers/edit_alat_tower_ers', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_edit_alat_tower_ers()
@@ -113,7 +149,13 @@ class Alat_tower_ers extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Alat Tower ERS Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/alat-tower-ers');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/alat-tower-ers');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/alat-tower-ers');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/alat-tower-ers');
+			}
 		}
 	}
 
@@ -123,7 +165,13 @@ class Alat_tower_ers extends CI_Controller
 		$this->db->delete('t_alat_tower_ers');
 		$this->session->set_flashdata('message', '<strong>Data Alat Tower ERS Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		redirect('admin/alat-tower-ers');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			redirect('atasan/alat-tower-ers');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			redirect('admin/alat-tower-ers');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('jtc/alat-tower-ers');
+		}
 	}
 
 	public function validate_year($str)

@@ -13,6 +13,9 @@ class Profil extends CI_Controller
 
 	public function index()
 	{
+		unset(
+			$_SESSION['id_view_sertifikat']
+		);
 		$data['title'] = 'Profil';
 		$data['profil'] = $this->Personil_model->dapat_satu_personil_dan_jabatan($this->session->userdata('id_personil'));
 		$this->load->view('templates/header', $data);
@@ -163,5 +166,28 @@ class Profil extends CI_Controller
 				return false; // Kembalikan false jika ada kesalahan
 			}
 		}
+	}
+
+	public function edit_tanda_tangan()
+	{
+		$signatureData = $this->input->post('signature_image');
+		if (!empty($signatureData)) {
+			$randomBytes = random_bytes(16); // Mendapatkan 16 byte nilai acak
+			$fileName = 'signature_' . bin2hex($randomBytes) . '.png';
+			file_put_contents('./assets/img/tanda-tangan/' . $fileName, base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $signatureData)));
+		}
+
+		$this->db->where('id_personil', $this->input->post('id_personil'));
+		$result =  $this->db->update('t_personil', ['tanda_tangan' => $fileName]);
+
+		if ($result) {
+			unlink(FCPATH . 'assets/img/tanda-tangan/' . $this->input->post('tanda_tangan_lama'));
+			$this->session->set_flashdata('message', '<strong>Tanda tangan Berhasil Di edit</strong>
+													<i class="bi bi-check-circle-fill"></i>');
+		} else {
+			$this->session->set_flashdata('message', '<strong>Tanda tangan Gagal Di edit</strong>
+													<i class="bi bi-exclamation-circle-fill"></i>');
+		}
+		redirect('profil');
 	}
 }

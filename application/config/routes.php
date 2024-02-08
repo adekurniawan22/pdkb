@@ -59,6 +59,42 @@ $route['proses-login'] = 'auth/proses_login';
 // Atasan
 $route['atasan/dashboard'] = 'dashboard/index';
 
+$route['atasan/personil'] = 'personil/index';
+$route['atasan/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
+
+$route['atasan/rencana-operasi'] = 'rencana_operasi/index';
+$route['atasan/rencana-operasi/tambah-rencana-operasi'] = 'rencana_operasi/tambah_rencana_operasi';
+$route['atasan/rencana-operasi/proses-tambah-rencana-operasi'] = 'rencana_operasi/proses_tambah_rencana_operasi';
+$route['atasan/rencana-operasi/edit-rencana-operasi'] = 'rencana_operasi/edit_rencana_operasi';
+$route['atasan/rencana-operasi/proses-edit-rencana-operasi'] = 'rencana_operasi/proses_edit_rencana_operasi';
+
+$route['atasan/spki'] = 'spki/index';
+$route['atasan/spki/tambah-spki'] = 'spki/tambah_spki';
+$route['atasan/spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
+$route['atasan/spki/edit-spki'] = 'spki/edit_spki';
+$route['atasan/spki/proses-edit-spki'] = 'spki/proses_edit_spki';
+
+$route['atasan/laporan-pekerjaan'] = 'laporan_pekerjaan/index';
+$route['atasan/laporan-pekerjaan/tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/tambah_laporan_pekerjaan';
+$route['atasan/laporan-pekerjaan/proses-tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_tambah_laporan_pekerjaan';
+$route['atasan/laporan-pekerjaan/edit-laporan-pekerjaan'] = 'laporan_pekerjaan/edit_laporan_pekerjaan';
+$route['atasan/laporan-pekerjaan/proses-edit-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_edit_laporan_pekerjaan';
+
+$route['atasan/jsa'] = 'jsa/index';
+$route['atasan/jsa/tambah-jsa'] = 'jsa/tambah_jsa';
+$route['atasan/jsa/proses-tambah-jsa'] = 'jsa/proses_tambah_jsa';
+$route['atasan/jsa/edit-jsa'] = 'jsa/edit_jsa';
+$route['atasan/jsa/proses-edit-jsa'] = 'jsa/proses_edit_jsa';
+
+$route['atasan/alat-kerja'] = 'alat_kerja/index';
+$route['atasan/histori-alat-kerja'] = 'histori_alat/index';
+
+$route['atasan/alat-tower-ers'] = 'alat_tower_ers/index';
+$route['atasan/riwayat-gudang'] = 'riwayat_gudang/index';
+
+$route['atasan/gardu-induk'] = 'gardu_induk/index';
+$route['atasan/jaringan'] = 'jaringan/index';
+
 // Admin
 $route['admin/dashboard'] = 'dashboard/index';
 
@@ -125,6 +161,10 @@ $route['admin/jaringan/tambah-jaringan'] = 'jaringan/tambah_jaringan';
 $route['admin/jaringan/proses-tambah-jaringan'] = 'jaringan/proses_tambah_jaringan';
 $route['admin/jaringan/edit-jaringan'] = 'jaringan/edit_jaringan';
 $route['admin/jaringan/proses-edit-jaringan'] = 'jaringan/proses_edit_jaringan';
+
+// Profil ALL Role
+$route['profil/lihat-sertifikat'] = 'sertifikat/get_sertifikat_sendiri';
+$route['profil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat_sendiri';
 
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';

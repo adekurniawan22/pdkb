@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>admin/jaringan/proses-edit-jaringan" method="post">
+                    <form action="<?= base_url() ?>admin/jaringan/proses-edit-jaringan" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id_jaringan" value="<?= $jaringan->id_jaringan ?>">
                         <div class="form-group">
                             <label for="foto" class="form-control-label">Status Dikerjakan</label>
@@ -45,6 +45,14 @@
                         <div class="form-group">
                             <label for="tanggal_eksekusi" class="form-control-label">Tanggal Eksekusi</label>
                             <input class="form-control" type="date" name="tanggal_eksekusi" id="tanggal_eksekusi" value="<?php echo set_value('tanggal_eksekusi', $jaringan->tanggal_eksekusi); ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foto" class="form-control-label">Foto</label>
+                            <img src="<?= base_url('assets/img/jaringan/') . $jaringan->foto ?>" alt="Profile" class="form-control mb-2" style="width: 200px;">
+                            <input type="hidden" name="foto_lama" value="<?= $jaringan->foto ?>">
+                            <input class="form-control" type="file" name="foto">
+                            <?= form_error('foto', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
 
                         <div class="text-end mt-5">

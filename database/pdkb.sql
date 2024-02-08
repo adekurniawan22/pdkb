@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Feb 2024 pada 16.59
+-- Waktu pembuatan: 07 Feb 2024 pada 22.27
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -54,6 +54,33 @@ INSERT INTO `t_alat_kerja` (`id_alat_kerja`, `jenis`, `nama_alat_kerja`, `spesif
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `t_alat_tower_ers`
+--
+
+CREATE TABLE `t_alat_tower_ers` (
+  `id_alat_tower_ers` int(11) NOT NULL,
+  `jenis` varchar(255) NOT NULL,
+  `nama_alat_tower_ers` varchar(255) NOT NULL,
+  `merk` varchar(255) NOT NULL,
+  `spesifikasi` varchar(255) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `satuan` varchar(255) NOT NULL,
+  `tahun_pengadaan` year(4) NOT NULL,
+  `tanggal_kadaluarsa` date DEFAULT NULL,
+  `sedang_dipinjam` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `t_alat_tower_ers`
+--
+
+INSERT INTO `t_alat_tower_ers` (`id_alat_tower_ers`, `jenis`, `nama_alat_tower_ers`, `merk`, `spesifikasi`, `jumlah`, `satuan`, `tahun_pengadaan`, `tanggal_kadaluarsa`, `sedang_dipinjam`) VALUES
+(2, 'Metal', 'asdasd edit', 'asdsad edit', 'asdasd edit', 3399, 'Bh', '2013', '2024-02-29', 0),
+(3, 'APD', 'asdasd', 'asdasd', 'asdad', 344, 'Set', '2012', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `t_detail_histori_alat`
 --
 
@@ -80,7 +107,31 @@ INSERT INTO `t_detail_histori_alat` (`id_detail_histori_alat`, `id_histori_alat`
 (9, 7, 6, 2),
 (10, 7, 7, 3),
 (11, 8, 6, 2),
-(12, 9, 5, 3);
+(12, 9, 5, 3),
+(13, 10, 3, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_detail_riwayat_gudang`
+--
+
+CREATE TABLE `t_detail_riwayat_gudang` (
+  `id_detail_riwayat_gudang` int(11) NOT NULL,
+  `id_riwayat_gudang` int(11) NOT NULL,
+  `id_alat_tower_ers` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `t_detail_riwayat_gudang`
+--
+
+INSERT INTO `t_detail_riwayat_gudang` (`id_detail_riwayat_gudang`, `id_riwayat_gudang`, `id_alat_tower_ers`, `jumlah`) VALUES
+(1, 1, 3, 4),
+(2, 2, 3, 4),
+(3, 2, 2, 9),
+(4, 3, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -106,6 +157,31 @@ INSERT INTO `t_foto_jsa` (`id_foto_jsa`, `id_jsa`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `t_gardu_induk`
+--
+
+CREATE TABLE `t_gardu_induk` (
+  `id_gardu_induk` int(11) NOT NULL,
+  `jenis_anomali` varchar(255) NOT NULL,
+  `bay` varchar(255) NOT NULL,
+  `jumlah_titik` int(11) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `klasifikasi` varchar(255) NOT NULL,
+  `tanggal_eksekusi` date NOT NULL,
+  `status_dikerjakan` enum('0','1') NOT NULL,
+  `id_personil` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `t_gardu_induk`
+--
+
+INSERT INTO `t_gardu_induk` (`id_gardu_induk`, `jenis_anomali`, `bay`, `jumlah_titik`, `keterangan`, `klasifikasi`, `tanggal_eksekusi`, `status_dikerjakan`, `id_personil`) VALUES
+(2, 'tes', 'tes', 2, 'tes', 'tes', '2012-01-01', '1', 14);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `t_histori_alat`
 --
 
@@ -113,8 +189,8 @@ CREATE TABLE `t_histori_alat` (
   `id_histori_alat` int(11) NOT NULL,
   `penanggung_jawab` varchar(255) NOT NULL,
   `id_personil` int(11) NOT NULL,
-  `tanggal_keluar` datetime NOT NULL,
-  `tanggal_masuk` datetime NOT NULL,
+  `tanggal_keluar` date NOT NULL,
+  `tanggal_masuk` date DEFAULT NULL,
   `keterangan` varchar(255) NOT NULL,
   `status` enum('keluar','masuk') NOT NULL,
   `tanda_tangan` varchar(255) NOT NULL,
@@ -127,8 +203,7 @@ CREATE TABLE `t_histori_alat` (
 --
 
 INSERT INTO `t_histori_alat` (`id_histori_alat`, `penanggung_jawab`, `id_personil`, `tanggal_keluar`, `tanggal_masuk`, `keterangan`, `status`, `tanda_tangan`, `sudah_disetujui`, `id_atasan`) VALUES
-(6, 'Ismail', 14, '2024-02-03 07:00:00', '2024-02-03 01:12:19', 'adfasdasd', 'masuk', 'signature_a23c92bdebcd381810dd5633d08d3ea7.png', '1', 12),
-(9, 'Ade Kurniawan', 14, '2024-02-03 19:05:00', '0000-00-00 00:00:00', 'asdasdads', 'keluar', 'signature_09744cbad83e71040a17e9f59dd915d9.png', '1', NULL);
+(10, 'Ismail', 14, '2024-02-08', '2024-02-08', 'tes', 'masuk', 'signature_4f0ec54b0ad1266416e6f71e931740ce.png', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -154,6 +229,32 @@ INSERT INTO `t_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `t_jaringan`
+--
+
+CREATE TABLE `t_jaringan` (
+  `id_jaringan` int(11) NOT NULL,
+  `jenis_anomali` varchar(255) NOT NULL,
+  `bay_line` varchar(255) NOT NULL,
+  `no_tower` int(11) NOT NULL,
+  `jumlah_titik` int(11) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `klasifikasi` varchar(255) NOT NULL,
+  `tanggal_eksekusi` date NOT NULL,
+  `status_dikerjakan` enum('0','1') NOT NULL,
+  `id_personil` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `t_jaringan`
+--
+
+INSERT INTO `t_jaringan` (`id_jaringan`, `jenis_anomali`, `bay_line`, `no_tower`, `jumlah_titik`, `keterangan`, `klasifikasi`, `tanggal_eksekusi`, `status_dikerjakan`, `id_personil`) VALUES
+(2, 'tes', 'te', 3, 3, 'tr', 'tr', '2012-01-01', '1', 14);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `t_jsa`
 --
 
@@ -174,7 +275,7 @@ CREATE TABLE `t_jsa` (
 --
 
 INSERT INTO `t_jsa` (`id_jsa`, `id_personil`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `kesimpulan`, `sudah_disetujui`, `id_atasan`) VALUES
-(14, 14, 'Dasar Pelaksanaan', '2024-02-03', 'Lingkup Pekerjaan', 'Hasil Pekerjaan', 'Kesimpulan', '1', 12);
+(14, 14, 'Dasar Pelaksanaan', '2024-02-03', 'Lingkup Pekerjaan', 'Hasil Pekerjaan', 'Kesimpulan', '0', 12);
 
 -- --------------------------------------------------------
 
@@ -221,7 +322,7 @@ CREATE TABLE `t_laporan_pekerjaan` (
 --
 
 INSERT INTO `t_laporan_pekerjaan` (`id_laporan_pekerjaan`, `id_personil`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `penutup`, `sudah_disetujui`, `id_atasan`) VALUES
-(55, 14, 'Dasar Pelaksanaan', '2024-02-03', 'Lingkup Pekerjaan', 'asdasdas', 'asdasdasddas', '1', NULL);
+(55, 14, 'Dasar Pelaksanaan', '2024-02-03', 'Lingkup Pekerjaan', 'asdasdas', 'asdasdasddas', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -280,6 +381,32 @@ INSERT INTO `t_rencana_operasi` (`id_rencana_operasi`, `nama_rencana`, `status`,
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `t_riwayat_gudang`
+--
+
+CREATE TABLE `t_riwayat_gudang` (
+  `id_riwayat_gudang` int(11) NOT NULL,
+  `penanggung_jawab` varchar(255) NOT NULL,
+  `id_personil` int(11) NOT NULL,
+  `tanggal_keluar` date NOT NULL,
+  `tanggal_masuk` date DEFAULT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `status` enum('keluar','masuk') NOT NULL,
+  `tanda_tangan` varchar(255) NOT NULL,
+  `sudah_disetujui` enum('0','1') NOT NULL,
+  `id_atasan` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `t_riwayat_gudang`
+--
+
+INSERT INTO `t_riwayat_gudang` (`id_riwayat_gudang`, `penanggung_jawab`, `id_personil`, `tanggal_keluar`, `tanggal_masuk`, `keterangan`, `status`, `tanda_tangan`, `sudah_disetujui`, `id_atasan`) VALUES
+(3, 'Ismail', 14, '2024-02-08', NULL, 'tess', 'masuk', 'signature_c2585fbb8a6489cfd523ac54730c5394.png', '1', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `t_sertifikat`
 --
 
@@ -331,7 +458,7 @@ CREATE TABLE `t_spki` (
 --
 
 INSERT INTO `t_spki` (`id_spki`, `id_personil`, `kepada`, `dari`, `macam_pekerjaan`, `lokasi_pekerjaan`, `mulai_pelaksanaan`, `selesai_pelaksanaan`, `pj`, `pengawas`, `pengawas_k3`, `pelaksana`, `alat_kerja`, `kendaraan`, `uraian_kerja`, `catatan`, `sudah_disetujui`, `id_atasan`) VALUES
-(5, 14, 'TL PDKB RING UPT KALTIMRA edit', 'ASMAN PDKB UPT KALTIMRA deidt', 'JSA Anomali Tower Tension sddf', 'adsasdasdasd ededit', '2024-02-03', '2024-02-03', 'MOCH. AZIZ SHIDKI edit', 'Hernawan Agung P edit', 'asdasd edit', 'asdasd edit', 'adsasdas edit', 'Kendaraan Dinas edit', 'asdasd edit', 'asdasdasd edit', '1', 12);
+(5, 14, 'TL PDKB RING UPT KALTIMRA edit', 'ASMAN PDKB UPT KALTIMRA deidt', 'JSA Anomali Tower Tension sddf', 'adsasdasdasd ededit', '2024-02-03', '2024-02-03', 'MOCH. AZIZ SHIDKI edit', 'Hernawan Agung P edit', 'asdasd edit', 'asdasd edit', 'adsasdas edit', 'Kendaraan Dinas edit', 'asdasd edit', 'asdasdasd edit', '0', 12);
 
 -- --------------------------------------------------------
 
@@ -383,10 +510,22 @@ ALTER TABLE `t_alat_kerja`
   ADD PRIMARY KEY (`id_alat_kerja`);
 
 --
+-- Indeks untuk tabel `t_alat_tower_ers`
+--
+ALTER TABLE `t_alat_tower_ers`
+  ADD PRIMARY KEY (`id_alat_tower_ers`);
+
+--
 -- Indeks untuk tabel `t_detail_histori_alat`
 --
 ALTER TABLE `t_detail_histori_alat`
   ADD PRIMARY KEY (`id_detail_histori_alat`);
+
+--
+-- Indeks untuk tabel `t_detail_riwayat_gudang`
+--
+ALTER TABLE `t_detail_riwayat_gudang`
+  ADD PRIMARY KEY (`id_detail_riwayat_gudang`);
 
 --
 -- Indeks untuk tabel `t_foto_jsa`
@@ -394,6 +533,12 @@ ALTER TABLE `t_detail_histori_alat`
 ALTER TABLE `t_foto_jsa`
   ADD PRIMARY KEY (`id_foto_jsa`),
   ADD KEY `id_jsa` (`id_jsa`);
+
+--
+-- Indeks untuk tabel `t_gardu_induk`
+--
+ALTER TABLE `t_gardu_induk`
+  ADD PRIMARY KEY (`id_gardu_induk`);
 
 --
 -- Indeks untuk tabel `t_histori_alat`
@@ -406,6 +551,12 @@ ALTER TABLE `t_histori_alat`
 --
 ALTER TABLE `t_jabatan`
   ADD PRIMARY KEY (`id_jabatan`);
+
+--
+-- Indeks untuk tabel `t_jaringan`
+--
+ALTER TABLE `t_jaringan`
+  ADD PRIMARY KEY (`id_jaringan`);
 
 --
 -- Indeks untuk tabel `t_jsa`
@@ -438,6 +589,12 @@ ALTER TABLE `t_personil`
 --
 ALTER TABLE `t_rencana_operasi`
   ADD PRIMARY KEY (`id_rencana_operasi`);
+
+--
+-- Indeks untuk tabel `t_riwayat_gudang`
+--
+ALTER TABLE `t_riwayat_gudang`
+  ADD PRIMARY KEY (`id_riwayat_gudang`);
 
 --
 -- Indeks untuk tabel `t_sertifikat`
@@ -473,13 +630,25 @@ ALTER TABLE `t_tower_ers`
 -- AUTO_INCREMENT untuk tabel `t_alat_kerja`
 --
 ALTER TABLE `t_alat_kerja`
-  MODIFY `id_alat_kerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_alat_kerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_alat_tower_ers`
+--
+ALTER TABLE `t_alat_tower_ers`
+  MODIFY `id_alat_tower_ers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_detail_histori_alat`
 --
 ALTER TABLE `t_detail_histori_alat`
-  MODIFY `id_detail_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_detail_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_detail_riwayat_gudang`
+--
+ALTER TABLE `t_detail_riwayat_gudang`
+  MODIFY `id_detail_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_foto_jsa`
@@ -488,16 +657,28 @@ ALTER TABLE `t_foto_jsa`
   MODIFY `id_foto_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
+-- AUTO_INCREMENT untuk tabel `t_gardu_induk`
+--
+ALTER TABLE `t_gardu_induk`
+  MODIFY `id_gardu_induk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `t_histori_alat`
 --
 ALTER TABLE `t_histori_alat`
-  MODIFY `id_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jabatan`
 --
 ALTER TABLE `t_jabatan`
   MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_jaringan`
+--
+ALTER TABLE `t_jaringan`
+  MODIFY `id_jaringan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jsa`
@@ -528,6 +709,12 @@ ALTER TABLE `t_personil`
 --
 ALTER TABLE `t_rencana_operasi`
   MODIFY `id_rencana_operasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_riwayat_gudang`
+--
+ALTER TABLE `t_riwayat_gudang`
+  MODIFY `id_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_sertifikat`

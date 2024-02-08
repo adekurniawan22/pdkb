@@ -16,17 +16,38 @@ class Spki extends CI_Controller
 	{
 		$data['spki'] = $this->SPKI_model->dapat_spki();
 		$data['title'] = 'SPKI';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/spki/spki', $data);
-		$this->load->view('templates/footer');
+
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/spki/spki', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/spki/spki', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/spki/spki', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function tambah_spki()
 	{
 		$data['title'] = 'SPKI';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/spki/tambah_spki', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/spki/tambah_spki', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/spki/tambah_spki', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/spki/tambah_spki', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_tambah_spki()
@@ -65,8 +86,14 @@ class Spki extends CI_Controller
 				'kendaraan' => $this->input->post('kendaraan'),
 				'uraian_kerja' => $this->input->post('uraian_kerja'),
 				'catatan' => $this->input->post('catatan'),
-				'sudah_disetujui' => '0'
 			);
+
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				$data['sudah_disetujui'] = '1';
+				$data['id_atasan'] = $this->session->userdata('id_personil');
+			} else {
+				$data['sudah_disetujui'] = '0';
+			}
 
 			$result = $this->SPKI_model->tambah_spki($data);
 
@@ -77,7 +104,14 @@ class Spki extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data SPKI Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/spki');
+
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/spki');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/spki');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/spki');
+			}
 		}
 	}
 
@@ -85,9 +119,19 @@ class Spki extends CI_Controller
 	{
 		$data['title'] = 'SPKI';
 		$data['spki'] = $this->SPKI_model->dapat_satu_spki($this->input->post('id_spki'));
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/spki/edit_spki', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/spki/edit_spki', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/spki/edit_spki', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/spki/edit_spki', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_edit_spki()
@@ -136,7 +180,13 @@ class Spki extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data SPKI Gagal Diedit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/spki');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/spki');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/spki');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/spki');
+			}
 		}
 	}
 
@@ -147,7 +197,26 @@ class Spki extends CI_Controller
 		$this->db->delete('t_spki');
 		$this->session->set_flashdata('message', '<strong>Data SPKI Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		redirect('admin/spki');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			redirect('atasan/spki');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			redirect('admin/spki');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('jtc/spki');
+		}
+	}
+
+	public function proses_edit_status_spki()
+	{
+		$data = array(
+			'sudah_disetujui' => ($this->input->post('sudah_disetujui') == 'on') ? '1' : '0',
+			'id_atasan' => $this->session->userdata('id_personil')
+		);
+		$this->db->where('id_spki', $this->input->post('id_spki'));
+		$this->db->update('t_spki', $data);
+		$this->session->set_flashdata('message', '<strong>Status SPKI Berhasil Disetujui</strong>
+                                                    <i class="bi bi-check-circle-fill"></i>');
+		redirect('atasan/spki');
 	}
 
 	public function cetak_spki()

@@ -14,6 +14,7 @@
                                             <tr>
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis</th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama ALat</th>
+                                                <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Merk</th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Spesifikasi</th>
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah saat ini</th>
                                                 <th class="text-uppercase text-center text-xxs font-weight-bolder opacity-7" data-sortable="false">Checklist</th>
@@ -34,6 +35,9 @@
                                                     </td>
                                                     <td>
                                                         <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->nama_alat_tower_ers ?></p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->merk ?></p>
                                                     </td>
                                                     <td>
                                                         <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->spesifikasi ?></p>

@@ -1,7 +1,4 @@
 <div class="container-fluid py-0">
-    <?php
-    $id_gardu_induk = [];
-    ?>
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
@@ -54,7 +51,7 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $g->bay ?></p>
                                         </td>
                                         <td class="text-center">
-                                            <p class=text-sm font-weight-bold mb-0"><?= $g->jumlah_titik ?></p>
+                                            <p class="text-sm font-weight-bold mb-0"><?= $g->jumlah_titik ?></p>
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->keterangan) ?></p>
@@ -72,6 +69,8 @@
                                         </td>
 
                                         <td class="text-center">
+                                            <button class="btn btn-link text-dark text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_foto<?= $g->id_gardu_induk ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Foto</button>
+
                                             <form action="<?= base_url() ?>admin/gardu-induk/edit-gardu-induk" method="post" class="d-inline-block">
                                                 <input type="hidden" name="id_gardu_induk" value="<?= $g->id_gardu_induk ?>">
                                                 <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
@@ -108,6 +107,26 @@
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
                             <button type="submit" class="btn bg-gradient-primary">Ya</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Foto -->
+        <div class="modal fade" id="lihat_foto<?= $gm->id_gardu_induk ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Foto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="<?= base_url() ?>assets/img/gardu-induk/<?= $gm->foto ?>" alt="" class="text-center" width="350px">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>

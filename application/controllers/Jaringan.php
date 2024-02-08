@@ -7,6 +7,8 @@ class Jaringan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->library('upload');
+		$this->load->model('Personil_model');
 		$this->load->model('Jaringan_model');
 		$this->load->library('pdfgenerator');
 	}
@@ -15,17 +17,37 @@ class Jaringan extends CI_Controller
 	{
 		$data['jaringan'] = $this->Jaringan_model->dapat_jaringan();
 		$data['title'] = 'Jaringan';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/anomali/jaringan/jaringan', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/anomali/jaringan/jaringan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/anomali/jaringan/jaringan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/anomali/jaringan/jaringan', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function tambah_jaringan()
 	{
 		$data['title'] = 'Jaringan';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/anomali/jaringan/tambah_jaringan', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/anomali/jaringan/tambah_jaringan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/anomali/jaringan/tambah_jaringan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/anomali/jaringan/tambah_jaringan', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_tambah_jaringan()
@@ -37,10 +59,12 @@ class Jaringan extends CI_Controller
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
 		$this->form_validation->set_rules('klasifikasi', 'Klasifikasi', 'required|trim');
 		$this->form_validation->set_rules('tanggal_eksekusi', 'Tanggal Eksekusi', 'required|trim');
+		$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
 
 		if ($this->form_validation->run() == false) {
 			$this->tambah_jaringan();
 		} else {
+			$foto = $this->validasi_foto('ambil_foto');
 			$data_jaringan = [
 				'id_personil' => $this->session->userdata('id_personil'),
 				'jenis_anomali' => $this->input->post('jenis_anomali'),
@@ -49,6 +73,7 @@ class Jaringan extends CI_Controller
 				'jumlah_titik' => $this->input->post('jumlah_titik'),
 				'keterangan' => $this->input->post('keterangan'),
 				'klasifikasi' => $this->input->post('klasifikasi'),
+				'foto' => $foto,
 				'tanggal_eksekusi' => $this->input->post('tanggal_eksekusi'),
 			];
 
@@ -61,16 +86,32 @@ class Jaringan extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Jaringan Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/jaringan');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/jaringan');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/jaringan');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/jaringan');
+			}
 		}
 	}
 	public function edit_jaringan()
 	{
 		$data['title'] = 'Jaringan';
 		$data['jaringan'] = $this->Jaringan_model->dapat_satu_jaringan($this->input->post('id_jaringan'));
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/anomali/jaringan/edit_jaringan', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/anomali/jaringan/edit_jaringan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/anomali/jaringan/edit_jaringan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/anomali/jaringan/edit_jaringan', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_edit_jaringan()
@@ -84,6 +125,13 @@ class Jaringan extends CI_Controller
 		$this->form_validation->set_rules('tanggal_eksekusi', 'Tanggal Eksekusi', 'required|trim');
 		$status_dikerjakan = ($this->input->post('status_dikerjakan') == 'on') ? '1' : '0';
 
+		if (!empty($_FILES['foto']['name'])) {
+			$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
+			$foto = $this->validasi_foto('ambil_foto');
+		} else {
+			$foto = $this->input->post('foto_lama');
+		}
+
 		if ($this->form_validation->run() == false) {
 			$this->edit_jaringan();
 		} else {
@@ -95,19 +143,27 @@ class Jaringan extends CI_Controller
 				'keterangan' => $this->input->post('keterangan'),
 				'klasifikasi' => $this->input->post('klasifikasi'),
 				'tanggal_eksekusi' => $this->input->post('tanggal_eksekusi'),
+				'foto' => $foto,
 				'status_dikerjakan' => $status_dikerjakan,
 			];
 
 			$result = $this->Jaringan_model->edit_jaringan($this->input->post('id_jaringan'), $data_jaringan);
 
 			if ($result) {
+				unlink(FCPATH . 'assets/img/jaringan/' . $this->input->post('foto_lama'));
 				$this->session->set_flashdata('message', '<strong>Data Jaringan Berhasil Di edit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 			} else {
 				$this->session->set_flashdata('message', '<strong>Data Jaringan Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/jaringan');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/jaringan');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/jaringan');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/jaringan');
+			}
 		}
 	}
 
@@ -123,6 +179,44 @@ class Jaringan extends CI_Controller
 			$this->session->set_flashdata('message', '<strong>Data Jaringan Gagal Dihapus</strong>
 												<i class="bi bi-exclamation-circle-fill"></i>');
 		}
-		redirect('admin/jaringan');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			redirect('atasan/jaringan');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			redirect('admin/jaringan');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('jtc/jaringan');
+		}
+	}
+
+	function validasi_foto($param)
+	{
+		if (empty($_FILES['foto']['name'])) {
+			$this->form_validation->set_message('validasi_foto', 'Foto tidak boleh kosong');
+			return false;
+		} else {
+			$config_foto = array(
+				'upload_path' => './assets/img/jaringan',
+				'allowed_types' => 'jpg|jpeg|png',
+				'max_size' => 2048, // 2MB
+			);
+			$this->upload->initialize($config_foto);
+
+			if ($this->upload->do_upload('foto')) {
+				// Proses upload berhasil, lanjutkan dengan logika yang diinginkan
+				$foto_data = $this->upload->data();
+				$foto = $foto_data['file_name'];
+
+				if ($param == null) {
+					unlink(FCPATH . 'assets/img/jaringan/' . $foto);
+					return true; // Kembalikan true jika semuanya berjalan dengan baik
+				} else {
+					return $foto;
+				}
+			} else {
+				// Proses upload gagal, set pesan kesalahan
+				$this->form_validation->set_message('validasi_foto', 'Upload foto gagal. ' . $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>'));
+				return false; // Kembalikan false jika ada kesalahan
+			}
+		}
 	}
 }

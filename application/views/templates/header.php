@@ -25,6 +25,12 @@
     <style>
         .atur-height {
             height: 100% !important;
+            overflow: visible !important;
+        }
+
+        .scrollbar-customization::-webkit-scrollbar {
+            width: 12px;
+            /* Lebar scrollbar */
         }
 
         .btn-aside {
@@ -113,6 +119,143 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse w-auto atur-height" id="sidenav-collapse-main">
             <ul class="navbar-nav">
+
+                <!-- ROLE ATASAN -->
+                <?php if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') : ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Dashboard") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/dashboard">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Personil") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/personil">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Personil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Rencana Operasi") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/rencana-operasi">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-list-stars text-success text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Rencana Operasi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Dokumen Pekerjaan</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "SPKI") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/spki">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">SPKI</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Laporan Pekerjaan") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/laporan-pekerjaan">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Laporan Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Laporan JSA") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/jsa">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Laporan JSA</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Warehouse</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Alat Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-tools text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Alat kerja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Riwayat Alat Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/histori-alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Riwayat Alat Kerja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Alat Tower ERS") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/alat-tower-ers">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-tools text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Alat Tower ERS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Riwayat Gudang") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/riwayat-gudang">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Riwayat Gudang</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Anomali</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Gardu Induk") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/gardu-induk">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-ethernet text-danger text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Gardu Induk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Jaringan") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/jaringan">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-joystick text-danger text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Jaringan</span>
+                        </a>
+                    </li>
+                <?php endif ?>
+                <!-- END ROLE ATASAN -->
+
                 <?php if ($this->session->userdata('id_jabatan') == '3') : ?>
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Dashboard") {
@@ -260,7 +403,7 @@
                         <span class="nav-link-text ms-1">Profil</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mb-3">
                     <a class="nav-link btn-aside" href="" data-bs-toggle="modal" data-bs-target="#logout">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="bi bi-box-arrow-left text-dark text-sm opacity-10 pb-1"></i>
@@ -273,7 +416,7 @@
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mb-2" id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mb-1" id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">

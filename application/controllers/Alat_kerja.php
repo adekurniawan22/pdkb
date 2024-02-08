@@ -15,17 +15,37 @@ class Alat_kerja extends CI_Controller
 	{
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_alat_kerja();
 		$data['title'] = 'Alat Kerja';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/warehouse/alat_kerja/alat_kerja', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/warehouse/alat_kerja/alat_kerja', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/warehouse/alat_kerja/alat_kerja', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/warehouse/alat_kerja/alat_kerja', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function tambah_alat_kerja()
 	{
 		$data['title'] = 'Alat Kerja';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/warehouse/alat_kerja/tambah_alat_kerja', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/warehouse/alat_kerja/tambah_alat_kerja', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/warehouse/alat_kerja/tambah_alat_kerja', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/warehouse/alat_kerja/tambah_alat_kerja', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_tambah_alat_kerja()
@@ -60,7 +80,13 @@ class Alat_kerja extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Alat Kerja Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/alat-kerja');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/alat-kerja');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/alat-kerja');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/alat-kerja');
+			}
 		}
 	}
 
@@ -68,9 +94,19 @@ class Alat_kerja extends CI_Controller
 	{
 		$data['title'] = 'Alat Kerja';
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_satu_alat_kerja($this->input->post('id_alat_kerja'));
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/warehouse/alat_kerja/edit_alat_kerja', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/warehouse/alat_kerja/edit_alat_kerja', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/warehouse/alat_kerja/edit_alat_kerja', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/warehouse/alat_kerja/edit_alat_kerja', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_edit_alat_kerja()
@@ -105,7 +141,13 @@ class Alat_kerja extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Alat Kerja Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/alat-kerja');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/alat-kerja');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/alat-kerja');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/alat-kerja');
+			}
 		}
 	}
 
@@ -115,7 +157,14 @@ class Alat_kerja extends CI_Controller
 		$this->db->delete('t_alat_kerja');
 		$this->session->set_flashdata('message', '<strong>Data Alat Kerja Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		redirect('admin/alat-kerja');
+
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			redirect('atasan/alat-kerja');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			redirect('admin/alat-kerja');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('jtc/alat-kerja');
+		}
 	}
 
 	public function kirim_email_ke_atasan()

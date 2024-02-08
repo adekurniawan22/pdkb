@@ -15,7 +15,7 @@ class Rencana_operasi extends CI_Controller
 		$data['rencana_operasi'] = $this->Rencana_operasi_model->dapat_rencana_operasi();
 		$data['title'] = 'Rencana Operasi';
 		$this->load->view('templates/header', $data);
-		$this->load->view('admin/rencana_operasi/rencana_operasi', $data);
+		$this->load->view('atasan/rencana_operasi/rencana_operasi', $data);
 		$this->load->view('templates/footer');
 	}
 
@@ -23,7 +23,7 @@ class Rencana_operasi extends CI_Controller
 	{
 		$data['title'] = 'Rencana Operasi';
 		$this->load->view('templates/header', $data);
-		$this->load->view('admin/rencana_operasi/tambah_rencana_operasi', $data);
+		$this->load->view('atasan/rencana_operasi/tambah_rencana_operasi', $data);
 		$this->load->view('templates/footer');
 	}
 
@@ -50,7 +50,7 @@ class Rencana_operasi extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Rencana Operasi Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/rencana-operasi');
+			redirect('atasan/rencana-operasi');
 		}
 	}
 
@@ -59,7 +59,7 @@ class Rencana_operasi extends CI_Controller
 		$data['title'] = 'Rencana Operasi';
 		$data['rencana_operasi'] = $this->Rencana_operasi_model->dapat_satu_rencana_operasi($this->input->post('id_rencana_operasi'));
 		$this->load->view('templates/header', $data);
-		$this->load->view('admin/rencana_operasi/edit_rencana_operasi', $data);
+		$this->load->view('atasan/rencana_operasi/edit_rencana_operasi', $data);
 		$this->load->view('templates/footer');
 	}
 
@@ -94,7 +94,7 @@ class Rencana_operasi extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Rencana Operasi Gagal Diedit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/rencana-operasi');
+			redirect('atasan/rencana-operasi');
 		}
 	}
 
@@ -107,7 +107,7 @@ class Rencana_operasi extends CI_Controller
 
 		$this->session->set_flashdata('message', '<strong>Status Rencana Operasi Berhasil Diedit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		redirect('admin/rencana-operasi');
+		redirect('atasan/rencana-operasi');
 	}
 
 	public function proses_hapus_rencana_operasi()
@@ -116,6 +116,6 @@ class Rencana_operasi extends CI_Controller
 		$this->db->delete('t_rencana_operasi');
 		$this->session->set_flashdata('message', '<strong>Data Rencana Operasi Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		redirect('admin/rencana-operasi');
+		redirect('atasan/rencana-operasi');
 	}
 }

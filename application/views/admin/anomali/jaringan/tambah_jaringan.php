@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>admin/jaringan/proses-tambah-jaringan" method="post">
+                    <form action="<?= base_url() ?>admin/jaringan/proses-tambah-jaringan" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="jenis_anomali" class="form-control-label">Jenis Anomali</label>
                             <input class="form-control" type="text" placeholder="Jenis Anomali" id="jenis_anomali" name="jenis_anomali" value="<?php echo set_value('jenis_anomali'); ?>">
@@ -38,6 +38,12 @@
                             <label for="tanggal_eksekusi" class="form-control-label">Tanggal Eksekusi</label>
                             <input class="form-control" type="date" name="tanggal_eksekusi" id="tanggal_eksekusi" value="<?php echo set_value('tanggal_eksekusi'); ?>">
                             <?= form_error('tanggal_eksekusi', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foto" class="form-control-label">Foto <em>(maksimal ukuran 2MB)</em></label>
+                            <input class="form-control" type="file" placeholder="Foto" id="foto" name="foto" value="<?php echo set_value('foto'); ?>">
+                            <?= form_error('foto', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
 
                         <div class="text-end mt-5">

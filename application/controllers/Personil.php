@@ -21,18 +21,39 @@ class Personil extends CI_Controller
 		$data['title'] = 'Personil';
 		$data['jabatan'] = $this->Jabatan_model->dapat_jabatan();
 		$data['personil'] = $this->Personil_model->dapat_personil();
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/personil/personil', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/personil/personil', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/personil/personil', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/personil/personil', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function tambah_personil()
 	{
 		$data['title'] = 'Personil';
 		$data['jabatan'] = $this->Jabatan_model->dapat_jabatan();
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/personil/tambah_personil', $data);
-		$this->load->view('templates/footer');
+
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/personil/tambah_personil', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/personil/tambah_personil', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/personil/tambah_personil', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_tambah_personil()
@@ -111,7 +132,14 @@ class Personil extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Personil Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/personil');
+
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/personil');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('atasan/personil');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/personil');
+			}
 		}
 	}
 
@@ -120,9 +148,19 @@ class Personil extends CI_Controller
 		$data['title'] = 'Personil';
 		$data['jabatan'] = $this->Jabatan_model->dapat_jabatan();
 		$data['personil'] = $this->Personil_model->dapat_satu_personil($this->input->post('id_personil'));
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/personil/edit_personil', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/personil/edit_personil', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/personil/edit_personil', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/personil/edit_personil', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_edit_personil()
@@ -192,7 +230,13 @@ class Personil extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Personil Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/personil');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/personil');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/personil');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/personil');
+			}
 		}
 	}
 
@@ -212,7 +256,26 @@ class Personil extends CI_Controller
 		$this->db->delete('t_personil');
 		$this->session->set_flashdata('message', '<strong>Data Personil Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		redirect('admin/personil');
+
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			redirect('atasan/personil');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			redirect('admin/personil');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('jtc/personil');
+		}
+	}
+
+	public function proses_edit_status_akun()
+	{
+		$data = array(
+			'status_aktif' => ($this->input->post('status_aktif') == 'on') ? '1' : '0',
+		);
+		$this->db->where('id_personil', $this->input->post('id_personil'));
+		$this->db->update('t_personil', $data);
+		$this->session->set_flashdata('message', '<strong>Status Akun Berhasil Diedit</strong>
+                                                    <i class="bi bi-check-circle-fill"></i>');
+		redirect('atasan/personil');
 	}
 
 	function validasi_foto($param)

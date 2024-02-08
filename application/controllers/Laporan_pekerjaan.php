@@ -20,17 +20,37 @@ class Laporan_pekerjaan extends CI_Controller
 		$data['laporan_pekerjaan'] = $this->Laporan_pekerjaan_model->dapat_laporan_pekerjaan();
 		$data['lampiran_laporan_pekerjaan'] = $this->Laporan_pekerjaan_model->dapat_lampiran_laporan_pekerjaan();
 		$data['title'] = 'Laporan Pekerjaan';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/laporan_pekerjaan/laporan_pekerjaan', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/laporan_pekerjaan/laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/laporan_pekerjaan/laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/laporan_pekerjaan/laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function tambah_laporan_pekerjaan()
 	{
 		$data['title'] = 'Laporan Pekerjaan';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/laporan_pekerjaan/tambah_laporan_pekerjaan', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/laporan_pekerjaan/tambah_laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/laporan_pekerjaan/tambah_laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/laporan_pekerjaan/tambah_laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_tambah_laporan_pekerjaan()
@@ -51,8 +71,14 @@ class Laporan_pekerjaan extends CI_Controller
 				'lingkup_pekerjaan' => $this->input->post('lingkup_pekerjaan'),
 				'hasil_pekerjaan' => $this->input->post('hasil_pekerjaan'),
 				'penutup' => $this->input->post('penutup'),
-				'sudah_disetujui' => '0',
 			];
+
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				$data['sudah_disetujui'] = '1';
+				$data['id_atasan'] = $this->session->userdata('id_personil');
+			} else {
+				$data['sudah_disetujui'] = '0';
+			}
 
 			$result = $this->Laporan_pekerjaan_model->tambah_laporan_pekerjaan($data);
 			$id_laporan_pekerjaan = $this->db->insert_id();
@@ -70,9 +96,16 @@ class Laporan_pekerjaan extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Laporan Pekerjaan Gagal Ditambahkan</strong>
 															<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/laporan-pekerjaan');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/laporan-pekerjaan');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/laporan-pekerjaan');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/laporan-pekerjaan');
+			}
 		}
 	}
+
 	public function edit_laporan_pekerjaan()
 	{
 		if ($this->session->userdata('id_view_laporan')) {
@@ -82,9 +115,20 @@ class Laporan_pekerjaan extends CI_Controller
 		}
 		$data['lampiran_laporan_pekerjaan'] = $this->Laporan_pekerjaan_model->dapat_lampiran_laporan_pekerjaan();
 		$data['title'] = 'Laporan Pekerjaan';
-		$this->load->view('templates/header', $data);
-		$this->load->view('admin/laporan_pekerjaan/edit_laporan_pekerjaan', $data);
-		$this->load->view('templates/footer');
+
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/laporan_pekerjaan/edit_laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/laporan_pekerjaan/edit_laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/laporan_pekerjaan/edit_laporan_pekerjaan', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function proses_edit_laporan_pekerjaan()
@@ -123,7 +167,13 @@ class Laporan_pekerjaan extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Laporan Pekerjaan Gagal Diedit</strong>
 															<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			redirect('admin/laporan-pekerjaan');
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				redirect('atasan/laporan-pekerjaan');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				redirect('admin/laporan-pekerjaan');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('jtc/laporan-pekerjaan');
+			}
 		}
 	}
 
@@ -145,7 +195,26 @@ class Laporan_pekerjaan extends CI_Controller
 		$this->db->delete('t_laporan_pekerjaan');
 		$this->session->set_flashdata('message', '<strong>Data Laporan Pekerjaan Berhasil Dihapus</strong>
 		<i class="bi bi-check-circle-fill"></i>');
-		redirect('admin/laporan-pekerjaan');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			redirect('atasan/laporan-pekerjaan');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			redirect('admin/laporan-pekerjaan');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('jtc/laporan-pekerjaan');
+		}
+	}
+
+	public function proses_edit_status_laporan_pekerjaan()
+	{
+		$data = array(
+			'sudah_disetujui' => ($this->input->post('sudah_disetujui') == 'on') ? '1' : '0',
+			'id_atasan' => $this->session->userdata('id_personil')
+		);
+		$this->db->where('id_laporan_pekerjaan', $this->input->post('id_laporan_pekerjaan'));
+		$this->db->update('t_laporan_pekerjaan', $data);
+		$this->session->set_flashdata('message', '<strong>Status Laporan Pekerjaan Berhasil Disetujui</strong>
+                                                    <i class="bi bi-check-circle-fill"></i>');
+		redirect('atasan/laporan-pekerjaan');
 	}
 
 	public function proses_hapus_lampiran()
@@ -165,7 +234,13 @@ class Laporan_pekerjaan extends CI_Controller
 		$this->session->set_userdata(['id_view_laporan' => $lampiran->id_laporan_pekerjaan]);
 		$this->session->set_flashdata('message', '<strong>Lampiran Laporan Pekerjaan Berhasil Dihapus</strong>
 		<i class="bi bi-check-circle-fill"></i>');
-		redirect('admin/laporan-pekerjaan/edit-laporan-pekerjaan');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			redirect('atasan/laporan-pekerjaan/edit-laporan-pekerjaan');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			redirect('admin/laporan-pekerjaan/edit-laporan-pekerjaan');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('jtc/laporan-pekerjaan/edit-laporan-pekerjaan');
+		}
 	}
 
 	public function cetak_laporan_pekerjaan()
