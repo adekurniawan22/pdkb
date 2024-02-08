@@ -256,6 +256,7 @@
                 <?php endif ?>
                 <!-- END ROLE ATASAN -->
 
+                <!-- ROLE ADMIN -->
                 <?php if ($this->session->userdata('id_jabatan') == '3') : ?>
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Dashboard") {
@@ -389,6 +390,133 @@
                         </a>
                     </li>
                 <?php endif ?>
+                <!-- END ROLE ADMIN -->
+
+                <!-- ROLE JTC -->
+                <?php if ($this->session->userdata('id_jabatan') == '4') : ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Dashboard") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/dashboard">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Personil") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/personil">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Personil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Dokumen Pekerjaan</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "SPKI") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/spki">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">SPKI</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Laporan Pekerjaan") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/laporan-pekerjaan">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Laporan Pekerjaan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Laporan JSA") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/jsa">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Laporan JSA</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Warehouse</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Alat Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-tools text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Alat kerja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Riwayat Alat Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/histori-alat-kerja">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Riwayat Alat Kerja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Alat Tower ERS") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/alat-tower-ers">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-tools text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Alat Tower ERS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Riwayat Gudang") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/riwayat-gudang">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Riwayat Gudang</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Anomali</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Gardu Induk") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/gardu-induk">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-ethernet text-danger text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Gardu Induk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Jaringan") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/jaringan">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-joystick text-danger text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Jaringan</span>
+                        </a>
+                    </li>
+                <?php endif ?>
+                <!-- END ROLE JTC -->
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Akun</h6>

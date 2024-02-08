@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Feb 2024 pada 22.27
+-- Waktu pembuatan: 08 Feb 2024 pada 17.57
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -44,8 +44,8 @@ CREATE TABLE `t_alat_kerja` (
 
 INSERT INTO `t_alat_kerja` (`id_alat_kerja`, `jenis`, `nama_alat_kerja`, `spesifikasi`, `jumlah`, `satuan`, `tanggal_kadaluarsa`, `sedang_dipinjam`) VALUES
 (3, 'Isolasi', 'Tang', 'Untuk memegang, memotong, melepas, dan memasang bahan kerja', 166, 'Bh', NULL, 11),
-(4, 'Metal', 'Bor Listrik', '500W, Kecepatan Variabel', 56, 'Pasang', NULL, 3),
-(5, 'Metal', 'Tang Potong', 'Bahan Tahan Karat', 100, 'Pasang', NULL, 8),
+(4, 'Metal', 'Bor Listrik', '500W, Kecepatan Variabel', 56, 'Pasang', NULL, 6),
+(5, 'Metal', 'Tang Potong', 'Bahan Tahan Karat', 100, 'Pasang', NULL, 12),
 (6, 'Metal', 'Kunci Inggris', 'Ukuran 10 inci', 15, 'Pasang', NULL, 0),
 (7, 'Metal', 'Mesin Gerinda', '800W, Diskon 4 inch', 8, 'Pasang', NULL, 0),
 (8, 'Metal', 'Palu', 'Kepala Logam, Pegangan Kayu', 20, 'Pasang', NULL, 0),
@@ -75,8 +75,8 @@ CREATE TABLE `t_alat_tower_ers` (
 --
 
 INSERT INTO `t_alat_tower_ers` (`id_alat_tower_ers`, `jenis`, `nama_alat_tower_ers`, `merk`, `spesifikasi`, `jumlah`, `satuan`, `tahun_pengadaan`, `tanggal_kadaluarsa`, `sedang_dipinjam`) VALUES
-(2, 'Metal', 'asdasd edit', 'asdsad edit', 'asdasd edit', 3399, 'Bh', '2013', '2024-02-29', 0),
-(3, 'APD', 'asdasd', 'asdasd', 'asdad', 344, 'Set', '2012', NULL, 0);
+(2, 'Metal', 'asdasd edit', 'asdsad edit', 'asdasd edit', 3399, 'Bh', '2013', '2024-02-29', 4),
+(3, 'APD', 'asdasd', 'asdasd', 'asdad', 344, 'Set', '2012', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -108,7 +108,9 @@ INSERT INTO `t_detail_histori_alat` (`id_detail_histori_alat`, `id_histori_alat`
 (10, 7, 7, 3),
 (11, 8, 6, 2),
 (12, 9, 5, 3),
-(13, 10, 3, 3);
+(13, 10, 3, 3),
+(14, 11, 5, 4),
+(15, 12, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,9 @@ INSERT INTO `t_detail_riwayat_gudang` (`id_detail_riwayat_gudang`, `id_riwayat_g
 (1, 1, 3, 4),
 (2, 2, 3, 4),
 (3, 2, 2, 9),
-(4, 3, 3, 4);
+(4, 3, 3, 4),
+(5, 4, 2, 4),
+(6, 5, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -152,7 +156,9 @@ CREATE TABLE `t_foto_jsa` (
 INSERT INTO `t_foto_jsa` (`id_foto_jsa`, `id_jsa`, `foto`) VALUES
 (17, 14, '580b57fcd9996e24bc43c4e7.png'),
 (18, 14, '1738.jpg'),
-(19, 14, '10535618_1465881587012156_6767017015814907459_o.jpg');
+(19, 14, '10535618_1465881587012156_6767017015814907459_o.jpg'),
+(30, 15, '580b57fcd9996e24bc43c4e73.png'),
+(31, 16, '580b57fcd9996e24bc43c4e74.png');
 
 -- --------------------------------------------------------
 
@@ -169,6 +175,7 @@ CREATE TABLE `t_gardu_induk` (
   `klasifikasi` varchar(255) NOT NULL,
   `tanggal_eksekusi` date NOT NULL,
   `status_dikerjakan` enum('0','1') NOT NULL,
+  `foto` varchar(255) NOT NULL,
   `id_personil` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -176,8 +183,8 @@ CREATE TABLE `t_gardu_induk` (
 -- Dumping data untuk tabel `t_gardu_induk`
 --
 
-INSERT INTO `t_gardu_induk` (`id_gardu_induk`, `jenis_anomali`, `bay`, `jumlah_titik`, `keterangan`, `klasifikasi`, `tanggal_eksekusi`, `status_dikerjakan`, `id_personil`) VALUES
-(2, 'tes', 'tes', 2, 'tes', 'tes', '2012-01-01', '1', 14);
+INSERT INTO `t_gardu_induk` (`id_gardu_induk`, `jenis_anomali`, `bay`, `jumlah_titik`, `keterangan`, `klasifikasi`, `tanggal_eksekusi`, `status_dikerjakan`, `foto`, `id_personil`) VALUES
+(3, 'tes', 'tes', 3, 'tes', 'tes', '2012-02-02', '0', '1738.jpg', 14);
 
 -- --------------------------------------------------------
 
@@ -203,7 +210,9 @@ CREATE TABLE `t_histori_alat` (
 --
 
 INSERT INTO `t_histori_alat` (`id_histori_alat`, `penanggung_jawab`, `id_personil`, `tanggal_keluar`, `tanggal_masuk`, `keterangan`, `status`, `tanda_tangan`, `sudah_disetujui`, `id_atasan`) VALUES
-(10, 'Ismail', 14, '2024-02-08', '2024-02-08', 'tes', 'masuk', 'signature_4f0ec54b0ad1266416e6f71e931740ce.png', '1', 12);
+(10, 'Ismail', 14, '2024-02-08', '2024-02-08', 'tes', 'masuk', 'signature_4f0ec54b0ad1266416e6f71e931740ce.png', '0', 12),
+(11, 'asdasdad', 14, '2024-02-08', NULL, 'asdasdasd', 'keluar', 'signature_136a191b51c7b5ea2ca469c74cc66a71.png', '0', 12),
+(12, 'asdasd', 15, '2024-02-08', NULL, 'asdasdas', 'keluar', 'signature_7811174243f04587607403cb3bd3ff30.png', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -242,6 +251,7 @@ CREATE TABLE `t_jaringan` (
   `klasifikasi` varchar(255) NOT NULL,
   `tanggal_eksekusi` date NOT NULL,
   `status_dikerjakan` enum('0','1') NOT NULL,
+  `foto` varchar(255) NOT NULL,
   `id_personil` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -249,8 +259,8 @@ CREATE TABLE `t_jaringan` (
 -- Dumping data untuk tabel `t_jaringan`
 --
 
-INSERT INTO `t_jaringan` (`id_jaringan`, `jenis_anomali`, `bay_line`, `no_tower`, `jumlah_titik`, `keterangan`, `klasifikasi`, `tanggal_eksekusi`, `status_dikerjakan`, `id_personil`) VALUES
-(2, 'tes', 'te', 3, 3, 'tr', 'tr', '2012-01-01', '1', 14);
+INSERT INTO `t_jaringan` (`id_jaringan`, `jenis_anomali`, `bay_line`, `no_tower`, `jumlah_titik`, `keterangan`, `klasifikasi`, `tanggal_eksekusi`, `status_dikerjakan`, `foto`, `id_personil`) VALUES
+(4, 'tes', 'tes', 12, 1, 'tes', 'tes', '2024-02-08', '0', 'default2.jpg', 14);
 
 -- --------------------------------------------------------
 
@@ -275,7 +285,9 @@ CREATE TABLE `t_jsa` (
 --
 
 INSERT INTO `t_jsa` (`id_jsa`, `id_personil`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `kesimpulan`, `sudah_disetujui`, `id_atasan`) VALUES
-(14, 14, 'Dasar Pelaksanaan', '2024-02-03', 'Lingkup Pekerjaan', 'Hasil Pekerjaan', 'Kesimpulan', '0', 12);
+(14, 14, 'Dasar Pelaksanaan', '2024-02-03', 'Lingkup Pekerjaan', 'Hasil Pekerjaan', 'Kesimpulan', '1', 12),
+(15, 12, 'tes', '2024-02-08', 'asdasd', 'asdasd', 'asdasd', '1', 12),
+(16, 15, 'asdasd', '2024-02-08', 'asdas', 'asdasd', 'asdasd', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -297,7 +309,9 @@ CREATE TABLE `t_lampiran_laporan_pekerjaan` (
 --
 
 INSERT INTO `t_lampiran_laporan_pekerjaan` (`id_lampiran`, `id_laporan_pekerjaan`, `judul_lampiran`, `foto_sebelum`, `foto_proses`, `foto_setelah`) VALUES
-(38, 55, 'asd', '580b57fcd9996e24bc43c4e7.png', '580b57fcd9996e24bc43c4e71.png', '580b57fcd9996e24bc43c4e72.png');
+(38, 55, 'asd', '580b57fcd9996e24bc43c4e7.png', '580b57fcd9996e24bc43c4e71.png', '580b57fcd9996e24bc43c4e72.png'),
+(39, 56, 'asdasd', '580b57fcd9996e24bc43c4e73.png', '580b57fcd9996e24bc43c4e74.png', '580b57fcd9996e24bc43c4e75.png'),
+(40, 57, 'asdasd', '580b57fcd9996e24bc43c4e76.png', '580b57fcd9996e24bc43c4e77.png', '580b57fcd9996e24bc43c4e78.png');
 
 -- --------------------------------------------------------
 
@@ -322,7 +336,9 @@ CREATE TABLE `t_laporan_pekerjaan` (
 --
 
 INSERT INTO `t_laporan_pekerjaan` (`id_laporan_pekerjaan`, `id_personil`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `penutup`, `sudah_disetujui`, `id_atasan`) VALUES
-(55, 14, 'Dasar Pelaksanaan', '2024-02-03', 'Lingkup Pekerjaan', 'asdasdas', 'asdasdasddas', '0', NULL);
+(55, 14, 'Dasar Pelaksanaan', '2024-02-03', 'Lingkup Pekerjaan', 'asdasdas', 'asdasdasddas', '1', 12),
+(56, 12, 'tes', '2024-02-08', 'asdasd', 'asdasd', 'asdasd', '1', 12),
+(57, 15, 'asdasdasdasdas', '2024-02-08', 'dasdsa', 'asdasd', 'asdasd', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -350,11 +366,10 @@ CREATE TABLE `t_personil` (
 --
 
 INSERT INTO `t_personil` (`id_personil`, `id_jabatan`, `nama`, `nip`, `email`, `no_hp`, `username`, `password`, `alamat`, `foto`, `status_aktif`, `tanda_tangan`) VALUES
-(12, 1, 'Ismail Asistan Manager', '12345678910', 'asistantmanager@email.com', '081274747474', 'asman', '$2y$10$NLFDLVITX2ahLVt9p39Wl.s4Ivppt8d6VKfeIbLYOwF5PZVKbRURK', 'Jalan Dago, Nomor 43', 'default.jpg', '1', 'signature_46f9554efbc985cc7955844d23316dd5.png'),
+(12, 1, 'Ismail Asistan Manager', '12345678910', 'asistantmanager@email.com', '081274747474', 'asman', '$2y$10$NLFDLVITX2ahLVt9p39Wl.s4Ivppt8d6VKfeIbLYOwF5PZVKbRURK', 'Jalan Dago, Nomor 43', 'default.jpg', '1', 'signature_5bcf73b0c5598432d283c3f7280d83ea.png'),
 (13, 2, 'Ismail Team Leader', '12345678911', 'teamleader@email.com', '081275757575', 'team_leader', '$2y$10$NZbK40eNc82WkijfpzgR.OqL6e5gNetUjPRI2OpmtZ4ubEmHnGcia', 'Jalan Cimahi, Nomor 55', 'default.jpg', '1', ''),
-(14, 3, 'Ismail Admin', '12345678912', 'admin@email.com', '081276767676', 'admin', '$2y$10$6aQzA0qBJOPSPsfzIBJowuFTHdBB5t1weam8AB9gJNy2OPYxPZhue', 'Jalan Tubagus Ismail, Nomor 41', '580b57fcd9996e24bc43c4e71.png', '1', ''),
-(15, 4, 'Ismail JTC', '12345678913', 'jtc@email.com', '081279797979', 'jtc', '$2y$10$PSpn2f8aeUp0y0pAaJHllelyNPIh0isJ.SGffGwUYBf48tdJxLAK2', 'Jalan Buahbatu, Nomo 23', 'default.jpg', '1', ''),
-(41, 1, 'Ade Kurniawan', '12345678902', 'ade.kurniawan216@gmail.com', '083171027936', 'ade_22', '$2y$10$6QpGIiE33b6hnY.hRrAceuZ.aBg5aULA7/h5tfojLoWEEa8HKfViq', 'Jalan Jambi Palembang KM 27', '580b57fcd9996e24bc43c4e7.png', '1', '');
+(14, 3, 'Ismail Admin', '12345678912', 'admin@email.com', '081276767676', 'admin', '$2y$10$6aQzA0qBJOPSPsfzIBJowuFTHdBB5t1weam8AB9gJNy2OPYxPZhue', 'Jalan Tubagus Ismail, Nomor 41', '580b57fcd9996e24bc43c4e71.png', '1', 'signature_ec7e4317cbc23d95a208cd5ad69dd8c6.png'),
+(15, 4, 'Ismail JTC', '12345678913', 'jtc@email.com', '081279797979', 'jtc', '$2y$10$PSpn2f8aeUp0y0pAaJHllelyNPIh0isJ.SGffGwUYBf48tdJxLAK2', 'Jalan Buahbatu, Nomo 23', 'default.jpg', '1', '');
 
 -- --------------------------------------------------------
 
@@ -375,8 +390,7 @@ CREATE TABLE `t_rencana_operasi` (
 --
 
 INSERT INTO `t_rencana_operasi` (`id_rencana_operasi`, `nama_rencana`, `status`, `tanggal_dikerjakan`, `tanggal_selesai`) VALUES
-(47, 'Rencana 1', '1', '2024-01-01', '2024-01-11'),
-(48, 'wertewrew', '0', '2024-01-24', NULL);
+(47, 'Rencana 1', '1', '2024-01-01', '2024-01-11');
 
 -- --------------------------------------------------------
 
@@ -402,7 +416,9 @@ CREATE TABLE `t_riwayat_gudang` (
 --
 
 INSERT INTO `t_riwayat_gudang` (`id_riwayat_gudang`, `penanggung_jawab`, `id_personil`, `tanggal_keluar`, `tanggal_masuk`, `keterangan`, `status`, `tanda_tangan`, `sudah_disetujui`, `id_atasan`) VALUES
-(3, 'Ismail', 14, '2024-02-08', NULL, 'tess', 'masuk', 'signature_c2585fbb8a6489cfd523ac54730c5394.png', '1', NULL);
+(3, 'Ismail', 14, '2024-02-08', NULL, 'tess', 'masuk', 'signature_c2585fbb8a6489cfd523ac54730c5394.png', '1', NULL),
+(4, 'adsasd', 14, '2024-02-08', NULL, 'asdasd', 'keluar', 'signature_4c6f6fd29005b49b9d847cb06259c3c8.png', '1', 12),
+(5, 'asdasd', 15, '2024-02-08', NULL, 'asdsad', 'keluar', 'signature_a728a7f19a2bbd6e46c4f54a481725ee.png', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -422,9 +438,7 @@ CREATE TABLE `t_sertifikat` (
 --
 
 INSERT INTO `t_sertifikat` (`id_sertifikat`, `id_personil`, `jenis_sertifikat`, `nama_file`) VALUES
-(53, 41, 'Diklat', 'TRANSKIP_NILAI_ADE_KURNIAWAN2.pdf'),
-(55, 41, 'Kompetensi', 'Sertifikat_Kompetensi_BNSP.pdf'),
-(56, 41, 'Kompetensi', 'IJAZAH_ADE_KURNIAWAN.pdf');
+(61, 15, 'Kompetensi', '1738.jpg');
 
 -- --------------------------------------------------------
 
@@ -458,7 +472,9 @@ CREATE TABLE `t_spki` (
 --
 
 INSERT INTO `t_spki` (`id_spki`, `id_personil`, `kepada`, `dari`, `macam_pekerjaan`, `lokasi_pekerjaan`, `mulai_pelaksanaan`, `selesai_pelaksanaan`, `pj`, `pengawas`, `pengawas_k3`, `pelaksana`, `alat_kerja`, `kendaraan`, `uraian_kerja`, `catatan`, `sudah_disetujui`, `id_atasan`) VALUES
-(5, 14, 'TL PDKB RING UPT KALTIMRA edit', 'ASMAN PDKB UPT KALTIMRA deidt', 'JSA Anomali Tower Tension sddf', 'adsasdasdasd ededit', '2024-02-03', '2024-02-03', 'MOCH. AZIZ SHIDKI edit', 'Hernawan Agung P edit', 'asdasd edit', 'asdasd edit', 'adsasdas edit', 'Kendaraan Dinas edit', 'asdasd edit', 'asdasdasd edit', '0', 12);
+(5, 14, 'TL PDKB RING UPT KALTIMRA edit', 'ASMAN PDKB UPT KALTIMRA deidt', 'JSA Anomali Tower Tension sddf', 'adsasdasdasd ededit', '2024-02-03', '2024-02-03', 'MOCH. AZIZ SHIDKI edit', 'Hernawan Agung P edit', 'asdasd edit', 'asdasd edit', 'adsasdas edit', 'Kendaraan Dinas edit', 'asdasd edit', 'asdasdasd edit', '1', 12),
+(7, 12, 'asdasd edit', 'asdasd', 'asdasd', 'asdasdasd', '2024-02-08', '2024-02-08', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasdasd', 'asdasdasd', '1', 12),
+(8, 15, 'asdasd edit', 'asdasd', 'asdasd', 'asdasd', '2024-02-08', '2024-02-08', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', '0', 12);
 
 -- --------------------------------------------------------
 
@@ -482,22 +498,10 @@ INSERT INTO `t_temuan_jsa` (`id_temuan_jsa`, `id_jsa`, `temuan`, `keterangan`) V
 (25, 14, 'Temuan 2', 'Keterangan\nKeterangan\nKeterangan\nKeterangan\nKeterangan\n'),
 (26, 14, 'Temuan 3', 'Keterangan\nKeterangan\n'),
 (27, 14, 'Temuan 4', 'Keterangan'),
-(28, 14, 'Temuan 5', 'Keterangan');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `t_tower_ers`
---
-
-CREATE TABLE `t_tower_ers` (
-  `id_tower_ers` int(11) NOT NULL,
-  `nama_alat` int(255) NOT NULL,
-  `merk` varchar(255) NOT NULL,
-  `spesifikasi` varchar(255) NOT NULL,
-  `stok` int(11) NOT NULL,
-  `tahun_pengadaan` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(28, 14, 'Temuan 5', 'Keterangan'),
+(40, 15, 'asdasd', 'asdasdasd'),
+(41, 16, 'asdsa', 'asdasdsa'),
+(42, 16, 'asdsa', 'asdasdsa');
 
 --
 -- Indexes for dumped tables
@@ -617,12 +621,6 @@ ALTER TABLE `t_temuan_jsa`
   ADD KEY `id_jsa` (`id_jsa`);
 
 --
--- Indeks untuk tabel `t_tower_ers`
---
-ALTER TABLE `t_tower_ers`
-  ADD PRIMARY KEY (`id_tower_ers`);
-
---
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -642,31 +640,31 @@ ALTER TABLE `t_alat_tower_ers`
 -- AUTO_INCREMENT untuk tabel `t_detail_histori_alat`
 --
 ALTER TABLE `t_detail_histori_alat`
-  MODIFY `id_detail_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_detail_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_detail_riwayat_gudang`
 --
 ALTER TABLE `t_detail_riwayat_gudang`
-  MODIFY `id_detail_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_detail_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_foto_jsa`
 --
 ALTER TABLE `t_foto_jsa`
-  MODIFY `id_foto_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_foto_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_gardu_induk`
 --
 ALTER TABLE `t_gardu_induk`
-  MODIFY `id_gardu_induk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_gardu_induk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_histori_alat`
 --
 ALTER TABLE `t_histori_alat`
-  MODIFY `id_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jabatan`
@@ -678,31 +676,31 @@ ALTER TABLE `t_jabatan`
 -- AUTO_INCREMENT untuk tabel `t_jaringan`
 --
 ALTER TABLE `t_jaringan`
-  MODIFY `id_jaringan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_jaringan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jsa`
 --
 ALTER TABLE `t_jsa`
-  MODIFY `id_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_lampiran_laporan_pekerjaan`
 --
 ALTER TABLE `t_lampiran_laporan_pekerjaan`
-  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_laporan_pekerjaan`
 --
 ALTER TABLE `t_laporan_pekerjaan`
-  MODIFY `id_laporan_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_laporan_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_personil`
 --
 ALTER TABLE `t_personil`
-  MODIFY `id_personil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_personil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_rencana_operasi`
@@ -714,31 +712,25 @@ ALTER TABLE `t_rencana_operasi`
 -- AUTO_INCREMENT untuk tabel `t_riwayat_gudang`
 --
 ALTER TABLE `t_riwayat_gudang`
-  MODIFY `id_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_sertifikat`
 --
 ALTER TABLE `t_sertifikat`
-  MODIFY `id_sertifikat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_sertifikat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_spki`
 --
 ALTER TABLE `t_spki`
-  MODIFY `id_spki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_spki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_temuan_jsa`
 --
 ALTER TABLE `t_temuan_jsa`
-  MODIFY `id_temuan_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT untuk tabel `t_tower_ers`
---
-ALTER TABLE `t_tower_ers`
-  MODIFY `id_tower_ers` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_temuan_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

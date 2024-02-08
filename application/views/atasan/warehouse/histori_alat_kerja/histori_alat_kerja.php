@@ -8,6 +8,11 @@
                             <h5>Data Riwayat Alat Kerja</h5>
                         </div>
                     </div>
+                    <div class="col-6 pt-4 text-end">
+                        <div class="mx-3">
+                            <a href="<?= base_url() ?>admin/histori-alat-kerja/tambah-histori-alat-kerja" class="btn bg-gradient-dark">+ Tambah Histori Alat Kerja</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -57,9 +62,9 @@
                                         <td class="text-center">
                                             <?php if ($h->status == 'keluar') : ?>
                                                 <?php if ($h->sudah_disetujui == '1') : ?>
-                                                    <span class="badge badge-sm bg-gradient-danger">Belum Dikembalikan</span>
+                                                    <span style="cursor: pointer;" class="badge badge-sm bg-gradient-danger">Belum Dikembalikan <i class="fas fa-pencil-alt ms-2" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#status<?= $h->id_histori_alat ?>"></i></button></span>
                                                 <?php else : ?>
-                                                    <span style="cursor: pointer;" class="badge badge-sm bg-gradient-warning" data-bs-toggle="modal" data-bs-target="#edit_status_histori_alat<?= $h->id_histori_alat ?>">Menunggu Disetujui <i class=" bi bi-pencil-square"></i></span>
+                                                    <span class="badge badge-sm bg-gradient-warning"><i class="bi bi-hourglass-split me-2"></i>Menunggu Disetujui</span>
                                                 <?php endif; ?>
                                             <?php else : ?>
                                                 <span class="badge badge-sm bg-gradient-success">Sudah Dikembalikan</span>
@@ -143,22 +148,22 @@
             </div>
         </div>
 
-        <!-- Modal Status Disetujui -->
-        <div class="modal fade" id="edit_status_histori_alat<?= $am->id_histori_alat ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal Status Histori Alat -->
+        <div class="modal fade" id="status<?= $am->id_histori_alat ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ubah Status Keluar Alat Kerja</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Ubah Status Histori Alat Kerja</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <form action="<?= base_url() ?>histori_alat/proses_edit_status_histori_alat" method="post">
-                                <label for="sudah_disetujui" class="form-control-label">Apakah ini disetujui?</label>
+                            <form action="<?= base_url() ?>histori_alat/proses_edit_status_histori" method="post">
+                                <label for="status" class="form-control-label">Apakah sudah dikembalikan?</label>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" name="sudah_disetujui" type="checkbox" id="flexSwitchCheckDefault" <?php echo ($am->sudah_disetujui == '1') ? 'checked' : ''; ?>>
+                                    <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckDefault" <?php echo ($am->status == 'masuk') ? 'checked' : ''; ?>>
                                 </div>
                         </div>
                     </div>

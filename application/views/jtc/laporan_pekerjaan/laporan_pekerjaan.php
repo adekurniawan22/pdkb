@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-6 pt-4 text-end">
                         <div class="mx-3">
-                            <a href="<?= base_url() ?>admin/laporan-pekerjaan/tambah-laporan-pekerjaan" class="btn bg-gradient-dark">+ Tambah Laporan Pekerjaan</a>
+                            <a href="<?= base_url() ?>jtc/laporan-pekerjaan/tambah-laporan-pekerjaan" class="btn bg-gradient-dark">+ Tambah Laporan Pekerjaan</a>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                                             <button class="btn btn-link text-dark text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $l->id_laporan_pekerjaan ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
 
                                             <?php if ($l->sudah_disetujui == 0) : ?>
-                                                <form action="<?= base_url('admin/laporan-pekerjaan/edit-laporan-pekerjaan') ?>" method="post" class="d-inline-block">
+                                                <form action="<?= base_url('jtc/laporan-pekerjaan/edit-laporan-pekerjaan') ?>" method="post" class="d-inline-block">
                                                     <input type="hidden" name="id_laporan_pekerjaan" value="<?= $l->id_laporan_pekerjaan ?>">
                                                     <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
                                                 </form>

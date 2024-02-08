@@ -19,20 +19,22 @@ class Jsa extends CI_Controller
 		unset(
 			$_SESSION['id_view_jsa']
 		);
-		$data['jsa'] = $this->Jsa_model->dapat_jsa();
 		$data['temuan_jsa'] = $this->Jsa_model->dapat_temuan_jsa();
 		$data['foto_jsa'] = $this->Jsa_model->dapat_foto_jsa();
 		$data['title'] = 'Laporan JSA';
 
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$data['jsa'] = $this->Jsa_model->dapat_jsa();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/jsa/jsa', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$data['jsa'] = $this->Jsa_model->dapat_jsa();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/jsa/jsa', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$data['jsa'] = $this->Jsa_model->dapat_jsa_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/jsa/jsa', $data);
 			$this->load->view('templates/footer');

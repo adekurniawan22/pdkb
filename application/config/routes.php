@@ -162,9 +162,42 @@ $route['admin/jaringan/proses-tambah-jaringan'] = 'jaringan/proses_tambah_jaring
 $route['admin/jaringan/edit-jaringan'] = 'jaringan/edit_jaringan';
 $route['admin/jaringan/proses-edit-jaringan'] = 'jaringan/proses_edit_jaringan';
 
+// JTC
+$route['jtc/dashboard'] = 'dashboard/index';
+$route['jtc/personil'] = 'personil/index';
+
+$route['jtc/spki'] = 'spki/index';
+$route['jtc/spki/tambah-spki'] = 'spki/tambah_spki';
+$route['jtc/spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
+$route['jtc/spki/edit-spki'] = 'spki/edit_spki';
+$route['jtc/spki/proses-edit-spki'] = 'spki/proses_edit_spki';
+
+$route['jtc/laporan-pekerjaan'] = 'laporan_pekerjaan/index';
+$route['jtc/laporan-pekerjaan/tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/tambah_laporan_pekerjaan';
+$route['jtc/laporan-pekerjaan/proses-tambah-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_tambah_laporan_pekerjaan';
+$route['jtc/laporan-pekerjaan/edit-laporan-pekerjaan'] = 'laporan_pekerjaan/edit_laporan_pekerjaan';
+$route['jtc/laporan-pekerjaan/proses-edit-laporan-pekerjaan'] = 'laporan_pekerjaan/proses_edit_laporan_pekerjaan';
+
+$route['jtc/jsa'] = 'jsa/index';
+$route['jtc/jsa/tambah-jsa'] = 'jsa/tambah_jsa';
+$route['jtc/jsa/proses-tambah-jsa'] = 'jsa/proses_tambah_jsa';
+$route['jtc/jsa/edit-jsa'] = 'jsa/edit_jsa';
+$route['jtc/jsa/proses-edit-jsa'] = 'jsa/proses_edit_jsa';
+
+$route['jtc/alat-kerja'] = 'alat_kerja/index';
+$route['jtc/histori-alat-kerja'] = 'histori_alat/index';
+$route['jtc/histori-alat-kerja/tambah-histori-alat-kerja'] = 'histori_alat/tambah_histori_alat';
+$route['jtc/histori-alat-kerja/proses-tambah-histori-alat-kerja'] = 'histori_alat/proses_tambah_histori_alat';
+
+$route['jtc/alat-tower-ers'] = 'alat_tower_ers/index';
+$route['jtc/riwayat-gudang'] = 'riwayat_gudang/index';
+$route['jtc/riwayat-gudang/tambah-riwayat-gudang'] = 'riwayat_gudang/tambah_riwayat_gudang';
+$route['jtc/riwayat-gudang/proses-tambah-riwayat-gudang'] = 'riwayat_gudang/proses_tambah_riwayat_gudang';
+
+$route['jtc/gardu-induk'] = 'gardu_induk/index';
+$route['jtc/jaringan'] = 'jaringan/index';
+
+
 // Profil ALL Role
 $route['profil/lihat-sertifikat'] = 'sertifikat/get_sertifikat_sendiri';
 $route['profil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat_sendiri';
-
-// JTC
-$route['jtc/dashboard'] = 'dashboard/index';

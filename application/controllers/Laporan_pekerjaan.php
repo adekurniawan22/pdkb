@@ -17,18 +17,20 @@ class Laporan_pekerjaan extends CI_Controller
 		unset(
 			$_SESSION['id_view_laporan']
 		);
-		$data['laporan_pekerjaan'] = $this->Laporan_pekerjaan_model->dapat_laporan_pekerjaan();
 		$data['lampiran_laporan_pekerjaan'] = $this->Laporan_pekerjaan_model->dapat_lampiran_laporan_pekerjaan();
 		$data['title'] = 'Laporan Pekerjaan';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$data['laporan_pekerjaan'] = $this->Laporan_pekerjaan_model->dapat_laporan_pekerjaan();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/laporan_pekerjaan/laporan_pekerjaan', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$data['laporan_pekerjaan'] = $this->Laporan_pekerjaan_model->dapat_laporan_pekerjaan();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/laporan_pekerjaan/laporan_pekerjaan', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$data['laporan_pekerjaan'] = $this->Laporan_pekerjaan_model->dapat_laporan_pekerjaan_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/laporan_pekerjaan/laporan_pekerjaan', $data);
 			$this->load->view('templates/footer');

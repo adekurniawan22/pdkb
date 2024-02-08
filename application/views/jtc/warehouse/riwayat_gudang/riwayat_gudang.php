@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-6 pt-4 text-end">
                         <div class="mx-3">
-                            <a href="<?= base_url() ?>admin/riwayat-gudang/tambah-riwayat-gudang" class="btn bg-gradient-dark">+ Tambah Riwayat Gudang Alat Tower ERS</a>
+                            <a href="<?= base_url() ?>jtc/riwayat-gudang/tambah-riwayat-gudang" class="btn bg-gradient-dark">+ Tambah Riwayat Gudang Alat Tower ERS</a>
                         </div>
                     </div>
                 </div>

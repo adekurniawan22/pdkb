@@ -7,6 +7,13 @@ class Jsa_model extends CI_Model
         return $query->result();
     }
 
+    public function dapat_jsa_jtc($id_personil)
+    {
+        $this->db->where('id_personil', $id_personil);
+        $query = $this->db->get('t_jsa');
+        return $query->result();
+    }
+
     public function tambah_jsa($data)
     {
         $this->db->insert('t_jsa', $data);

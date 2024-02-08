@@ -7,6 +7,13 @@ class SPKI_model extends CI_Model
         return $query->result();
     }
 
+    public function dapat_spki_jtc($id_personil)
+    {
+        $this->db->where('id_personil', $id_personil);
+        $query = $this->db->get('t_spki');
+        return $query->result();
+    }
+
     public function dapat_satu_spki($id_spki)
     {
         $this->db->where('id_spki', $id_spki);

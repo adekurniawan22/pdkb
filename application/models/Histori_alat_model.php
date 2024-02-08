@@ -7,6 +7,13 @@ class Histori_alat_model extends CI_Model
         return $query->result();
     }
 
+    public function dapat_histori_alat_jtc($id_personil)
+    {
+        $this->db->where('id_personil', $id_personil);
+        $query = $this->db->get('t_histori_alat');
+        return $query->result();
+    }
+
     public function dapat_satu_histori_alat($id_histori_alat)
     {
         $this->db->where('id_histori_alat', $id_histori_alat);

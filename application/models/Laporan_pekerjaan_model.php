@@ -7,6 +7,13 @@ class Laporan_pekerjaan_model extends CI_Model
         return $query->result();
     }
 
+    public function dapat_laporan_pekerjaan_jtc($id_personil)
+    {
+        $this->db->where('id_personil', $id_personil);
+        $query = $this->db->get('t_laporan_pekerjaan');
+        return $query->result();
+    }
+
     public function tambah_laporan_pekerjaan($data)
     {
         $this->db->insert('t_laporan_pekerjaan', $data);

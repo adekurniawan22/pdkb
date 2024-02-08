@@ -15,17 +15,19 @@ class Riwayat_gudang extends CI_Controller
 
 	public function index()
 	{
-		$data['riwayat_gudang'] = $this->Riwayat_gudang_model->dapat_riwayat_gudang();
 		$data['title'] = 'Riwayat Gudang';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$data['riwayat_gudang'] = $this->Riwayat_gudang_model->dapat_riwayat_gudang();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/riwayat_gudang/riwayat_gudang', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$data['riwayat_gudang'] = $this->Riwayat_gudang_model->dapat_riwayat_gudang();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/riwayat_gudang/riwayat_gudang', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$data['riwayat_gudang'] = $this->Riwayat_gudang_model->dapat_riwayat_gudang_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/riwayat_gudang/riwayat_gudang', $data);
 			$this->load->view('templates/footer');

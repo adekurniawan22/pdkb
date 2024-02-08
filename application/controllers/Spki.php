@@ -14,18 +14,20 @@ class Spki extends CI_Controller
 
 	public function index()
 	{
-		$data['spki'] = $this->SPKI_model->dapat_spki();
 		$data['title'] = 'SPKI';
 
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$data['spki'] = $this->SPKI_model->dapat_spki();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/spki/spki', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$data['spki'] = $this->SPKI_model->dapat_spki();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/spki/spki', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$data['spki'] = $this->SPKI_model->dapat_spki_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/spki/spki', $data);
 			$this->load->view('templates/footer');

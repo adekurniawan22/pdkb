@@ -15,17 +15,19 @@ class Histori_alat extends CI_Controller
 
 	public function index()
 	{
-		$data['histori_alat'] = $this->Histori_alat_model->dapat_histori_alat();
 		$data['title'] = 'Riwayat Alat Kerja';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$data['histori_alat'] = $this->Histori_alat_model->dapat_histori_alat();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/histori_alat_kerja/histori_alat_kerja', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$data['histori_alat'] = $this->Histori_alat_model->dapat_histori_alat();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/histori_alat_kerja/histori_alat_kerja', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$data['histori_alat'] = $this->Histori_alat_model->dapat_histori_alat_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/histori_alat_kerja/histori_alat_kerja', $data);
 			$this->load->view('templates/footer');

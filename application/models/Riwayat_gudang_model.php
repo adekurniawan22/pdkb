@@ -7,6 +7,13 @@ class Riwayat_gudang_model extends CI_Model
         return $query->result();
     }
 
+    public function dapat_riwayat_gudang_jtc($id_personil)
+    {
+        $this->db->where('id_personil', $id_personil);
+        $query = $this->db->get('t_riwayat_gudang');
+        return $query->result();
+    }
+
     public function dapat_satu_riwayat_gudang($id_riwayat_gudang)
     {
         $this->db->where('id_riwayat_gudang', $id_riwayat_gudang);
