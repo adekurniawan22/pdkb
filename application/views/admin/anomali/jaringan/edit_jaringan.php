@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label for="bay_line" class="form-control-label">Bay Line</label>
-                            <input class="form-control" type="text" placeholder="Bay Line" id="bay_line" name="bay_line" value="<?php echo set_value('bay_line', $jaringan->bay_line); ?>">
+                            <textarea class="form-control" placeholder="Bay Line" id="bay_line" name="bay_line" rows="3"><?php echo set_value('bay_line', $jaringan->bay_line); ?></textarea>
                             <?= form_error('bay_line', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">

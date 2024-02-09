@@ -278,16 +278,6 @@
                             <span class="nav-link-text ms-1">Personil</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Rencana Operasi") {
-                                                echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/rencana-operasi">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-list-stars text-success text-sm opacity-10 pb-1"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">Rencana Operasi</span>
-                        </a>
-                    </li>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Dokumen Pekerjaan</h6>
                     </li>
@@ -568,7 +558,7 @@
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <span class="d-sm-inline d-none nav-link font-weight-bold px-0" style="color: white !important;"> <i class="ni ni-satisfied"></i>&nbsp; Halo, <?= $_SESSION['nama'] ?></span>
+                            <span class="d-sm-inline d-none nav-link font-weight-bold px-0 ps-3" style="color: white !important;">Halo, <?= $_SESSION['nama'] ?>&nbsp;<i class="ni ni-satisfied"></i></span>
                         </li>
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">

@@ -21,8 +21,8 @@
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Pekerjaan</th>
-                                    <th style="width: 25%;" class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th class="text-start text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,7 +51,7 @@
                                             <?php endif; ?>
                                         </td>
 
-                                        <td class="text-center">
+                                        <td class="text-start">
                                             <button class="btn btn-link text-dark text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_detail<?= $s->id_spki ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Detail</button>
 
                                             <?php if ($s->id_personil == $this->session->userdata('id_personil')) : ?>
@@ -194,21 +194,31 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <form action="<?= base_url() ?>spki/proses_edit_status_spki" method="post">
-                                <label for="sudah_disetujui" class="form-control-label">Apakah SPKI disetujui?</label>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" name="sudah_disetujui" type="checkbox" id="flexSwitchCheckDefault" <?php echo ($sm->sudah_disetujui == '1') ? 'checked' : ''; ?>>
-                                </div>
+                    <?php $check_signature = $this->db->get_where('t_personil', ['id_personil' => $this->session->userdata('id_personil')])->row() ?>
+                    <?php if ($check_signature->tanda_tangan) : ?>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <form action="<?= base_url() ?>spki/proses_edit_status_spki" method="post">
+                                    <label for="sudah_disetujui" class="form-control-label">Apakah SPKI disetujui?</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" name="sudah_disetujui" type="checkbox" id="flexSwitchCheckDefault" <?php echo ($sm->sudah_disetujui == '1') ? 'checked' : ''; ?>>
+                                    </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id_spki" value="<?= $sm->id_spki ?>">
-                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
-                        <button type="submit" class="btn bg-gradient-primary">Ya</button>
-                        </form>
-                    </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id_spki" value="<?= $sm->id_spki ?>">
+                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
+                            <button type="submit" class="btn bg-gradient-primary">Ya</button>
+                            </form>
+                        </div>
+                    <?php else : ?>
+                        <div class="modal-body">
+                            <p>Kamu belum bisa menyetujui ini karena belum memiliki tanda tangan, silahkan update di menu profil!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

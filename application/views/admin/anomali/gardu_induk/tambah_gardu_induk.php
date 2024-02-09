@@ -10,8 +10,13 @@
                             <?= form_error('jenis_anomali', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
+                            <label for="gardu_induk" class="form-control-label">Gardu Induk</label>
+                            <input class="form-control" type="text" placeholder="Gardu Induk" id="gardu_induk" name="gardu_induk" value="<?php echo set_value('gardu_induk'); ?>">
+                            <?= form_error('gardu_induk', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+                        <div class="form-group">
                             <label for="bay" class="form-control-label">Bay</label>
-                            <input class="form-control" type="text" placeholder="Bay" id="bay" name="bay" value="<?php echo set_value('bay'); ?>">
+                            <textarea class="form-control" placeholder="Bay" id="bay" name="bay" rows="3"><?php echo set_value('bay'); ?></textarea>
                             <?= form_error('bay', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">

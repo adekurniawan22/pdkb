@@ -25,7 +25,7 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Penanggung Jawab</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th class="text-start text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,20 +57,20 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $h->penanggung_jawab ?></p>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $h->keterangan ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($h->keterangan) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <?php if ($h->status == 'keluar') : ?>
                                                 <?php if ($h->sudah_disetujui == '1') : ?>
-                                                    <span style="cursor: pointer;" class="badge badge-sm bg-gradient-danger">Belum Dikembalikan <i class="fas fa-pencil-alt ms-2" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#status<?= $h->id_histori_alat ?>"></i></button></span>
+                                                    <span class="badge badge-sm bg-gradient-danger">Belum Dikembalikan</span>
                                                 <?php else : ?>
-                                                    <span class="badge badge-sm bg-gradient-warning"><i class="bi bi-hourglass-split me-2"></i>Menunggu Disetujui</span>
+                                                    <span style="cursor: pointer;" class="badge badge-sm bg-gradient-warning" data-bs-toggle="modal" data-bs-target="#edit_status_histori_alat<?= $h->id_histori_alat ?>">Menunggu Disetujui <i class=" bi bi-pencil-square"></i></span>
                                                 <?php endif; ?>
                                             <?php else : ?>
                                                 <span class="badge badge-sm bg-gradient-success">Sudah Dikembalikan</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-start">
                                             <button class="btn btn-link text-dark text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_alat<?= $h->id_histori_alat ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Alat</button>
                                             <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_histori_alat<?= $h->id_histori_alat ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <?php if ($h->sudah_disetujui == '1') : ?>
@@ -148,33 +148,42 @@
             </div>
         </div>
 
-        <!-- Modal Status Histori Alat -->
-        <div class="modal fade" id="status<?= $am->id_histori_alat ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal Status Disetujui -->
+        <div class="modal fade" id="edit_status_histori_alat<?= $am->id_histori_alat ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ubah Status Histori Alat Kerja</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Ubah status keluar Alat Kerja</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <form action="<?= base_url() ?>histori_alat/proses_edit_status_histori" method="post">
-                                <label for="status" class="form-control-label">Apakah sudah dikembalikan?</label>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckDefault" <?php echo ($am->status == 'masuk') ? 'checked' : ''; ?>>
-                                </div>
+                    <?php $check_signature = $this->db->get_where('t_personil', ['id_personil' => $this->session->userdata('id_personil')])->row() ?>
+                    <?php if ($check_signature->tanda_tangan) : ?>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <form action="<?= base_url() ?>histori_alat/proses_edit_status_histori_alat" method="post">
+                                    <label for="sudah_disetujui" class="form-control-label">Apakah ini disetujui?</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" name="sudah_disetujui" type="checkbox" id="flexSwitchCheckDefault" <?php echo ($am->sudah_disetujui == '1') ? 'checked' : ''; ?>>
+                                    </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id_histori_alat" value="<?= $am->id_histori_alat ?>">
-                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
-                        <button type="submit" class="btn bg-gradient-primary">Ya</button>
-                        </form>
-                    </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id_histori_alat" value="<?= $am->id_histori_alat ?>">
+                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
+                            <button type="submit" class="btn bg-gradient-primary">Ya</button>
+                            </form>
+                        </div>
+                    <?php else : ?>
+                        <div class="modal-body">
+                            <p>Kamu belum bisa menyetujui ini karena belum memiliki tanda tangan, silahkan update di menu profil!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-
     <?php endforeach; ?>

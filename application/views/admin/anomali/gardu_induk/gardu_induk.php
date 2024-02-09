@@ -21,6 +21,7 @@
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis Anomali</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Gardu Induk</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Bay</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah Titik</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
@@ -48,7 +49,10 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $g->jenis_anomali ?></p>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $g->bay ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $g->gardu_induk ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->bay) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0"><?= $g->jumlah_titik ?></p>

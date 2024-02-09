@@ -57,7 +57,7 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $h->penanggung_jawab ?></p>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $h->keterangan ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($h->keterangan) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <?php if ($h->status == 'keluar') : ?>

@@ -6,6 +6,11 @@ class Riwayat_gudang extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (empty($this->session->userdata('id_jabatan'))) {
+			$this->session->set_flashdata('message', '<strong>Akses ditolak, silahkan login terlebih dahulu!</strong>
+		                <i class="bi bi-exclamation-circle-fill"></i>');
+			redirect(base_url());
+		}
 		$this->load->library('form_validation');
 		$this->load->model('Personil_model');
 		$this->load->model('Alat_tower_ers_model');
@@ -165,6 +170,9 @@ class Riwayat_gudang extends CI_Controller
 				$this->db->update('t_alat_tower_ers');
 			}
 		}
+
+		$tanda_tangan = FCPATH . 'assets/img/tanda-tangan/' . $riwayat_gudang->tanda_tangan;
+		unlink($tanda_tangan);
 
 		$this->db->where('id_riwayat_gudang', $this->input->post('id_riwayat_gudang'));
 		$result = $this->db->delete('t_riwayat_gudang');

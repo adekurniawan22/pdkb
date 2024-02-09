@@ -6,6 +6,11 @@ class Gardu_induk extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (empty($this->session->userdata('id_jabatan'))) {
+			$this->session->set_flashdata('message', '<strong>Akses ditolak, silahkan login terlebih dahulu!</strong>
+		                <i class="bi bi-exclamation-circle-fill"></i>');
+			redirect(base_url());
+		}
 		$this->load->library('form_validation');
 		$this->load->library('upload');
 		$this->load->model('Personil_model');
@@ -53,6 +58,7 @@ class Gardu_induk extends CI_Controller
 	public function proses_tambah_gardu_induk()
 	{
 		$this->form_validation->set_rules('jenis_anomali', 'Jenis Anomali', 'required|trim');
+		$this->form_validation->set_rules('gardu_induk', 'Gardu Induk', 'required|trim');
 		$this->form_validation->set_rules('bay', 'Bay', 'required|trim');
 		$this->form_validation->set_rules('jumlah_titik', 'Jumlah Titik', 'required|trim|integer');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
@@ -67,6 +73,7 @@ class Gardu_induk extends CI_Controller
 			$data_gardu_induk = [
 				'id_personil' => $this->session->userdata('id_personil'),
 				'jenis_anomali' => $this->input->post('jenis_anomali'),
+				'gardu_induk' => $this->input->post('gardu_induk'),
 				'bay' => $this->input->post('bay'),
 				'jumlah_titik' => $this->input->post('jumlah_titik'),
 				'keterangan' => $this->input->post('keterangan'),
@@ -115,6 +122,7 @@ class Gardu_induk extends CI_Controller
 	public function proses_edit_gardu_induk()
 	{
 		$this->form_validation->set_rules('jenis_anomali', 'Jenis Anomali', 'required|trim');
+		$this->form_validation->set_rules('gardu_induk', 'Gardu Induk', 'required|trim');
 		$this->form_validation->set_rules('bay', 'Bay', 'required|trim');
 		$this->form_validation->set_rules('jumlah_titik', 'Jumlah Titik', 'required|trim|integer');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
@@ -135,6 +143,7 @@ class Gardu_induk extends CI_Controller
 		} else {
 			$data_gardu_induk = [
 				'jenis_anomali' => $this->input->post('jenis_anomali'),
+				'gardu_induk' => $this->input->post('gardu_induk'),
 				'bay' => $this->input->post('bay'),
 				'jumlah_titik' => $this->input->post('jumlah_titik'),
 				'keterangan' => $this->input->post('keterangan'),
@@ -144,10 +153,14 @@ class Gardu_induk extends CI_Controller
 				'status_dikerjakan' => $status_dikerjakan,
 			];
 
+
+
 			$result = $this->Gardu_induk_model->edit_gardu_induk($this->input->post('id_gardu_induk'), $data_gardu_induk);
 
 			if ($result) {
-				unlink(FCPATH . 'assets/img/gardu-induk/' . $this->input->post('foto_lama'));
+				if ($_FILES['foto']['name']) {
+					unlink(FCPATH . 'assets/img/gardu-induk/' . $this->input->post('foto_lama'));
+				}
 				$this->session->set_flashdata('message', '<strong>Data Gardu Induk Berhasil Di edit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 			} else {

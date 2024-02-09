@@ -17,7 +17,7 @@
                         </div>
                         <div class="form-group">
                             <label for="lingkup_pekerjaan" class="form-control-label">Lingkup Pekerjaan</label>
-                            <input class="form-control" type="text" placeholder="Lingkup Pekerjaan" id="lingkup_pekerjaan" name="lingkup_pekerjaan" value="<?php echo set_value('lingkup_pekerjaan', $jsa->lingkup_pekerjaan); ?>">
+                            <textarea class="form-control" placeholder="Lingkup Pekerjaan" id="lingkup_pekerjaan" name="lingkup_pekerjaan" rows="3"><?php echo set_value('lingkup_pekerjaan', $jsa->lingkup_pekerjaan); ?></textarea>
                             <?= form_error('lingkup_pekerjaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">

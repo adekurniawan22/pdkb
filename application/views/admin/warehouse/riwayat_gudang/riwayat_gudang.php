@@ -25,7 +25,7 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Penanggung Jawab</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
+                                    <th class="text-start text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +57,7 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $h->penanggung_jawab ?></p>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $h->keterangan ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($h->keterangan) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <?php if ($h->status == 'keluar') : ?>
@@ -70,7 +70,7 @@
                                                 <span class="badge badge-sm bg-gradient-success">Sudah Dikembalikan</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-start">
                                             <button class="btn btn-link text-dark text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_alat<?= $h->id_riwayat_gudang ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Lihat Alat</button>
                                             <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_riwayat_gudang<?= $h->id_riwayat_gudang ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                             <?php if ($h->sudah_disetujui == '1') : ?>

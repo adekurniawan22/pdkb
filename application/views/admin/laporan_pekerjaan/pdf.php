@@ -258,13 +258,13 @@
                     </tr>
                     <tr>
                         <td style="text-align: center;">
-                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_sebelum ?>" alt="" width="150px">
+                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_sebelum ?>" alt="" width="200px">
                         </td>
                         <td style="text-align: center;">
-                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_proses ?>" alt="" width="150px">
+                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_proses ?>" alt="" width="200px">
                         </td>
                         <td style="text-align: center;">
-                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_setelah ?>" alt="" width="150px">
+                            <img src="<?= base_url() ?>assets/img/lampiran-pekerjaan/<?= $l->foto_setelah ?>" alt="" width="200px">
                         </td>
                     </tr>
 

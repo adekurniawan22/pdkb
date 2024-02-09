@@ -6,6 +6,11 @@ class Spki extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (empty($this->session->userdata('id_jabatan'))) {
+			$this->session->set_flashdata('message', '<strong>Akses ditolak, silahkan login terlebih dahulu!</strong>
+		                <i class="bi bi-exclamation-circle-fill"></i>');
+			redirect(base_url());
+		}
 		$this->load->library('form_validation');
 		$this->load->model('SPKI_model');
 		$this->load->model('Personil_model');

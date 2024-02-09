@@ -6,6 +6,11 @@ class Personil extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (empty($this->session->userdata('id_jabatan'))) {
+			$this->session->set_flashdata('message', '<strong>Akses ditolak, silahkan login terlebih dahulu!</strong>
+		                <i class="bi bi-exclamation-circle-fill"></i>');
+			redirect(base_url());
+		}
 		$this->load->library('form_validation');
 		$this->load->model('Jabatan_model');
 		$this->load->model('Sertifikat_model');
@@ -225,7 +230,9 @@ class Personil extends CI_Controller
 			if ($result) {
 				$this->session->set_flashdata('message', '<strong>Data Personil Berhasil Di edit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-				unlink(FCPATH . 'assets/img/profil/' . $this->input->post('foto_lama'));
+				if ($_FILES['foto']['name']) {
+					unlink(FCPATH . 'assets/img/profil/' . $this->input->post('foto_lama'));
+				}
 			} else {
 				$this->session->set_flashdata('message', '<strong>Data Personil Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');

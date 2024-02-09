@@ -106,12 +106,6 @@ $route['admin/personil/proses-edit-personil'] = 'personil/proses_edit_personil';
 $route['admin/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
 $route['admin/personil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat';
 
-$route['admin/rencana-operasi'] = 'rencana_operasi/index';
-$route['admin/rencana-operasi/tambah-rencana-operasi'] = 'rencana_operasi/tambah_rencana_operasi';
-$route['admin/rencana-operasi/proses-tambah-rencana-operasi'] = 'rencana_operasi/proses_tambah_rencana_operasi';
-$route['admin/rencana-operasi/edit-rencana-operasi'] = 'rencana_operasi/edit_rencana_operasi';
-$route['admin/rencana-operasi/proses-edit-rencana-operasi'] = 'rencana_operasi/proses_edit_rencana_operasi';
-
 $route['admin/spki'] = 'spki/index';
 $route['admin/spki/tambah-spki'] = 'spki/tambah_spki';
 $route['admin/spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';

@@ -6,6 +6,11 @@ class Alat_kerja extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (empty($this->session->userdata('id_jabatan'))) {
+			$this->session->set_flashdata('message', '<strong>Akses ditolak, silahkan login terlebih dahulu!</strong>
+		                <i class="bi bi-exclamation-circle-fill"></i>');
+			redirect(base_url());
+		}
 		$this->load->library('form_validation');
 		$this->load->model('Alat_kerja_model');
 		$this->load->library('pdfgenerator');
@@ -165,47 +170,5 @@ class Alat_kerja extends CI_Controller
 		} else if ($this->session->userdata('id_jabatan') == '4') {
 			redirect('jtc/alat-kerja');
 		}
-	}
-
-	public function kirim_email_ke_atasan()
-	{
-
-		echo "<pre>";
-		echo var_dump($_POST);
-		echo "<pre>";
-		// $kuesioner = $this->Kuesioner_model->dapat_satu_kuesioner($this->input->post('id_kuesioner'));
-		// $this->load->library('email');
-		// $config = array(
-		// 	'protocol'  => 'smtp',
-		// 	'smtp_host' => 'ssl://smtp.googlemail.com',
-		// 	'smtp_port' => 465,
-		// 	'smtp_user' => 'appcilogin@gmail.com',
-		// 	'smtp_pass' => 'iakd gazx zkva ghrk	',
-		// 	'mailtype'  => 'html',
-		// 	'charset'   => 'utf-8',
-		// 	'newline'   => "\r\n"
-		// );
-
-		// $this->email->initialize($config);
-
-		// $this->db->where('jabatan', 'Manajer');
-		// $query = $this->db->get('t_pegawai')->result();
-
-		// foreach ($query as $q) {
-		// 	$this->email->from('appcilogin@gmail.com', 'CV. Abell');
-		// 	$this->email->to($q->email);
-
-		// 	$this->email->subject('Kuesioner Telah Berakhir');
-		// 	$content = "Kuesioner : $kuesioner->judul_kuesioner <br>	
-		//             Tanggal Mulai : $kuesioner->mulai <br>
-		//             Tanggal Selesai : $kuesioner->selesai <br>";
-
-		// 	$this->email->message("$content<br> Silahkan periksa dan evaluasi jawaban dari pelanggan &#128512;");
-		// 	$this->email->send();
-		// }
-		// $this->session->set_userdata('email_sent', true);
-		// $this->session->set_flashdata('message', '<strong>Kirim Email Ke Manajer Telah Berhasil</strong>
-		// <i class="bi bi-check-circle-fill"></i>');
-		// redirect('admin/data-kuesioner');
 	}
 }

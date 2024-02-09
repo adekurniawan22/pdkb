@@ -6,6 +6,11 @@ class Jaringan extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (empty($this->session->userdata('id_jabatan'))) {
+			$this->session->set_flashdata('message', '<strong>Akses ditolak, silahkan login terlebih dahulu!</strong>
+		                <i class="bi bi-exclamation-circle-fill"></i>');
+			redirect(base_url());
+		}
 		$this->load->library('form_validation');
 		$this->load->library('upload');
 		$this->load->model('Personil_model');
@@ -150,7 +155,9 @@ class Jaringan extends CI_Controller
 			$result = $this->Jaringan_model->edit_jaringan($this->input->post('id_jaringan'), $data_jaringan);
 
 			if ($result) {
-				unlink(FCPATH . 'assets/img/jaringan/' . $this->input->post('foto_lama'));
+				if ($_FILES['foto']['name']) {
+					unlink(FCPATH . 'assets/img/jaringan/' . $this->input->post('foto_lama'));
+				}
 				$this->session->set_flashdata('message', '<strong>Data Jaringan Berhasil Di edit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 			} else {

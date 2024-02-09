@@ -44,7 +44,7 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $j->jenis_anomali ?></p>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $j->bay_line ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($j->bay_line) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0"><?= $j->no_tower ?></p>

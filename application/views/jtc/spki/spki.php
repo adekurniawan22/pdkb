@@ -21,8 +21,8 @@
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Pekerjaan</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
-                                    <th style="width: 25%;" class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
@@ -41,7 +41,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td style="width:30%;word-wrap: break-word; white-space: pre-line;">
+                                        <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $s->macam_pekerjaan ?></p>
                                         </td>
                                         <td class="text-center">

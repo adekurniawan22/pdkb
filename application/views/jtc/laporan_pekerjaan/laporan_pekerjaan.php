@@ -22,7 +22,6 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dasar Pelaksanaan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Hasil Pekerjaan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
@@ -47,9 +46,6 @@
                                         </td>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($l->waktu_pelaksanaan)) ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($l->hasil_pekerjaan) ?></p>
                                         </td>
                                         <td class='text-center'>
                                             <?php if ($l->sudah_disetujui == '1') : ?>

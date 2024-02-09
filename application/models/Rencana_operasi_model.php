@@ -142,6 +142,6 @@ class Rencana_operasi_model extends CI_Model
             $persentase = ($result_selesai->jumlah_rencana_selesai / $result_total->jumlah_rencana_total) * 100;
         }
 
-        return $persentase;
+        return round($persentase);
     }
 }
