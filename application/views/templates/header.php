@@ -23,6 +23,13 @@
     <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.min.css" rel="stylesheet">
 
     <style>
+        #signatureCanvas {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border: 1px solid #000;
+        }
+
         .atur-height {
             height: 100% !important;
             overflow: visible !important;
@@ -112,7 +119,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <div class="navbar-brand m-0 d-flex align-items-center">
-                <img src="<?= base_url() ?>assets/img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="<?= base_url() ?>assets/img/logo-simpati-pdkb.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold" style="font-size: 30px">PDKB</span>
             </div>
         </div>

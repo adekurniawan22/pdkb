@@ -52,11 +52,14 @@
                             </div>
                         </div>
                         <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
-                            <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('<?= base_url() ?>assets/img/banner.jpg');
+                            <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('<?= base_url() ?>assets/img/banner-login.jpg');
           background-size: cover;">
-                                <span class="mask bg-gradient-primary opacity-6"></span>
-                                <h4 class="mt-5 text-white font-weight-bolder position-relative">PDKB</h4>
-                                <p class="text-white position-relative">Menjaga Listrik Tetap Nyala Meski Harus Bertaruh Nyawa</p>
+                                <span class="mask bg-gradient-dark opacity-7"></span>
+                                <div class="text-center">
+                                    <img src="<?= base_url('assets/img/logo-simpati-pdkb.png') ?>" width="100px" style="filter: brightness(200%) drop-shadow(0px 0px 5px white);">
+                                </div>
+                                <h4 class="text-white font-weight-bolder position-relative">SIMPATI PDKB</h4>
+                                <p class="text-white position-relative">Sistem Manajemen dan Pemantauan Terintegrasi PDKB</p>
                             </div>
                         </div>
                     </div>

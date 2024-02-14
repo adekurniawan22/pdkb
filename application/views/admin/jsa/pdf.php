@@ -272,30 +272,10 @@
                 </tr>
             </table>
             <br>
-            <!-- <table class="table-lampiran">
-                <tr>
-                    <th>Analisia Kondisi <?= $query->dasar_pelaksanaan ?></th>
-                    <th style="width: 60%;">Keterangan</th>
-                </tr>
-                <?php $i = 1 ?>
-                <?php $rowspan = count($temuan_jsa) ?>
-                <?php foreach ($temuan_jsa as $t) : ?>
-                    <tr>
-                        <td style="text-align: left;">
-                            <span><?= $t->temuan ?></span>
-                        </td>
-                        <td style="text-align: left;">
-                            <span><?= $t->keterangan ?></span>
-                        </td>
-                    </tr>
-                    <?php $i++ ?>
-                <?php endforeach; ?>
-            </table>
-            <br> -->
 
             <table class="table-lampiran">
                 <tr>
-                    <th>Analisia Kondisi <?= $query->dasar_pelaksanaan ?></th>
+                    <th>Analisis Kondisi</th>
                     <th style="width: 40%;">Keterangan</th>
                     <th>Foto</th>
                 </tr>

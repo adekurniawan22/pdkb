@@ -271,7 +271,21 @@ class Laporan_pekerjaan extends CI_Controller
 		}
 
 		date_default_timezone_set('Asia/Jakarta');
-		$tanggal_sekarang = date('d F Y');
+		$bulan = [
+			1 => "Januari",
+			2 => "Februari",
+			3 => "Maret",
+			4 => "April",
+			5 => "Mei",
+			6 => "Juni",
+			7 => "Juli",
+			8 => "Agustus",
+			9 => "September",
+			10 => "Oktober",
+			11 => "November",
+			12 => "Desember"
+		];
+		$tanggal_sekarang = date('d') . ' ' . $bulan[date('n')] . ' ' . date('Y');
 		$foto = $this->encode_img_base64(base_url('assets/img/logo_pln.png'));
 
 		if ($query) {

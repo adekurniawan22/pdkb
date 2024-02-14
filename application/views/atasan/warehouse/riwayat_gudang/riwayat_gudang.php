@@ -8,11 +8,6 @@
                             <h5>Data Riwayat Gudang Alat Tower ERS</h5>
                         </div>
                     </div>
-                    <div class="col-6 pt-4 text-end">
-                        <div class="mx-3">
-                            <a href="<?= base_url() ?>admin/riwayat-gudang/tambah-riwayat-gudang" class="btn bg-gradient-dark">+ Tambah Riwayat Gudang Alat Tower ERS</a>
-                        </div>
-                    </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">

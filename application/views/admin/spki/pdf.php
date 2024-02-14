@@ -7,10 +7,8 @@
 
 <style>
     .table-header {
-        border-collapse: collapse;
-        /* Menggabungkan border-cells untuk hasil yang lebih konsisten */
         width: 100%;
-        padding: 10px;
+        padding: 5px;
     }
 
     .table-content {
@@ -27,7 +25,7 @@
     }
 
     .signature {
-        margin-top: 30px;
+        margin-top: 20px;
         float: right;
         padding-top: 10px;
         text-align: center;
@@ -63,15 +61,15 @@
 
 <body>
     <?php if ($query) { ?>
-        <div class="container mt-5">
+        <div class="container">
             <table class="table-header" style="background-color: #2f519e; color: white; border: 0px !important">
                 <tr>
                     <td rowspan="4">
-                        <img src="<?= $foto ?>" style="width: 80px;">
+                        <img src="<?= $foto ?>" style="width: 50px;">
                     </td>
                     <td rowspan="4" style="padding-left:20px; text-align:left">
-                        <h4>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</h4>
-                        <h4>UNIT PEMELIHARAAN TRANSMISI BALIKPAPAN</h4>
+                        <span>PT PLN (PERSERO) UNIT INDUK PENYALURAN DAN PUSAT PENGATUR BEBAN KALIMANTAN</span>
+                        <span>UNIT PEMELIHARAAN TRANSMISI BALIKPAPAN</span>
                     </td>
                 </tr>
             </table>

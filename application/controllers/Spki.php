@@ -236,7 +236,21 @@ class Spki extends CI_Controller
 
 		date_default_timezone_set('Asia/Jakarta');
 		$tahun_sekarang = date('Y');
-		$tanggal_sekarang = date('d F Y');
+		$bulan = [
+			1 => "Januari",
+			2 => "Februari",
+			3 => "Maret",
+			4 => "April",
+			5 => "Mei",
+			6 => "Juni",
+			7 => "Juli",
+			8 => "Agustus",
+			9 => "September",
+			10 => "Oktober",
+			11 => "November",
+			12 => "Desember"
+		];
+		$tanggal_sekarang = date('d') . ' ' . $bulan[date('n')] . ' ' . date('Y');
 		$foto = $this->encode_img_base64(base_url('assets/img/logo_pln.png'));
 		$nama_file_pdf = 'SPKI_NO_' . $id_spki . '_PDKB-TT_I_' . $tahun_sekarang . '';
 

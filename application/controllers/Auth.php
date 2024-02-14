@@ -8,8 +8,24 @@ class Auth extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 	}
+
 	public function login()
 	{
+		if (!empty($this->session->userdata('id_jabatan'))) {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+				$this->session->set_flashdata('message', '<strong>Anda sudah login, tidak bisa mengkases halaman ini!</strong>
+							<i class="bi bi-exclamation-circle-fill"></i>');
+				redirect('atasan/dashboard');
+			} else if ($this->session->userdata('id_jabatan') == '3') {
+				$this->session->set_flashdata('message', '<strong>Anda sudah login, tidak bisa mengkases halaman ini!</strong>
+				<i class="bi bi-exclamation-circle-fill"></i>');
+				redirect('admin/dashboard');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				$this->session->set_flashdata('message', '<strong>Anda sudah login, tidak bisa mengkases halaman ini!</strong>
+				<i class="bi bi-exclamation-circle-fill"></i>');
+				redirect('jtc/dashboard');
+			}
+		}
 		$data['title'] = 'Login';
 		$this->load->view('login', $data);
 	}

@@ -77,15 +77,13 @@
                             <label class="form-control-label">Tanda Tangan Penanggung Jawab</label>
                             <input type="hidden" name="signature_image" id="signatureImageInput" />
                         </div>
-                        <div class="row">
-                            <div class="col-3 me-3">
-                                <canvas id="signatureCanvas" class="mb-3" width="300" height="150" style="border:1px solid #000; margin-top: -15px"></canvas>
-                            </div>
-                            <div class="col-3 ">
-                                <button type="button" class="btn btn-danger ms-2 m-0 text-start" onclick="resetCanvas()">Reset Tanda Tangan</button>
-                            </div>
+
+                        <div>
+                            <canvas id="signatureCanvas" class="" style="border:1px solid #000;"></canvas>
+                            <button type="button" class="position-absolute btn btn-danger ms-3 m-0 text-start" onclick="resetCanvas()">Reset Tanda Tangan</button>
+                            <p id="textAlertCanvas" style="display: none; font-size:12px; color:red;">Harap Mengisi Tanda Tangan</p>
                         </div>
-                        <p id="textAlertCanvas" style="display: none; font-size:12px; color:red;  margin-top: -15px">Harap Mengisi Tanda Tangan</p>
+
 
                         <div class="form-group">
                             <label for="example-datetime-local-input" class="form-control-label">Tanggal Barang Keluar</label>
@@ -117,17 +115,19 @@
         // Menangani sentuhan pada perangkat mobile
         canvas.addEventListener('touchstart', function(e) {
             e.preventDefault(); // Mencegah peristiwa default sentuhan
+            var rect = canvas.getBoundingClientRect();
             var touch = e.touches[0];
             drawing = true;
             ctx.beginPath();
-            ctx.moveTo(touch.clientX, touch.clientY);
+            ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
         });
 
         canvas.addEventListener('touchmove', function(e) {
             e.preventDefault();
             if (drawing) {
+                var rect = canvas.getBoundingClientRect();
                 var touch = e.touches[0];
-                ctx.lineTo(touch.clientX, touch.clientY);
+                ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
                 ctx.stroke();
             }
         });
