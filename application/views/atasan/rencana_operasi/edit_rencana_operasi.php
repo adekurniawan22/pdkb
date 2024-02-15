@@ -12,6 +12,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="keterangan" class="form-control-label">Keterangan</label>
+                            <textarea class="form-control" name="keterangan" id="keterangan" rows="3" id="keterangan" placeholder="Keterangan"><?php echo set_value('ketarangan', $rencana_operasi->keterangan); ?></textarea>
+                            <?= form_error('ketarangan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+
+                        <div class="form-group">
                             <label for="example-datetime-local-input" class="form-control-label">Tanggal Dikerjakan</label>
                             <input class="form-control" type="date" name="tanggal_dikerjakan" id="example-datetime-local-input" value="<?php echo set_value('tanggal_dikerjakan',  $rencana_operasi->tanggal_dikerjakan); ?>">
                             <?= form_error('tanggal_dikerjakan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>

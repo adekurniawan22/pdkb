@@ -106,6 +106,8 @@ $route['admin/personil/proses-edit-personil'] = 'personil/proses_edit_personil';
 $route['admin/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
 $route['admin/personil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat';
 
+$route['admin/rencana-operasi'] = 'rencana_operasi/index';
+
 $route['admin/spki'] = 'spki/index';
 $route['admin/spki/tambah-spki'] = 'spki/tambah_spki';
 $route['admin/spki/proses-tambah-spki'] = 'spki/proses_tambah_spki';
@@ -159,6 +161,7 @@ $route['admin/jaringan/proses-edit-jaringan'] = 'jaringan/proses_edit_jaringan';
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';
 $route['jtc/personil'] = 'personil/index';
+$route['jtc/rencana-operasi'] = 'rencana_operasi/index';
 
 $route['jtc/spki'] = 'spki/index';
 $route['jtc/spki/tambah-spki'] = 'spki/tambah_spki';

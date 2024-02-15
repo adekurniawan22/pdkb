@@ -285,6 +285,16 @@
                             <span class="nav-link-text ms-1">Personil</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Rencana Operasi") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/rencana-operasi">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-list-stars text-success text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Rencana Operasi</span>
+                        </a>
+                    </li>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Dokumen Pekerjaan</h6>
                     </li>
@@ -409,6 +419,16 @@
                                 <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
                             </div>
                             <span class="nav-link-text ms-1">Personil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Rencana Operasi") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/rencana-operasi">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-list-stars text-success text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Rencana Operasi</span>
                         </a>
                     </li>
                     <li class="nav-item mt-3">

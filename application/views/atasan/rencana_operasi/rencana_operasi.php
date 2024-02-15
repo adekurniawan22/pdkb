@@ -21,9 +21,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Rencana Operasi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Dikerjakan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Selesai</th>
-                                    <th style="width: 10%;" class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status Dikerjakan</th>
+                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status Dikerjakan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
                             </thead>
@@ -33,8 +34,11 @@
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $r->nama_rencana ?></p>
                                         </td>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($r->keterangan) ?></p>
+                                        </td>
                                         <td class="text-center">
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($r->tanggal_dikerjakan)) ?></p>
+                                            <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($r->tanggal_dikerjakan)) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <?php if ($r->tanggal_selesai != null) : ?>
@@ -45,9 +49,9 @@
                                         </td>
                                         <td class="text-center">
                                             <?php if ($r->status == '1') : ?>
-                                                <button class="btn badge badge-sm bg-gradient-success mt-3">Selesai</button>
+                                                <span class=" badge badge-sm bg-gradient-success">Selesai</span>
                                             <?php else : ?>
-                                                <button class="btn badge badge-sm bg-gradient-warning mt-3 " data-bs-toggle="modal" data-bs-target="#status<?= $r->id_rencana_operasi ?>"></i>Belum <i class="fas fa-pencil-alt ms-2" aria-hidden="true"></i></button>
+                                                <span class="cursor-pointer badge badge-sm bg-gradient-warning " data-bs-toggle="modal" data-bs-target="#status<?= $r->id_rencana_operasi ?>"></i>Belum <i class="fas fa-pencil-alt ms-2" aria-hidden="true"></i></span>
                                             <?php endif; ?>
                                         </td>
 

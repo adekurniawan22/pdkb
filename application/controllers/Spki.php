@@ -59,6 +59,9 @@ class Spki extends CI_Controller
 
 	public function proses_tambah_spki()
 	{
+		$this->form_validation->set_rules('nomor', 'Nomor SPKI', 'required|trim|integer');
+		$this->form_validation->set_rules('bulan', 'Bulan SPKI', 'required');
+		$this->form_validation->set_rules('tahun', 'Tahun SPKI', 'required|callback_validate_year');
 		$this->form_validation->set_rules('kepada', 'Kepada', 'required|trim');
 		$this->form_validation->set_rules('dari', 'Dari', 'required|trim');
 		$this->form_validation->set_rules('macam_pekerjaan', 'Macam Pekerjaan', 'required|trim');
@@ -79,6 +82,9 @@ class Spki extends CI_Controller
 		} else {
 			$data = array(
 				'id_personil' => $this->session->userdata('id_personil'),
+				'nomor' => $this->input->post('nomor'),
+				'bulan' => $this->input->post('bulan'),
+				'tahun' => $this->input->post('tahun'),
 				'kepada' => $this->input->post('kepada'),
 				'dari' => $this->input->post('dari'),
 				'macam_pekerjaan' => $this->input->post('macam_pekerjaan'),
@@ -143,6 +149,9 @@ class Spki extends CI_Controller
 
 	public function proses_edit_spki()
 	{
+		$this->form_validation->set_rules('nomor', 'Nomor SPKI', 'required|trim|integer');
+		$this->form_validation->set_rules('bulan', 'Bulan SPKI', 'required');
+		$this->form_validation->set_rules('tahun', 'Tahun SPKI', 'required|callback_validate_year');
 		$this->form_validation->set_rules('kepada', 'Kepada', 'required|trim');
 		$this->form_validation->set_rules('dari', 'Dari', 'required|trim');
 		$this->form_validation->set_rules('macam_pekerjaan', 'Macam Pekerjaan', 'required|trim');
@@ -162,6 +171,9 @@ class Spki extends CI_Controller
 			$this->edit_spki();
 		} else {
 			$data = array(
+				'nomor' => $this->input->post('nomor'),
+				'bulan' => $this->input->post('bulan'),
+				'tahun' => $this->input->post('tahun'),
 				'kepada' => $this->input->post('kepada'),
 				'dari' => $this->input->post('dari'),
 				'macam_pekerjaan' => $this->input->post('macam_pekerjaan'),
@@ -235,7 +247,6 @@ class Spki extends CI_Controller
 		$query = $this->SPKI_model->dapat_satu_spki($id_spki);
 
 		date_default_timezone_set('Asia/Jakarta');
-		$tahun_sekarang = date('Y');
 		$bulan = [
 			1 => "Januari",
 			2 => "Februari",
@@ -252,10 +263,10 @@ class Spki extends CI_Controller
 		];
 		$tanggal_sekarang = date('d') . ' ' . $bulan[date('n')] . ' ' . date('Y');
 		$foto = $this->encode_img_base64(base_url('assets/img/logo_pln.png'));
-		$nama_file_pdf = 'SPKI_NO_' . $id_spki . '_PDKB-TT_I_' . $tahun_sekarang . '';
+		$nama_file_pdf = 'SPKI_NO_' . $query->nomor . '_PDKB-TT_' . $query->bulan . '_' . $query->tahun;
 
 		if ($query and $atasan) {
-			$html = $this->load->view('admin/spki/pdf', ['query' => $query, 'atasan' => $atasan, 'tanggal_sekarang' => $tanggal_sekarang, 'tahun_sekarang' => $tahun_sekarang, 'foto' => $foto], true);
+			$html = $this->load->view('admin/spki/pdf', ['query' => $query, 'atasan' => $atasan, 'tanggal_sekarang' => $tanggal_sekarang, 'foto' => $foto], true);
 		}
 
 		$filename = $nama_file_pdf;
@@ -275,5 +286,14 @@ class Spki extends CI_Controller
 			return 'data:image/' . $type . ';base64,' . base64_encode($data);
 		}
 		return '';
+	}
+
+	public function validate_year($str)
+	{
+		if (!preg_match('/^\d{4}$/', $str)) {
+			$this->form_validation->set_message('validate_year', 'Format tahun harus YYYY.');
+			return FALSE;
+		}
+		return TRUE;
 	}
 }

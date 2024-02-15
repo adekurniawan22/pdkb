@@ -83,7 +83,7 @@
                 </tr>
                 <tr style="text-align: center;">
                     <td>
-                        <span>NO. <?= $query->id_spki ?>/PDKB-TT/I/<?= $tahun_sekarang ?></span>
+                        <span>NO. <?= $query->nomor ?>/PDKB-TT/<?= $query->bulan ?>/<?= $query->tahun ?></span>
                     </td>
                 </tr>
             </table>

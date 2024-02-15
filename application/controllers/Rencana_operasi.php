@@ -19,9 +19,19 @@ class Rencana_operasi extends CI_Controller
 	{
 		$data['rencana_operasi'] = $this->Rencana_operasi_model->dapat_rencana_operasi();
 		$data['title'] = 'Rencana Operasi';
-		$this->load->view('templates/header', $data);
-		$this->load->view('atasan/rencana_operasi/rencana_operasi', $data);
-		$this->load->view('templates/footer');
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('atasan/rencana_operasi/rencana_operasi', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '3') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('admin/rencana_operasi/rencana_operasi', $data);
+			$this->load->view('templates/footer');
+		} else if ($this->session->userdata('id_jabatan') == '4') {
+			$this->load->view('templates/header', $data);
+			$this->load->view('jtc/rencana_operasi/rencana_operasi', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function tambah_rencana_operasi()
@@ -35,6 +45,7 @@ class Rencana_operasi extends CI_Controller
 	public function proses_tambah_rencana_operasi()
 	{
 		$this->form_validation->set_rules('nama_rencana', 'Nama Rencana Operasi', 'required|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan Rencana Operasi', 'required|trim');
 		$this->form_validation->set_rules('tanggal_dikerjakan', 'Tanggal Dikerjakan', 'required|trim');
 
 		if ($this->form_validation->run() == false) {
@@ -42,6 +53,7 @@ class Rencana_operasi extends CI_Controller
 		} else {
 			$data = array(
 				'nama_rencana' => $this->input->post('nama_rencana'),
+				'keterangan' => $this->input->post('keterangan'),
 				'tanggal_dikerjakan' => $this->input->post('tanggal_dikerjakan'),
 				'status' => '0'
 			);
@@ -71,6 +83,7 @@ class Rencana_operasi extends CI_Controller
 	public function proses_edit_rencana_operasi()
 	{
 		$this->form_validation->set_rules('nama_rencana', 'Nama Rencana Operasi', 'required|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan Rencana Operasi', 'required|trim');
 		$this->form_validation->set_rules('tanggal_dikerjakan', 'Tanggal Dikerjakan', 'required|trim');
 		if ($this->input->post('tanggal_selesai')) {
 			$this->form_validation->set_rules('tanggal_selesai', 'Tanggal Selesai', 'required|trim');
@@ -83,6 +96,7 @@ class Rencana_operasi extends CI_Controller
 			$tahun_sekarang = date('Y');
 			$data = array(
 				'nama_rencana' => $this->input->post('nama_rencana'),
+				'keterangan' => $this->input->post('keterangan'),
 				'tanggal_dikerjakan' => $this->input->post('tanggal_dikerjakan'),
 			);
 

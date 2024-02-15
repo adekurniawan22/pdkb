@@ -121,6 +121,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
+                            <label for="Nomor SPKI" class="form-control-label">Nomor SPKI</label>
+                            <input class="form-control" type="text" placeholder="Nomor SPKI" id="Nomor SPKI" name="Nomor SPKI" value="<?php echo 'NO.' . $sm->nomor . '/PDKB-TT/' . $sm->bulan . '/' . $sm->tahun ?>" disabled>
+                        </div>
+
+                        <div class="form-group">
                             <label for="kepada" class="form-control-label">Kepada</label>
                             <input class="form-control" type="text" placeholder="Kepada" id="kepada" name="kepada" value="<?php echo $sm->kepada ?>" disabled>
                         </div>

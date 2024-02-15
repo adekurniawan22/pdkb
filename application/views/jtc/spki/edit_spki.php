@@ -4,6 +4,43 @@
             <div class="card mb-0">
                 <div class="card-body ">
                     <form action="<?= base_url() ?>jtc/spki/proses-edit-spki" method="post">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="nomor" class="form-control-label">Nomor</label>
+                                    <input class="form-control" type="text" placeholder="Nomor" id="nomor" name="nomor" value="<?php echo set_value('nomor', $spki->nomor); ?>">
+                                    <?= form_error('nomor', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="bulan" class="form-control-label">Bulan</label>
+                                    <select class="form-select" aria-label="Default select example" name="bulan" id="bulan">
+                                        <option value="" selected>Pilih Bulan</option>
+                                        <option value="I" <?php echo set_select('bulan', "I", $spki->bulan == 'I'); ?>>I (Januari)</option>
+                                        <option value="II" <?php echo set_select('bulan', "II", $spki->bulan == 'II'); ?>>II (Februari)</option>
+                                        <option value="III" <?php echo set_select('bulan', "III", $spki->bulan == 'III'); ?>>III (Maret)</option>
+                                        <option value="IV" <?php echo set_select('bulan', "IV", $spki->bulan == 'IV'); ?>>IV (April)</option>
+                                        <option value="V" <?php echo set_select('bulan', "V", $spki->bulan == 'V'); ?>>V (Mei)</option>
+                                        <option value="VI" <?php echo set_select('bulan', "VI", $spki->bulan == 'VI'); ?>>VI (Juni)</option>
+                                        <option value="VII" <?php echo set_select('bulan', "VII", $spki->bulan == 'VII'); ?>>VII (Juli)</option>
+                                        <option value="VIII" <?php echo set_select('bulan', "VIII", $spki->bulan == 'VIII'); ?>>VIII (Agustus)</option>
+                                        <option value="IX" <?php echo set_select('bulan', "IX", $spki->bulan == 'IX'); ?>>IX (September)</option>
+                                        <option value="X" <?php echo set_select('bulan', "X", $spki->bulan == 'X'); ?>>X (Oktober)</option>
+                                        <option value="XI" <?php echo set_select('bulan', "XI", $spki->bulan == 'XI'); ?>>XI (November)</option>
+                                        <option value="XII" <?php echo set_select('bulan', "XII", $spki->bulan == 'XII'); ?>>XII (Desember)</option>
+                                    </select>
+                                    <?= form_error('bulan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="tahun" class="form-control-label">Tahun</label>
+                                    <input class="form-control" type="text" placeholder="Tahun" id="tahun" name="tahun" value="<?php echo set_value('tahun', $spki->tahun); ?>">
+                                    <?= form_error('tahun', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="kepada" class="form-control-label">Kepada</label>
                             <input type="hidden" name="id_spki" value="<?= $spki->id_spki ?>">
