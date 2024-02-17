@@ -21,17 +21,17 @@ class Histori_alat extends CI_Controller
 	public function index()
 	{
 		$data['title'] = 'Riwayat Alat Kerja';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$data['histori_alat'] = $this->Histori_alat_model->dapat_histori_alat();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/histori_alat_kerja/histori_alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$data['histori_alat'] = $this->Histori_alat_model->dapat_histori_alat();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/histori_alat_kerja/histori_alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$data['histori_alat'] = $this->Histori_alat_model->dapat_histori_alat_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/histori_alat_kerja/histori_alat_kerja', $data);
@@ -44,15 +44,15 @@ class Histori_alat extends CI_Controller
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_alat_kerja();
 		$data['title'] = 'Riwayat Alat Kerja';
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/histori_alat_kerja/tambah_histori_alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/histori_alat_kerja/tambah_histori_alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/histori_alat_kerja/tambah_histori_alat_kerja', $data);
 			$this->load->view('templates/footer');
@@ -112,11 +112,11 @@ class Histori_alat extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Histori Alat Kerja Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/histori-alat-kerja');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/histori-alat-kerja');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/histori-alat-kerja');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/histori-alat-kerja');
 			}
 		}
@@ -146,11 +146,11 @@ class Histori_alat extends CI_Controller
 		$this->session->set_flashdata('message', '<strong>Status Histori Alat Kerja Berhasil Diedit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/histori-alat-kerja');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/histori-alat-kerja');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/histori-alat-kerja');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/histori-alat-kerja');
 		}
 	}
@@ -185,11 +185,11 @@ class Histori_alat extends CI_Controller
 			$this->session->set_flashdata('message', '<strong>Data Histori Alat Kerja Gagal Dihapus</strong>
 												<i class="bi bi-exclamation-circle-fill"></i>');
 		}
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/histori-alat-kerja');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/histori-alat-kerja');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/histori-alat-kerja');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/histori-alat-kerja');
 		}
 	}

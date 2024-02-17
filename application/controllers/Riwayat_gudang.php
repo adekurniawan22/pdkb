@@ -21,17 +21,17 @@ class Riwayat_gudang extends CI_Controller
 	public function index()
 	{
 		$data['title'] = 'Riwayat Gudang';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$data['riwayat_gudang'] = $this->Riwayat_gudang_model->dapat_riwayat_gudang();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/riwayat_gudang/riwayat_gudang', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$data['riwayat_gudang'] = $this->Riwayat_gudang_model->dapat_riwayat_gudang();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/riwayat_gudang/riwayat_gudang', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$data['riwayat_gudang'] = $this->Riwayat_gudang_model->dapat_riwayat_gudang_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/riwayat_gudang/riwayat_gudang', $data);
@@ -43,15 +43,15 @@ class Riwayat_gudang extends CI_Controller
 	{
 		$data['alat_tower_ers'] = $this->Alat_tower_ers_model->dapat_alat_tower_ers();
 		$data['title'] = 'Riwayat Gudang';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/riwayat_gudang/tambah_riwayat_gudang', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/riwayat_gudang/tambah_riwayat_gudang', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/riwayat_gudang/tambah_riwayat_gudang', $data);
 			$this->load->view('templates/footer');
@@ -111,11 +111,11 @@ class Riwayat_gudang extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Tower ERS Kerja Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/riwayat-gudang');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/riwayat-gudang');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/riwayat-gudang');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/riwayat-gudang');
 			}
 		}
@@ -144,11 +144,11 @@ class Riwayat_gudang extends CI_Controller
 
 		$this->session->set_flashdata('message', '<strong>Status Riwayat Gudang Alat Tower ERS Berhasil Diedit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/riwayat-gudang');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/riwayat-gudang');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/riwayat-gudang');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/riwayat-gudang');
 		}
 	}
@@ -183,11 +183,11 @@ class Riwayat_gudang extends CI_Controller
 			$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Tower ERS Kerja Gagal Dihapus</strong>
 												<i class="bi bi-exclamation-circle-fill"></i>');
 		}
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/riwayat-gudang');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/riwayat-gudang');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/riwayat-gudang');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/riwayat-gudang');
 		}
 	}

@@ -19,7 +19,7 @@
     .table-content th,
     .table-content td {
         border: 1px solid #000;
-        padding: 8px;
+        padding: 5px;
         text-align: left;
         vertical-align: top;
     }
@@ -144,6 +144,10 @@
                 <tr>
                     <th>Peralatan Yang Dipakai</th>
                     <td colspan="3"><?= nl2br($query->alat_kerja) ?></td>
+                </tr>
+                <tr>
+                    <th>Kendaraan Yang Dipakai</th>
+                    <td colspan="3"><?= nl2br($query->kendaraan) ?></td>
                 </tr>
                 <tr>
                     <th>Uraian Kerja</th>

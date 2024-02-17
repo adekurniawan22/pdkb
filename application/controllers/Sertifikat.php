@@ -26,11 +26,11 @@ class Sertifikat extends CI_Controller
 		}
 		$data['id_personil'] = $this->input->post('id_personil');
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/personil/view_sertifikat', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/personil/view_sertifikat', $data);
 			$this->load->view('templates/footer');

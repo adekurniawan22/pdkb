@@ -20,15 +20,15 @@ class Alat_tower_ers extends CI_Controller
 	{
 		$data['alat_tower_ers'] = $this->Alat_tower_ers_model->dapat_alat_tower_ers();
 		$data['title'] = 'Alat Tower ERS';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_tower_ers/alat_tower_ers', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/alat_tower_ers/alat_tower_ers', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/alat_tower_ers/alat_tower_ers', $data);
 			$this->load->view('templates/footer');
@@ -38,15 +38,15 @@ class Alat_tower_ers extends CI_Controller
 	public function tambah_alat_tower_ers()
 	{
 		$data['title'] = 'Alat Tower ERS';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_tower_ers/tambah_alat_tower_ers', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/alat_tower_ers/tambah_alat_tower_ers', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/alat_tower_ers/tambah_alat_tower_ers', $data);
 			$this->load->view('templates/footer');
@@ -89,11 +89,11 @@ class Alat_tower_ers extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Alat Tower ERS Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/alat-tower-ers');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/alat-tower-ers');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/alat-tower-ers');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/alat-tower-ers');
 			}
 		}
@@ -103,15 +103,15 @@ class Alat_tower_ers extends CI_Controller
 	{
 		$data['title'] = 'Alat Tower ERS';
 		$data['alat_tower_ers'] = $this->Alat_tower_ers_model->dapat_satu_alat_tower_ers($this->input->post('id_alat_tower_ers'));
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_tower_ers/edit_alat_tower_ers', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/alat_tower_ers/edit_alat_tower_ers', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/alat_tower_ers/edit_alat_tower_ers', $data);
 			$this->load->view('templates/footer');
@@ -154,11 +154,11 @@ class Alat_tower_ers extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Alat Tower ERS Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/alat-tower-ers');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/alat-tower-ers');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/alat-tower-ers');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/alat-tower-ers');
 			}
 		}
@@ -170,11 +170,11 @@ class Alat_tower_ers extends CI_Controller
 		$this->db->delete('t_alat_tower_ers');
 		$this->session->set_flashdata('message', '<strong>Data Alat Tower ERS Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/alat-tower-ers');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/alat-tower-ers');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/alat-tower-ers');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/alat-tower-ers');
 		}
 	}

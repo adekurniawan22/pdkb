@@ -28,17 +28,17 @@ class Jsa extends CI_Controller
 		$data['foto_jsa'] = $this->Jsa_model->dapat_foto_jsa();
 		$data['title'] = 'Laporan JSA';
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$data['jsa'] = $this->Jsa_model->dapat_jsa();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/jsa/jsa', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$data['jsa'] = $this->Jsa_model->dapat_jsa();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/jsa/jsa', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$data['jsa'] = $this->Jsa_model->dapat_jsa_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/jsa/jsa', $data);
@@ -49,15 +49,15 @@ class Jsa extends CI_Controller
 	public function tambah_jsa()
 	{
 		$data['title'] = 'Laporan JSA';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/jsa/tambah_jsa', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/jsa/tambah_jsa', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/jsa/tambah_jsa', $data);
 			$this->load->view('templates/footer');
@@ -84,7 +84,7 @@ class Jsa extends CI_Controller
 				'hasil_pekerjaan' => $this->input->post('hasil_pekerjaan'),
 				'kesimpulan' => $this->input->post('kesimpulan'),
 			];
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				$data_jsa['sudah_disetujui'] = '1';
 				$data_jsa['id_atasan'] = $this->session->userdata('id_personil');
 			} else {
@@ -135,11 +135,11 @@ class Jsa extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Laporan JSA Gagal Ditambahkan</strong>
 															<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/jsa');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/jsa');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/jsa');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/jsa');
 			}
 		}
@@ -157,15 +157,15 @@ class Jsa extends CI_Controller
 
 		$data['title'] = 'Laporan JSA';
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/jsa/edit_jsa', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/jsa/edit_jsa', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/jsa/edit_jsa', $data);
 			$this->load->view('templates/footer');
@@ -246,11 +246,11 @@ class Jsa extends CI_Controller
 				}
 			}
 
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/jsa');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/jsa');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/jsa');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/jsa');
 			}
 		}
@@ -270,11 +270,11 @@ class Jsa extends CI_Controller
 		$this->db->delete('t_jsa');
 		$this->session->set_flashdata('message', '<strong>Data Laporan JSA Berhasil Dihapus</strong>
 		<i class="bi bi-check-circle-fill"></i>');
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/jsa');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/jsa');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/jsa');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/jsa');
 		}
 	}
@@ -300,11 +300,11 @@ class Jsa extends CI_Controller
 		$this->session->set_userdata(['id_view_jsa' =>  $this->input->post('id_jsa')]);
 		$this->session->set_flashdata('message', '<strong>Hasil Temuan JSA Berhasil Dihapus</strong>
 		<i class="bi bi-check-circle-fill"></i>');
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/jsa/edit-jsa');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/jsa/edit-jsa');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/jsa/edit-jsa');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/jsa/edit-jsa');
 		}
 	}
@@ -322,11 +322,11 @@ class Jsa extends CI_Controller
 		$this->session->set_userdata(['id_view_jsa' => $this->input->post('id_jsa')]);
 		$this->session->set_flashdata('message', '<strong>Foto Hasil Temuan JSA Berhasil Dihapus</strong>
 		<i class="bi bi-check-circle-fill"></i>');
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/jsa/edit-jsa');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/jsa/edit-jsa');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/jsa/edit-jsa');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/jsa/edit-jsa');
 		}
 	}

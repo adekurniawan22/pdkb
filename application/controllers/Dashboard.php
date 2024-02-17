@@ -26,11 +26,11 @@ class Dashboard extends CI_Controller
 		$data['jumlah_rencana_selesai_perbulan'] = $this->Rencana_operasi_model->jumlah_rencana_selesai_perbulan();
 		$data['dapat_persentase_rencana_tahun_ini'] = $this->Rencana_operasi_model->dapat_persentase_rencana_tahun_ini();
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/dashboard', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 
 			$this->db->where('YEAR(tanggal_dikerjakan)', date('Y'));
 			$this->db->where('MONTH(tanggal_dikerjakan)', date('m'));
@@ -63,7 +63,7 @@ class Dashboard extends CI_Controller
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/dashboard', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/dashboard', $data);
 			$this->load->view('templates/footer');
@@ -115,7 +115,7 @@ class Dashboard extends CI_Controller
 		$p_jaringan = $this->db->get('t_jaringan')->result();
 		$jp_jaringan = count($p_jaringan);
 
-		$this->db->where_in('id_jabatan', array(1, 2));
+		$this->db->where_in('id_jabatan', array(1, 2, 3));
 		$query = $this->db->get('t_personil')->result();
 
 		foreach ($query as $q) {

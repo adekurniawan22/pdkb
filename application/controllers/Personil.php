@@ -26,15 +26,15 @@ class Personil extends CI_Controller
 		$data['title'] = 'Personil';
 		$data['jabatan'] = $this->Jabatan_model->dapat_jabatan();
 		$data['personil'] = $this->Personil_model->dapat_personil();
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/personil/personil', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/personil/personil', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/personil/personil', $data);
 			$this->load->view('templates/footer');
@@ -46,15 +46,15 @@ class Personil extends CI_Controller
 		$data['title'] = 'Personil';
 		$data['jabatan'] = $this->Jabatan_model->dapat_jabatan();
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/personil/tambah_personil', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/personil/tambah_personil', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/personil/tambah_personil', $data);
 			$this->load->view('templates/footer');
@@ -138,11 +138,11 @@ class Personil extends CI_Controller
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
 
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
-				redirect('atasan/personil');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/personil');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('atasan/personil');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/personil');
 			}
 		}
@@ -153,15 +153,15 @@ class Personil extends CI_Controller
 		$data['title'] = 'Personil';
 		$data['jabatan'] = $this->Jabatan_model->dapat_jabatan();
 		$data['personil'] = $this->Personil_model->dapat_satu_personil($this->input->post('id_personil'));
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/personil/edit_personil', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/personil/edit_personil', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/personil/edit_personil', $data);
 			$this->load->view('templates/footer');
@@ -237,11 +237,11 @@ class Personil extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Personil Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/personil');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/personil');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/personil');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/personil');
 			}
 		}
@@ -264,11 +264,11 @@ class Personil extends CI_Controller
 		$this->session->set_flashdata('message', '<strong>Data Personil Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/personil');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/personil');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/personil');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/personil');
 		}
 	}

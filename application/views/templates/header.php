@@ -128,7 +128,7 @@
             <ul class="navbar-nav">
 
                 <!-- ROLE ATASAN -->
-                <?php if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') : ?>
+                <?php if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') : ?>
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Dashboard") {
                                                 echo "active";
@@ -264,7 +264,7 @@
                 <!-- END ROLE ATASAN -->
 
                 <!-- ROLE ADMIN -->
-                <?php if ($this->session->userdata('id_jabatan') == '3') : ?>
+                <?php if ($this->session->userdata('id_jabatan') == '4') : ?>
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Dashboard") {
                                                 echo "active";
@@ -400,7 +400,7 @@
                 <!-- END ROLE ADMIN -->
 
                 <!-- ROLE JTC -->
-                <?php if ($this->session->userdata('id_jabatan') == '4') : ?>
+                <?php if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') : ?>
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Dashboard") {
                                                 echo "active";

@@ -20,15 +20,15 @@ class Alat_kerja extends CI_Controller
 	{
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_alat_kerja();
 		$data['title'] = 'Alat Kerja';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_kerja/alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/alat_kerja/alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/alat_kerja/alat_kerja', $data);
 			$this->load->view('templates/footer');
@@ -38,15 +38,15 @@ class Alat_kerja extends CI_Controller
 	public function tambah_alat_kerja()
 	{
 		$data['title'] = 'Alat Kerja';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_kerja/tambah_alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/alat_kerja/tambah_alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/alat_kerja/tambah_alat_kerja', $data);
 			$this->load->view('templates/footer');
@@ -85,11 +85,11 @@ class Alat_kerja extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Alat Kerja Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/alat-kerja');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/alat-kerja');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/alat-kerja');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/alat-kerja');
 			}
 		}
@@ -99,15 +99,15 @@ class Alat_kerja extends CI_Controller
 	{
 		$data['title'] = 'Alat Kerja';
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_satu_alat_kerja($this->input->post('id_alat_kerja'));
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_kerja/edit_alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/warehouse/alat_kerja/edit_alat_kerja', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/warehouse/alat_kerja/edit_alat_kerja', $data);
 			$this->load->view('templates/footer');
@@ -146,11 +146,11 @@ class Alat_kerja extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Alat Kerja Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/alat-kerja');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/alat-kerja');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/alat-kerja');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/alat-kerja');
 			}
 		}
@@ -163,11 +163,11 @@ class Alat_kerja extends CI_Controller
 		$this->session->set_flashdata('message', '<strong>Data Alat Kerja Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/alat-kerja');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/alat-kerja');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/alat-kerja');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/alat-kerja');
 		}
 	}

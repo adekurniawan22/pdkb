@@ -21,17 +21,17 @@ class Spki extends CI_Controller
 	{
 		$data['title'] = 'SPKI';
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$data['spki'] = $this->SPKI_model->dapat_spki();
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/spki/spki', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$data['spki'] = $this->SPKI_model->dapat_spki();
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/spki/spki', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$data['spki'] = $this->SPKI_model->dapat_spki_jtc($this->session->userdata('id_personil'));
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/spki/spki', $data);
@@ -42,15 +42,15 @@ class Spki extends CI_Controller
 	public function tambah_spki()
 	{
 		$data['title'] = 'SPKI';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/spki/tambah_spki', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/spki/tambah_spki', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/spki/tambah_spki', $data);
 			$this->load->view('templates/footer');
@@ -101,7 +101,7 @@ class Spki extends CI_Controller
 				'catatan' => $this->input->post('catatan'),
 			);
 
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				$data['sudah_disetujui'] = '1';
 				$data['id_atasan'] = $this->session->userdata('id_personil');
 			} else {
@@ -118,11 +118,11 @@ class Spki extends CI_Controller
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
 
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/spki');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/spki');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/spki');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/spki');
 			}
 		}
@@ -132,15 +132,15 @@ class Spki extends CI_Controller
 	{
 		$data['title'] = 'SPKI';
 		$data['spki'] = $this->SPKI_model->dapat_satu_spki($this->input->post('id_spki'));
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/spki/edit_spki', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/spki/edit_spki', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/spki/edit_spki', $data);
 			$this->load->view('templates/footer');
@@ -199,11 +199,11 @@ class Spki extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data SPKI Gagal Diedit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/spki');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/spki');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/spki');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/spki');
 			}
 		}
@@ -216,11 +216,11 @@ class Spki extends CI_Controller
 		$this->db->delete('t_spki');
 		$this->session->set_flashdata('message', '<strong>Data SPKI Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/spki');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/spki');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/spki');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/spki');
 		}
 	}

@@ -12,15 +12,15 @@ class Auth extends CI_Controller
 	public function login()
 	{
 		if (!empty($this->session->userdata('id_jabatan'))) {
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				$this->session->set_flashdata('message', '<strong>Anda sudah login, tidak bisa mengkases halaman ini!</strong>
 							<i class="bi bi-exclamation-circle-fill"></i>');
 				redirect('atasan/dashboard');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
+			} else if ($this->session->userdata('id_jabatan') == '4') {
 				$this->session->set_flashdata('message', '<strong>Anda sudah login, tidak bisa mengkases halaman ini!</strong>
 				<i class="bi bi-exclamation-circle-fill"></i>');
 				redirect('admin/dashboard');
-			} else if ($this->session->userdata('id_jabatan') == '4') {
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				$this->session->set_flashdata('message', '<strong>Anda sudah login, tidak bisa mengkases halaman ini!</strong>
 				<i class="bi bi-exclamation-circle-fill"></i>');
 				redirect('jtc/dashboard');
@@ -62,12 +62,14 @@ class Auth extends CI_Controller
 						switch ($personil->id_jabatan) {
 							case 1:
 							case 2:
+							case 3:
 								redirect('atasan/dashboard');
 								break;
-							case 3:
+							case 4:
 								redirect('admin/dashboard');
 								break;
-							case 4:
+							case 5:
+							case 6:
 								redirect('jtc/dashboard');
 								break;
 						}

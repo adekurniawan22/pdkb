@@ -60,13 +60,13 @@
                                         <td class="text-center">
 
                                             <?php if ($p->status_aktif == '1') : ?>
-                                                <?php if ($p->id_jabatan != '1' and $p->id_jabatan != '2') : ?>
+                                                <?php if ($p->id_jabatan != '1' and $p->id_jabatan != '2' and $p->id_jabatan != '3') : ?>
                                                     <span style="cursor: pointer;" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#edit_status_akun<?= $p->id_personil ?>">Aktif <i class=" bi bi-pencil-square"></i></span>
                                                 <?php else : ?>
                                                     <span style="cursor: no-drop;" class=" badge badge-sm bg-gradient-success">Aktif <i class=" bi bi-pencil-square"></i></span>
                                                 <?php endif; ?>
                                             <?php else : ?>
-                                                <?php if ($p->id_jabatan != '1' and $p->id_jabatan != '2') : ?>
+                                                <?php if ($p->id_jabatan != '1' and $p->id_jabatan != '2' and $p->id_jabatan != '3') : ?>
                                                     <span style="cursor: pointer;" class="badge badge-sm bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#edit_status_akun<?= $p->id_personil ?>">Tidak Aktif <i class=" bi bi-pencil-square"></i></span>
                                                 <?php else : ?>
                                                     <span style="cursor: no-drop;" class=" badge badge-sm bg-gradient-danger">Tidak Aktif <i class=" bi bi-pencil-square"></i></span>

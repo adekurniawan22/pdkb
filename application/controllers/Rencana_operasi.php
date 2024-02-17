@@ -19,15 +19,15 @@ class Rencana_operasi extends CI_Controller
 	{
 		$data['rencana_operasi'] = $this->Rencana_operasi_model->dapat_rencana_operasi();
 		$data['title'] = 'Rencana Operasi';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/rencana_operasi/rencana_operasi', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/rencana_operasi/rencana_operasi', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/rencana_operasi/rencana_operasi', $data);
 			$this->load->view('templates/footer');

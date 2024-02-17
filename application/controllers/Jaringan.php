@@ -22,15 +22,15 @@ class Jaringan extends CI_Controller
 	{
 		$data['jaringan'] = $this->Jaringan_model->dapat_jaringan();
 		$data['title'] = 'Jaringan';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/anomali/jaringan/jaringan', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/anomali/jaringan/jaringan', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/anomali/jaringan/jaringan', $data);
 			$this->load->view('templates/footer');
@@ -40,15 +40,15 @@ class Jaringan extends CI_Controller
 	public function tambah_jaringan()
 	{
 		$data['title'] = 'Jaringan';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/anomali/jaringan/tambah_jaringan', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/anomali/jaringan/tambah_jaringan', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/anomali/jaringan/tambah_jaringan', $data);
 			$this->load->view('templates/footer');
@@ -91,11 +91,11 @@ class Jaringan extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Jaringan Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/jaringan');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/jaringan');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/jaringan');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/jaringan');
 			}
 		}
@@ -104,15 +104,15 @@ class Jaringan extends CI_Controller
 	{
 		$data['title'] = 'Jaringan';
 		$data['jaringan'] = $this->Jaringan_model->dapat_satu_jaringan($this->input->post('id_jaringan'));
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/anomali/jaringan/edit_jaringan', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/anomali/jaringan/edit_jaringan', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/anomali/jaringan/edit_jaringan', $data);
 			$this->load->view('templates/footer');
@@ -164,11 +164,11 @@ class Jaringan extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Jaringan Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/jaringan');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/jaringan');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/jaringan');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/jaringan');
 			}
 		}
@@ -186,11 +186,11 @@ class Jaringan extends CI_Controller
 			$this->session->set_flashdata('message', '<strong>Data Jaringan Gagal Dihapus</strong>
 												<i class="bi bi-exclamation-circle-fill"></i>');
 		}
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/jaringan');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/jaringan');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/jaringan');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/jaringan');
 		}
 	}

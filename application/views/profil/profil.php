@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <?php if ($profil->id_jabatan == '1' or $profil->id_jabatan == '2') : ?>
+            <?php if ($profil->id_jabatan == '1' or $profil->id_jabatan == '2' or $profil->id_jabatan == '3') : ?>
                 <div class="card card-profilem mt-3">
                     <div class="card-header text-center">
                         <h4>Tanda tangan</h4>

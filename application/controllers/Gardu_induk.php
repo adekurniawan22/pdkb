@@ -22,15 +22,15 @@ class Gardu_induk extends CI_Controller
 	{
 		$data['gardu_induk'] = $this->Gardu_induk_model->dapat_gardu_induk();
 		$data['title'] = 'Gardu Induk';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/anomali/gardu_induk/gardu_induk', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/anomali/gardu_induk/gardu_induk', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/anomali/gardu_induk/gardu_induk', $data);
 			$this->load->view('templates/footer');
@@ -40,15 +40,15 @@ class Gardu_induk extends CI_Controller
 	public function tambah_gardu_induk()
 	{
 		$data['title'] = 'Gardu Induk';
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/anomali/gardu_induk/tambah_gardu_induk', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/anomali/gardu_induk/tambah_gardu_induk', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/anomali/gardu_induk/tambah_gardu_induk', $data);
 			$this->load->view('templates/footer');
@@ -91,11 +91,11 @@ class Gardu_induk extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Gardu Induk Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/gardu-induk');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/gardu-induk');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/gardu-induk');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/gardu-induk');
 			}
 		}
@@ -104,15 +104,15 @@ class Gardu_induk extends CI_Controller
 	{
 		$data['title'] = 'Gardu Induk';
 		$data['gardu_induk'] = $this->Gardu_induk_model->dapat_satu_gardu_induk($this->input->post('id_gardu_induk'));
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/anomali/gardu_induk/edit_gardu_induk', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
+		} else if ($this->session->userdata('id_jabatan') == '4') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('admin/anomali/gardu_induk/edit_gardu_induk', $data);
 			$this->load->view('templates/footer');
-		} else if ($this->session->userdata('id_jabatan') == '4') {
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('jtc/anomali/gardu_induk/edit_gardu_induk', $data);
 			$this->load->view('templates/footer');
@@ -167,11 +167,11 @@ class Gardu_induk extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Gardu Induk Gagal Di edit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
-			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/gardu-induk');
-			} else if ($this->session->userdata('id_jabatan') == '3') {
-				redirect('admin/gardu-induk');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/gardu-induk');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/gardu-induk');
 			}
 		}
@@ -189,11 +189,11 @@ class Gardu_induk extends CI_Controller
 			$this->session->set_flashdata('message', '<strong>Data Gardu Induk Gagal Dihapus</strong>
 												<i class="bi bi-exclamation-circle-fill"></i>');
 		}
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2') {
+		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/gardu-induk');
-		} else if ($this->session->userdata('id_jabatan') == '3') {
-			redirect('admin/gardu-induk');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
+			redirect('admin/gardu-induk');
+		} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 			redirect('jtc/gardu-induk');
 		}
 	}

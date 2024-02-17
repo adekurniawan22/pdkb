@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Feb 2024 pada 15.04
+-- Waktu pembuatan: 17 Feb 2024 pada 09.16
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -213,10 +213,12 @@ CREATE TABLE `t_jabatan` (
 --
 
 INSERT INTO `t_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
-(1, 'Asistant Manager'),
-(2, 'Team Leader'),
-(3, 'Admin'),
-(4, 'JTC');
+(1, 'Assistant Manager PDKB'),
+(2, 'Team Leader PDKB SUTT/SUTET'),
+(3, 'Team Leader PDKB GI/GITET'),
+(4, 'Admin'),
+(5, 'JTC PDKB SUTT/SUTET'),
+(6, 'JTC PDKB GI/GITET');
 
 -- --------------------------------------------------------
 
@@ -345,8 +347,8 @@ CREATE TABLE `t_personil` (
 INSERT INTO `t_personil` (`id_personil`, `id_jabatan`, `nama`, `nip`, `email`, `no_hp`, `username`, `password`, `alamat`, `foto`, `status_aktif`, `tanda_tangan`) VALUES
 (12, 1, 'Mochamad Aziz Shidki', '12345678910', 'asistantmanager@email.com', '081274747474', 'asman', '$2y$10$NLFDLVITX2ahLVt9p39Wl.s4Ivppt8d6VKfeIbLYOwF5PZVKbRURK', 'Jalan Dago, Nomor 43', 'logo_unikom_kuning.png', '1', 'signature_2a74a090f697decd0cdb88ac193e7f24.png'),
 (13, 2, 'Baharudin', '12345678911', 'teamleader@email.com', '081275757575', 'team_leader', '$2y$10$NZbK40eNc82WkijfpzgR.OqL6e5gNetUjPRI2OpmtZ4ubEmHnGcia', 'Jalan Cimahi, Nomor 55', 'logo.jpg', '1', ''),
-(14, 3, 'Ade Kurniawan', '12345678912', 'admin@email.com', '081276767676', 'admin', '$2y$10$6aQzA0qBJOPSPsfzIBJowuFTHdBB5t1weam8AB9gJNy2OPYxPZhue', 'Jalan Tubagus Ismail, Nomor 41', '580b57fcd9996e24bc43c4e71.png', '1', ''),
-(15, 4, 'Ismail', '12345678913', 'jtc@email.com', '081279797979', 'jtc', '$2y$10$PSpn2f8aeUp0y0pAaJHllelyNPIh0isJ.SGffGwUYBf48tdJxLAK2', 'Jalan Buahbatu, Nomo 234', 'LogoAbell-removebg-preview.png', '1', ''),
+(14, 4, 'Ade Kurniawan', '12345678912', 'admin@email.com', '081276767676', 'admin', '$2y$10$6aQzA0qBJOPSPsfzIBJowuFTHdBB5t1weam8AB9gJNy2OPYxPZhue', 'Jalan Tubagus Ismail, Nomor 41', '580b57fcd9996e24bc43c4e71.png', '1', ''),
+(15, 5, 'Ismail', '12345678913', 'jtc@email.com', '081279797979', 'jtc', '$2y$10$PSpn2f8aeUp0y0pAaJHllelyNPIh0isJ.SGffGwUYBf48tdJxLAK2', 'Jalan Buahbatu, Nomo 234', 'LogoAbell-removebg-preview.png', '1', ''),
 (45, 1, 'Ade Kurniawan', '12345678918', 'ade.kurniawan216@gmail.com', '083171027936', 'ade22', '$2y$10$.df6Gu6/uWmafpkVp2Uyf.BX/YMfXhTTwXu4YlQTd.a2.DauC9qPC', 'Jalan Jambi Palembang KM 27', 'IMG_20220901_160825_151.jpg', '1', '');
 
 -- --------------------------------------------------------
@@ -358,6 +360,7 @@ INSERT INTO `t_personil` (`id_personil`, `id_jabatan`, `nama`, `nip`, `email`, `
 CREATE TABLE `t_rencana_operasi` (
   `id_rencana_operasi` int(11) NOT NULL,
   `nama_rencana` varchar(255) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
   `status` enum('0','1') NOT NULL,
   `tanggal_dikerjakan` date NOT NULL,
   `tanggal_selesai` date DEFAULT NULL
@@ -367,25 +370,26 @@ CREATE TABLE `t_rencana_operasi` (
 -- Dumping data untuk tabel `t_rencana_operasi`
 --
 
-INSERT INTO `t_rencana_operasi` (`id_rencana_operasi`, `nama_rencana`, `status`, `tanggal_dikerjakan`, `tanggal_selesai`) VALUES
-(52, 'Rencana 1', '1', '2024-01-09', '2024-01-10'),
-(53, 'Rencana 2', '1', '2024-02-14', '2024-02-09'),
-(54, 'Rencana 3', '0', '2024-02-09', NULL),
-(55, 'Rencana 4', '1', '2024-02-08', '2024-02-09'),
-(56, 'Rencana 5', '0', '2024-03-20', NULL),
-(57, 'Rencana 6', '0', '2024-04-09', NULL),
-(58, 'Rencana 7', '0', '2024-04-15', NULL),
-(59, 'Rencana 8', '0', '2024-05-06', NULL),
-(60, 'Rencana 9', '0', '2024-06-01', NULL),
-(61, 'Rencana 10', '0', '2024-06-17', NULL),
-(62, 'Rencana 11', '0', '2024-07-16', NULL),
-(63, 'Rencana 12', '0', '2024-08-21', NULL),
-(64, 'Rencana 13', '0', '2024-09-18', NULL),
-(65, 'Rencana 14', '0', '2024-10-17', NULL),
-(66, 'Rencana 15', '0', '2024-11-13', NULL),
-(67, 'Rencana 16', '0', '2024-12-08', NULL),
-(68, 'Rencana 17', '0', '2024-12-26', NULL),
-(69, 'Rencana 18', '0', '2024-12-18', NULL);
+INSERT INTO `t_rencana_operasi` (`id_rencana_operasi`, `nama_rencana`, `keterangan`, `status`, `tanggal_dikerjakan`, `tanggal_selesai`) VALUES
+(52, 'Rencana 1', 'Ketarangan', '1', '2024-01-09', '2024-01-10'),
+(53, 'Rencana 2', 'Ketarangan', '1', '2024-02-14', '2024-02-09'),
+(54, 'Rencana 3', 'Ketarangan', '0', '2024-02-09', NULL),
+(55, 'Rencana 4', 'Ketarangan', '1', '2024-02-08', '2024-02-09'),
+(56, 'Rencana 5', 'Ketarangan', '0', '2024-03-20', NULL),
+(57, 'Rencana 6', 'Ketarangan', '0', '2024-04-09', NULL),
+(58, 'Rencana 7', 'Ketarangan', '0', '2024-04-15', NULL),
+(59, 'Rencana 8', 'Ketarangan', '0', '2024-05-06', NULL),
+(60, 'Rencana 9', 'Ketarangan', '0', '2024-06-01', NULL),
+(61, 'Rencana 10', 'Ketarangan', '0', '2024-06-17', NULL),
+(62, 'Rencana 11', 'Ketarangan', '0', '2024-07-16', NULL),
+(63, 'Rencana 12', 'Ketarangan', '0', '2024-08-21', NULL),
+(64, 'Rencana 13', 'Ketarangan', '0', '2024-09-18', NULL),
+(65, 'Rencana 14', 'Ketarangan', '0', '2024-10-17', NULL),
+(66, 'Rencana 15', 'Ketarangan', '0', '2024-11-13', NULL),
+(67, 'Rencana 16', 'Ketarangan', '0', '2024-12-08', NULL),
+(68, 'Rencana 17', 'Ketarangan', '0', '2024-12-26', NULL),
+(69, 'Rencana 18', 'Ketarangan', '0', '2024-12-18', NULL),
+(70, 'Tes tes', 'Tes tes', '0', '2024-02-15', NULL);
 
 -- --------------------------------------------------------
 
@@ -436,6 +440,9 @@ CREATE TABLE `t_spki` (
   `id_spki` int(11) NOT NULL,
   `id_personil` int(11) NOT NULL,
   `kepada` varchar(255) NOT NULL,
+  `nomor` varchar(255) NOT NULL,
+  `bulan` varchar(255) NOT NULL,
+  `tahun` char(4) NOT NULL,
   `dari` varchar(255) NOT NULL,
   `macam_pekerjaan` varchar(255) NOT NULL,
   `lokasi_pekerjaan` varchar(255) NOT NULL,
@@ -457,8 +464,9 @@ CREATE TABLE `t_spki` (
 -- Dumping data untuk tabel `t_spki`
 --
 
-INSERT INTO `t_spki` (`id_spki`, `id_personil`, `kepada`, `dari`, `macam_pekerjaan`, `lokasi_pekerjaan`, `mulai_pelaksanaan`, `selesai_pelaksanaan`, `pj`, `pengawas`, `pengawas_k3`, `pelaksana`, `alat_kerja`, `kendaraan`, `uraian_kerja`, `catatan`, `sudah_disetujui`, `id_atasan`) VALUES
-(9, 14, 'TL PDKB RING UPT KALTIMRA', 'ASMAN PDKB UPT KALTIMRA', 'JSA Anomali Tower Tension', 'SUTT 150 kV Line Longikis - Kuaro T.138, T.191,\r\nSUTT 150 kV Petung - Longikis T.127 A,\r\nSUTT 150 kV Tanjung - Muara komam  T.189, \r\nSUTT 150 kV Line Muara komam - Kuaro T.268,', '2024-02-03', '2024-02-05', 'MOCH. AZIZ SHIDKI', 'Hernawan Agung P', 'Zam Yudha Pangayoman\r\nIbnu Hubaiyah', 'Ariya Adam Abdullah\r\nI Kadek A\r\nMoch Zulkifliansyah', 'Measuring Stik Isolasi & APD', 'Kendaraan Dinas', 'JSA Anomali Tower Tension,\r\nSUTT 150 kV Line Longikis - Kuaro T.138, T.191,\r\nSUTT 150 kV Tanjung - Muara komam  T.189', 'Pekerjaan Non Rutin', '1', 12);
+INSERT INTO `t_spki` (`id_spki`, `id_personil`, `kepada`, `nomor`, `bulan`, `tahun`, `dari`, `macam_pekerjaan`, `lokasi_pekerjaan`, `mulai_pelaksanaan`, `selesai_pelaksanaan`, `pj`, `pengawas`, `pengawas_k3`, `pelaksana`, `alat_kerja`, `kendaraan`, `uraian_kerja`, `catatan`, `sudah_disetujui`, `id_atasan`) VALUES
+(9, 14, 'TL PDKB RING UPT KALTIMRA', '5', 'I', '2024', 'ASMAN PDKB UPT KALTIMRA', 'JSA Anomali Tower Tension', 'SUTT 150 kV Line Longikis - Kuaro T.138, T.191,\r\nSUTT 150 kV Petung - Longikis T.127 A,\r\nSUTT 150 kV Tanjung - Muara komam  T.189, \r\nSUTT 150 kV Line Muara komam - Kuaro T.268,', '2024-02-03', '2024-02-05', 'MOCH. AZIZ SHIDKI', 'Hernawan Agung P', 'Zam Yudha Pangayoman\r\nIbnu Hubaiyah', 'Ariya Adam Abdullah\r\nI Kadek A\r\nMoch Zulkifliansyah', 'Measuring Stik Isolasi & APD', 'Kendaraan Dinas', 'JSA Anomali Tower Tension,\r\nSUTT 150 kV Line Longikis - Kuaro T.138, T.191,\r\nSUTT 150 kV Tanjung - Muara komam  T.189', 'Pekerjaan Non Rutin', '1', 12),
+(11, 14, 'asdasd', '4', 'VIII', '2023', 'asdasd', 'asdasd', 'asdasdasd', '2024-02-15', '2024-02-15', 'asdasd', 'asd', 'asdas', 'asdasd', 'sadsa', 'dasd', 'asdasd', 'asdasd', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -569,7 +577,7 @@ ALTER TABLE `t_laporan_pekerjaan`
 --
 ALTER TABLE `t_personil`
   ADD PRIMARY KEY (`id_personil`),
-  ADD KEY `id_jabatan` (`id_jabatan`);
+  ADD KEY `t_personil_ibfk_1` (`id_jabatan`);
 
 --
 -- Indeks untuk tabel `t_rencana_operasi`
@@ -653,7 +661,7 @@ ALTER TABLE `t_histori_alat`
 -- AUTO_INCREMENT untuk tabel `t_jabatan`
 --
 ALTER TABLE `t_jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jaringan`
@@ -689,7 +697,7 @@ ALTER TABLE `t_personil`
 -- AUTO_INCREMENT untuk tabel `t_rencana_operasi`
 --
 ALTER TABLE `t_rencana_operasi`
-  MODIFY `id_rencana_operasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id_rencana_operasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_riwayat_gudang`
@@ -707,7 +715,7 @@ ALTER TABLE `t_sertifikat`
 -- AUTO_INCREMENT untuk tabel `t_spki`
 --
 ALTER TABLE `t_spki`
-  MODIFY `id_spki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_spki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_temuan_jsa`
@@ -747,7 +755,7 @@ ALTER TABLE `t_lampiran_laporan_pekerjaan`
 -- Ketidakleluasaan untuk tabel `t_personil`
 --
 ALTER TABLE `t_personil`
-  ADD CONSTRAINT `t_personil_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `t_jabatan` (`id_jabatan`);
+  ADD CONSTRAINT `t_personil_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `t_jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `t_sertifikat`

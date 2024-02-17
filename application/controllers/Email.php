@@ -9,11 +9,11 @@ class Email extends CI_Controller
 		$this->load->model('Personil_model');
 		$this->load->model('Alat_kerja_model');
 		$this->load->model('Rencana_operasi_model');
+		$this->load->library('email');
 	}
 
 	public function index()
 	{
-		$this->load->library('email');
 		$config = array(
 			'protocol'  => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -55,7 +55,7 @@ class Email extends CI_Controller
 		$p_jaringan = $this->db->get('t_jaringan')->result();
 		$jp_jaringan = count($p_jaringan);
 
-		$this->db->where_in('id_jabatan', array(1, 2));
+		$this->db->where_in('id_jabatan', array(1, 2, 3));
 		$query = $this->db->get('t_personil')->result();
 
 		foreach ($query as $q) {
@@ -147,8 +147,5 @@ class Email extends CI_Controller
 			$this->email->message($content);
 			$this->email->send();
 		}
-		$this->session->set_flashdata('message', '<strong>Kirim Email Ke Atasan Telah Berhasil</strong>
-		<i class="bi bi-check-circle-fill"></i>');
-		redirect('dashboard');
 	}
 }
