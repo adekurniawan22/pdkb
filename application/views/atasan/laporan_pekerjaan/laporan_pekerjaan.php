@@ -20,7 +20,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dasar Pelaksanaan</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Judul Laporan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-start text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
@@ -42,7 +42,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $l->dasar_pelaksanaan ?></p>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $l->judul_laporan ?></p>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($l->waktu_pelaksanaan)) ?></p>
@@ -158,6 +158,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="form-group">
+                            <label for="judul_laporan" class="form-control-label">Judul Laporan</label>
+                            <input class="form-control" type="text" placeholder="Judul Laporan" id="judul_laporan" name="judul_laporan" value="<?php echo $lm->judul_laporan ?>" disabled>
+                        </div>
                         <div class="form-group">
                             <label for="dasar_pelaksanaan" class="form-control-label">Dasar Pelaksanaan</label>
                             <input class="form-control" type="text" placeholder="Dasar Pelaksanaan" id="dasar_pelaksanaan" name="dasar_pelaksanaan" value="<?php echo $lm->dasar_pelaksanaan ?>" disabled>

@@ -8,9 +8,15 @@
                             <label for="jenis" class="form-control-label">Jenis Alat</label>
                             <select class="form-select" aria-label="Default select example" name="jenis" id="jenis">
                                 <option value="" selected>Pilih Jenis Alat</option>
-                                <option value="Metal" <?php echo set_select('jenis', "Metal"); ?>>Metal</option>
-                                <option value="Isolasi" <?php echo set_select('jenis', "Isolasi"); ?>>Isolasi</option>
+                                <option value="Alat Dokumentasi" <?php echo set_select('jenis', "Alat Dokumentasi"); ?>>Alat Dokumentasi</option>
+                                <option value="Alat Komunikasi" <?php echo set_select('jenis', "Alat Komunikasi"); ?>>Alat Komunikasi</option>
+                                <option value="Alat Uji" <?php echo set_select('jenis', "Alat Uji"); ?>>Alat Uji</option>
                                 <option value="APD" <?php echo set_select('jenis', "APD"); ?>>APD</option>
+                                <option value="Isolasi" <?php echo set_select('jenis', "Isolasi"); ?>>Isolasi</option>
+                                <option value="Material" <?php echo set_select('jenis', "Material"); ?>>Material</option>
+                                <option value="Metal" <?php echo set_select('jenis', "Metal"); ?>>Metal</option>
+                                <option value="Peralatan K3" <?php echo set_select('jenis', "Peralatan K3"); ?>>Peralatan K3</option>
+                                <option value="Semi Material" <?php echo set_select('jenis', "Semi Material"); ?>>Semi Material</option>
                             </select>
                             <?= form_error('jenis', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
@@ -41,10 +47,12 @@
                                     <select class="form-select" aria-label="Default select example" name="satuan" id="satuan">
                                         <option value="" selected>Pilih Satuan</option>
                                         <option value="Bh" <?php echo set_select('satuan', "Bh"); ?>>Bh</option>
-                                        <option value="Pasang" <?php echo set_select('satuan', "Pasang"); ?>>Pasang</option>
-                                        <option value="Set" <?php echo set_select('satuan', "Set"); ?>>Set</option>
-                                        <option value="Lembar   " <?php echo set_select('satuan', "Lembar"); ?>>Lembar </option>
                                         <option value="Karung" <?php echo set_select('satuan', "Karung"); ?>>Karung</option>
+                                        <option value="Lembar" <?php echo set_select('satuan', "Lembar"); ?>>Lembar</option>
+                                        <option value="Pak" <?php echo set_select('satuan', "Pak"); ?>>Pak</option>
+                                        <option value="Pasang" <?php echo set_select('satuan', "Pasang"); ?>>Pasang</option>
+                                        <option value="Rol" <?php echo set_select('satuan', "Rol"); ?>>Rol</option>
+                                        <option value="Set" <?php echo set_select('satuan', "Set"); ?>>Set</option>
                                     </select>
                                     <?= form_error('satuan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                                 </div>

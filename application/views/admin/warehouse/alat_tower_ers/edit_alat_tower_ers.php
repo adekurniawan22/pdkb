@@ -9,9 +9,15 @@
                             <label for="jenis" class="form-control-label">Jenis Alat</label>
                             <select class="form-select" aria-label="Default select example" name="jenis" id="jenis">
                                 <option value="" selected>Pilih Jenis Alat</option>
-                                <option value="Metal" <?php echo set_select('jenis', "Metal", $alat_tower_ers->jenis == "Metal"); ?>>Metal</option>
-                                <option value="Isolasi" <?php echo set_select('jenis', "Isolasi", $alat_tower_ers->jenis == "Isolasi"); ?>>Isolasi</option>
+                                <option value="Alat Dokumentasi" <?php echo set_select('jenis', "Alat Dokumentasi", $alat_tower_ers->jenis == "Alat Dokumentasi"); ?>>Alat Dokumentasi</option>
+                                <option value="Alat Komunikasi" <?php echo set_select('jenis', "Alat Komunikasi", $alat_tower_ers->jenis == "Alat Komunikasi"); ?>>Alat Komunikasi</option>
+                                <option value="Alat Uji" <?php echo set_select('jenis', "Alat Uji", $alat_tower_ers->jenis == "Alat Uji"); ?>>Alat Uji</option>
                                 <option value="APD" <?php echo set_select('jenis', "APD", $alat_tower_ers->jenis == "APD"); ?>>APD</option>
+                                <option value="Isolasi" <?php echo set_select('jenis', "Isolasi", $alat_tower_ers->jenis == "Isolasi"); ?>>Isolasi</option>
+                                <option value="Material" <?php echo set_select('jenis', "Material", $alat_tower_ers->jenis == "Material"); ?>>Material</option>
+                                <option value="Metal" <?php echo set_select('jenis', "Metal", $alat_tower_ers->jenis == "Metal"); ?>>Metal</option>
+                                <option value="Peralatan K3" <?php echo set_select('jenis', "Peralatan K3", $alat_tower_ers->jenis == "Peralatan K3"); ?>>Peralatan K3</option>
+                                <option value="Semi Material" <?php echo set_select('jenis', "Semi Material", $alat_tower_ers->jenis == "Semi Material"); ?>>Semi Material</option>
                             </select>
                             <?= form_error('jenis', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
@@ -42,10 +48,12 @@
                                     <select class="form-select" aria-label="Default select example" name="satuan" id="satuan">
                                         <option value="" selected>Pilih Satuan</option>
                                         <option value="Bh" <?php echo set_select('satuan', "Bh", $alat_tower_ers->satuan == "Bh"); ?>>Bh</option>
-                                        <option value="Pasang" <?php echo set_select('satuan', "Pasang", $alat_tower_ers->satuan == "Pasang"); ?>>Pasang</option>
-                                        <option value="Set" <?php echo set_select('satuan', "Set", $alat_tower_ers->satuan == "Set"); ?>>Set</option>
-                                        <option value="Lembar" <?php echo set_select('satuan', "Lembar", $alat_tower_ers->satuan == "Lembar"); ?>>Lembar</option>
                                         <option value="Karung" <?php echo set_select('satuan', "Karung", $alat_tower_ers->satuan == "Karung"); ?>>Karung</option>
+                                        <option value="Lembar" <?php echo set_select('satuan', "Lembar", $alat_tower_ers->satuan == "Lembar"); ?>>Lembar</option>
+                                        <option value="Pak" <?php echo set_select('satuan', "Pak", $alat_tower_ers->satuan == "Pak"); ?>>Pak</option>
+                                        <option value="Pasang" <?php echo set_select('satuan', "Pasang", $alat_tower_ers->satuan == "Pasang"); ?>>Pasang</option>
+                                        <option value="Rol" <?php echo set_select('satuan', "Rol", $alat_tower_ers->satuan == "Rol"); ?>>Rol</option>
+                                        <option value="Set" <?php echo set_select('satuan', "Set", $alat_tower_ers->satuan == "Set"); ?>>Set</option>
                                     </select>
                                     <?= form_error('satuan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                                 </div>

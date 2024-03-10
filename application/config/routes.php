@@ -56,6 +56,13 @@ $route['translate_uri_dashes'] = TRUE;
 $route['default_controller'] = 'auth/login';
 $route['proses-login'] = 'auth/proses_login';
 
+$route['partnership'] = 'auth/login_partnership';
+$route['partnership/proses-login-partnership'] = 'auth/proses_login_partnership';
+
+// Partnership
+$route['partnership/dashboard'] = 'dashboard/partnership';
+$route['partnership/profil-partnership'] = 'partnership/profil_partnership';
+
 // Atasan
 $route['atasan/dashboard'] = 'dashboard/index';
 
@@ -105,6 +112,12 @@ $route['admin/personil/edit-personil'] = 'personil/edit_personil';
 $route['admin/personil/proses-edit-personil'] = 'personil/proses_edit_personil';
 $route['admin/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
 $route['admin/personil/proses-tambah-sertifikat'] = 'sertifikat/proses_tambah_sertifikat';
+
+$route['admin/partnership'] = 'partnership/index';
+$route['admin/partnership/tambah-partnership'] = 'partnership/tambah_partnership';
+$route['admin/partnership/proses-tambah-partnership'] = 'partnership/proses_tambah_partnership';
+$route['admin/partnership/edit-partnership'] = 'partnership/edit_partnership';
+$route['admin/partnership/proses-edit-partnership'] = 'partnership/proses_edit_partnership';
 
 $route['admin/rencana-operasi'] = 'rencana_operasi/index';
 

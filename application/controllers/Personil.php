@@ -65,7 +65,7 @@ class Personil extends CI_Controller
 	{
 		$this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-		$this->form_validation->set_rules('nip', 'NIP', 'required|trim|integer|is_unique[t_personil.nip]');
+		$this->form_validation->set_rules('nip', 'NIP', 'required|trim|alpha_numeric|is_unique[t_personil.nip]');
 		$this->form_validation->set_rules(
 			'email',
 			'Email',
@@ -141,7 +141,7 @@ class Personil extends CI_Controller
 			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/personil');
 			} else if ($this->session->userdata('id_jabatan') == '4') {
-				redirect('atasan/personil');
+				redirect('admin/personil');
 			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
 				redirect('jtc/personil');
 			}
@@ -175,7 +175,7 @@ class Personil extends CI_Controller
 		$this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
 		if ($this->input->post('nip') != $check_data_personil->nip) {
-			$this->form_validation->set_rules('nip', 'NIP', 'required|trim|integer|is_unique[t_personil.nip]');
+			$this->form_validation->set_rules('nip', 'NIP', 'required|trim|alpha_numeric|is_unique[t_personil.nip]');
 		}
 		if ($this->input->post('email') != $check_data_personil->email) {
 			$this->form_validation->set_rules(

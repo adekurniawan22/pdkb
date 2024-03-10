@@ -70,6 +70,14 @@ class Dashboard extends CI_Controller
 		}
 	}
 
+	public function partnership()
+	{
+		$data['title'] = 'Dashboard';
+		$this->load->view('templates/header', $data);
+		$this->load->view('partnership/dashboard', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function kirim_email_ke_atasan()
 	{
 		$nama_pengirim = $this->session->userdata('nama');

@@ -62,6 +62,7 @@ class Laporan_pekerjaan extends CI_Controller
 
 	public function proses_tambah_laporan_pekerjaan()
 	{
+		$this->form_validation->set_rules('judul_laporan', 'Judul Laporan', 'required|trim');
 		$this->form_validation->set_rules('dasar_pelaksanaan', 'Dasar Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('waktu_pelaksanaan', 'Waktu Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('lingkup_pekerjaan', 'Lingkup Pekerjaan', 'required|trim');
@@ -73,6 +74,7 @@ class Laporan_pekerjaan extends CI_Controller
 		} else {
 			$data = [
 				'id_personil' => $this->session->userdata('id_personil'),
+				'judul_laporan' => $this->input->post('judul_laporan'),
 				'dasar_pelaksanaan' => $this->input->post('dasar_pelaksanaan'),
 				'waktu_pelaksanaan' => $this->input->post('waktu_pelaksanaan'),
 				'lingkup_pekerjaan' => $this->input->post('lingkup_pekerjaan'),
@@ -140,6 +142,7 @@ class Laporan_pekerjaan extends CI_Controller
 
 	public function proses_edit_laporan_pekerjaan()
 	{
+		$this->form_validation->set_rules('judul_laporan', 'Judul Laporan', 'required|trim');
 		$this->form_validation->set_rules('dasar_pelaksanaan', 'Dasar Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('waktu_pelaksanaan', 'Waktu Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('lingkup_pekerjaan', 'Lingkup Pekerjaan', 'required|trim');
@@ -151,6 +154,7 @@ class Laporan_pekerjaan extends CI_Controller
 		} else {
 
 			$data = [
+				'judul_laporan' => $this->input->post('judul_laporan'),
 				'dasar_pelaksanaan' => $this->input->post('dasar_pelaksanaan'),
 				'waktu_pelaksanaan' => $this->input->post('waktu_pelaksanaan'),
 				'lingkup_pekerjaan' => $this->input->post('lingkup_pekerjaan'),
@@ -171,8 +175,13 @@ class Laporan_pekerjaan extends CI_Controller
 				$this->session->set_flashdata('message', '<strong>Data Laporan Pekerjaan Berhasil Diedit</strong>
 															<i class="bi bi-check-circle-fill"></i>');
 			} else {
-				$this->session->set_flashdata('message', '<strong>Data Laporan Pekerjaan Gagal Diedit</strong>
-															<i class="bi bi-exclamation-circle-fill"></i>');
+				if ($result) {
+					$this->session->set_flashdata('message', '<strong>Data Laporan Pekerjaan Berhasil Diedit</strong>
+                                                            <i class="bi bi-check-circle-fill"></i>');
+				} else {
+					$this->session->set_flashdata('message', '<strong>Data Laporan Pekerjaan Gagal Diedit</strong>
+					<i class="bi bi-exclamation-circle-fill"></i>');
+				}
 			}
 			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				redirect('atasan/laporan-pekerjaan');

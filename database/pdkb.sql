@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Feb 2024 pada 09.16
+-- Waktu pembuatan: 10 Mar 2024 pada 06.07
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -43,14 +43,166 @@ CREATE TABLE `t_alat_kerja` (
 --
 
 INSERT INTO `t_alat_kerja` (`id_alat_kerja`, `jenis`, `nama_alat_kerja`, `spesifikasi`, `jumlah`, `satuan`, `tanggal_kadaluarsa`, `sedang_dipinjam`) VALUES
-(3, 'Isolasi', 'Tang', 'Untuk memegang, memotong, melepas, dan memasang bahan kerja', 166, 'Bh', NULL, 16),
-(4, 'Metal', 'Bor Listrik', '500W, Kecepatan Variabel', 56, 'Pasang', NULL, 11),
-(5, 'Metal', 'Tang Potong', 'Bahan Tahan Karat', 100, 'Pasang', NULL, 20),
-(6, 'Metal', 'Kunci Inggris', 'Ukuran 10 inci', 15, 'Pasang', NULL, 0),
-(7, 'Metal', 'Mesin Gerinda', '800W, Diskon 4 inch', 8, 'Pasang', NULL, 0),
-(8, 'Metal', 'Palu', 'Kepala Logam, Pegangan Kayu', 20, 'Pasang', NULL, 0),
-(9, 'Metal', 'Obeng', 'Untuk membuka atau mengencangkan baut atau sekrup pada berbagai benda', 10, 'Bh', NULL, 0),
-(19, 'Isolasi', 'Tes', 'Tes', 13, 'Pasang', '2024-02-22', 0);
+(20, 'Metal', 'Snacth Block', '2500 lbs', 10, 'Bh', '2024-02-16', 0),
+(21, 'Metal', 'Chain Hoist', '1,5 ton', 4, 'Bh', NULL, 2),
+(22, 'Metal', 'Tirfor', 'Tracelar', 6, 'Set', NULL, 1),
+(23, 'Metal', 'Genset', 'Honda EU20i', 1, 'Bh', NULL, 2),
+(24, 'Metal', 'Roll Kabel', '-', 6, 'Bh', NULL, 2),
+(25, 'Metal', 'Inverter Welder', 'Lakoni', 1, 'Bh', NULL, 1),
+(26, 'Metal', 'Gerinda Duduk', 'BOSCH', 1, 'Bh', NULL, 1),
+(27, 'Metal', 'Magnetic Drill', 'WP-25N', 1, 'Bh', NULL, 1),
+(28, 'Metal', 'Welding Mask', 'Rhino M500', 1, 'Bh', NULL, 1),
+(29, 'Metal', 'Gerinda Baterai', 'NRT-PRO', 2, 'Bh', NULL, 1),
+(30, 'Metal', 'Impact', 'JLD', 1, 'Bh', NULL, 1),
+(31, 'Metal', 'Sling Baja', '-', 3, 'Bh', NULL, 2),
+(32, 'Metal', 'Tongkat Tirfor', '-', 2, 'Set', NULL, 2),
+(33, 'Isolasi', 'Tambang Offline', '-', 2, 'Set', NULL, 2),
+(34, 'Isolasi', 'Toll set kecil', '-', 1, 'Set', NULL, 1),
+(35, 'Isolasi', 'Terpal', '-', 2, 'Bh', NULL, 2),
+(36, 'APD', 'Body hardness', 'SALA', 22, 'Bh', '2025-08-31', 7),
+(37, 'APD', 'Lanyard', '-', 22, 'Bh', '2025-08-19', 7),
+(38, 'APD', 'Hook Lanyard', '-', 36, 'Bh', '2025-08-31', 7),
+(39, 'APD', 'Conductive Suite', 'Bennet', 2, 'Bh', '2028-08-19', 0),
+(40, 'APD', 'Conductive Suite', 'Kararo', 6, 'Bh', '2025-08-19', 0),
+(41, 'APD', 'Shock Absorber', '-', 9, 'Bh', '2030-02-19', 0),
+(42, 'APD', 'Raycem', '-', 4, 'Bh', NULL, 0),
+(43, 'APD', 'AV Tester', '-', 1, 'Bh', NULL, 0),
+(44, 'APD', 'Karet Helm', '-', 1, 'Set', NULL, 0),
+(45, 'APD', 'Contact Tester', '-', 1, 'Bh', NULL, 0),
+(46, 'APD', 'Rope Tester', '-', 2, 'Bh', NULL, 1),
+(47, 'APD', 'Rompi PK3', '-', 2, 'Bh', NULL, 1),
+(48, 'APD', 'Rompi PP', '-', 2, 'Bh', NULL, 1),
+(49, 'APD', 'Acton', '-', 1, 'Bh', NULL, 0),
+(50, 'APD', 'Contain Hidrogen', '-', 2, 'Bh', NULL, 0),
+(51, 'APD', 'Micro Tester', '-', 1, 'Bh', NULL, 0),
+(52, 'APD', 'Isolometer', '-', 1, 'Bh', NULL, 0),
+(53, 'APD', 'Electrolude DFL', '-', 2, 'Bh', NULL, 0),
+(54, 'APD', 'Glass Restores Component', '\"A\" , \"B\"', 1, 'Bh', NULL, 0),
+(55, 'APD', 'Silikon cloates', '-', 1, 'Bh', NULL, 0),
+(56, 'APD', 'Tang Ampere', '-', 1, 'Bh', NULL, 0),
+(57, 'Metal', 'H-Frame', 'Besar', 1, 'Bh', NULL, 0),
+(58, 'Metal', 'H-Frame', 'Kecil', 1, 'Bh', NULL, 0),
+(59, 'Metal', 'Hook Click', '-', 6, 'Bh', NULL, 0),
+(60, 'Metal', 'Yoke Hook Click', '-', 3, 'Bh', NULL, 0),
+(61, 'Metal', 'Genset', 'Honda, Mobile', 1, 'Bh', NULL, 0),
+(62, 'Metal', 'Genset', 'Non Mobile', 1, 'Bh', NULL, 0),
+(63, 'Metal', 'Capstan Hoist', '110 volt', 2, 'Bh', NULL, 1),
+(64, 'Metal', 'Push Switch', '-', 2, 'Bh', NULL, 0),
+(65, 'Metal', 'Snatch Block', '2500 lbs', 6, 'Bh', NULL, 1),
+(66, 'Metal', 'Snatch Block', '1250 lbs', 13, 'Bh', NULL, 3),
+(67, 'Metal', 'Came Long', 'Gsw', 2, 'Bh', NULL, 0),
+(68, 'Metal', 'Came Long', 'Conductor', 6, 'Bh', NULL, 0),
+(69, 'Metal', 'Pole Clamp', 'Kecil', 5, 'Bh', NULL, 0),
+(70, 'Metal', 'Pole Clamp', 'Besar', 22, 'Bh', NULL, 0),
+(71, 'Metal', 'Extension Tower Sadle', '-', 7, 'Bh', NULL, 0),
+(72, 'Metal', 'Extension Pole Clamp', '-', 6, 'Bh', NULL, 0),
+(73, 'Metal', 'Sackle', '6,5 Ton', 6, 'Bh', NULL, 0),
+(74, 'Metal', 'Sackle', '4,75 Ton', 9, 'Bh', NULL, 0),
+(75, 'Metal', 'Sackle', '3,25 Ton', 6, 'Bh', NULL, 2),
+(76, 'Metal', 'Sackle', '2 Ton', 4, 'Bh', NULL, 0),
+(77, 'Metal', 'Rantai Capstan Hoist', '-', 6, 'Bh', NULL, 0),
+(78, 'Metal', 'Chain Binder', '-', 1, 'Bh', NULL, 0),
+(79, 'Metal', 'Trunion', 'Kecil', 5, 'Bh', NULL, 3),
+(80, 'Metal', 'Trunion', 'Besar', 4, 'Bh', NULL, 0),
+(81, 'Metal', 'Plat siku tambahan', '-', 9, 'Bh', NULL, 0),
+(82, 'Metal', 'Carabiner', 'Kecil', 30, 'Bh', NULL, 15),
+(83, 'Metal', 'Carabiner', 'Besar', 4, 'Bh', NULL, 2),
+(84, 'Metal', 'Screw Jack', 'Pendek', 10, 'Bh', NULL, 0),
+(85, 'Metal', 'Screw Jack', 'Sedang', 4, 'Bh', NULL, 2),
+(86, 'Metal', 'Screw Jack', 'Panjang', 2, 'Bh', NULL, 2),
+(87, 'Metal', 'Snuck', '-', 1, 'Bh', NULL, 1),
+(88, 'Metal', 'Chain Hoist', 'Kyoto 1,5 Ton', 2, 'Bh', NULL, 0),
+(89, 'Metal', 'Chain Hoist', 'Kondo 3 Ton', 1, 'Bh', NULL, 0),
+(90, 'Metal', 'Chain Hoist', 'Berg Steel 1,5 Ton', 2, 'Bh', NULL, 0),
+(91, 'Metal', 'Chain Hoist', 'Berg Steel 3 Ton', 2, 'Bh', NULL, 0),
+(92, 'Metal', 'Berg Steel', '6 Ton', 2, 'Bh', NULL, 0),
+(93, 'Metal', 'Kunci Shock', 'Stenly', 3, 'Set', NULL, 0),
+(94, 'Metal', 'Trafo', '220 v', 2, 'Bh', NULL, 1),
+(95, 'Metal', 'Tower Sadle', '-', 7, 'Bh', NULL, 0),
+(96, 'Metal', 'Pin Strain Pole', '-', 13, 'Bh', NULL, 5),
+(97, 'Metal', 'Rachet Wrench', '-', 3, 'Bh', NULL, 2),
+(98, 'Metal', 'Acc Rachet Wrench', '-', 5, 'Bh', NULL, 0),
+(99, 'Metal', 'Acc Kunci Shock', '-', 5, 'Bh', NULL, 0),
+(100, 'Metal', 'Cotter key Puller', '-', 5, 'Bh', NULL, 2),
+(101, 'Metal', 'Bolt Socket Adjuster', 'Type C', 2, 'Bh', NULL, 1),
+(102, 'Metal', 'Bolt Socket Adjuster', 'Type \"U\" kecil', 1, 'Bh', NULL, 0),
+(103, 'Metal', 'Bolt Socket Adjuster', 'Type \"U\" Besar', 2, 'Bh', NULL, 0),
+(104, 'Metal', 'Insulator Forks', '-', 2, 'Bh', NULL, 1),
+(105, 'Metal', 'Acc Stick Screw Driver', '-', 1, 'Bh', NULL, 0),
+(106, 'Metal', 'Pin Holder', 'Type A', 2, 'Bh', NULL, 0),
+(107, 'Metal', 'Pin Holder', 'Type \"B\"', 2, 'Bh', NULL, 0),
+(108, 'Metal', 'Flexibel Tool', '-', 1, 'Bh', NULL, 0),
+(109, 'Metal', 'Cut Out Tool', '-', 1, 'Bh', NULL, 0),
+(110, 'Metal', 'All Angle Tool', '-', 1, 'Bh', NULL, 0),
+(111, 'Metal', 'Spiral Disconect Tool', '-', 1, 'Bh', NULL, 0),
+(112, 'Metal', 'Bonding Clamp', ',-', 1, 'Bh', NULL, 0),
+(113, 'Metal', 'Sapper Hook', '-', 2, 'Bh', NULL, 1),
+(114, 'Metal', 'Mirror Tool', '-', 1, 'Bh', NULL, 0),
+(115, 'Metal', 'Bolt Head Wrench', '-', 1, 'Bh', NULL, 0),
+(116, 'Metal', 'Hack Saw Tool', '-', 1, 'Bh', NULL, 0),
+(117, 'Metal', 'Locating Pin Tool', '-', 1, 'Bh', NULL, 0),
+(118, 'Metal', 'Cotter Key Remover', '-', 3, 'Bh', NULL, 0),
+(119, 'Metal', 'Hot Rodder Tool', '-', 4, 'Bh', NULL, 0),
+(120, 'Metal', 'Pin Instaler Tool', '-', 1, 'Bh', NULL, 0),
+(121, 'Metal', 'Strap Hoist', '-', 6, 'Bh', NULL, 0),
+(122, 'Metal', 'Static Sunt', '-', 2, 'Bh', NULL, 0),
+(123, 'Metal', 'Stang Stick Isolasi', '-', 5, 'Bh', NULL, 0),
+(124, 'Metal', 'Kabel Role', '-', 5, 'Bh', NULL, 2),
+(125, 'Metal', 'Rope Block', 'Tambang Offline', 6, 'Set', NULL, 0),
+(126, 'Metal', 'Rope Block', 'Tambang Isolasi', 1, 'Set', NULL, 0),
+(127, 'Metal', 'Rantai K3', '-', 1, 'Karung', NULL, 0),
+(128, 'Metal', 'Terpal', 'Kuning', 3, 'Lembar   ', NULL, 0),
+(129, 'Metal', 'Terpal', 'Biru', 1, 'Lembar   ', NULL, 0),
+(130, 'Metal', 'Senso', '50 cm', 1, 'Bh', NULL, 0),
+(131, 'APD', 'Conductive shoes', 'Royer', 10, 'Pasang', NULL, 0),
+(132, 'APD', 'Offline Shoes', 'Royer', 7, 'Pasang', NULL, 0),
+(133, 'Metal', 'Webbing Sling', '1 Ton, 1m', 6, 'Bh', NULL, 2),
+(134, 'Metal', 'Webbing Sling', '1 Ton, 2 m', 5, 'Bh', NULL, 1),
+(135, 'Metal', 'Webbing Sling', '2 Ton', 37, 'Bh', NULL, 1),
+(136, 'Metal', 'Webbing Sling', '3 Ton', 22, 'Bh', NULL, 0),
+(137, 'Metal', 'Webbing Sling', '5 Ton', 5, 'Bh', NULL, 0),
+(138, 'Metal', 'Webbing Sling', '6 Ton', 6, 'Bh', NULL, 0),
+(139, 'Metal', 'Tool Bag', 'Kotak', 11, 'Bh', NULL, 0),
+(140, 'Metal', 'Tool Bag', 'Kuning', 10, 'Bh', NULL, 0),
+(141, 'Metal', 'Metalic Cross Arm Yoke', '-', 1, 'Bh', NULL, 0),
+(142, 'Metal', 'Hot End Yoke', '500 kv', 2, 'Bh', NULL, 0),
+(143, 'Metal', 'Cold End Yoke', '500 kv', 2, 'Bh', NULL, 0),
+(144, 'Metal', 'Strain Yoke', 'Hot', 2, 'Bh', NULL, 0),
+(145, 'Metal', 'Strain Yoke', 'Cold', 2, 'Bh', NULL, 0),
+(146, 'Metal', 'Two Pole Strain Carrier Yoke', '150 kv', 1, 'Bh', NULL, 0),
+(147, 'Metal', 'Mast Base', '150 kv', 1, 'Bh', NULL, 0),
+(148, 'Metal', 'Single Troly Wheel', '-', 1, 'Bh', NULL, 0),
+(149, 'Metal', 'Double Troly Wheel', '-', 1, 'Bh', NULL, 0),
+(150, 'Metal', 'Double Type Lever Lift', '-', 8, 'Bh', NULL, 0),
+(151, 'Metal', 'Ladder Clamp', '-', 17, 'Bh', NULL, 0),
+(152, 'Metal', 'Vertical Ladder Base', '-', 6, 'Bh', NULL, 0),
+(153, 'Metal', 'Ladder Support', '-', 5, 'Bh', NULL, 0),
+(154, 'Metal', 'Adjustable Ladder Hook', '-', 2, 'Bh', NULL, 0),
+(155, 'Metal', 'Double Clamp Pole', '-', 6, 'Bh', NULL, 0),
+(156, 'Metal', 'Adjustable Hook Assembly', '-', 3, 'Bh', NULL, 0),
+(157, 'Metal', 'Middle Cradle Metalic Braket', '-', 3, 'Bh', NULL, 0),
+(158, 'Metal', 'Cradle Clamp', '-', 3, 'Bh', NULL, 0),
+(159, 'Metal', 'Wheel Tightener Assembly', '-', 6, 'Bh', NULL, 0),
+(160, 'Metal', 'Sadle and Tightener', '-', 6, 'Bh', NULL, 0),
+(161, 'Metal', 'By Pass Clamp', '-', 5, 'Bh', NULL, 0),
+(162, 'Metal', 'Rachet Strap', '-', 4, 'Set', NULL, 0),
+(163, 'Metal', 'Tambang Offline', '-', 4, 'Bh', NULL, 0),
+(164, 'Metal', 'Tambang Polypropylene', '-', 1, 'Bh', NULL, 0),
+(165, 'Metal', 'Tambang Isolasi', '-', 6, 'Bh', NULL, 1),
+(166, 'Metal', 'Tong Tambang', '-', 6, 'Bh', NULL, 3),
+(167, 'Metal', 'Gotongan', '-', 2, 'Bh', NULL, 0),
+(168, 'Metal', 'Rak Stick', '-', 4, 'Bh', NULL, 0),
+(169, 'Metal', 'Stick Tester', '-', 2, 'Set', NULL, 1),
+(170, 'Metal', 'Tool Box', 'Hitam, merah', 1, 'Bh', NULL, 0),
+(171, 'Metal', 'Pangging String', 'Isolasi , 1m', 6, 'Bh', NULL, 0),
+(172, 'Metal', 'Pangging String', 'Non Isolasi', 8, 'Bh', NULL, 0),
+(173, 'Metal', 'Kayu Balok, H - Frame', '-', 1, 'Bh', NULL, 1),
+(174, 'APD', 'Kerucut Lalu lintas', '-', 2, 'Bh', NULL, 0),
+(175, 'Isolasi', 'Strain Pole', '7 feet', 2, 'Bh', NULL, 0),
+(176, 'Isolasi', 'Strain Pole', '6 feet', 2, 'Bh', NULL, 2),
+(177, 'Isolasi', 'Universal Stick', '10 feet', 2, 'Bh', NULL, 0),
+(178, 'Isolasi', 'Universal Stick', '12 feet', 2, 'Bh', NULL, 2),
+(179, 'Isolasi', 'Universal stick', '14 feet', 2, 'Bh', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -76,10 +228,9 @@ CREATE TABLE `t_alat_tower_ers` (
 --
 
 INSERT INTO `t_alat_tower_ers` (`id_alat_tower_ers`, `jenis`, `nama_alat_tower_ers`, `merk`, `spesifikasi`, `jumlah`, `satuan`, `tahun_pengadaan`, `tanggal_kadaluarsa`, `sedang_dipinjam`) VALUES
-(1, 'Metal', 'Antena Parabola', 'XYZ', 'Frekuensi 2.4 GHz, Gain 24 dBi', 10, 'Pasang', '2023', NULL, 0),
-(2, 'Metal', 'Kabel Koaksial RG-6', 'ABC', 'Panjang 50 meter, Impedansi 75 Ohm', 20, 'Pasang', '2022', NULL, 0),
-(3, 'Metal', 'Booster Sinyal', 'DEF', 'Gain 20 dB, Frekuensi 800-2500 MHz', 5, 'Pasang', '2024', '2024-02-21', 0),
-(4, 'APD', 'Baterai UPS', 'GHI', 'Kapasitas 100 Ah, Tegangan 12V', 20, 'Pasang', '2024', '2024-03-01', 5);
+(5, 'Metal', 'Chain Hoist', 'Kyoto', '1,5 ton', 4, 'Bh', '2015', '2028-06-16', 2),
+(6, 'Metal', 'Webing sling', 'Fiber Tech', '2 Ton 2 meter', 10, 'Bh', '2015', NULL, 2),
+(7, 'Metal', 'Came Long', 'Klein', '15000 Lbs', 10, 'Bh', '2015', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -99,9 +250,55 @@ CREATE TABLE `t_detail_histori_alat` (
 --
 
 INSERT INTO `t_detail_histori_alat` (`id_detail_histori_alat`, `id_histori_alat`, `id_alat_kerja`, `jumlah`) VALUES
-(21, 17, 3, 5),
-(22, 17, 4, 5),
-(23, 17, 5, 8);
+(26, 20, 33, 2),
+(27, 20, 34, 1),
+(28, 20, 35, 1),
+(29, 20, 21, 2),
+(30, 20, 22, 1),
+(31, 20, 23, 2),
+(32, 20, 24, 2),
+(33, 20, 25, 1),
+(34, 20, 26, 1),
+(35, 20, 27, 1),
+(36, 20, 28, 1),
+(37, 20, 29, 1),
+(38, 20, 30, 1),
+(39, 20, 31, 2),
+(40, 20, 32, 2),
+(41, 21, 36, 7),
+(42, 21, 37, 7),
+(43, 21, 38, 7),
+(44, 21, 46, 1),
+(45, 21, 47, 1),
+(46, 21, 48, 1),
+(47, 21, 35, 1),
+(48, 21, 176, 2),
+(49, 21, 178, 2),
+(50, 21, 63, 1),
+(51, 21, 65, 1),
+(52, 21, 66, 3),
+(53, 21, 75, 2),
+(54, 21, 79, 3),
+(55, 21, 82, 15),
+(56, 21, 83, 2),
+(57, 21, 85, 2),
+(58, 21, 86, 2),
+(59, 21, 87, 1),
+(60, 21, 94, 1),
+(61, 21, 96, 5),
+(62, 21, 97, 2),
+(63, 21, 100, 2),
+(64, 21, 101, 1),
+(65, 21, 104, 1),
+(66, 21, 113, 1),
+(67, 21, 124, 2),
+(68, 21, 133, 2),
+(69, 21, 134, 1),
+(70, 21, 135, 1),
+(71, 21, 165, 1),
+(72, 21, 166, 3),
+(73, 21, 169, 1),
+(74, 21, 173, 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +318,12 @@ CREATE TABLE `t_detail_riwayat_gudang` (
 --
 
 INSERT INTO `t_detail_riwayat_gudang` (`id_detail_riwayat_gudang`, `id_riwayat_gudang`, `id_alat_tower_ers`, `jumlah`) VALUES
-(7, 6, 4, 5);
+(8, 7, 5, 2),
+(9, 7, 6, 2),
+(10, 7, 7, 2),
+(11, 8, 5, 1),
+(12, 8, 6, 4),
+(13, 8, 7, 5);
 
 -- --------------------------------------------------------
 
@@ -142,7 +344,9 @@ CREATE TABLE `t_foto_jsa` (
 INSERT INTO `t_foto_jsa` (`id_foto_jsa`, `id_jsa`, `foto`) VALUES
 (32, 17, '19800101000514_IMG_5249.JPG'),
 (33, 17, '19800101000514_IMG_52491.JPG'),
-(34, 17, '19800101000525_IMG_5250.JPG');
+(34, 17, '19800101000525_IMG_5250.JPG'),
+(35, 18, 'E3A8FE79-C6EC-4CB3-8D59-2F9131A00687.jpeg'),
+(36, 18, 'CFFA609C-A759-428A-86B5-CF8F206C4727.jpeg');
 
 -- --------------------------------------------------------
 
@@ -169,7 +373,7 @@ CREATE TABLE `t_gardu_induk` (
 --
 
 INSERT INTO `t_gardu_induk` (`id_gardu_induk`, `jenis_anomali`, `gardu_induk`, `bay`, `jumlah_titik`, `keterangan`, `klasifikasi`, `tanggal_eksekusi`, `status_dikerjakan`, `foto`, `id_personil`) VALUES
-(7, 'Tes', 'Palangkaraya', '- Trafo 1\r\n- Trafo\r\n- Pulang Pisau', 9, 'Pembebasan Konduktor Paralel Busbar A dan Busbar B (fasa R,S,T)', 'Tes', '2024-02-19', '0', '19800101000858_IMG_5203.JPG', 14);
+(7, 'Tes', 'Palangkaraya', '- Trafo 1\r\n- Trafo\r\n- Pulang Pisau', 9, 'Pembebasan Konduktor Paralel Busbar A dan Busbar B (fasa R,S,T)', 'Tes', '2024-02-19', '1', '19800101000858_IMG_5203.JPG', 14);
 
 -- --------------------------------------------------------
 
@@ -195,7 +399,8 @@ CREATE TABLE `t_histori_alat` (
 --
 
 INSERT INTO `t_histori_alat` (`id_histori_alat`, `penanggung_jawab`, `id_personil`, `tanggal_keluar`, `tanggal_masuk`, `keterangan`, `status`, `tanda_tangan`, `sudah_disetujui`, `id_atasan`) VALUES
-(17, 'Jaka Raksabumi', 14, '2024-02-08', NULL, 'Peminjaman alat untuk pekerjaan rutin', 'keluar', 'signature_c804646545df4530852630ab07e76834.png', '1', 12);
+(20, 'M.Iqbal A', 14, '2024-02-16', NULL, 'Perbaikan Konduktor dan Traves T.167-168 Tanjung Selor', 'keluar', 'signature_48921e6fd410f4a6e07cca937752fd2a.png', '1', 12),
+(21, 'Rizkiyannur Adha', 14, '2024-02-23', NULL, 'Pekerjaan penggantian string set isolator T.18 dan 06 Manggarsari-Karangjoang', 'keluar', 'signature_28d8beca66dea21dd9b8f97e6c3bbbd1.png', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -213,7 +418,7 @@ CREATE TABLE `t_jabatan` (
 --
 
 INSERT INTO `t_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
-(1, 'Assistant Manager PDKB'),
+(1, 'Assistant Manager'),
 (2, 'Team Leader PDKB SUTT/SUTET'),
 (3, 'Team Leader PDKB GI/GITET'),
 (4, 'Admin'),
@@ -245,7 +450,7 @@ CREATE TABLE `t_jaringan` (
 --
 
 INSERT INTO `t_jaringan` (`id_jaringan`, `jenis_anomali`, `bay_line`, `no_tower`, `jumlah_titik`, `keterangan`, `klasifikasi`, `tanggal_eksekusi`, `status_dikerjakan`, `foto`, `id_personil`) VALUES
-(6, 'Tes', '- Palangkaraya\r\n- Kasongan 2', 73, 2, 'Penggantian 2 String Isolator Breakdown Phasa R (Double Suspension)', 'Tes', '2024-03-04', '0', 'WhatsApp_Image_2023-06-29_at_12_23_01.jpg', 14);
+(6, 'Tes', '- Palangkaraya\r\n- Kasongan 2', 73, 2, 'Penggantian 2 String Isolator Breakdown Phasa R (Double Suspension)', 'Tes', '2024-03-14', '1', 'WhatsApp_Image_2023-06-29_at_12_23_01.jpg', 14);
 
 -- --------------------------------------------------------
 
@@ -270,7 +475,8 @@ CREATE TABLE `t_jsa` (
 --
 
 INSERT INTO `t_jsa` (`id_jsa`, `id_personil`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `kesimpulan`, `sudah_disetujui`, `id_atasan`) VALUES
-(17, 14, 'TOWER T.189 TANJUNG - MUARA KOMAM', '2024-01-04', '- Konstruksi Tower\r\n- Jenis anomali\r\n- Kondisi Lingkungan', 'SUTT 150 KV Tower 189 Line Tanjung - Muara Komam', 'Pekerjaan pada Tower 189 Line Tanjung - Muara Komam, Tidak bisa dikerjakan secara PDKB\r\nkarena jarak aman untuk akses Hotman tidak terpenuhi dan akses menuju tower sulit karena\r\nharus melewati jurang dan sungai.', '1', 12);
+(17, 14, 'TOWER T.189 TANJUNG - MUARA KOMAM', '2024-01-04', '- Konstruksi Tower\r\n- Jenis anomali\r\n- Kondisi Lingkungan', 'SUTT 150 KV Tower 189 Line Tanjung - Muara Komam', 'Pekerjaan pada Tower 189 Line Tanjung - Muara Komam, Tidak bisa dikerjakan secara PDKB\r\nkarena jarak aman untuk akses Hotman tidak terpenuhi dan akses menuju tower sulit karena\r\nharus melewati jurang dan sungai.', '1', 12),
+(18, 12, 'Ggsyyyghhhhw', '2024-02-15', 'Kskkwmmlalll', 'Jjsjkkwmm', 'Kkkkskkkkmk', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -292,7 +498,8 @@ CREATE TABLE `t_lampiran_laporan_pekerjaan` (
 --
 
 INSERT INTO `t_lampiran_laporan_pekerjaan` (`id_lampiran`, `id_laporan_pekerjaan`, `judul_lampiran`, `foto_sebelum`, `foto_proses`, `foto_setelah`) VALUES
-(41, 58, 'PENGGANTIAN STRING SET ISOLATOR KOROSI, T. 08 KARANG JOANG - HARAPAN BARU II,\r\nFASA S', '19800101000258_IMG_5184.JPG', '19800101000409_IMG_5245.JPG', '19800101000433_IMG_5247.JPG');
+(41, 58, 'PENGGANTIAN STRING SET ISOLATOR KOROSI, T. 08 KARANG JOANG - HARAPAN BARU II,\r\nFASA S', '19800101000258_IMG_5184.JPG', '19800101000409_IMG_5245.JPG', '19800101000433_IMG_5247.JPG'),
+(42, 59, 'tes', '19800101000258_IMG_51841.JPG', '19800101000409_IMG_52451.JPG', '19800101000433_IMG_52471.JPG');
 
 -- --------------------------------------------------------
 
@@ -303,6 +510,7 @@ INSERT INTO `t_lampiran_laporan_pekerjaan` (`id_lampiran`, `id_laporan_pekerjaan
 CREATE TABLE `t_laporan_pekerjaan` (
   `id_laporan_pekerjaan` int(11) NOT NULL,
   `id_personil` int(11) NOT NULL,
+  `judul_laporan` varchar(255) NOT NULL,
   `dasar_pelaksanaan` varchar(255) NOT NULL,
   `waktu_pelaksanaan` date NOT NULL,
   `lingkup_pekerjaan` varchar(255) NOT NULL,
@@ -316,8 +524,36 @@ CREATE TABLE `t_laporan_pekerjaan` (
 -- Dumping data untuk tabel `t_laporan_pekerjaan`
 --
 
-INSERT INTO `t_laporan_pekerjaan` (`id_laporan_pekerjaan`, `id_personil`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `penutup`, `sudah_disetujui`, `id_atasan`) VALUES
-(58, 14, 'PEMELIHARAAN STRING SET ISOLATOR KOROSI LINE KARANG JOANG - HARAPAN BARU T. 08', '2024-01-10', 'String Set Isolator', '1. String set Isolator korosi tower 08, Karang Joang - Harapan baru II, fasa S 100%', 'Demikian laporan ini kami buat untuk dipergunakan sebagaimana mestinya.', '1', 12);
+INSERT INTO `t_laporan_pekerjaan` (`id_laporan_pekerjaan`, `id_personil`, `judul_laporan`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `penutup`, `sudah_disetujui`, `id_atasan`) VALUES
+(58, 14, '', 'PEMELIHARAAN STRING SET ISOLATOR KOROSI LINE KARANG JOANG - HARAPAN BARU T. 08', '2024-01-10', 'String Set Isolator', '1. String set Isolator korosi tower 08, Karang Joang - Harapan baru II, fasa S 100%', 'Demikian laporan ini kami buat untuk dipergunakan sebagaimana mestinya.', '1', 12),
+(59, 14, 'tes judul tes tes', 'tes', '2024-03-10', 'tes', 'tes', 'tes', '1', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_partnership`
+--
+
+CREATE TABLE `t_partnership` (
+  `id_partnership` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nama_ultg` varchar(255) NOT NULL,
+  `manajer` varchar(255) NOT NULL,
+  `nip` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `no_hp` varchar(255) NOT NULL,
+  `status_aktif` enum('0','1') NOT NULL,
+  `tanda_tangan` varchar(255) NOT NULL,
+  `id_personil` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `t_partnership`
+--
+
+INSERT INTO `t_partnership` (`id_partnership`, `username`, `password`, `nama_ultg`, `manajer`, `nip`, `email`, `no_hp`, `status_aktif`, `tanda_tangan`, `id_personil`) VALUES
+(5, 'tes', '$2y$10$u6/HvNxLglUC5a98U2A6qOfLE98GR9qmjwdLt0ACQuQK6kfpLH3Bi', 'tes2', 'tes', '12345678918', 'tes@email.com', '123456789', '1', 'signature_738a2b4c51cc626773f8e721d7f7a813.png', 14);
 
 -- --------------------------------------------------------
 
@@ -345,11 +581,11 @@ CREATE TABLE `t_personil` (
 --
 
 INSERT INTO `t_personil` (`id_personil`, `id_jabatan`, `nama`, `nip`, `email`, `no_hp`, `username`, `password`, `alamat`, `foto`, `status_aktif`, `tanda_tangan`) VALUES
-(12, 1, 'Mochamad Aziz Shidki', '12345678910', 'asistantmanager@email.com', '081274747474', 'asman', '$2y$10$NLFDLVITX2ahLVt9p39Wl.s4Ivppt8d6VKfeIbLYOwF5PZVKbRURK', 'Jalan Dago, Nomor 43', 'logo_unikom_kuning.png', '1', 'signature_2a74a090f697decd0cdb88ac193e7f24.png'),
-(13, 2, 'Baharudin', '12345678911', 'teamleader@email.com', '081275757575', 'team_leader', '$2y$10$NZbK40eNc82WkijfpzgR.OqL6e5gNetUjPRI2OpmtZ4ubEmHnGcia', 'Jalan Cimahi, Nomor 55', 'logo.jpg', '1', ''),
-(14, 4, 'Ade Kurniawan', '12345678912', 'admin@email.com', '081276767676', 'admin', '$2y$10$6aQzA0qBJOPSPsfzIBJowuFTHdBB5t1weam8AB9gJNy2OPYxPZhue', 'Jalan Tubagus Ismail, Nomor 41', '580b57fcd9996e24bc43c4e71.png', '1', ''),
-(15, 5, 'Ismail', '12345678913', 'jtc@email.com', '081279797979', 'jtc', '$2y$10$PSpn2f8aeUp0y0pAaJHllelyNPIh0isJ.SGffGwUYBf48tdJxLAK2', 'Jalan Buahbatu, Nomo 234', 'LogoAbell-removebg-preview.png', '1', ''),
-(45, 1, 'Ade Kurniawan', '12345678918', 'ade.kurniawan216@gmail.com', '083171027936', 'ade22', '$2y$10$.df6Gu6/uWmafpkVp2Uyf.BX/YMfXhTTwXu4YlQTd.a2.DauC9qPC', 'Jalan Jambi Palembang KM 27', 'IMG_20220901_160825_151.jpg', '1', '');
+(12, 1, 'Mochamad Aziz Shidki', '12345678910', 'asistantmanager@email.com', '081274747474', 'asman', '$2y$10$NLFDLVITX2ahLVt9p39Wl.s4Ivppt8d6VKfeIbLYOwF5PZVKbRURK', 'Jalan Dago, Nomor 43', 'default.jpg', '1', 'signature_3c2f729a46d641a8785574038e0bd7e9.png'),
+(14, 4, 'Ariya Adam Abdullah', '9922324ZY', 'ariya.adam@pln.co.id', '082397770020', 'admin', '$2y$10$6aQzA0qBJOPSPsfzIBJowuFTHdBB5t1weam8AB9gJNy2OPYxPZhue', 'Kilo 7 Balikpapan', '580b57fcd9996e24bc43c4e7.png', '1', ''),
+(15, 5, 'Zam Yudha P', '12345678913', 'jtc@email.com', '081279797979', 'jtc', '$2y$10$PSpn2f8aeUp0y0pAaJHllelyNPIh0isJ.SGffGwUYBf48tdJxLAK2', 'Jalan Buahbatu, Nomo 234', 'banner.jpg', '1', ''),
+(46, 2, 'Daniel Pane', '4576766', 'ariyaadam311299@gmail.com', '0977767767565', 'danielp', '$2y$10$Air3pbieK63JQmaAgS5SVuNhig3q2vVH1l7ziVm5IVzVXAxFkwuFC', 'Dgcgfgfyfyftd', 'IMG_7460-removebg-preview.png', '1', ''),
+(47, 3, 'Mukh. Iqbal Aulia', '1277377', 'iqbal@gmail.com', '083171027936', 'ade22', '$2y$10$tqKcVt3o7XXdsC15IxOSEuE/QsKWZUvJSpcYxrdPzZoo.owb.HNkm', 'Jalan Jambi Palembang KM 27', '580b57fcd9996e24bc43c4e7.png', '1', '');
 
 -- --------------------------------------------------------
 
@@ -380,7 +616,7 @@ INSERT INTO `t_rencana_operasi` (`id_rencana_operasi`, `nama_rencana`, `keterang
 (58, 'Rencana 7', 'Ketarangan', '0', '2024-04-15', NULL),
 (59, 'Rencana 8', 'Ketarangan', '0', '2024-05-06', NULL),
 (60, 'Rencana 9', 'Ketarangan', '0', '2024-06-01', NULL),
-(61, 'Rencana 10', 'Ketarangan', '0', '2024-06-17', NULL),
+(61, 'Rencana 10', 'Ketarangan', '1', '2024-06-17', '2024-02-16'),
 (62, 'Rencana 11', 'Ketarangan', '0', '2024-07-16', NULL),
 (63, 'Rencana 12', 'Ketarangan', '0', '2024-08-21', NULL),
 (64, 'Rencana 13', 'Ketarangan', '0', '2024-09-18', NULL),
@@ -415,7 +651,8 @@ CREATE TABLE `t_riwayat_gudang` (
 --
 
 INSERT INTO `t_riwayat_gudang` (`id_riwayat_gudang`, `penanggung_jawab`, `id_personil`, `tanggal_keluar`, `tanggal_masuk`, `keterangan`, `status`, `tanda_tangan`, `sudah_disetujui`, `id_atasan`) VALUES
-(6, 'Jarot', 14, '2024-02-07', NULL, 'Peminjaman untuk pekerjaan rutin', 'keluar', 'signature_61223617c303e3ed4ca4b96eca7c1268.png', '1', 12);
+(7, 'Zulkifliansyah', 14, '2024-02-16', NULL, 'Pengencangan skur T.42 ERS ULTG Bontang', 'keluar', 'signature_44dbff6c18e9d1464fe93babf82d5304.png', '1', 12),
+(8, 'Zam Yudha', 15, '2024-02-16', '2024-02-16', 'Gansol', 'masuk', 'signature_64b5cd7d1c2cbbf86300a9bd2bd2bbc2.png', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -466,7 +703,18 @@ CREATE TABLE `t_spki` (
 
 INSERT INTO `t_spki` (`id_spki`, `id_personil`, `kepada`, `nomor`, `bulan`, `tahun`, `dari`, `macam_pekerjaan`, `lokasi_pekerjaan`, `mulai_pelaksanaan`, `selesai_pelaksanaan`, `pj`, `pengawas`, `pengawas_k3`, `pelaksana`, `alat_kerja`, `kendaraan`, `uraian_kerja`, `catatan`, `sudah_disetujui`, `id_atasan`) VALUES
 (9, 14, 'TL PDKB RING UPT KALTIMRA', '5', 'I', '2024', 'ASMAN PDKB UPT KALTIMRA', 'JSA Anomali Tower Tension', 'SUTT 150 kV Line Longikis - Kuaro T.138, T.191,\r\nSUTT 150 kV Petung - Longikis T.127 A,\r\nSUTT 150 kV Tanjung - Muara komam  T.189, \r\nSUTT 150 kV Line Muara komam - Kuaro T.268,', '2024-02-03', '2024-02-05', 'MOCH. AZIZ SHIDKI', 'Hernawan Agung P', 'Zam Yudha Pangayoman\r\nIbnu Hubaiyah', 'Ariya Adam Abdullah\r\nI Kadek A\r\nMoch Zulkifliansyah', 'Measuring Stik Isolasi & APD', 'Kendaraan Dinas', 'JSA Anomali Tower Tension,\r\nSUTT 150 kV Line Longikis - Kuaro T.138, T.191,\r\nSUTT 150 kV Tanjung - Muara komam  T.189', 'Pekerjaan Non Rutin', '1', 12),
-(11, 14, 'asdasd', '4', 'VIII', '2023', 'asdasd', 'asdasd', 'asdasdasd', '2024-02-15', '2024-02-15', 'asdasd', 'asd', 'asdas', 'asdasd', 'sadsa', 'dasd', 'asdasd', 'asdasd', '0', NULL);
+(14, 14, 'TL PDKB RING UPT BALIKPAPAN', '17', 'II', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'JSA Pra Pekerjaan Perbaikan konduktor', 'Line Tanjung Redeb - Tanjung Selor, Tower 167 - 168', '2024-02-17', '2024-02-18', 'Moch. Aziz Shidki', 'ULTG Berau', 'ULTG Berau', 'Daniel Pane\r\nIbnu Hubaiyah\r\nHernawan Agung P\r\nI Kadek A.P', 'APD dan Peralatan Perbaikan Konduktor', 'Kendaraan Dinas', 'JSA Pra Pekerjaan Perbaikan konduktor\r\nLine Tanjung Redeb - Tanjung Selor, Tower 167 - 168', 'Pekerjaan Non Rutin', '1', 12),
+(15, 14, 'TL PDKB RING UPT BALIKPAPAN', '18', 'II', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'Perbaikan Konduktor', 'Line Tanjung Redeb - Tanjung Selor Tower 167-168', '2024-02-18', '2024-02-23', 'Moch. Aziz Shidki', 'ULTG Berau', 'ULTG Berau', 'Daniel Pane\r\nIbnu Hubaiyah\r\nHernawan Agung\r\nI Kadek Adityanul Pranama', 'APD dan Peralatan Perbaikan Konduktor', 'Kendaraan Dinas', 'Perbaikan Konduktor Line Tanjung Redeb - Tanjung Selor Tower 167-168', 'Pekerjaan Non Rutin', '1', 12),
+(16, 14, 'TEAM LEADER PDKB RING', '19', 'II', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'Climb Up Inspection', 'Line Karang Joang - Harapan Baru, T.51,57,59,60-75', '2024-02-20', '2024-02-22', 'Moch. Aziz Shidki', 'Moch. Zulkifliansyah', 'Zam Yudha P', 'Rizkiyannur Adha\r\nAriya Adam A', 'APD dan Perlengkapan Inspeksi', 'Kendaraan Dinas', 'Climb Up Inspection Line Karang Joang - Harapan Baru, T.51,57,59,60-75', 'Pekerjaan Non Rutin', '1', 12),
+(17, 14, 'Team Leader PDKB GI', '20', 'II', '2024', 'Asman PDKB UPT Balikpapan', 'Job Safety Analysis', 'Gardu Induk Industri, Bay Line New Balikpapan 1, Potential Transformer', '2024-02-21', '2024-02-21', 'Moch. Aziz Shidki', 'Zam Yudha P', 'Rizkiyannur Adha', 'Ariya Adam A\r\nMoch. Zulkifliansyah', 'APD dan Alat Ukur', 'Kendaraan Dinas', 'Job Safety Analysis Gardu Induk Industri, Bay Line New Balikpapan 1, Potential Transformer.', 'Pekerjaan Non Rutin', '1', 12),
+(18, 14, 'TEAM LEADER PDKB RING', '21', 'II', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'Penggantian Stringset Isolator', 'Line Manggarsari - Karang Joang (Arah Senipah) T.18 dan Line Karang Joang - Harapan Baru T.06', '2024-02-26', '2024-02-27', 'Moch. Aziz Shidki', 'Rizkiyannur Adha', 'Moch. Zulkiflianyah', 'Ariya Adam Abdullah\r\nZam Yudha P\r\nIbnu H\r\nHasta F\r\nDaniel Pane\r\nHernawan A.P\r\nIqbal A\r\nI Kadek A.P', 'APD dan Peralatan Penggantian Isolator Suspensiom PDKB', 'Kendaraan Dinas', 'Penggantian Stringset Isolator Line Manggarsari - Karang Joang (Arah Senipah) T.18 dan Line Karang Joang - Harapan Baru T.06', 'Pekerjaan Rutin', '1', 12),
+(19, 14, 'TEAM LEADER PDKB GI', '22', 'II', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'Job Safety Analysis', 'JSA GI New Samarinda, Bay Line Muara Badak dan Tower 170 Line Karang Joang - Harapan Baru,', '2024-02-28', '2024-02-29', 'Moch. Aziz Shidki', 'Zam Yudha P', 'Ibnu Hubaiyah', 'Hasta Fiado\r\nHernawan Agung P', 'APD dan Alat Ukur', 'Kendaraan Dinas', 'JSA GI New Samarinda, Bay Line Muara Badak dan Tower 170 Line Karang Joang - Harapan Baru.', 'Pekerjaan Rutin', '1', 12),
+(20, 14, 'TEAM LEADER PDKB RING', '23', 'II', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'Climb Up Inspection', 'CUI Karang Joang - Harapan Baru, Tower 73 - 90', '2024-02-28', '2024-02-29', 'Moch. Aziz Shidki', 'Daniel Pane', 'Moch. Zulkifliansyah', 'Ariya Adam\r\nI Kadek A.P\r\nMukhamat Iqbal\r\nRizkiyannur Adha', 'APD dan Peralatan Inspeksi', 'Kendaraan Dinas', 'CUI Karang Joang - Harapan Baru, Tower 73 - 90.', 'Pekerjaan Rutin', '1', 12),
+(21, 14, 'TEAM LEADER PDKB RING', '24', 'III', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'Job Safety Analysis', 'Tower 55 Line Karang Joang - Harapan Baru', '2024-03-01', '2024-03-01', 'Moch. Aziz Shidki', 'Daniel Pane', 'Moch. Zulkifliansyah', 'Ariya Adam A', 'APD dan Peralatan JSA', 'Kendaraan Dinas', 'JSA Tower 55 Line Karang Joang - Harapan Baru', 'Pekerjaan Rutin', '1', 12),
+(23, 14, 'Team Leader PDKB Jaringan', '25', 'III', '2024', 'ASMAN PDKB UPT Balikpapan', 'Penggantian ball isolator korosi', 'T. 55 Line Karang Joang - Harapan Baru 1 Fasa T', '2024-03-04', '2024-03-04', 'Moch. Aziz Shidki', 'Zam Yudha Pangayoman', 'Ibnu Hubaiyah', 'Daniel Pane\r\nAriya Adam \r\nMoch. Zulkifliansyah\r\nMukh. Iqbal \r\nI Kadek Adityanul\r\nHernawan Agung\r\nHasta Fiado\r\nRizkiyannur Adha', 'Sesuai IK 9.009/IK/TRS.00.003/Komisi - PDKB Pusat/2018 (Penggantian Isolator Suspension PDKB)', 'Kendaraan Dinas', 'Penggantian ball isolator korosi T. 55 Line Karang Joang - Harapan Baru 1 Fasa T', 'Pekerjaan non-rutin', '1', 12),
+(25, 14, 'Team Leader PDKB GI', '26', 'III', '2024', 'ASMAN PDKB UPT Balikpapan', 'Perbaikan Hotspot pada Clamp CT', 'GI New Samarinda, bay line Muara Badak 2 Fasa S', '2024-03-05', '2024-03-05', 'Moch. Aziz Shidki', 'Zam Yudha Pangayoman', 'Ibnu Hubaiyah', 'Moch. Zulkifliansyah\r\nMukh. Iqbal \r\nHasta Fiado\r\nHernawan Agung\r\nHasta Fiado\r\nI kadek Adityanul\r\nDaniel Pane\r\nAriya Adam', 'Sesuai IK Perbaikan Hotspot PDKB\r\n8.003/IK/TRS.00.003/KOMISI - PDKB PUSAT/2018', 'Kendaraan Dinas', 'Perbaikan Hotspot pada Clamp CT GI New Samarinda, bay line Muara Badak 2\r\nFasa S', 'Pekerjaan non-rutin', '1', 12),
+(26, 14, 'Team Leader PDKB GI', '27', 'III', '2024', 'ASMAN PRKB', 'Penggantian Strain Clamp GSW korosi', 'GI Harapan Baru', '2024-03-06', '2024-03-07', 'Moch. Aziz Shidki', 'Zam Yudha Pangayoman', 'Ibnu Hubaiyah', 'Moch. Zulkifliansyah\r\nHernawan Agung\r\nAriya Adam\r\nHasta Fiado\r\nI Kadek Adityanul\r\nDaniel Pane\r\nRizkiyannur Adha\r\nMukh. Iqbal', 'Sesuai IK 8.006/IK/TRS.00.003/KOMISI-PDKB PUSAT/2018', 'Kendaraan Dinas', 'Penggantian Strain Clamp GSW korosi GI Harapan Baru', 'Pekerjaan non-rutin', '1', 12),
+(27, 14, 'Team Leader PDKB GI', '27', 'III', '2024', 'ASMAN PDKB', 'Penggantian Strain Clamp GSW Korosi', 'GI Harapan Baru', '2024-03-06', '2024-03-07', 'Moch. Aziz Shidki', 'Zam Yudha Pangayoman', 'Ibnu Hubaiyah', 'I kadek Adityanul\r\nDaniel Pane\r\nHernawan Agung\r\nRizkiyannur Adha\r\nAriya Adam\r\nMoch. Zulkifliansyah\r\nMukh. Iqbal\r\nHasta Fiado', 'Sesuai IK PDKB No. 8.006/IK/TRS.00.003/KOMISI-PDKB PUSAT/2018', 'Kendaraan Dinas', 'Penggantian Strain Clamp GSW Korosi GI Harapan Baru', 'Pekerjaan Rutin', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -490,7 +738,9 @@ INSERT INTO `t_temuan_jsa` (`id_temuan_jsa`, `id_jsa`, `temuan`, `keterangan`) V
 (44, 17, '2. Pengukuran', '1. Perhitungan beban : 6 Ton'),
 (45, 17, '3.Temuan anomali ', '1. Isolator Kaca 210KN,pecah 1 Keping\r\n(Keping ke 6 sisi Hot) Fasa S Line 1'),
 (46, 17, '4.Kondisi Lingkungan', '1. Jalan Tanjung-Kuaro No.30, Muara\r\nLangon, Kec. Muara Komam,\r\nKabupaten Paser, Kalimantan Timur\r\n76253\r\n2. Halaman Tower : sedikit rimbun\r\n3. SUTT terletak 1800 meter dari posisi\r\nmobil\r\n4. Akses menuju tower jauh dan sulit\r\nterdapat rintangan jurang, s'),
-(47, 17, '5.Kesimpulan', 'Tidak bisa dikerjakan secara PDKB karena\r\njarak aman untuk akses Hotman tidak\r\nterpenuhi dan akses menuju tower sulit\r\nkarena harus melewati jurang dan sungai.');
+(47, 17, '5.Kesimpulan', 'Tidak bisa dikerjakan secara PDKB karena\r\njarak aman untuk akses Hotman tidak\r\nterpenuhi dan akses menuju tower sulit\r\nkarena harus melewati jurang dan sungai.'),
+(48, 18, 'Lingkungan', 'Skkskkkskkm'),
+(49, 18, 'Komdisi tower', 'Skkskkkskkm');
 
 --
 -- Indexes for dumped tables
@@ -573,11 +823,17 @@ ALTER TABLE `t_laporan_pekerjaan`
   ADD PRIMARY KEY (`id_laporan_pekerjaan`);
 
 --
+-- Indeks untuk tabel `t_partnership`
+--
+ALTER TABLE `t_partnership`
+  ADD PRIMARY KEY (`id_partnership`);
+
+--
 -- Indeks untuk tabel `t_personil`
 --
 ALTER TABLE `t_personil`
   ADD PRIMARY KEY (`id_personil`),
-  ADD KEY `t_personil_ibfk_1` (`id_jabatan`);
+  ADD KEY `id_jabatan` (`id_jabatan`);
 
 --
 -- Indeks untuk tabel `t_rencana_operasi`
@@ -619,31 +875,31 @@ ALTER TABLE `t_temuan_jsa`
 -- AUTO_INCREMENT untuk tabel `t_alat_kerja`
 --
 ALTER TABLE `t_alat_kerja`
-  MODIFY `id_alat_kerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_alat_kerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_alat_tower_ers`
 --
 ALTER TABLE `t_alat_tower_ers`
-  MODIFY `id_alat_tower_ers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_alat_tower_ers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_detail_histori_alat`
 --
 ALTER TABLE `t_detail_histori_alat`
-  MODIFY `id_detail_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_detail_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_detail_riwayat_gudang`
 --
 ALTER TABLE `t_detail_riwayat_gudang`
-  MODIFY `id_detail_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_detail_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_foto_jsa`
 --
 ALTER TABLE `t_foto_jsa`
-  MODIFY `id_foto_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_foto_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_gardu_induk`
@@ -655,13 +911,13 @@ ALTER TABLE `t_gardu_induk`
 -- AUTO_INCREMENT untuk tabel `t_histori_alat`
 --
 ALTER TABLE `t_histori_alat`
-  MODIFY `id_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jabatan`
 --
 ALTER TABLE `t_jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jaringan`
@@ -673,25 +929,31 @@ ALTER TABLE `t_jaringan`
 -- AUTO_INCREMENT untuk tabel `t_jsa`
 --
 ALTER TABLE `t_jsa`
-  MODIFY `id_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_lampiran_laporan_pekerjaan`
 --
 ALTER TABLE `t_lampiran_laporan_pekerjaan`
-  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_laporan_pekerjaan`
 --
 ALTER TABLE `t_laporan_pekerjaan`
-  MODIFY `id_laporan_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id_laporan_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_partnership`
+--
+ALTER TABLE `t_partnership`
+  MODIFY `id_partnership` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_personil`
 --
 ALTER TABLE `t_personil`
-  MODIFY `id_personil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_personil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_rencana_operasi`
@@ -703,25 +965,25 @@ ALTER TABLE `t_rencana_operasi`
 -- AUTO_INCREMENT untuk tabel `t_riwayat_gudang`
 --
 ALTER TABLE `t_riwayat_gudang`
-  MODIFY `id_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_riwayat_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_sertifikat`
 --
 ALTER TABLE `t_sertifikat`
-  MODIFY `id_sertifikat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_sertifikat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_spki`
 --
 ALTER TABLE `t_spki`
-  MODIFY `id_spki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_spki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_temuan_jsa`
 --
 ALTER TABLE `t_temuan_jsa`
-  MODIFY `id_temuan_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_temuan_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

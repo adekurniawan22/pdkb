@@ -30,12 +30,17 @@
             border: 1px solid #000;
         }
 
-        .atur-height {
+        <?php if ($_SESSION['id_jabatan'] == '7') : ?>.atur-height {
+            height: 80% !important;
+            overflow: visible !important;
+        }
+
+        <?php else : ?>.atur-height {
             height: 100% !important;
             overflow: visible !important;
         }
 
-        .scrollbar-customization::-webkit-scrollbar {
+        <?php endif; ?>.scrollbar-customization::-webkit-scrollbar {
             width: 12px;
             /* Lebar scrollbar */
         }
@@ -283,6 +288,16 @@
                                 <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
                             </div>
                             <span class="nav-link-text ms-1">Personil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Partnership") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/partnership">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Partnership</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -535,26 +550,69 @@
                 <?php endif ?>
                 <!-- END ROLE JTC -->
 
+                <!-- ROLE PARTNERSHIP -->
+                <?php if ($this->session->userdata('id_jabatan') == '7') : ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Dashboard") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>partnership/dashboard">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <!-- <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Laporan JSA") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/jsa">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">WO</span>
+                        </a>
+                    </li> -->
+                <?php endif ?>
+                <!-- END ROLE PARTNERSHIP -->
+
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Akun</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-aside <?php if ($title == "Profil") {
-                                                        echo "active";
-                                                    } ?>" href="<?= base_url() ?>profil">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Profil</span>
-                    </a>
+                    <?php if (isset($_SESSION['id_personil'])) : ?>
+                        <a class="nav-link btn-aside <?php if ($title == "Profil") {
+                                                            echo "active";
+                                                        } ?>" href="<?= base_url() ?>profil">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Profil</span>
+                        </a>
+
+                    <?php else : ?>
+                        <a class="nav-link btn-aside <?php if ($title == "Profil") {
+                                                            echo "active";
+                                                        } ?>" href="<?= base_url() ?>partnership/profil-partnership">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Profil Partnership</span>
+                        </a>
+                    <?php endif ?>
                 </li>
+
                 <li class="nav-item mb-3">
-                    <a class="nav-link btn-aside" href="" data-bs-toggle="modal" data-bs-target="#logout">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-box-arrow-left text-dark text-sm opacity-10 pb-1"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Logout</span>
-                    </a>
+                    <?php if (isset($_SESSION['id_personil'])) : ?>
+                        <a class="nav-link btn-aside" href="" data-bs-toggle="modal" data-bs-target="#logout">
+                        <?php else : ?>
+                            <a class="nav-link btn-aside" href="" data-bs-toggle="modal" data-bs-target="#logout_partnership">
+                            <?php endif ?>
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-box-arrow-left text-dark text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Logout</span>
+                            </a>
                 </li>
             </ul>
         </div>
@@ -585,7 +643,11 @@
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <span class="d-sm-inline d-none nav-link font-weight-bold px-0 ps-3" style="color: white !important;">Halo, <?= $_SESSION['nama'] ?>&nbsp;<i class="ni ni-satisfied"></i></span>
+                            <?php if (isset($_SESSION['nama'])) : ?>
+                                <span class="d-sm-inline d-none nav-link font-weight-bold px-0 ps-3" style="color: white !important;">Halo, <?= $_SESSION['nama'] ?>&nbsp;<i class="ni ni-satisfied"></i></span>
+                            <?php else : ?>
+                                <span class="d-sm-inline d-none nav-link font-weight-bold px-0 ps-3" style="color: white !important;">Halo, <?= $_SESSION['nama_ultg'] ?>&nbsp;<i class="ni ni-satisfied"></i></span>
+                            <?php endif ?>
                         </li>
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">

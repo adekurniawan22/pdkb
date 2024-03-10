@@ -5,6 +5,11 @@
                 <div class="card-body ">
                     <form action="<?= base_url() ?>atasan/laporan-pekerjaan/proses-tambah-laporan-pekerjaan" method="post" enctype="multipart/form-data">
                         <div class="form-group">
+                            <label for="judul_laporan" class="form-control-label">Judul Laporan</label>
+                            <input class="form-control" type="text" placeholder="Judul Laporan" id="judul_laporan" name="judul_laporan" value="<?php echo set_value('judul_laporan'); ?>">
+                            <?= form_error('judul_laporan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+                        <div class="form-group">
                             <label for="dasar_pelaksanaan" class="form-control-label">Dasar Pelaksanaan</label>
                             <input class="form-control" type="text" placeholder="Dasar Pelaksanaan" id="dasar_pelaksanaan" name="dasar_pelaksanaan" value="<?php echo set_value('dasar_pelaksanaan'); ?>">
                             <?= form_error('dasar_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
