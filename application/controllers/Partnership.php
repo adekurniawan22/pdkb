@@ -12,10 +12,7 @@ class Partnership extends CI_Controller
 			redirect(base_url());
 		}
 		$this->load->library('form_validation');
-		$this->load->model('Jabatan_model');
-		$this->load->model('Sertifikat_model');
 		$this->load->model('Partnership_model');
-		$this->load->model('Personil_model');
 		$this->load->library('upload');
 	}
 

@@ -411,6 +411,40 @@
                             <span class="nav-link-text ms-1">Jaringan</span>
                         </a>
                     </li>
+
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Panduan Operasional</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Intruksi Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/ik">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Instruksi Kerja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Standar Operasional Prosedur") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/sop">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">SOP</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Single Line Diagram GI") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>admin/sld-gi">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Single Line Diagram GI</span>
+                        </a>
+                    </li>
                 <?php endif ?>
                 <!-- END ROLE ADMIN -->
 
@@ -563,16 +597,16 @@
                         </a>
                     </li>
 
-                    <!-- <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Laporan JSA") {
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Dokumen WO") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>jtc/jsa">
+                                            } ?> btn-aside" href="<?= base_url() ?>partnership/wo">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10 pb-1"></i>
                             </div>
-                            <span class="nav-link-text ms-1">WO</span>
+                            <span class="nav-link-text ms-1">Dokumen WO</span>
                         </a>
-                    </li> -->
+                    </li>
                 <?php endif ?>
                 <!-- END ROLE PARTNERSHIP -->
 

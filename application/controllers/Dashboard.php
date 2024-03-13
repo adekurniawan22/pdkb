@@ -78,6 +78,30 @@ class Dashboard extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
+	public function ik()
+	{
+		$data['title'] = 'Intruksi Kerja';
+		$this->load->view('templates/header', $data);
+		$this->load->view('panduan/ik', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function sop()
+	{
+		$data['title'] = 'Standar Operasional Prosedur';
+		$this->load->view('templates/header', $data);
+		$this->load->view('panduan/sop', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function sld_gi()
+	{
+		$data['title'] = 'Single Line Diagram GI';
+		$this->load->view('templates/header', $data);
+		$this->load->view('panduan/sld_gi', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function kirim_email_ke_atasan()
 	{
 		$nama_pengirim = $this->session->userdata('nama');

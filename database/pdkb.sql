@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Mar 2024 pada 06.07
+-- Waktu pembuatan: 13 Mar 2024 pada 08.19
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -553,7 +553,7 @@ CREATE TABLE `t_partnership` (
 --
 
 INSERT INTO `t_partnership` (`id_partnership`, `username`, `password`, `nama_ultg`, `manajer`, `nip`, `email`, `no_hp`, `status_aktif`, `tanda_tangan`, `id_personil`) VALUES
-(5, 'tes', '$2y$10$u6/HvNxLglUC5a98U2A6qOfLE98GR9qmjwdLt0ACQuQK6kfpLH3Bi', 'tes2', 'tes', '12345678918', 'tes@email.com', '123456789', '1', 'signature_738a2b4c51cc626773f8e721d7f7a813.png', 14);
+(5, 'tes', '$2y$10$u6/HvNxLglUC5a98U2A6qOfLE98GR9qmjwdLt0ACQuQK6kfpLH3Bi', 'ULTG Balikpapan', 'Ahmad Sobirin', '12345678918', 'tes@email.com', '123456789', '1', 'signature_738a2b4c51cc626773f8e721d7f7a813.png', 14);
 
 -- --------------------------------------------------------
 
@@ -742,6 +742,31 @@ INSERT INTO `t_temuan_jsa` (`id_temuan_jsa`, `id_jsa`, `temuan`, `keterangan`) V
 (48, 18, 'Lingkungan', 'Skkskkkskkm'),
 (49, 18, 'Komdisi tower', 'Skkskkkskkm');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_wo`
+--
+
+CREATE TABLE `t_wo` (
+  `id_wo` int(11) NOT NULL,
+  `pekerjaan` varchar(255) NOT NULL,
+  `tanggal_pelaporan` datetime NOT NULL,
+  `sudah_disetujui` enum('0','1','2') NOT NULL,
+  `id_partnership` int(11) NOT NULL,
+  `id_atasan` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `t_wo`
+--
+
+INSERT INTO `t_wo` (`id_wo`, `pekerjaan`, `tanggal_pelaporan`, `sudah_disetujui`, `id_partnership`, `id_atasan`) VALUES
+(2, 'tes pekerjaan', '2024-03-13 05:29:04', '1', 5, 12),
+(4, 'Tes 2', '2024-03-13 12:15:45', '0', 5, NULL),
+(5, 'Tes 3', '2024-03-13 12:15:52', '2', 5, NULL),
+(6, 'Dengan ID Partnership yg lain', '2024-03-13 12:15:52', '2', 1, NULL);
+
 --
 -- Indexes for dumped tables
 --
@@ -868,6 +893,12 @@ ALTER TABLE `t_temuan_jsa`
   ADD KEY `id_jsa` (`id_jsa`);
 
 --
+-- Indeks untuk tabel `t_wo`
+--
+ALTER TABLE `t_wo`
+  ADD PRIMARY KEY (`id_wo`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -984,6 +1015,12 @@ ALTER TABLE `t_spki`
 --
 ALTER TABLE `t_temuan_jsa`
   MODIFY `id_temuan_jsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_wo`
+--
+ALTER TABLE `t_wo`
+  MODIFY `id_wo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

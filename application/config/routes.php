@@ -61,6 +61,13 @@ $route['partnership/proses-login-partnership'] = 'auth/proses_login_partnership'
 
 // Partnership
 $route['partnership/dashboard'] = 'dashboard/partnership';
+
+$route['partnership/wo'] = 'wo/index';
+$route['partnership/wo/tambah-wo'] = 'wo/tambah_wo';
+$route['partnership/wo/proses-tambah-wo'] = 'wo/proses_tambah_wo';
+$route['partnership/wo/edit-wo'] = 'wo/edit_wo';
+$route['partnership/wo/proses-edit-wo'] = 'wo/proses_edit_wo';
+
 $route['partnership/profil-partnership'] = 'partnership/profil_partnership';
 
 // Atasan
@@ -170,6 +177,10 @@ $route['admin/jaringan/tambah-jaringan'] = 'jaringan/tambah_jaringan';
 $route['admin/jaringan/proses-tambah-jaringan'] = 'jaringan/proses_tambah_jaringan';
 $route['admin/jaringan/edit-jaringan'] = 'jaringan/edit_jaringan';
 $route['admin/jaringan/proses-edit-jaringan'] = 'jaringan/proses_edit_jaringan';
+
+$route['admin/ik'] = 'dashboard/ik';
+$route['admin/sop'] = 'dashboard/sop';
+$route['admin/sld-gi'] = 'dashboard/sld_gi';
 
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';

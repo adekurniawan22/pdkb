@@ -123,7 +123,7 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
 
 		if ($this->form_validation->run() == false) {
-			$this->login();
+			$this->login_partnership();
 		} else {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
@@ -132,6 +132,7 @@ class Auth extends CI_Controller
 			$partnership = $this->db->get('t_partnership')->row();
 
 			if ($partnership) {
+				echo 'ADA';
 				if ($partnership->status_aktif == '1') {
 					if (password_verify($password, $partnership->password)) {
 						$data = [
@@ -154,12 +155,13 @@ class Auth extends CI_Controller
 				} else {
 					$this->session->set_flashdata('message', '<strong>Maaf, akun anda dinonaktifkan!</strong>
 		                    <i class="bi bi-exclamation-circle-fill"></i>');
-					redirect(base_url());
+					redirect(base_url('partnership'));
 				}
 			} else {
+				echo 'TIDAK ADA';
 				$this->session->set_flashdata('message', '<strong>Akun anda tidak ditemukan!</strong>
 		                <i class="bi bi-exclamation-circle-fill"></i>');
-				redirect(base_url());
+				redirect(base_url('partnership'));
 			}
 		}
 	}
