@@ -150,7 +150,7 @@ class Auth extends CI_Controller
 					} else {
 						$this->session->set_flashdata('message', '<strong>Maaf, password anda salah!</strong>
 		                    <i class="bi bi-exclamation-circle-fill"></i>');
-						redirect(base_url());
+						redirect(base_url('partnership'));
 					}
 				} else {
 					$this->session->set_flashdata('message', '<strong>Maaf, akun anda dinonaktifkan!</strong>

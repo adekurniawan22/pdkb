@@ -76,6 +76,8 @@ $route['atasan/dashboard'] = 'dashboard/index';
 $route['atasan/personil'] = 'personil/index';
 $route['atasan/personil/lihat-sertifikat'] = 'sertifikat/get_sertifikat';
 
+$route['atasan/partnership'] = 'partnership/index';
+
 $route['atasan/rencana-operasi'] = 'rencana_operasi/index';
 $route['atasan/rencana-operasi/tambah-rencana-operasi'] = 'rencana_operasi/tambah_rencana_operasi';
 $route['atasan/rencana-operasi/proses-tambah-rencana-operasi'] = 'rencana_operasi/proses_tambah_rencana_operasi';
@@ -178,13 +180,14 @@ $route['admin/jaringan/proses-tambah-jaringan'] = 'jaringan/proses_tambah_jaring
 $route['admin/jaringan/edit-jaringan'] = 'jaringan/edit_jaringan';
 $route['admin/jaringan/proses-edit-jaringan'] = 'jaringan/proses_edit_jaringan';
 
-$route['admin/ik'] = 'dashboard/ik';
-$route['admin/sop'] = 'dashboard/sop';
-$route['admin/sld-gi'] = 'dashboard/sld_gi';
+$route['ik'] = 'dashboard/ik';
+$route['sop'] = 'dashboard/sop';
+$route['sld-gi'] = 'dashboard/sld_gi';
 
 // JTC
 $route['jtc/dashboard'] = 'dashboard/index';
 $route['jtc/personil'] = 'personil/index';
+$route['jtc/partnership'] = 'partnership/index';
 $route['jtc/rencana-operasi'] = 'rencana_operasi/index';
 
 $route['jtc/spki'] = 'spki/index';

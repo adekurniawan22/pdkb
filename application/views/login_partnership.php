@@ -35,7 +35,7 @@
                                     <h4 class="font-weight-bolder">Login Partnership</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form" method="post" action="proses-login-partnership">
+                                    <form role="form" method="post" action="partnership/proses-login-partnership">
                                         <div class="mb-3">
                                             <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" name="username" value="<?php echo set_value('username'); ?>">
                                             <?= form_error('username', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>

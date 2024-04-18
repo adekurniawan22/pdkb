@@ -155,6 +155,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Partnership") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>atasan/partnership">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Partnership</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Rencana Operasi") {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>atasan/rencana-operasi">
@@ -263,6 +273,19 @@
                                 <i class="bi bi-joystick text-danger text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Jaringan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Panduan Operasional</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Intruksi Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>ik">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Instruksi Kerja</span>
                         </a>
                     </li>
                 <?php endif ?>
@@ -418,14 +441,14 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Intruksi Kerja") {
                                                 echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/ik">
+                                            } ?> btn-aside" href="<?= base_url() ?>ik">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Instruksi Kerja</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link <?php if ($title == "Standar Operasional Prosedur") {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/sop">
@@ -444,7 +467,7 @@
                             </div>
                             <span class="nav-link-text ms-1">Single Line Diagram GI</span>
                         </a>
-                    </li>
+                    </li> -->
                 <?php endif ?>
                 <!-- END ROLE ADMIN -->
 
@@ -468,6 +491,16 @@
                                 <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
                             </div>
                             <span class="nav-link-text ms-1">Personil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Partnership") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>jtc/partnership">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill text-warning text-sm opacity-10 pb-1"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Partnership</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -579,6 +612,19 @@
                                 <i class="bi bi-joystick text-danger text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Jaringan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Panduan Operasional</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($title == "Intruksi Kerja") {
+                                                echo "active";
+                                            } ?> btn-aside" href="<?= base_url() ?>ik">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Instruksi Kerja</span>
                         </a>
                     </li>
                 <?php endif ?>
