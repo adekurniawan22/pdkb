@@ -19,7 +19,7 @@ class Email extends CI_Controller
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
 			'smtp_user' => 'appcilogin@gmail.com',
-			'smtp_pass' => 'iakd gazx zkva ghrk	',
+			'smtp_pass' => 'zfzx feer tkeb kltl',
 			'mailtype'  => 'html',
 			'charset'   => 'utf-8',
 			'newline'   => "\r\n"

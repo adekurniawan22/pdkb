@@ -132,7 +132,6 @@ class Auth extends CI_Controller
 			$partnership = $this->db->get('t_partnership')->row();
 
 			if ($partnership) {
-				echo 'ADA';
 				if ($partnership->status_aktif == '1') {
 					if (password_verify($password, $partnership->password)) {
 						$data = [
@@ -158,7 +157,6 @@ class Auth extends CI_Controller
 					redirect(base_url('partnership'));
 				}
 			} else {
-				echo 'TIDAK ADA';
 				$this->session->set_flashdata('message', '<strong>Akun anda tidak ditemukan!</strong>
 		                <i class="bi bi-exclamation-circle-fill"></i>');
 				redirect(base_url('partnership'));
