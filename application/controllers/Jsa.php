@@ -222,7 +222,7 @@ class Jsa extends CI_Controller
 				'allowed_types' => 'jpg|jpeg|png|pdf',
 			);
 
-			if (!$_FILES['foto_baru']['name'][0] == "") {
+			if (isset($_FILES['foto_baru']) && !$_FILES['foto_baru']['name'][0] == "") {
 				$foto_files = $_FILES['foto_baru'];
 				$this->upload->initialize($config);
 				for ($i = 0; $i < count($foto_files['name']); $i++) {

@@ -130,7 +130,7 @@ class Gardu_induk extends CI_Controller
 		$this->form_validation->set_rules('tanggal_eksekusi', 'Tanggal Eksekusi', 'required|trim');
 		$status_dikerjakan = ($this->input->post('status_dikerjakan') == 'on') ? '1' : '0';
 
-		if (!empty($_FILES['foto']['name'])) {
+		if (isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) {
 			$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
 			$foto = $this->validasi_foto('ambil_foto');
 		} else {
@@ -200,7 +200,7 @@ class Gardu_induk extends CI_Controller
 
 	function validasi_foto($param)
 	{
-		if (empty($_FILES['foto']['name'])) {
+		if (isset($_FILES['foto']) && empty($_FILES['foto']['name'])) {
 			$this->form_validation->set_message('validasi_foto', 'Foto tidak boleh kosong');
 			return false;
 		} else {

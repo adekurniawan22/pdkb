@@ -80,12 +80,16 @@ class Personil extends CI_Controller
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
 		$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
-		if (!$_FILES['s_diklat']['name'][0] == '') {
+
+
+
+		if (isset($_FILES['s_diklat']) && !$_FILES['s_diklat']['name'][0] == '') {
 			$this->form_validation->set_rules('s_diklat[]', 'Sertifikat Diklat', 'callback_validasi_sertifikat_diklat');
 		}
-		if (!$_FILES['s_kompetensi']['name'][0] == '') {
+		if (isset($_FILES['s_kompetensi']) && !$_FILES['s_kompetensi']['name'][0] == '') {
 			$this->form_validation->set_rules('s_kompetensi[]', 'Sertifikat Kompetensi', 'callback_validasi_sertifikat_diklat');
 		}
+
 
 		if ($this->form_validation->run() == false) {
 			$this->tambah_personil();
@@ -197,7 +201,7 @@ class Personil extends CI_Controller
 			$this->form_validation->set_rules('konfirmasi_password_baru', 'Konfirmasi Password Baru', 'required|trim|matches[password_baru]');
 		}
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-		if (!empty($_FILES['foto']['name'])) {
+		if (isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) {
 			$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
 			$foto = $this->validasi_foto('ambil_foto');
 		} else {
@@ -287,7 +291,7 @@ class Personil extends CI_Controller
 
 	function validasi_foto($param)
 	{
-		if (empty($_FILES['foto']['name'])) {
+		if (isset($_FILES['foto']) && !$_FILES['foto']['name']) {
 			$this->form_validation->set_message('validasi_foto', 'Foto tidak boleh kosong');
 			return false;
 		} else {

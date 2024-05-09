@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 27 Apr 2024 pada 19.15
+-- Waktu pembuatan: 09 Bulan Mei 2024 pada 15.35
 -- Versi server: 10.6.17-MariaDB-cll-lve
--- Versi PHP: 8.1.27
+-- Versi PHP: 8.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,9 +60,9 @@ INSERT INTO `t_alat_kerja` (`id_alat_kerja`, `jenis`, `nama_alat_kerja`, `spesif
 (34, 'Isolasi', 'Toll set kecil', '-', 1, 'Set', NULL, 1),
 (35, 'Isolasi', 'Terpal', '-', 2, 'Bh', NULL, 2),
 (36, 'APD', 'Body hardness', 'SALA', 22, 'Bh', '2025-08-31', 7),
-(37, 'APD', 'Lanyard', '-', 22, 'Bh', '2025-08-19', 7),
-(38, 'APD', 'Hook Lanyard', '-', 36, 'Bh', '2025-08-31', 7),
-(39, 'APD', 'Conductive Suite', 'Bennet', 2, 'Bh', '2028-08-19', 0),
+(37, 'APD', 'Lanyard', '-', 22, 'Bh', '2025-08-19', 8),
+(38, 'APD', 'Hook Lanyard', '-', 36, 'Bh', '2025-08-31', 10),
+(39, 'APD', 'Conductive Suite', 'Bennet', 2, 'Bh', '2028-08-19', 2),
 (40, 'APD', 'Conductive Suite', 'Kararo', 6, 'Bh', '2025-08-19', 0),
 (41, 'APD', 'Shock Absorber', '-', 9, 'Bh', '2030-02-19', 0),
 (42, 'APD', 'Raycem', '-', 4, 'Bh', NULL, 0),
@@ -298,7 +298,10 @@ INSERT INTO `t_detail_histori_alat` (`id_detail_histori_alat`, `id_histori_alat`
 (71, 21, 165, 1),
 (72, 21, 166, 3),
 (73, 21, 169, 1),
-(74, 21, 173, 1);
+(74, 21, 173, 1),
+(75, 22, 37, 1),
+(76, 22, 38, 3),
+(77, 22, 39, 2);
 
 -- --------------------------------------------------------
 
@@ -344,9 +347,7 @@ CREATE TABLE `t_foto_jsa` (
 INSERT INTO `t_foto_jsa` (`id_foto_jsa`, `id_jsa`, `foto`) VALUES
 (32, 17, '19800101000514_IMG_5249.JPG'),
 (33, 17, '19800101000514_IMG_52491.JPG'),
-(34, 17, '19800101000525_IMG_5250.JPG'),
-(35, 18, 'E3A8FE79-C6EC-4CB3-8D59-2F9131A00687.jpeg'),
-(36, 18, 'CFFA609C-A759-428A-86B5-CF8F206C4727.jpeg');
+(34, 17, '19800101000525_IMG_5250.JPG');
 
 -- --------------------------------------------------------
 
@@ -400,7 +401,8 @@ CREATE TABLE `t_histori_alat` (
 
 INSERT INTO `t_histori_alat` (`id_histori_alat`, `penanggung_jawab`, `id_personil`, `tanggal_keluar`, `tanggal_masuk`, `keterangan`, `status`, `tanda_tangan`, `sudah_disetujui`, `id_atasan`) VALUES
 (20, 'M.Iqbal A', 14, '2024-02-16', NULL, 'Perbaikan Konduktor dan Traves T.167-168 Tanjung Selor', 'keluar', 'signature_48921e6fd410f4a6e07cca937752fd2a.png', '1', 12),
-(21, 'Rizkiyannur Adha', 14, '2024-02-23', NULL, 'Pekerjaan penggantian string set isolator T.18 dan 06 Manggarsari-Karangjoang', 'keluar', 'signature_28d8beca66dea21dd9b8f97e6c3bbbd1.png', '1', 12);
+(21, 'Rizkiyannur Adha', 14, '2024-02-23', NULL, 'Pekerjaan penggantian string set isolator T.18 dan 06 Manggarsari-Karangjoang', 'keluar', 'signature_28d8beca66dea21dd9b8f97e6c3bbbd1.png', '1', 12),
+(22, 'Zam Yudha', 15, '2024-05-04', NULL, 'Pekerjaan Penggantian Isolator', 'keluar', 'signature_6f5f6455888a8a03f84c099422ae402d.png', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -475,8 +477,7 @@ CREATE TABLE `t_jsa` (
 --
 
 INSERT INTO `t_jsa` (`id_jsa`, `id_personil`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `kesimpulan`, `sudah_disetujui`, `id_atasan`) VALUES
-(17, 14, 'TOWER T.189 TANJUNG - MUARA KOMAM', '2024-01-04', '- Konstruksi Tower\r\n- Jenis anomali\r\n- Kondisi Lingkungan', 'SUTT 150 KV Tower 189 Line Tanjung - Muara Komam', 'Pekerjaan pada Tower 189 Line Tanjung - Muara Komam, Tidak bisa dikerjakan secara PDKB\r\nkarena jarak aman untuk akses Hotman tidak terpenuhi dan akses menuju tower sulit karena\r\nharus melewati jurang dan sungai.', '1', 12),
-(18, 12, 'Ggsyyyghhhhw', '2024-02-15', 'Kskkwmmlalll', 'Jjsjkkwmm', 'Kkkkskkkkmk', '1', 12);
+(17, 14, 'TOWER T.189 TANJUNG - MUARA KOMAM', '2024-01-04', '- Konstruksi Tower\r\n- Jenis anomali\r\n- Kondisi Lingkungan', 'SUTT 150 KV Tower 189 Line Tanjung - Muara Komam', 'Pekerjaan pada Tower 189 Line Tanjung - Muara Komam, Tidak bisa dikerjakan secara PDKB\r\nkarena jarak aman untuk akses Hotman tidak terpenuhi dan akses menuju tower sulit karena\r\nharus melewati jurang dan sungai.', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -498,7 +499,10 @@ CREATE TABLE `t_lampiran_laporan_pekerjaan` (
 --
 
 INSERT INTO `t_lampiran_laporan_pekerjaan` (`id_lampiran`, `id_laporan_pekerjaan`, `judul_lampiran`, `foto_sebelum`, `foto_proses`, `foto_setelah`) VALUES
-(41, 58, 'PENGGANTIAN STRING SET ISOLATOR KOROSI, T. 08 KARANG JOANG - HARAPAN BARU II,\r\nFASA S', '19800101000258_IMG_5184.JPG', '19800101000409_IMG_5245.JPG', '19800101000433_IMG_5247.JPG');
+(43, 60, 'Line Manggarsari-karangjoang T.06 Fasa R', 'WhatsApp_Image_2024-05-04_at_21_05_52.jpeg', 'WhatsApp_Image_2024-05-04_at_21_06_32.jpeg', 'WhatsApp_Image_2024-05-04_at_21_07_04.jpeg'),
+(44, 60, 'Line Manggarsari-karangjoang T.06 Fasa S', 'WhatsApp_Image_2024-05-04_at_21_09_06.jpeg', 'WhatsApp_Image_2024-05-04_at_21_09_07.jpeg', 'WhatsApp_Image_2024-05-04_at_21_09_07_(1).jpeg'),
+(45, 60, 'Line Manggarsari-karangjoang T.06 Fasa T', 'WhatsApp_Image_2024-05-04_at_21_11_35.jpeg', 'WhatsApp_Image_2024-05-04_at_21_11_36.jpeg', 'WhatsApp_Image_2024-05-04_at_21_11_36_(1).jpeg'),
+(46, 60, 'Line Manggarsari-karangjoang T.06 Fasa T', 'WhatsApp_Image_2024-05-04_at_21_11_351.jpeg', 'WhatsApp_Image_2024-05-04_at_21_11_361.jpeg', 'WhatsApp_Image_2024-05-04_at_21_11_36_(1)1.jpeg');
 
 -- --------------------------------------------------------
 
@@ -509,6 +513,7 @@ INSERT INTO `t_lampiran_laporan_pekerjaan` (`id_lampiran`, `id_laporan_pekerjaan
 CREATE TABLE `t_laporan_pekerjaan` (
   `id_laporan_pekerjaan` int(11) NOT NULL,
   `id_personil` int(11) NOT NULL,
+  `judul_laporan` varchar(255) NOT NULL,
   `dasar_pelaksanaan` varchar(255) NOT NULL,
   `waktu_pelaksanaan` date NOT NULL,
   `lingkup_pekerjaan` varchar(255) NOT NULL,
@@ -522,8 +527,8 @@ CREATE TABLE `t_laporan_pekerjaan` (
 -- Dumping data untuk tabel `t_laporan_pekerjaan`
 --
 
-INSERT INTO `t_laporan_pekerjaan` (`id_laporan_pekerjaan`, `id_personil`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `penutup`, `sudah_disetujui`, `id_atasan`) VALUES
-(58, 14, 'PEMELIHARAAN STRING SET ISOLATOR KOROSI LINE KARANG JOANG - HARAPAN BARU T. 08', '2024-01-10', 'String Set Isolator', '1. String set Isolator korosi tower 08, Karang Joang - Harapan baru II, fasa S 100%', 'Demikian laporan ini kami buat untuk dipergunakan sebagaimana mestinya.', '1', 12);
+INSERT INTO `t_laporan_pekerjaan` (`id_laporan_pekerjaan`, `id_personil`, `judul_laporan`, `dasar_pelaksanaan`, `waktu_pelaksanaan`, `lingkup_pekerjaan`, `hasil_pekerjaan`, `penutup`, `sudah_disetujui`, `id_atasan`) VALUES
+(60, 14, 'Penggantian Stringset Isolator', 'NO.21/PDKB-TT/II/2024', '2024-02-26', 'Stringset Isolator', 'Penggantian Aksesoris dan Isolator Korosif Line Manggarsari-karangjoang T.18, realisasi 0% (Ditunda karena hujan) \r\nPenggantian Aksesoris dan Isolator Korosif Line Manggarsari-karangjoang T.06 realisasi  100% (Fasa RST)', 'Demikian laporan ini kami buat untuk dipergunakan sebagaimana mestinya.', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -578,12 +583,10 @@ CREATE TABLE `t_personil` (
 --
 
 INSERT INTO `t_personil` (`id_personil`, `id_jabatan`, `nama`, `nip`, `email`, `no_hp`, `username`, `password`, `alamat`, `foto`, `status_aktif`, `tanda_tangan`) VALUES
-(12, 1, 'Mochamad Aziz Shidki', '12345678910', 'asistantmanager@email.com', '081274747474', 'asman', '$2y$10$NLFDLVITX2ahLVt9p39Wl.s4Ivppt8d6VKfeIbLYOwF5PZVKbRURK', 'Jalan Dago, Nomor 43', 'IMG_1887.jpeg', '1', 'signature_3c2f729a46d641a8785574038e0bd7e9.png'),
+(12, 1, 'Mochamad Aziz Shidki', '12345678910', 'ariyaadam311299@gmail.com', '081274747474', 'asman', '$2y$10$c/CLSKah1BWgGBOAonAgnOnmPw9CH0DA/V1IdK4G75IdJm.tGDGBK', 'Jalan Dago, Nomor 43', 'IMG_1887.jpeg', '1', 'signature_3c2f729a46d641a8785574038e0bd7e9.png'),
 (14, 4, 'Ariya Adam Abdullah', '9922324ZY', 'ariya.adam@pln.co.id', '082397770020', 'admin', '$2y$10$6aQzA0qBJOPSPsfzIBJowuFTHdBB5t1weam8AB9gJNy2OPYxPZhue', 'Kilo 7 Balikpapan', '7EB5C9A2-8C34-424D-870C-9FDF17E09FEC.png', '1', ''),
-(15, 5, 'Zam Yudha P', '12345678913', 'jtc@email.com', '081279797979', 'jtc', '$2y$10$PSpn2f8aeUp0y0pAaJHllelyNPIh0isJ.SGffGwUYBf48tdJxLAK2', 'Jalan Buahbatu, Nomo 234', 'logo_unikom_kuning1.png', '1', ''),
-(46, 2, 'Daniel Pane', '4576766', 'ariyaadam311299@gmail.com', '0977767767565', 'danielp', '$2y$10$Air3pbieK63JQmaAgS5SVuNhig3q2vVH1l7ziVm5IVzVXAxFkwuFC', 'Dgcgfgfyfyftd', 'default.jpg', '1', ''),
-(47, 3, 'Mukh. Iqbal Aulia', '1277377', 'iqbal@gmail.com', '083171027936', 'ade22', '$2y$10$tqKcVt3o7XXdsC15IxOSEuE/QsKWZUvJSpcYxrdPzZoo.owb.HNkm', 'Jalan Jambi Palembang KM 27', '580b57fcd9996e24bc43c4e7.png', '1', ''),
-(49, 1, 'Ade Kurniawan', '12312sdasdas', 'ade.kurniawan216@gmail.com', '083171027936', 'kokos', '$2y$10$xVQAs1Ysu47iNbzzlUB1B.EoOnKug705LOHnY7gLEitonUUmwinAG', 'Jalan Jambi Palembang KM 27', 'Hnet_com-image.jpg', '1', '');
+(15, 5, 'Zam Yudha P', '94130125D2Y', 'y.pangayoman@gmail.com', '082152048421', 'zamyudha17', '$2y$10$xmF37jU6zPMuiJHoBozi1uZBi30MOp/Y4sC6s91zR/ITO1IUfLkXW', 'Jl. Lestari No,123 RT.60 Kelurahan Graha Indah Kecamatan Balikpapan Utara', 'WhatsApp_Image_2024-04-18_at_22_12_521.jpeg', '1', ''),
+(47, 3, 'Mukh. Iqbal Aulia', '1277377', 'iqbal@gmail.com', '083171027936', 'ade22', '$2y$10$tqKcVt3o7XXdsC15IxOSEuE/QsKWZUvJSpcYxrdPzZoo.owb.HNkm', 'Jalan Jambi Palembang KM 27', '580b57fcd9996e24bc43c4e7.png', '1', '');
 
 -- --------------------------------------------------------
 
@@ -605,25 +608,17 @@ CREATE TABLE `t_rencana_operasi` (
 --
 
 INSERT INTO `t_rencana_operasi` (`id_rencana_operasi`, `nama_rencana`, `keterangan`, `status`, `tanggal_dikerjakan`, `tanggal_selesai`) VALUES
-(52, 'Rencana 1', 'Ketarangan', '1', '2024-01-09', '2024-01-10'),
-(53, 'Rencana 2', 'Ketarangan', '1', '2024-02-14', '2024-02-09'),
-(54, 'Rencana 3', 'Ketarangan', '0', '2024-02-09', NULL),
-(55, 'Rencana 4', 'Ketarangan', '1', '2024-02-08', '2024-02-09'),
-(56, 'Rencana 5', 'Ketarangan', '0', '2024-03-20', NULL),
-(57, 'Rencana 6', 'Ketarangan', '0', '2024-04-09', NULL),
-(58, 'Rencana 7', 'Ketarangan', '0', '2024-04-15', NULL),
-(59, 'Rencana 8', 'Ketarangan', '0', '2024-05-06', NULL),
-(60, 'Rencana 9', 'Ketarangan', '0', '2024-06-01', NULL),
-(61, 'Rencana 10', 'Ketarangan', '1', '2024-06-17', '2024-02-16'),
-(62, 'Rencana 11', 'Ketarangan', '0', '2024-07-16', NULL),
-(63, 'Rencana 12', 'Ketarangan', '0', '2024-08-21', NULL),
-(64, 'Rencana 13', 'Ketarangan', '0', '2024-09-18', NULL),
-(65, 'Rencana 14', 'Ketarangan', '0', '2024-10-17', NULL),
-(66, 'Rencana 15', 'Ketarangan', '0', '2024-11-13', NULL),
-(67, 'Rencana 16', 'Ketarangan', '0', '2024-12-08', NULL),
-(68, 'Rencana 17', 'Ketarangan', '0', '2024-12-26', NULL),
-(69, 'Rencana 18', 'Ketarangan', '0', '2024-12-18', NULL),
-(70, 'Tes tes', 'Tes tes', '0', '2024-02-15', NULL);
+(71, 'Climb Up Inspection', 'Line Karang Joang - Harapan Baru T.1 - T.187', '0', '2024-01-08', NULL),
+(72, 'CUI Drone', 'Line Petung - Longikis T.1 - T.115', '1', '2024-03-25', '2024-03-28'),
+(73, 'Assesment GI', 'Gardu Induk New Balikpapan dan Gardu Induk Industri', '1', '2024-01-15', '2024-01-18'),
+(74, 'Penggantian Isolator', 'T.18 Line 1 Fasa S Manggar Sari - Karang Joang', '1', '2024-01-22', '2024-01-22'),
+(75, 'Assesment GI', 'Gardu Induk Kota Bangun dan Gardu Induk Harapan Baru', '1', '2024-02-05', '2024-02-07'),
+(76, 'Penggantian Isolator', '- T.157 Line 1 dan 2 Fasa R,T Karang Joang - Harapan Baru\r\n- T.170 Line 1 Fasa R,S,T Karang Joang - Harapan Baru', '1', '2024-02-12', '2024-02-15'),
+(77, 'Penggantian U-Bolt Isolator', '- GI Manggar Sari Bay Line Senipah Fasa R,S,T\r\n- GI Manggar Sari Bay Line Karang Joang R,S,T', '1', '2024-02-19', '2024-02-22'),
+(78, 'Assesment GI', 'Gardu Induk Senipah dan Gardu Induk Karang Joang', '1', '2024-03-18', '2024-03-21'),
+(79, 'Penggantian Isolator', '- T,150 Line 1 Fasa R Karang Joang - Harapan Baru\r\n- T,203 Line 1 Fasa S,T Karang Joang - Harapan Baru\r\n- T,204 Line 1 Fasa R,S,T Karang Joang - Harapan Baru', '0', '2024-05-06', NULL),
+(80, 'Penggantian Isolator', '- T,205 Line 1 Fasa R,S,T Karang Joang - Harapan Baru\r\n- T,15 Line 1 Fasa R,S,T Tengkawang - Embalut\r\n- T,20 Line 1 Fasa S,T Tengkawang - Embalut', '0', '2024-05-20', NULL),
+(81, 'Assesment GI', 'GI New Samarinda', '0', '2024-05-13', NULL);
 
 -- --------------------------------------------------------
 
@@ -670,8 +665,7 @@ CREATE TABLE `t_sertifikat` (
 --
 
 INSERT INTO `t_sertifikat` (`id_sertifikat`, `id_personil`, `jenis_sertifikat`, `nama_file`) VALUES
-(62, 15, 'Kompetensi', 'Ijasaahhhjjkkp.pdf'),
-(63, 12, 'Diklat', 'Ijasahhhhh.pdf');
+(68, 15, 'Diklat', 'PDKB_GI_ADVANCE-F_1_122_19_011_3_19R0_IC_10_19_01_94130125D2Y_(1)2.pdf');
 
 -- --------------------------------------------------------
 
@@ -722,7 +716,9 @@ INSERT INTO `t_spki` (`id_spki`, `id_personil`, `kepada`, `nomor`, `bulan`, `tah
 (26, 14, 'Team Leader PDKB GI', '27', 'III', '2024', 'ASMAN PRKB', 'Penggantian Strain Clamp GSW korosi', 'GI Harapan Baru', '2024-03-06', '2024-03-07', 'Moch. Aziz Shidki', 'Zam Yudha Pangayoman', 'Ibnu Hubaiyah', 'Moch. Zulkifliansyah\r\nHernawan Agung\r\nAriya Adam\r\nHasta Fiado\r\nI Kadek Adityanul\r\nDaniel Pane\r\nRizkiyannur Adha\r\nMukh. Iqbal', 'Sesuai IK 8.006/IK/TRS.00.003/KOMISI-PDKB PUSAT/2018', 'Kendaraan Dinas', 'Penggantian Strain Clamp GSW korosi GI Harapan Baru', 'Pekerjaan non-rutin', '1', 12),
 (27, 14, 'Team Leader PDKB GI', '27', 'III', '2024', 'ASMAN PDKB', 'Penggantian Strain Clamp GSW Korosi', 'GI Harapan Baru', '2024-03-06', '2024-03-07', 'Moch. Aziz Shidki', 'Zam Yudha Pangayoman', 'Ibnu Hubaiyah', 'I kadek Adityanul\r\nDaniel Pane\r\nHernawan Agung\r\nRizkiyannur Adha\r\nAriya Adam\r\nMoch. Zulkifliansyah\r\nMukh. Iqbal\r\nHasta Fiado', 'Sesuai IK PDKB No. 8.006/IK/TRS.00.003/KOMISI-PDKB PUSAT/2018', 'Kendaraan Dinas', 'Penggantian Strain Clamp GSW Korosi GI Harapan Baru', 'Pekerjaan Rutin', '1', 12),
 (29, 12, 'TEAM LEADER PDKB RING', '28', 'III', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'Job Safety Analysis', 'Tower 32 Line Karang Joang Harapan Baru', '2024-03-14', '2024-03-14', 'Moch Aziz Shidki', 'I Kadek Adityanul', 'Hasta Fiado', 'Ariya Adam Abdullah\r\nDaniel Pane', 'APD dan Peralatan JSA', 'Kendaraan Dinas', 'JSA Tower 32 Line Karang Joang Harapan Baru', 'Pekerjaan Rutin', '1', 12),
-(30, 14, 'TEAM LEADER PDKB RING', '35', 'IV', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'FINAL CHECK', 'SUTT 150kV Line GIS 4 IKN - KARIANGAU', '2024-04-27', '2024-04-28', 'Moch. Aziz Shidki', '-', '-', 'Ariya Adam Abdullah', 'APD', 'Kendaraan Dinas', 'FINAL CHECK SUTT 150kV LINE GIS 4 IKN - KARIANGAU', 'Pekerjaan Non Rutin', '1', 12);
+(30, 14, 'TEAM LEADER PDKB RING', '35', 'IV', '2024', 'ASMAN PDKB UPT BALIKPAPAN', 'FINAL CHECK', 'SUTT 150kV Line GIS 4 IKN - KARIANGAU', '2024-04-27', '2024-04-28', 'Moch. Aziz Shidki', '-', '-', 'Ariya Adam Abdullah', 'APD', 'Kendaraan Dinas', 'FINAL CHECK SUTT 150kV LINE GIS 4 IKN - KARIANGAU', 'Pekerjaan Non Rutin', '1', 12),
+(31, 14, 'Team Leader PDKB Jaringan', '37', 'IV', '2024', 'ASMAN PDKB UPT Balikpapan', 'Final Check', 'SUTT 150 kV Line GIS 4 IKN - Kariangau', '2024-04-29', '2024-05-05', 'Moch. Aziz Shidki', '-', '-', 'Zam Yudha Pangayoman', 'APD', 'Kendaraan Dinas', 'Final Check SUTT 150 kV Line GIS 4 IKN - Kariangau', 'Pekerjaan Non Rutin', '1', 12),
+(32, 14, 'MANAGER BAGIAN PDKB UPT KALTIMRA', '110', 'XI', '2023', 'SPV PDKB GI UPT KALTIMRA', 'Penggantian U-Bolt Strain Clamp Isolator Korosi', 'Isolator Bus 1 dan Bus 2 Fasa R, S, T sisi Trafo 2 GI Petung', '2023-11-06', '2023-11-09', 'M. Aziz Shidki', 'Zam Yudha P', 'Haddy Suwarna', 'Hasta Fiado\r\nAgus Rianto\r\nRizkiyannur Adha\r\nAriya Adam\r\nDaniel Pane\r\nIbnu H', 'APD dan Peralatan Kerja Sesuai IK', 'Kendaraan Dinas', 'Penggantian U-Bolt Strain Clamp Isolator Korosi Isolator Bus 1 dan Bus 2 Fasa R, S, T sisi Trafo 2 GI Petung', 'Pekerjaan Non Rutin', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -746,9 +742,7 @@ INSERT INTO `t_temuan_jsa` (`id_temuan_jsa`, `id_jsa`, `temuan`, `keterangan`) V
 (44, 17, '2. Pengukuran', '1. Perhitungan beban : 6 Ton'),
 (45, 17, '3.Temuan anomali ', '1. Isolator Kaca 210KN,pecah 1 Keping\r\n(Keping ke 6 sisi Hot) Fasa S Line 1'),
 (46, 17, '4.Kondisi Lingkungan', '1. Jalan Tanjung-Kuaro No.30, Muara\r\nLangon, Kec. Muara Komam,\r\nKabupaten Paser, Kalimantan Timur\r\n76253\r\n2. Halaman Tower : sedikit rimbun\r\n3. SUTT terletak 1800 meter dari posisi\r\nmobil\r\n4. Akses menuju tower jauh dan sulit\r\nterdapat rintangan jurang, s'),
-(47, 17, '5.Kesimpulan', 'Tidak bisa dikerjakan secara PDKB karena\r\njarak aman untuk akses Hotman tidak\r\nterpenuhi dan akses menuju tower sulit\r\nkarena harus melewati jurang dan sungai.'),
-(48, 18, 'Lingkungan', 'Skkskkkskkm'),
-(49, 18, 'Komdisi tower', 'Skkskkkskkm');
+(47, 17, '5.Kesimpulan', 'Tidak bisa dikerjakan secara PDKB karena\r\njarak aman untuk akses Hotman tidak\r\nterpenuhi dan akses menuju tower sulit\r\nkarena harus melewati jurang dan sungai.');
 
 -- --------------------------------------------------------
 
@@ -926,7 +920,7 @@ ALTER TABLE `t_alat_tower_ers`
 -- AUTO_INCREMENT untuk tabel `t_detail_histori_alat`
 --
 ALTER TABLE `t_detail_histori_alat`
-  MODIFY `id_detail_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_detail_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_detail_riwayat_gudang`
@@ -950,7 +944,7 @@ ALTER TABLE `t_gardu_induk`
 -- AUTO_INCREMENT untuk tabel `t_histori_alat`
 --
 ALTER TABLE `t_histori_alat`
-  MODIFY `id_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_histori_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_jabatan`
@@ -974,13 +968,13 @@ ALTER TABLE `t_jsa`
 -- AUTO_INCREMENT untuk tabel `t_lampiran_laporan_pekerjaan`
 --
 ALTER TABLE `t_lampiran_laporan_pekerjaan`
-  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_laporan_pekerjaan`
 --
 ALTER TABLE `t_laporan_pekerjaan`
-  MODIFY `id_laporan_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id_laporan_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_partnership`
@@ -992,13 +986,13 @@ ALTER TABLE `t_partnership`
 -- AUTO_INCREMENT untuk tabel `t_personil`
 --
 ALTER TABLE `t_personil`
-  MODIFY `id_personil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_personil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_rencana_operasi`
 --
 ALTER TABLE `t_rencana_operasi`
-  MODIFY `id_rencana_operasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_rencana_operasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_riwayat_gudang`
@@ -1010,13 +1004,13 @@ ALTER TABLE `t_riwayat_gudang`
 -- AUTO_INCREMENT untuk tabel `t_sertifikat`
 --
 ALTER TABLE `t_sertifikat`
-  MODIFY `id_sertifikat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_sertifikat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_spki`
 --
 ALTER TABLE `t_spki`
-  MODIFY `id_spki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_spki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_temuan_jsa`

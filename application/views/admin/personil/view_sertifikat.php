@@ -90,6 +90,7 @@ function renderSertifikat($sertifikat)
         <div class="modal-footer">
           <form action="<?= base_url() ?>sertifikat/proses_hapus_sertifikat" method="post">
             <input type="hidden" name="id_sertifikat" value="<?= $pm->id_sertifikat ?>">
+            <input type="hidden" name="id_personil" value="<?= $pm->id_personil ?>">
             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
             <button type="submit" class="btn bg-gradient-primary">Ya</button>
           </form>

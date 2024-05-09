@@ -49,7 +49,7 @@ class Profil extends CI_Controller
 			);
 		}
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-		if (!empty($_FILES['foto']['name'])) {
+		if (isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) {
 			$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
 			$foto = $this->validasi_foto('ambil_foto');
 		} else {
@@ -67,7 +67,7 @@ class Profil extends CI_Controller
 				'alamat' => $this->input->post('alamat'),
 			);
 
-			if (!empty($_FILES['foto']['name'])) {
+			if (isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) {
 
 				$data['foto'] = $foto;
 			}
@@ -143,7 +143,7 @@ class Profil extends CI_Controller
 
 	function validasi_foto($param)
 	{
-		if (empty($_FILES['foto']['name'])) {
+		if (isset($_FILES['foto']) && empty($_FILES['foto']['name'])) {
 			$this->form_validation->set_message('validasi_foto', 'Foto tidak boleh kosong');
 			return false;
 		} else {
