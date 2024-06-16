@@ -9,7 +9,10 @@
                         </div>
                     </div>
                     <div class="col-6 pt-4 text-end">
-                        <div class="mx-3">
+                        <div class="d-inline-block">
+                            <button data-bs-toggle="modal" data-bs-target="#add_data" class="btn bg-gradient-dark"><i class="bi bi-file-earmark-plus-fill"></i> Import Data</button>
+                        </div>
+                        <div class="d-inline-block me-3">
                             <a href="<?= base_url() ?>admin/gardu-induk/tambah-gardu-induk" class="btn bg-gradient-dark">+ Tambah Gardu Induk</a>
                         </div>
                     </div>
@@ -25,6 +28,7 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Bay</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah Titik</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Klasifikasi</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Eksekusi</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
@@ -59,6 +63,9 @@
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->keterangan) ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->klasifikasi) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($g->tanggal_eksekusi)) ?></p>
@@ -127,7 +134,11 @@
                         </button>
                     </div>
                     <div class="modal-body text-center">
-                        <img src="<?= base_url() ?>assets/img/gardu-induk/<?= $gm->foto ?>" alt="" class="text-center" width="350px">
+                        <?php if ($gm->foto) : ?>
+                            <img src="<?= base_url() ?>assets/img/gardu-induk/<?= $gm->foto ?>" alt="" class="text-center" width="350px">
+                        <?php else : ?>
+                            <span>Belum ada foto</span>
+                        <?php endif ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">OK</button>
@@ -136,3 +147,68 @@
             </div>
         </div>
     <?php endforeach; ?>
+
+    <div class="modal fade" id="add_data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Import Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Baca aturan untuk import data dibawah ini :
+                    <ul>
+                        <li>File yang hanya dapat diinputkan hanya .xlsx</li>
+                        <li>Silahkan lihat contoh format file yang dapat di upload <a href="https://docs.google.com/spreadsheets/d/1c-7zt-uq1Ca_zhtV735UpNyPMZCkcToT/edit?usp=sharing&ouid=100799364152492885109&rtpof=true&sd=true" target="_blank" style="text-decoration: underline; color: blue;">disini</a></li>
+                    </ul>
+                    <hr class="horizontal dark mt-0">
+                    <form action="<?= base_url() ?>gardu_induk/import_data_excel" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="excel" class="form-control-label">File .xlsx</label>
+                            <input class="form-control" type="file" id="excel" name="excel" accept=".xlsx" required>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batalkan</button>
+                    <button type="submit" class="btn bg-gradient-primary">Import</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php if ($this->session->flashdata('error_add_excel')) { ?>
+        <!-- Tampilkan pesan 'flashdata' sebagai modal -->
+        <div class="modal fade modal-scrollable" id="message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Gagal Menambahkan Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?php foreach ($this->session->flashdata('error_add_excel') as $row => $invalidColumns) : ?>
+                            <ul>
+                                <li>
+                                    <span>Baris <?= $row ?> memiliki kesalahan berikut:</span>
+                                    <ul>
+                                        <?php foreach ($invalidColumns as $column) : ?>
+                                            <li><?= $column ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                    <!-- <p></p> -->
+                                </li>
+                            </ul>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">Oke</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>

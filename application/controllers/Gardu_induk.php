@@ -1,5 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Gardu_induk extends CI_Controller
 {
@@ -100,6 +104,7 @@ class Gardu_induk extends CI_Controller
 			}
 		}
 	}
+
 	public function edit_gardu_induk()
 	{
 		$data['title'] = 'Gardu Induk';
@@ -177,7 +182,6 @@ class Gardu_induk extends CI_Controller
 		}
 	}
 
-
 	public function proses_hapus_gardu_induk()
 	{
 		$this->db->where('id_gardu_induk', $this->input->post('id_gardu_induk'));
@@ -226,6 +230,156 @@ class Gardu_induk extends CI_Controller
 				// Proses upload gagal, set pesan kesalahan
 				$this->form_validation->set_message('validasi_foto', 'Upload foto gagal. ' . $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>'));
 				return false; // Kembalikan false jika ada kesalahan
+			}
+		}
+	}
+
+	public function import_data_excel()
+	{
+		// Konfigurasi upload
+		$config = array(
+			'upload_path' => './assets/excel/',
+			'allowed_types' => 'xlsx|xls',
+			'remove_spaces' => TRUE,
+		);
+		$this->upload->initialize($config);
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('excel')) {
+			$error = $this->upload->display_errors();
+			echo "Error in uploading file: " . $error;
+			return; // Hentikan eksekusi jika upload gagal
+		}
+
+		$data = $this->upload->data();
+		$inputFileName = './assets/excel/' . $data['file_name'];
+
+		// Membaca file Excel
+		$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+		$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+		$spreadsheet = $reader->load($inputFileName);
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$countRows = 0;
+		$errors = []; // Array untuk menyimpan pesan kesalahan
+
+		foreach ($sheet->getRowIterator(2) as $row) {
+			// Inisialisasi variabel di dalam loop
+			$jenis_anomali = $sheet->getCell('A' . $row->getRowIndex())->getValue();
+			$gardu_induk = $sheet->getCell('B' . $row->getRowIndex())->getValue();
+			$bay = $sheet->getCell('C' . $row->getRowIndex())->getFormattedValue();
+			$jumlah_titik = $sheet->getCell('D' . $row->getRowIndex())->getValue();
+			$keterangan = $sheet->getCell('E' . $row->getRowIndex())->getFormattedValue();
+			$klasifikasi = $sheet->getCell('F' . $row->getRowIndex())->getFormattedValue();
+			$tanggal_eksekusi = $sheet->getCell('G' . $row->getRowIndex())->getFormattedValue();
+			$status = $sheet->getCell('H' . $row->getRowIndex())->getValue();
+
+			// Validasi jenis anomali
+			if (empty($jenis_anomali)) {
+				$errors[$row->getRowIndex()][] = 'Jenis anomali kosong';
+			}
+
+			// Validasi gardu_induk
+			if (empty($gardu_induk)) {
+				$errors[$row->getRowIndex()][] = 'Gardu Induk kosong';
+			}
+
+			// Validasi bay
+			if (empty($bay)) {
+				$errors[$row->getRowIndex()][] = 'Bay kosong';
+			}
+
+			// Validasi jumlah_titik
+			if (empty($jumlah_titik)) {
+				$errors[$row->getRowIndex()][] = 'Jumlah titik kosong';
+			}
+			if (!is_numeric($jumlah_titik)) {
+				$errors[$row->getRowIndex()][] = 'Jumlah titik harus angka';
+			}
+
+			// Validasi keterangan
+			if (empty($keterangan)) {
+				$errors[$row->getRowIndex()][] = 'Keterangan kosong';
+			}
+
+			// Validasi klasifikasi
+			if (empty($klasifikasi)) {
+				$errors[$row->getRowIndex()][] = 'Klasifikasi kosong';
+			}
+
+			// Validasi tanggal_eksekusi
+			if (empty($tanggal_eksekusi)) {
+				$errors[$row->getRowIndex()][] = 'Tanggal eksekusi kosong';
+			} else {
+				// Ubah format tanggal_langganan ke format 'Y-m-d'
+				$mulai_berlangganan_obj = date_create_from_format('d/m/Y', $tanggal_eksekusi);
+
+				if (!$mulai_berlangganan_obj) {
+					$errors[$row->getRowIndex()][] = 'Format tanggal langganan tidak sesuai';
+				}
+			}
+
+			// Validasi status
+			if (empty($status)) {
+				$errors[$row->getRowIndex()][] = 'Status dikerjakan kosong';
+			}
+
+			// Jika ada kolom yang tidak valid, tambahkan ke dalam array $errors
+			if (!empty($errors[$row->getRowIndex()])) {
+				$countRows++; // Tambahkan jumlah baris yang memiliki kesalahan
+			}
+		}
+
+		if ($countRows > 0) {
+			// Jika ada baris dengan kesalahan, set pesan kesalahan
+			$this->session->set_flashdata('error_add_excel', $errors);
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
+				redirect('atasan/gardu-induk');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/gardu-induk');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
+				redirect('jtc/gardu-induk');
+			}
+		} else {
+			// Jika tidak ada kesalahan, lakukan operasi tambah data
+			foreach ($sheet->getRowIterator(2) as $row) {
+				$tanggal_eksekusi = $sheet->getCell('G' . $row->getRowIndex())->getFormattedValue();
+				$tanggal_eksekusi_obj = date_create_from_format('d/m/Y', $tanggal_eksekusi);
+				$tanggal_eksekusi_formatted = $tanggal_eksekusi_obj->format('Y-m-d');
+				$status = strtolower($sheet->getCell('H' . $row->getRowIndex())->getValue());
+
+				// Data sekarang diperoleh dalam loop
+				$data1 = [
+					'id_personil' => $this->session->userdata('id_personil'),
+					'jenis_anomali' => $sheet->getCell('A' . $row->getRowIndex())->getValue(),
+					'gardu_induk' => $sheet->getCell('B' . $row->getRowIndex())->getValue(),
+					'bay' => $sheet->getCell('C' . $row->getRowIndex())->getFormattedValue(),
+					'jumlah_titik' => $sheet->getCell('D' . $row->getRowIndex())->getValue(),
+					'keterangan' => $sheet->getCell('E' . $row->getRowIndex())->getFormattedValue(),
+					'klasifikasi' => $sheet->getCell('F' . $row->getRowIndex())->getFormattedValue(),
+					'tanggal_eksekusi' => $tanggal_eksekusi_formatted,
+					'status_dikerjakan' => $status  === "sudah" ? "1" : "0",
+				];
+
+				$this->Gardu_induk_model->tambah_gardu_induk($data1);
+				$countRows++;
+			}
+
+			if ($countRows > 0) {
+				$this->session->set_flashdata('message', '<strong>Data Gardu Induk Berhasil Ditambahkan</strong>
+													<i class="bi bi-check-circle-fill"></i>');
+			} else {
+				$this->session->set_flashdata('message', '<strong>Data Gardu Induk Gagal Ditambahkan</strong>
+													<i class="bi bi-exclamation-circle-fill"></i>');
+			}
+			unlink($inputFileName);
+			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
+				redirect('atasan/gardu-induk');
+			} else if ($this->session->userdata('id_jabatan') == '4') {
+				redirect('admin/gardu-induk');
+			} else if ($this->session->userdata('id_jabatan') == '5' or $this->session->userdata('id_jabatan') == '6') {
+				redirect('jtc/gardu-induk');
 			}
 		}
 	}

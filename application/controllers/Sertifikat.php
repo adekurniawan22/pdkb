@@ -24,7 +24,7 @@ class Sertifikat extends CI_Controller
 		} else {
 			$data['sertifikat'] = $this->Sertifikat_model->dapat_sertifikat($this->input->post('id_personil'));
 		}
-		
+
 		if ($this->session->userdata('id_personil_sertifikat')) {
 			$data['id_personil'] = $this->session->userdata('id_personil_sertifikat');
 		} else {
@@ -82,37 +82,37 @@ class Sertifikat extends CI_Controller
 		}
 	}
 
-    public function proses_tambah_sertifikat()
-    {
-        $this->form_validation->set_rules('jenis_sertifikat', 'Jenis Sertifikat', 'required');
-        $this->form_validation->set_rules('sertifikat_baru', 'Sertifikat Baru', 'callback_validasi_sertifikat');
-    
-        if ($this->form_validation->run() == false) {
-            $id_personil = $this->input->post('id_personil');
-            $this->session->set_userdata(['id_view_sertifikat' => $id_personil]);
-            $this->session->set_userdata(['id_personil_sertifikat' => $id_personil]);
-            $this->get_sertifikat();
-        } else {
-            $nama_file = $this->validasi_sertifikat('asa');
-            $id_personil = $this->session->userdata('id_personil_sertifikat');
-            if (!$id_personil) {
-                $id_personil = $this->input->post('id_personil');
-            }
-    
-            $data = [
-                'id_personil' => $id_personil,
-                'jenis_sertifikat' => $this->input->post('jenis_sertifikat'),
-                'nama_file' => $nama_file
-            ];
-    
-            $this->db->insert('t_sertifikat', $data);
-    
-            $this->session->set_userdata(['id_view_sertifikat' => $id_personil]);
-            $this->session->set_userdata(['id_personil_sertifikat' => $this->input->post('id_personil')]);
-            $this->session->set_flashdata('message', '<strong>Sertifikat Personil Berhasil Ditambahkan</strong> <i class="bi bi-check-circle-fill"></i>');
-            redirect('admin/personil/lihat-sertifikat');
-        }
-    }
+	public function proses_tambah_sertifikat()
+	{
+		$this->form_validation->set_rules('jenis_sertifikat', 'Jenis Sertifikat', 'required');
+		$this->form_validation->set_rules('sertifikat_baru', 'Sertifikat Baru', 'callback_validasi_sertifikat');
+
+		if ($this->form_validation->run() == false) {
+			$id_personil = $this->input->post('id_personil');
+			$this->session->set_userdata(['id_view_sertifikat' => $id_personil]);
+			$this->session->set_userdata(['id_personil_sertifikat' => $id_personil]);
+			$this->get_sertifikat();
+		} else {
+			$nama_file = $this->validasi_sertifikat('asa');
+			$id_personil = $this->session->userdata('id_personil_sertifikat');
+			if (!$id_personil) {
+				$id_personil = $this->input->post('id_personil');
+			}
+
+			$data = [
+				'id_personil' => $id_personil,
+				'jenis_sertifikat' => $this->input->post('jenis_sertifikat'),
+				'nama_file' => $nama_file
+			];
+
+			$this->db->insert('t_sertifikat', $data);
+
+			$this->session->set_userdata(['id_view_sertifikat' => $id_personil]);
+			$this->session->set_userdata(['id_personil_sertifikat' => $this->input->post('id_personil')]);
+			$this->session->set_flashdata('message', '<strong>Sertifikat Personil Berhasil Ditambahkan</strong> <i class="bi bi-check-circle-fill"></i>');
+			redirect('admin/personil/lihat-sertifikat');
+		}
+	}
 
 
 	public function proses_hapus_sertifikat()
@@ -139,7 +139,7 @@ class Sertifikat extends CI_Controller
 		$this->db->where('id_sertifikat', $this->input->post('id_sertifikat'));
 		$this->db->delete('t_sertifikat');
 		$this->session->set_userdata(['id_view_sertifikat' => $sertifikat->id_personil]);
-		
+
 		$this->session->set_flashdata('message', '<strong>Sertifikat Personil Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 		redirect('profil/lihat-sertifikat');

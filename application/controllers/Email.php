@@ -3,6 +3,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Email extends CI_Controller
 {
+	private $telegram_token = '7145757655:AAGunuRk1_KDf-A8UrJZq_9ahsNbFXWyogo';
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -10,142 +12,113 @@ class Email extends CI_Controller
 		$this->load->model('Alat_kerja_model');
 		$this->load->model('Rencana_operasi_model');
 		$this->load->library('email');
+		$this->load->library('pdfgenerator');
 	}
 
 	public function index()
 	{
-		$config = array(
-			'protocol'  => 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_port' => 465,
-			'smtp_user' => 'appcilogin@gmail.com',
-			'smtp_pass' => 'zfzx feer tkeb kltl',
-			'mailtype'  => 'html',
-			'charset'   => 'utf-8',
-			'newline'   => "\r\n"
-		);
+		$data = $this->data_laporan();
+		$isEmpty = true;
+		foreach ($data as $key => $value) {
+			if (!empty($value)) {
+				$isEmpty = false;
+				break;
+			}
+		}
 
-		$this->email->initialize($config);
+		if (!$isEmpty) {
+			date_default_timezone_set('Asia/Jakarta');
+			$nama_file_pdf = 'data_laporan_simpati_pdkb_' . date('YmdHis') . '.pdf';
+			$html = $this->load->view('cetak', $data, true);
 
+			$this->pdfgenerator->savePDF($html, 'A4', 'portrait', $nama_file_pdf);
+
+			$content = "Halo,\n\nSaya adalah BOT Telegram dari SIMPATI-PDKB\n(https://simpati-pdkb.id/).\n\nBerikut adalah laporan data untuk periode bulan mendatang dari sistem kami dalam format PDF.\n\nTerima kasih.";
+
+			$telegram_chat_id = 1375998661;
+
+			// Send PDF via Telegram
+			$this->send_telegram_message($telegram_chat_id, $content, base_url('assets/data_laporan/' . $nama_file_pdf));
+
+			$pdf_file_path = FCPATH . 'assets/data_laporan/' . $nama_file_pdf;
+			if (file_exists($pdf_file_path)) {
+				unlink($pdf_file_path);
+			}
+		}
+
+		exit();
+	}
+
+	private function send_telegram_message($chat_id, $message, $document_url)
+	{
+		$url = "https://api.telegram.org/bot{$this->telegram_token}/sendDocument";
+
+		// Initialize cURL session
+		$ch = curl_init();
+
+		// Set cURL options
+		curl_setopt_array($ch, [
+			CURLOPT_URL => $url,
+			CURLOPT_POST => true,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_POSTFIELDS => [
+				'chat_id' => $chat_id,
+				'document' => new CURLFile($document_url),
+				'caption' => $message,
+				'parse_mode' => 'HTML'
+			]
+		]);
+
+		// Execute the cURL session
+		curl_exec($ch);
+
+		// Check for cURL errors
+		if (curl_errno($ch)) {
+			// Handle error
+			log_message('error', 'Telegram cURL request failed: ' . curl_error($ch));
+		} else {
+			// Close cURL session
+			curl_close($ch);
+
+			// Handle success
+			log_message('debug', 'Telegram message sent successfully');
+		}
+	}
+
+	private function data_laporan()
+	{
+		date_default_timezone_set('Asia/Jakarta');
 		$this->db->where('YEAR(tanggal_dikerjakan)', date('Y'));
 		$this->db->where('MONTH(tanggal_dikerjakan)', date('m'));
 		$this->db->where('status', '0');
-		$p_rencana_operasi = $this->db->get('t_rencana_operasi')->result();
-		$jp_rencana_operasi = count($p_rencana_operasi);
+		$data['p_rencana_operasi'] = $this->db->get('t_rencana_operasi')->result();
+		$data['jp_rencana_operasi'] = count($data['p_rencana_operasi']);
 
 		$tanggal_mulai = date('Y-m-d');
 		$tanggal_selesai = date('Y-m-d', strtotime('+1 month'));
-		$this->db->where('tanggal_kadaluarsa <=', $tanggal_selesai);
-		$p_alat_kerja = $this->db->get('t_alat_kerja')->result();
-		$jp_alat_kerja = count($p_alat_kerja);
 
+		$this->db->where('tanggal_kadaluarsa >=', $tanggal_mulai);
 		$this->db->where('tanggal_kadaluarsa <=', $tanggal_selesai);
-		$p_alat_tower_ers = $this->db->get('t_alat_tower_ers')->result();
-		$jp_alat_tower_ers = count($p_alat_tower_ers);
+		$data['p_alat_kerja'] = $this->db->get('t_alat_kerja')->result();
+		$data['jp_alat_kerja'] = count($data['p_alat_kerja']);
+
+		$this->db->where('tanggal_kadaluarsa >=', $tanggal_mulai);
+		$this->db->where('tanggal_kadaluarsa <=', $tanggal_selesai);
+		$data['p_alat_tower_ers'] = $this->db->get('t_alat_tower_ers')->result();
+		$data['jp_alat_tower_ers'] = count($data['p_alat_tower_ers']);
 
 		$this->db->where('status_dikerjakan', '0');
 		$this->db->where('tanggal_eksekusi >=', $tanggal_mulai);
 		$this->db->where('tanggal_eksekusi <=', $tanggal_selesai);
-		$p_gardu_induk = $this->db->get('t_gardu_induk')->result();
-		$jp_gardu_induk = count($p_gardu_induk);
+		$data['p_gardu_induk'] = $this->db->get('t_gardu_induk')->result();
+		$data['jp_gardu_induk'] = count($data['p_gardu_induk']);
 
 		$this->db->where('status_dikerjakan', '0');
 		$this->db->where('tanggal_eksekusi >=', $tanggal_mulai);
 		$this->db->where('tanggal_eksekusi <=', $tanggal_selesai);
-		$p_jaringan = $this->db->get('t_jaringan')->result();
-		$jp_jaringan = count($p_jaringan);
+		$data['p_jaringan'] = $this->db->get('t_jaringan')->result();
+		$data['jp_jaringan'] = count($data['p_jaringan']);
 
-		$this->db->where_in('id_jabatan', array(1, 2, 3));
-		$query = $this->db->get('t_personil')->result();
-
-		foreach ($query as $q) {
-			$this->email->from('appcilogin@gmail.com', 'Admin PDKB');
-			$this->email->to($q->email);
-
-			$this->email->subject('Pesan dari SIMPATI PDKB');
-
-
-			$content = "";
-
-			if (!empty($p_rencana_operasi)) {
-				$content .= "<hr>";
-				$content .= "<h2>Pengingat Rencana Operasi :</h2>";
-				$content .= "Terdapat <strong>" . $jp_rencana_operasi . "</strong> rencana operasi yang belum dikerjakan dalam bulan ini.<br>";
-				$content .= "<ul>";
-				foreach ($p_rencana_operasi as $r) {
-					$content .= "<li>";
-					$content .= "<strong>" . $r->nama_rencana . "</strong><br>";
-					$content .= "" . "Rencana diselesaikan pada tanggal " . date('d/m/Y', strtotime($r->tanggal_dikerjakan));
-					$content .= "</li>";
-				}
-				$content .= "</ul>";
-				$content .= "<hr>";
-			}
-
-
-			if (!empty($p_gardu_induk)) {
-				$content .= "<h2>Pengingat Gardu Induk :</h2>";
-				$content .= "Terdapat <strong>" . $jp_gardu_induk . "</strong> gardu induk yang akan dikerjakan dalam rentang waktu hari ini hingga 1 bulan kedepan.<br>";
-				$content .= "<ul>";
-				foreach ($p_gardu_induk as $r) {
-					$content .= "<li>";
-					$content .= "<strong>" . $r->gardu_induk . "</strong><br>";
-					$content .= "" . nl2br($r->bay) . "<br>";
-					$content .= "" . "Rencana dieksekusi pada tanggal " . date('d/m/Y', strtotime($r->tanggal_eksekusi)) . "<br>";
-					$content .= "</li>";
-					$content .= "<br>";
-				}
-				$content .= "</ul>";
-				$content .= "<hr>";
-			}
-
-			if (!empty($p_jaringan)) {
-				$content .= "<h2>Pengingat Jaringan :</h2>";
-				$content .= "Terdapat <strong>" . $jp_jaringan . "</strong> jaringan yang akan dikerjakan dalam rentang waktu hari ini hingga 1 bulan kedepan.<br>";
-				$content .= "<ul>";
-				foreach ($p_jaringan as $r) {
-					$content .= "<li>";
-					$content .= "<strong>Tower nomor " . $r->no_tower . "</strong><br>";
-					$content .= "" . "Rencana dieksekusi pada tanggal " . date('d/m/Y', strtotime($r->tanggal_eksekusi)) . "<br>";
-					$content .= "</li>";
-					$content .= "<br>";
-				}
-				$content .= "</ul>";
-				$content .= "<hr>";
-			}
-
-			if (!empty($p_alat_kerja)) {
-				$content .= "<h2>Pengingat Alat Kerja :</h2>";
-				$content .= "Terdapat <strong>" . $jp_alat_kerja . "</strong> alat kerja yang akan kedaluarsa dalam satu bulan ke depan.<br>";
-				$content .= "<ul>";
-				foreach ($p_alat_kerja as $r) {
-					$content .= "<li>";
-					$content .= "<strong>" . $r->nama_alat_kerja . "</strong><br>";
-					$content .= "" . "Akan kadaluarsa pada tanggal " . date('d/m/Y', strtotime($r->tanggal_kadaluarsa)) . "<br>";
-					$content .= "</li>";
-					$content .= "<br>";
-				}
-				$content .= "</ul>";
-				$content .= "<hr>";
-			}
-
-			if (!empty($p_alat_tower_ers)) {
-				$content .= "<h2>Pengingat Alat Kerja Tower ERS :</h2>";
-				$content .= "Terdapat <strong>" . $jp_alat_tower_ers . "</strong> alat kerja yang akan kedaluarsa dalam satu bulan ke depan.<br>";
-				$content .= "<ul>";
-				foreach ($p_alat_tower_ers as $r) {
-					$content .= "<li>";
-					$content .= "<strong>" . $r->nama_alat_tower_ers . "</strong><br>";
-					$content .= "" . "Akan kadaluarsa pada tanggal " . date('d/m/Y', strtotime($r->tanggal_kadaluarsa)) . "<br>";
-					$content .= "</li>";
-					$content .= "<br>";
-				}
-				$content .= "</ul>";
-				$content .= "<hr>";
-			}
-
-			$this->email->message($content);
-			$this->email->send();
-		}
+		return $data;
 	}
 }

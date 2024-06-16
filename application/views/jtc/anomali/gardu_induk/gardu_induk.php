@@ -20,6 +20,7 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Bay</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah Titik</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Klasifikasi</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Eksekusi</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
@@ -54,6 +55,9 @@
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->keterangan) ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->klasifikasi) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($g->tanggal_eksekusi)) ?></p>

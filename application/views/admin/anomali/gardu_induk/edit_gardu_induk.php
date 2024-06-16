@@ -49,7 +49,10 @@
 
                         <div class="form-group">
                             <label for="foto" class="form-control-label">Foto</label>
-                            <img src="<?= base_url('assets/img/gardu-induk/') . $gardu_induk->foto ?>" alt="Profile" class="form-control mb-2" style="width: 200px;">
+                            <?php if ($gardu_induk->foto) : ?>
+                                <img src="<?= base_url('assets/img/gardu-induk/') . $gardu_induk->foto ?>" alt="Profile" class="form-control mb-2" style="width: 200px;">
+                            <?php endif ?>
+
                             <input type="hidden" name="foto_lama" value="<?= $gardu_induk->foto ?>">
                             <input class="form-control" type="file" name="foto">
                             <?= form_error('foto', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>

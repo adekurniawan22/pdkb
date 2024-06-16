@@ -31,7 +31,7 @@ class Dashboard extends CI_Controller
 			$this->load->view('atasan/dashboard', $data);
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
-
+			date_default_timezone_set('Asia/Jakarta');
 			$this->db->where('YEAR(tanggal_dikerjakan)', date('Y'));
 			$this->db->where('MONTH(tanggal_dikerjakan)', date('m'));
 			$this->db->where('status', '0');
