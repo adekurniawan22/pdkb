@@ -58,18 +58,32 @@ class Sertifikat extends CI_Controller
 
 	public function proses_tambah_sertifikat_sendiri()
 	{
+		$this->form_validation->set_rules('nama_sertifikat_baru', 'Nama Sertifikat Baru', 'required');
 		$this->form_validation->set_rules('jenis_sertifikat', 'Jenis Sertifikat', 'required');
-		$this->form_validation->set_rules('sertifikat_baru', 'Sertifikat Baru', 'callback_validasi_sertifikat');
 
 		if ($this->form_validation->run() == false) {
 			$this->session->set_userdata(['id_view_sertifikat' => $this->input->post('id_personil')]);
 			$this->get_sertifikat();
 		} else {
-			$nama_file = $this->validasi_sertifikat('asa');
+			if (isset($_FILES['sertifikat_baru'])) {
+				$config_sertifikat = array(
+					'upload_path' => './assets/img/sertifikat',
+					'allowed_types' => 'jpg|jpeg|png',
+				);
+				$this->upload->initialize($config_sertifikat);
+
+				$this->upload->do_upload('sertifikat_baru');
+				$sertifikat_data = $this->upload->data();
+				$nama_file = $sertifikat_data['file_name'];
+			} else {
+				$nama_file = null;
+			}
 
 			$data = [
 				'id_personil' => $this->input->post('id_personil'),
-				'jenis_sertifikat' => $this->input->post('jenis_sertifikat'),
+				'nama_sertifikat' => $_POST['nama_sertifikat_baru'],
+				'jenis_sertifikat' => $_POST['jenis_sertifikat'],
+				'tanggal_kadaluarsa' => $_POST['tanggal_kadaluarsa'] === "" ? null : $_POST['tanggal_kadaluarsa'],
 				'nama_file' => $nama_file
 			];
 
@@ -84,8 +98,8 @@ class Sertifikat extends CI_Controller
 
 	public function proses_tambah_sertifikat()
 	{
+		$this->form_validation->set_rules('nama_sertifikat_baru', 'Nama Sertifikat Baru', 'required');
 		$this->form_validation->set_rules('jenis_sertifikat', 'Jenis Sertifikat', 'required');
-		$this->form_validation->set_rules('sertifikat_baru', 'Sertifikat Baru', 'callback_validasi_sertifikat');
 
 		if ($this->form_validation->run() == false) {
 			$id_personil = $this->input->post('id_personil');
@@ -93,15 +107,30 @@ class Sertifikat extends CI_Controller
 			$this->session->set_userdata(['id_personil_sertifikat' => $id_personil]);
 			$this->get_sertifikat();
 		} else {
-			$nama_file = $this->validasi_sertifikat('asa');
 			$id_personil = $this->session->userdata('id_personil_sertifikat');
 			if (!$id_personil) {
 				$id_personil = $this->input->post('id_personil');
 			}
 
+			if (isset($_FILES['sertifikat_baru'])) {
+				$config_sertifikat = array(
+					'upload_path' => './assets/img/sertifikat',
+					'allowed_types' => 'jpg|jpeg|png',
+				);
+				$this->upload->initialize($config_sertifikat);
+
+				$this->upload->do_upload('sertifikat_baru');
+				$sertifikat_data = $this->upload->data();
+				$nama_file = $sertifikat_data['file_name'];
+			} else {
+				$nama_file = null;
+			}
+
 			$data = [
 				'id_personil' => $id_personil,
-				'jenis_sertifikat' => $this->input->post('jenis_sertifikat'),
+				'nama_sertifikat' => $_POST['nama_sertifikat_baru'],
+				'jenis_sertifikat' => $_POST['jenis_sertifikat'],
+				'tanggal_kadaluarsa' => $_POST['tanggal_kadaluarsa'] === "" ? null : $_POST['tanggal_kadaluarsa'],
 				'nama_file' => $nama_file
 			];
 
@@ -113,7 +142,6 @@ class Sertifikat extends CI_Controller
 			redirect('admin/personil/lihat-sertifikat');
 		}
 	}
-
 
 	public function proses_hapus_sertifikat()
 	{
@@ -143,38 +171,5 @@ class Sertifikat extends CI_Controller
 		$this->session->set_flashdata('message', '<strong>Sertifikat Personil Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 		redirect('profil/lihat-sertifikat');
-	}
-
-
-	function validasi_sertifikat($param)
-	{
-		if (isset($_FILES['sertifikat_baru']) && empty($_FILES['sertifikat_baru']['name'])) {
-			$this->form_validation->set_message('validasi_sertifikat', 'Sertifikat tidak boleh kosong');
-			return false;
-		} else {
-			$config_sertifikat = array(
-				'upload_path' => './assets/img/sertifikat',
-				'allowed_types' => 'jpg|jpeg|png|pdf',
-				'max_size'      => 5120,
-			);
-			$this->upload->initialize($config_sertifikat);
-
-			if ($this->upload->do_upload('sertifikat_baru')) {
-				// Proses upload berhasil, lanjutkan dengan logika yang diinginkan
-				$sertifikat_data = $this->upload->data();
-				$sertifikat = $sertifikat_data['file_name'];
-
-				if ($param == null) {
-					unlink(FCPATH . 'assets/img/sertifikat/' . $sertifikat);
-					return true; // Kembalikan true jika semuanya berjalan dengan baik
-				} else {
-					return $sertifikat;
-				}
-			} else {
-				// Proses upload gagal, set pesan kesalahan
-				$this->form_validation->set_message('validasi_sertifikat', 'Upload Sertifikat gagal. ' . $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>'));
-				return false; // Kembalikan false jika ada kesalahan
-			}
-		}
 	}
 }

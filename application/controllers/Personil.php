@@ -79,24 +79,24 @@ class Personil extends CI_Controller
 		);
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-		$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
-
-
-
-		if (isset($_FILES['s_diklat']) && !$_FILES['s_diklat']['name'][0] == '') {
-			$this->form_validation->set_rules('s_diklat[]', 'Sertifikat Diklat', 'callback_validasi_sertifikat_diklat');
-		}
-		if (isset($_FILES['s_kompetensi']) && !$_FILES['s_kompetensi']['name'][0] == '') {
-			$this->form_validation->set_rules('s_kompetensi[]', 'Sertifikat Kompetensi', 'callback_validasi_sertifikat_diklat');
-		}
-
 
 		if ($this->form_validation->run() == false) {
 			$this->tambah_personil();
 		} else {
-			$foto = $this->validasi_foto('ambil_foto');
-			$s_diklat_all = $this->validasi_sertifikat_diklat('ccc');
-			$s_kompetensi_all = $this->validasi_sertifikat_kompetensi('dddd');
+			if (isset($_FILES['foto'])) {
+				$config_foto = array(
+					'upload_path' => './assets/img/profil',
+					'allowed_types' => 'jpg|jpeg|png',
+				);
+				$this->upload->initialize($config_foto);
+
+				$this->upload->do_upload('foto');
+				$foto_data = $this->upload->data();
+				$foto = $foto_data['file_name'];
+			} else {
+				$foto = null;
+			}
+
 			$data = array(
 				'id_jabatan' => $this->input->post('id_jabatan'),
 				'nama' => $this->input->post('nama'),
@@ -112,23 +112,28 @@ class Personil extends CI_Controller
 			$result = $this->Personil_model->tambah_personil($data);
 			$id_personil = $this->db->insert_id();
 
-			if ($s_diklat_all) {
-				foreach ($s_diklat_all as $s_diklat) {
-					$dataSertifikat = [
-						'id_personil' => $id_personil,
-						'jenis_sertifikat' => 'Diklat',
-						'nama_file' => $s_diklat,
-					];
-					$this->db->insert('t_sertifikat', $dataSertifikat);
-				}
-			}
+			// Tambah Sertifikat
+			$config_sertifikat = array(
+				'upload_path'   => './assets/img/sertifikat',
+				'allowed_types' => 'jpg|jpeg|png|pdf',
+			);
+			$this->upload->initialize($config_sertifikat);
+			for ($i = 0; $i < count($_FILES['file_sertifikat']['name']); $i++) {
+				$_FILES['single_sertifikat']['name'] = $_FILES['file_sertifikat']['name'][$i];
+				$_FILES['single_sertifikat']['type'] = $_FILES['file_sertifikat']['type'][$i];
+				$_FILES['single_sertifikat']['tmp_name'] = $_FILES['file_sertifikat']['tmp_name'][$i];
+				$_FILES['single_sertifikat']['error'] = $_FILES['file_sertifikat']['error'][$i];
+				$_FILES['single_sertifikat']['size'] = $_FILES['file_sertifikat']['size'][$i];
 
-			if ($s_kompetensi_all) {
-				foreach ($s_kompetensi_all as $s_kompetensi) {
+				if ($this->upload->do_upload('single_sertifikat')) {
+					$sertifikat_data = $this->upload->data();
+					$file = $sertifikat_data['file_name'];
 					$dataSertifikat = [
 						'id_personil' => $id_personil,
-						'jenis_sertifikat' => 'Kompetensi',
-						'nama_file' => $s_kompetensi,
+						'nama_sertifikat' => $_POST['nama_sertifikat'][$i],
+						'jenis_sertifikat' => $_POST['jenis_sertifikat'][$i],
+						'tanggal_kadaluarsa' => $_POST['tanggal_kadaluarsa'][$i] === "" ? null : $_POST['tanggal_kadaluarsa'][$i],
+						'nama_file' => $file,
 					];
 					$this->db->insert('t_sertifikat', $dataSertifikat);
 				}
@@ -319,76 +324,5 @@ class Personil extends CI_Controller
 				return false; // Kembalikan false jika ada kesalahan
 			}
 		}
-	}
-
-	function validasi_sertifikat_diklat($param)
-	{
-		$config_sertifikat = array(
-			'upload_path'   => './assets/img/sertifikat',
-			'allowed_types' => 'jpg|jpeg|png|pdf',
-			'max_size' => 5120,
-		);
-
-		$s_diklat_all = [];
-
-		$this->upload->initialize($config_sertifikat);
-		foreach ($_FILES['s_diklat']['name'] as $key => $filename) {
-			// Set individual file data for each iteration
-			$_FILES['userfile']['name']     = $filename;
-			$_FILES['userfile']['type']     = $_FILES['s_diklat']['type'][$key];
-			$_FILES['userfile']['tmp_name'] = $_FILES['s_diklat']['tmp_name'][$key];
-			$_FILES['userfile']['error']    = $_FILES['s_diklat']['error'][$key];
-			$_FILES['userfile']['size']     = $_FILES['s_diklat']['size'][$key];
-
-			if ($this->upload->do_upload('userfile')) {
-				$sertifikat_data = $this->upload->data();
-				$file = $sertifikat_data['file_name'];
-				if ($param == null) {
-					unlink(FCPATH . 'assets/img/sertifikat/' . $file);
-					return true;
-				} else {
-					array_push($s_diklat_all, $file);
-				}
-			} else {
-				$this->form_validation->set_message('validasi_sertifikat_diklat', $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>'));
-				return false;
-			}
-		}
-		return $s_diklat_all;
-	}
-
-	function validasi_sertifikat_kompetensi($param)
-	{
-		$config_sertifikat = array(
-			'upload_path'   => './assets/img/sertifikat',
-			'allowed_types' => 'jpg|jpeg|png|pdf',
-			'max_size' => 5120,
-		);
-
-		$s_kompetensi_all = [];
-
-		$this->upload->initialize($config_sertifikat);
-		foreach ($_FILES['s_kompetensi']['name'] as $key => $filename) {
-			// Set individual file data for each iteration
-			$_FILES['userfile']['name']     = $filename;
-			$_FILES['userfile']['type']     = $_FILES['s_kompetensi']['type'][$key];
-			$_FILES['userfile']['tmp_name'] = $_FILES['s_kompetensi']['tmp_name'][$key];
-			$_FILES['userfile']['error']    = $_FILES['s_kompetensi']['error'][$key];
-			$_FILES['userfile']['size']     = $_FILES['s_kompetensi']['size'][$key];
-
-			if ($this->upload->do_upload('userfile')) {
-				$sertifikat_data = $this->upload->data();
-				if ($param == null) {
-					unlink(FCPATH . 'assets/img/sertifikat/' . $sertifikat_data['file_name']);
-					return true;
-				} else {
-					array_push($s_kompetensi_all, $sertifikat_data['file_name']);
-				}
-			} else {
-				$this->form_validation->set_message('validasi_sertifikat_kompetensi', $this->upload->display_errors('<p style="font-size: 12px; color: red;" class="my-2">', '</p>'));
-				return false;
-			}
-		}
-		return $s_kompetensi_all;
 	}
 }

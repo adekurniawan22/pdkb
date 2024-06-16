@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card mb-0">
                 <div class="card-body ">
-                    <form action="<?= base_url() ?>admin/personil/proses-tambah-personil" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url() ?>admin/personil/proses-tambah-personil" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                         <div class="form-group">
                             <label for="id_jabatan" class="form-control-label">Jabatan</label>
                             <select class="form-select" aria-label="Default select example" name="id_jabatan" id="id_jabatan">
@@ -50,26 +50,67 @@
                             <textarea class="form-control" placeholder="Alamat" id="alamat" name="alamat" rows="3"><?php echo set_value('alamat'); ?></textarea>
                             <?= form_error('alamat', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
+
                         <div class="form-group">
                             <label for="foto" class="form-control-label">Foto <em>(maksimal ukuran 2MB)</em></label>
-                            <input class="form-control" type="file" placeholder="Foto" id="foto" name="foto" value="<?php echo set_value('foto'); ?>">
+                            <input class="form-control" type="file" placeholder="Foto" id="foto" name="foto" value="<?php echo set_value('foto'); ?>" onchange="validateFileSize(this)">
                             <?= form_error('foto', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
-                        <div class="form-group" id="sertifikatDiklatContainer">
-                            <label for="s_diklat" class="form-control-label">Sertifikat Diklat <em>(tidak wajib, maksimal ukuran 2MB)</em></label>
-                            <input class="form-control" type="file" placeholder="Sertifikat Diklat" name="s_diklat[]">
-                            <?= form_error('s_diklat[]', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
-                        </div>
-                        <button type="button" class="btn bg-gradient-dark" onclick="tambahSertifikatD()">+ Tambah Sertifikat Diklat</button>
 
-                        <div class="form-group" id="sertifikatKompetensiContainer">
-                            <label for="s_kompetensi" class="form-control-label">Sertifikat Kompetensi <em>(tidak wajib, maksimal ukuran 2MB)</em></label>
-                            <input class="form-control" type="file" placeholder="Sertifikat Kompetensi" name="s_kompetensi[]">
-                            <?= form_error('s_kompetensi[]', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        <!-- Checkbox for certificate input -->
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="inputSertifikat" name="input_sertifikat" onchange="toggleSertifikatCard()">
+                            <label class="form-check-label" for="inputSertifikat">
+                                Apakah personil ini punya sertifikat?
+                            </label>
                         </div>
-                        <button type="button" class="btn bg-gradient-dark" onclick="tambahSertifikatK()">+ Tambah Sertifikat Kompetensi</button>
 
-                        <div class="text-end mt-3">
+                        <!-- Certificate input section -->
+                        <div class="card mt-4 mb-4" id="sertifikatCard" style="display: none;">
+                            <div class="card-body">
+                                <h6 class="card-title mb-4">Sertifikat <em>(tidak wajib, maksimal ukuran 5MB)</em></h6>
+                                <div id="sertifikatContainer">
+                                    <!-- Initial certificate input fields -->
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label class="form-control-label">File Sertifikat</label>
+                                                <input class="form-control" type="file" name="file_sertifikat[]" onchange="validateFileSize(this)">
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label class="form-control-label">Nama Sertifikat</label>
+                                                <input class="form-control" type="text" placeholder="Nama Sertifikat" name="nama_sertifikat[]">
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label class="form-control-label">Jenis Sertifikat</label>
+                                                <select name="jenis_sertifikat[]" class="form-select">
+                                                    <option value="" selected>Pilih Jenis Sertifikat</option>
+                                                    <option value="Diklat">Diklat</option>
+                                                    <option value="Kompetensi">Kompetensi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label class="form-control-label">Tanggal Kadaluarsa <em>(jika ada)</em></label>
+                                                <input class="form-control" type="date" name="tanggal_kadaluarsa[]">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">
+                                    <button type="button" class="d-inline-block btn bg-gradient-dark" onclick="tambahSertifikat()">+ Tambah Sertifikat</button>
+                                    <button type="button" class=" btn btn-danger" id="hapusSertifikatBtn" style="display: none;" onclick="hapusSertifikat()">- Hapus Sertifikat</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-end mt-4">
                             <a href=" <?= base_url() ?>admin/personil" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
@@ -79,24 +120,127 @@
         </div>
     </div>
 
+    <!-- Masukkan link ke Bootstrap JavaScript dan jQuery jika diperlukan -->
     <script>
-        function tambahSertifikatD() {
-            const sertifikatDiklatContainer = document.getElementById('sertifikatDiklatContainer');
-            const newInput = document.createElement('div');
-            newInput.className = 'form-group mt-3';
-            newInput.innerHTML = `
-        <input class="form-control" type="file" placeholder="Sertifikat Diklat" name="s_diklat[]">
-    `;
-            sertifikatDiklatContainer.appendChild(newInput);
+        // Ensure script runs after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide the delete button initially
+            document.getElementById('hapusSertifikatBtn').style.display = 'none';
+        });
+
+        function toggleSertifikatCard() {
+            var checkbox = document.getElementById('inputSertifikat');
+            var card = document.getElementById('sertifikatCard');
+
+            if (checkbox.checked) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
         }
 
-        function tambahSertifikatK() {
-            const sertifikatKompetensiContainer = document.getElementById('sertifikatKompetensiContainer');
-            const newInput2 = document.createElement('div');
-            newInput2.className = 'form-group mt-3';
-            newInput2.innerHTML = `
-        <input class="form-control" type="file" placeholder="Sertifikat Kompetensi" name="s_kompetensi[]">
+        function tambahSertifikat() {
+            // Create a new row of certificate fields
+            var newDiv = document.createElement('div');
+            newDiv.className = 'row';
+
+            newDiv.innerHTML = `
+        <div class="col-3">
+            <div class="form-group">
+                <label class="form-control-label">File Sertifikat</label>
+                <input class="form-control" type="file" name="file_sertifikat[]" onchange="validateFileSize(this)">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="form-control-label">Nama Sertifikat</label>
+                <input class="form-control" type="text" placeholder="Nama Sertifikat" name="nama_sertifikat[]">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="form-control-label">Jenis Sertifikat</label>
+                <select name="jenis_sertifikat[]" class="form-select">
+                    <option value="" selected>Pilih Jenis Sertifikat</option>
+                    <option value="Diklat">Diklat</option>
+                    <option value="Kompetensi">Kompetensi</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="form-control-label">Tanggal Kadaluarsa <em>(jika ada)</em></label>
+                <input class="form-control" type="date" name="tanggal_kadaluarsa[]">
+            </div>
+        </div>
     `;
-            sertifikatKompetensiContainer.appendChild(newInput2);
+
+            // Append the new row to sertifikatContainer
+            document.getElementById('sertifikatContainer').appendChild(newDiv);
+
+            // Check number of certificate rows
+            var rowsCount = document.querySelectorAll('#sertifikatContainer .row').length;
+
+            // Show/hide delete button based on rows count
+            if (rowsCount > 1) {
+                document.getElementById('hapusSertifikatBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('hapusSertifikatBtn').style.display = 'none';
+            }
+        }
+
+        function hapusSertifikat() {
+            // Implement delete functionality here
+            var container = document.getElementById('sertifikatContainer');
+            var rows = container.getElementsByClassName('row');
+
+            // Ensure there's at least one row left
+            if (rows.length > 1) {
+                container.removeChild(rows[rows.length - 1]); // Remove the last row
+            }
+
+            // Toggle delete button visibility
+            if (rows.length <= 1) {
+                document.getElementById('hapusSertifikatBtn').style.display = 'none';
+            }
+        }
+
+        function validateForm() {
+            var inputSertifikatCheckbox = document.getElementById('inputSertifikat');
+            var rows = document.querySelectorAll('#sertifikatContainer .row');
+            var files = document.querySelectorAll('[name="file_sertifikat[]"]');
+            var names = document.querySelectorAll('[name="nama_sertifikat[]"]');
+            var types = document.querySelectorAll('[name="jenis_sertifikat[]"]');
+            var dates = document.querySelectorAll('[name="tanggal_kadaluarsa[]"]');
+
+            // Check if checkbox is checked
+            if (inputSertifikatCheckbox.checked) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i].value.trim();
+                    var name = names[i].value.trim();
+                    var type = types[i].value.trim();
+                    var date = dates[i].value.trim();
+
+                    // Check if any field in the current set is empty
+                    if (file === '' || name === '' || type === '') {
+                        alert('Mohon lengkapi semua kolom sertifikat.');
+                        return false; // Prevent form submission
+                    }
+                }
+            }
+
+            return true; // Allow form submission
+        }
+
+        function validateFileSize(input) {
+            if (input.files.length > 0) {
+                var fileSize = input.files[0].size; // Size in bytes
+
+                // Check if file size exceeds 5 MB (5 * 1024 * 1024 bytes)
+                if (fileSize > 2 * 1024 * 1024) {
+                    alert('Ukuran file tidak boleh melebihi 5 MB.');
+                    input.value = ''; // Clear the file input
+                }
+            }
         }
     </script>

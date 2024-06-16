@@ -7,7 +7,11 @@
             <div class="card-header mb-0 pb-0">
               <div class="row">
                 <div class="col-8">
-                  <h3 class="text-dark">Sertifikat <?= $s->jenis_sertifikat ?></h3>
+                  <h3 class="text-dark mb-0"><?= $s->nama_sertifikat ?></h3>
+                  <span class="text-dark">Sertifikat <?= $s->jenis_sertifikat ?></span>
+                  <?php if ($s->tanggal_kadaluarsa) : ?>
+                    <span class="text-dark"><em>(berlaku sampai <?= date('d-F-Y', strtotime($s->tanggal_kadaluarsa)) ?>)</em></span>
+                  <?php endif ?>
                 </div>
                 <div class="col-4 text-end">
                   <button class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#hapus_sertifikat<?= $s->id_sertifikat ?>">Hapus</button>

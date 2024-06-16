@@ -7,7 +7,11 @@
             <div class="card-header mb-0 pb-0">
               <div class="row">
                 <div class="col-8">
-                  <h3 class="text-dark">Sertifikat <?= $s->jenis_sertifikat ?></h3>
+                  <h3 class="text-dark mb-0"><?= $s->nama_sertifikat ?></h3>
+                  <span class="text-dark">Sertifikat <?= $s->jenis_sertifikat ?></span>
+                  <?php if ($s->tanggal_kadaluarsa) : ?>
+                    <span class="text-dark"><em>(berlaku sampai <?= date('d-F-Y', strtotime($s->tanggal_kadaluarsa)) ?>)</em></span>
+                  <?php endif ?>
                 </div>
                 <div class="col-4 text-end">
                   <button class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#hapus_sertifikat<?= $s->id_sertifikat ?>">Hapus</button>
@@ -31,13 +35,19 @@
     <?php endif; ?>
   </div>
 
-  <form action="<?= base_url() ?>admin/personil/proses-tambah-sertifikat" method="post" enctype="multipart/form-data" class="d-inline">
+  <form action="<?= base_url() ?>admin/personil/proses-tambah-sertifikat" method="post" enctype="multipart/form-data" class="d-inline" onsubmit="return validateForm()">
     <div class="row mt-3">
-      <div class="col-6">
-        <input class="form-control" type="file" name="sertifikat_baru">
-        <?= form_error('sertifikat_baru', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+      <div class="col-3">
+        <label for="">File Sertifikat</label>
+        <input class="form-control" type="file" name="sertifikat_baru" onchange="validateFileSize(this)">
       </div>
       <div class="col-3">
+        <label for="">Nama Sertifikat</label>
+        <input class="form-control" type="text" name="nama_sertifikat_baru" placeholder="Nama Sertifikat">
+        <?= form_error('nama_sertifikat_baru', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+      </div>
+      <div class="col-3">
+        <label for="">Jenis Sertifikat</label>
         <select name="jenis_sertifikat" class="form-select">
           <option value="" selected>Pilih Jenis Sertifikat</option>
           <option value="Diklat" <?php echo set_select('jenis_sertifikat', 'Diklat'); ?>>Diklat</option>
@@ -46,12 +56,19 @@
         <?= form_error('jenis_sertifikat', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
       </div>
       <div class="col-3">
+        <label for="">Tanggal Kadaluarsa <em>(jika ada)</em></label>
+        <input class="form-control" type="date" name="tanggal_kadaluarsa" placeholder="Nama Sertifikat">
+        <?= form_error('tanggal_kadaluarsa', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
         <input type="hidden" name="id_personil" value="<?= $id_personil ?>">
         <button type="submit" class="btn btn-dark w-100">+ Tambah Sertifikat Baru</button>
       </div>
     </div>
   </form>
-  <div class="row mt-3">
+  <div class="row">
     <div class="col-12">
       <a href="<?= base_url() ?>admin/personil" class="btn btn-primary btn-lg w-100">Kembali</a>
     </div>
@@ -99,3 +116,44 @@ function renderSertifikat($sertifikat)
     </div>
   </div>
 <?php endforeach; ?>
+
+<script>
+  function validateForm() {
+    var inputSertifikatCheckbox = document.getElementById('inputSertifikat');
+    var rows = document.querySelectorAll('#sertifikatContainer .row');
+    var files = document.querySelectorAll('[name="file_sertifikat[]"]');
+    var names = document.querySelectorAll('[name="nama_sertifikat[]"]');
+    var types = document.querySelectorAll('[name="jenis_sertifikat[]"]');
+    var dates = document.querySelectorAll('[name="tanggal_kadaluarsa[]"]');
+
+    // Check if checkbox is checked
+    if (inputSertifikatCheckbox.checked) {
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i].value.trim();
+        var name = names[i].value.trim();
+        var type = types[i].value.trim();
+        var date = dates[i].value.trim();
+
+        // Check if any field in the current set is empty
+        if (file === '' || name === '' || type === '') {
+          alert('Mohon lengkapi semua kolom sertifikat.');
+          return false; // Prevent form submission
+        }
+      }
+    }
+
+    return true; // Allow form submission
+  }
+
+  function validateFileSize(input) {
+    if (input.files.length > 0) {
+      var fileSize = input.files[0].size; // Size in bytes
+
+      // Check if file size exceeds 5 MB (5 * 1024 * 1024 bytes)
+      if (fileSize > 2 * 1024 * 1024) {
+        alert('Ukuran file tidak boleh melebihi 5 MB.');
+        input.value = ''; // Clear the file input
+      }
+    }
+  }
+</script>

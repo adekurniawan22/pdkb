@@ -40,10 +40,12 @@ class Dashboard extends CI_Controller
 
 			$tanggal_mulai = date('Y-m-d');
 			$tanggal_selesai = date('Y-m-d', strtotime('+1 month'));
+			$this->db->where('tanggal_kadaluarsa >=', $tanggal_mulai);
 			$this->db->where('tanggal_kadaluarsa <=', $tanggal_selesai);
 			$data['p_alat_kerja'] = $this->db->get('t_alat_kerja')->result();
 			$data['jp_alat_kerja'] = count($data['p_alat_kerja']);
 
+			$this->db->where('tanggal_kadaluarsa >=', $tanggal_mulai);
 			$this->db->where('tanggal_kadaluarsa <=', $tanggal_selesai);
 			$data['p_alat_tower_ers'] = $this->db->get('t_alat_tower_ers')->result();
 			$data['jp_alat_tower_ers'] = count($data['p_alat_tower_ers']);
