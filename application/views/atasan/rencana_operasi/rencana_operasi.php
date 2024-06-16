@@ -21,6 +21,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Rencana Operasi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis Anomali</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Dikerjakan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Selesai</th>
@@ -33,6 +34,9 @@
                                     <tr>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $r->nama_rencana ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $r->jenis_anomali ?></p>
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($r->keterangan) ?></p>

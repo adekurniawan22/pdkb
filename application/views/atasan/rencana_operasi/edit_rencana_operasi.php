@@ -6,6 +6,15 @@
                     <form action="<?= base_url() ?>atasan/rencana-operasi/proses-edit-rencana-operasi" method="post">
                         <input type="hidden" name="id_rencana_operasi" value="<?= $rencana_operasi->id_rencana_operasi ?>">
                         <div class="form-group">
+                            <label for="jenis_anomali" class="form-control-label">Jenis Anomali</label>
+                            <select class="form-select" aria-label="Default select example" name="jenis_anomali" id="jenis_anomali">
+                                <option value="" selected>Pilih Jenis Anomali</option>
+                                <option value="Gardu Induk" <?php echo set_select('jenis_anomali', "Gardu Induk", $rencana_operasi->jenis_anomali == "Gardu Induk"); ?>>Gardu Induk</option>
+                                <option value="Jaringan" <?php echo set_select('jenis_anomali', "Jaringan", $rencana_operasi->jenis_anomali == "Jaringan"); ?>>Jaringan</option>
+                            </select>
+                            <?= form_error('jenis_anomali', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+                        <div class="form-group">
                             <label for="nama_rencana" class="form-control-label">Nama Rencana Operasi</label>
                             <input class="form-control" type="text" placeholder="Nama Rencana Operasi" id="nama_rencana" name="nama_rencana" value="<?php echo set_value('nama_rencana', $rencana_operasi->nama_rencana); ?>">
                             <?= form_error('nama_rencana', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>

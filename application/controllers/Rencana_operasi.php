@@ -44,6 +44,7 @@ class Rencana_operasi extends CI_Controller
 
 	public function proses_tambah_rencana_operasi()
 	{
+		$this->form_validation->set_rules('jenis_anomali', 'Jenis Anomali', 'required');
 		$this->form_validation->set_rules('nama_rencana', 'Nama Rencana Operasi', 'required|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan Rencana Operasi', 'required|trim');
 		$this->form_validation->set_rules('tanggal_dikerjakan', 'Tanggal Dikerjakan', 'required|trim');
@@ -52,6 +53,7 @@ class Rencana_operasi extends CI_Controller
 			$this->tambah_rencana_operasi();
 		} else {
 			$data = array(
+				'jenis_anomali' => $this->input->post('jenis_anomali'),
 				'nama_rencana' => $this->input->post('nama_rencana'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal_dikerjakan' => $this->input->post('tanggal_dikerjakan'),
@@ -82,6 +84,7 @@ class Rencana_operasi extends CI_Controller
 
 	public function proses_edit_rencana_operasi()
 	{
+		$this->form_validation->set_rules('jenis_anomali', 'Jenis Anomali', 'required');
 		$this->form_validation->set_rules('nama_rencana', 'Nama Rencana Operasi', 'required|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan Rencana Operasi', 'required|trim');
 		$this->form_validation->set_rules('tanggal_dikerjakan', 'Tanggal Dikerjakan', 'required|trim');
@@ -95,6 +98,7 @@ class Rencana_operasi extends CI_Controller
 			date_default_timezone_set('Asia/Jakarta');
 			$tahun_sekarang = date('Y');
 			$data = array(
+				'jenis_anomali' => $this->input->post('jenis_anomali'),
 				'nama_rencana' => $this->input->post('nama_rencana'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal_dikerjakan' => $this->input->post('tanggal_dikerjakan'),

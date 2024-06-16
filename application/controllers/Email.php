@@ -33,7 +33,7 @@ class Email extends CI_Controller
 
 			$this->pdfgenerator->savePDF($html, 'A4', 'portrait', $nama_file_pdf);
 
-			$content = "Halo,\n\nSaya adalah BOT Telegram dari SIMPATI-PDKB\n(https://simpati-pdkb.id/).\n\nBerikut adalah laporan data untuk periode bulan mendatang dari sistem kami dalam format PDF.\n\nTerima kasih.";
+			$content = "Halo,\n\nSaya adalah BOT Telegram dari SIMPATI-PDKB\n(https://simpati-pdkb.id/).\n\nBerikut adalah laporan data untuk periode 1 bulan mendatang dari sistem kami dalam format PDF.\n\nTerima kasih.";
 
 			$telegram_chat_id = 1375998661;
 
