@@ -86,7 +86,7 @@ class Personil extends CI_Controller
 			if (isset($_FILES['foto'])) {
 				$config_foto = array(
 					'upload_path' => './assets/img/profil',
-					'allowed_types' => 'jpg|jpeg|png',
+					'allowed_types' => 'jpg|jpeg|png|pdf',
 				);
 				$this->upload->initialize($config_foto);
 

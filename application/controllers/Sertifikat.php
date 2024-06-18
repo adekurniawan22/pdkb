@@ -68,7 +68,7 @@ class Sertifikat extends CI_Controller
 			if (isset($_FILES['sertifikat_baru'])) {
 				$config_sertifikat = array(
 					'upload_path' => './assets/img/sertifikat',
-					'allowed_types' => 'jpg|jpeg|png',
+					'allowed_types' => 'jpg|jpeg|png|pdf',
 				);
 				$this->upload->initialize($config_sertifikat);
 
@@ -115,7 +115,7 @@ class Sertifikat extends CI_Controller
 			if (isset($_FILES['sertifikat_baru'])) {
 				$config_sertifikat = array(
 					'upload_path' => './assets/img/sertifikat',
-					'allowed_types' => 'jpg|jpeg|png',
+					'allowed_types' => 'jpg|jpeg|png|pdf',
 				);
 				$this->upload->initialize($config_sertifikat);
 
