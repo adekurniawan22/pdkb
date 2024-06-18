@@ -5,12 +5,12 @@
                 <div class="row mb-4">
                     <div class="col-6 d-flex align-items-center">
                         <div class="card-header pb-0">
-                            <h5>Data Riwayat Gudang Alat Tower ERS</h5>
+                            <h5>Data Riwayat Gudang PDKB GI</h5>
                         </div>
                     </div>
                     <div class="col-6 pt-4 text-end">
                         <div class="mx-3">
-                            <a href="<?= base_url() ?>jtc/riwayat-gudang/tambah-riwayat-gudang" class="btn bg-gradient-dark">+ Tambah Riwayat Gudang Alat Tower ERS</a>
+                            <a href="<?= base_url() ?>jtc/riwayat-gudang/tambah-riwayat-gudang" class="btn bg-gradient-dark">+ Tambah Riwayat Gudang GI</a>
                         </div>
                     </div>
                 </div>

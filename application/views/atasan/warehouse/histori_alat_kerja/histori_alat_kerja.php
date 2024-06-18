@@ -5,7 +5,7 @@
                 <div class="row mb-4">
                     <div class="col-6 d-flex align-items-center">
                         <div class="card-header pb-0">
-                            <h5>Data Riwayat Alat Kerja</h5>
+                            <h5>Data Riwayat Gudang PDKB Jaringan</h5>
                         </div>
                     </div>
                 </div>

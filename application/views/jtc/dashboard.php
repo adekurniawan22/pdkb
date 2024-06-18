@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-9">
               <div class="numbers">
-                <p class="text-sm mb-0 text-uppercase font-weight-bold">Rencana Operasi Selesai</p>
+                <p class="text-sm mb-0 text-uppercase font-weight-bold">Rencana Pekerjaan Selesai</p>
                 <h5 class="font-weight-bolder mb-0">
                   <?= $jumlah_semua_rencana_operasi_selesai  ?>
                 </h5>
@@ -92,7 +92,7 @@
     <div class="col-lg-12 mb-lg-0 mb-4">
       <div class="card z-index-2 h-100">
         <div class="card-header bg-transparent">
-          <h6 class="text-uppercase text-muted ls-1 mb-1">Ringkasan Rencana Operasi Tahun Ini (<?= date('Y') ?>)</h6>
+          <h6 class="text-uppercase text-muted ls-1 mb-1">Ringkasan Rencana Pekerjaan Tahun Ini (<?= date('Y') ?>)</h6>
           <div class="progress-wrapper">
             <div class="progress-info">
               <div class="progress-percentage">

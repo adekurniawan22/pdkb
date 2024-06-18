@@ -5,12 +5,12 @@
                 <div class="row mb-4">
                     <div class="col-6 d-flex align-items-center">
                         <div class="card-header pb-0">
-                            <h5>Data Riwayat Alat Kerja</h5>
+                            <h5>Data Riwayat Gudang PDKB Jaringan</h5>
                         </div>
                     </div>
                     <div class="col-6 pt-4 text-end">
                         <div class="mx-3">
-                            <a href="<?= base_url() ?>admin/histori-alat-kerja/tambah-histori-alat-kerja" class="btn bg-gradient-dark">+ Tambah Histori Alat Kerja</a>
+                            <a href="<?= base_url() ?>admin/histori-alat-kerja/tambah-histori-alat-kerja" class="btn bg-gradient-dark">+ Tambah Riwayat Gudang Jaringan</a>
                         </div>
                     </div>
                 </div>

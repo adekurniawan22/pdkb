@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-9">
               <div class="numbers">
-                <p class="text-sm mb-0 text-uppercase font-weight-bold">Rencana Operasi Selesai</p>
+                <p class="text-sm mb-0 text-uppercase font-weight-bold">Rencana Pekerjaan Selesai</p>
                 <h5 class="font-weight-bolder mb-0">
                   <?= $jumlah_semua_rencana_operasi_selesai  ?>
                 </h5>
@@ -92,22 +92,17 @@
         <div class="col-5">
           <div class="card z-index-2">
             <div class="row bg-danger mx-0 border-radius-md align-items-center">
-              <div class="col-6">
-                <h6 class="text-uppercase mt-2 ms-3" style="color: black;"><i class="bi bi-exclamation-octagon me-1"></i> Pesan Penting</h6>
-              </div>
-              <div class="col-6 mt-3 text-end">
-                <div class="">
-                  <a href="#" id="btn_kirim_email" class="btn bg-gradient-dark"><i class="bi bi-envelope-arrow-up-fill me-2"></i>Kirim Email ke Atasan</a>
-                </div>
+              <div class="col-12">
+                <h6 class="text-uppercase mt-2 ms-3 py-2" style="color: black;"><i class="bi bi-exclamation-octagon me-1"></i> Pesan Penting</h6>
               </div>
             </div>
             <div class="card-body pt-3">
               <ul class="ps-3">
-                <!-- Peringatan Rencana Operasi -->
+                <!-- Peringatan Rencana Pekerjaan -->
                 <?php if (!empty($p_rencana_operasi)) : ?>
                   <li class="">
                     <h6 class="text-sm font-weight-normal mb-1">
-                      <span class="font-weight-bold text-dark">Rencana Operasi</span>
+                      <span class="font-weight-bold text-dark">Rencana Pekerjaan</span>
                     </h6>
                     <p class="text-xs text-secondary mb-2">
                       Terdapat <span class="text-danger font-weight-normal"><?= $jp_rencana_operasi ?></span> rencana operasi yang belum dikerjakan dalam bulan ini.
@@ -234,7 +229,7 @@
         <div class="col-7">
           <div class="card z-index-2 h-100">
             <div class="card-header bg-transparent">
-              <h6 class="text-uppercase text-muted ls-1 mb-1">Ringkasan Rencana Operasi Tahun Ini (<?= date('Y') ?>)</h6>
+              <h6 class="text-uppercase text-muted ls-1 mb-1">Ringkasan Rencana Pekerjaan Tahun Ini (<?= date('Y') ?>)</h6>
               <div class="progress-wrapper">
                 <div class="progress-info">
                   <div class="progress-percentage">

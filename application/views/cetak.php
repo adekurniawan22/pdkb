@@ -14,11 +14,11 @@
         </div>
         <div class="card-body pt-3">
             <ul class="ps-3">
-                <!-- Peringatan Rencana Operasi -->
+                <!-- Peringatan Rencana Pekerjaan -->
                 <?php if (!empty($p_rencana_operasi)) : ?>
                     <li class="">
                         <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold text-dark">Rencana Operasi</span>
+                            <span class="font-weight-bold text-dark">Rencana Pekerjaan</span>
                         </h6>
                         <p class="text-xs text-secondary mb-2">
                             Terdapat <span class="text-danger font-weight-normal"><?= $jp_rencana_operasi ?></span> rencana operasi yang belum dikerjakan dalam bulan ini.

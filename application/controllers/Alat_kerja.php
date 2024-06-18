@@ -19,7 +19,7 @@ class Alat_kerja extends CI_Controller
 	public function index()
 	{
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_alat_kerja();
-		$data['title'] = 'Alat Kerja';
+		$data['title'] = 'Inventaris Gudang PDKB Jaringan';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_kerja/alat_kerja', $data);
@@ -37,7 +37,7 @@ class Alat_kerja extends CI_Controller
 
 	public function tambah_alat_kerja()
 	{
-		$data['title'] = 'Alat Kerja';
+		$data['title'] = 'Inventaris Gudang PDKB Jaringan';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_kerja/tambah_alat_kerja', $data);
@@ -97,7 +97,7 @@ class Alat_kerja extends CI_Controller
 
 	public function edit_alat_kerja()
 	{
-		$data['title'] = 'Alat Kerja';
+		$data['title'] = 'Inventaris Gudang PDKB Jaringan';
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_satu_alat_kerja($this->input->post('id_alat_kerja'));
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);

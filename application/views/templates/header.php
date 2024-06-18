@@ -165,13 +165,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Rencana Operasi") {
+                        <a class="nav-link <?php if ($title == "Rencana Pekerjaan") {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>atasan/rencana-operasi">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-list-stars text-success text-sm opacity-10 pb-1"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Rencana Operasi</span>
+                            <span class="nav-link-text ms-1">Rencana Pekerjaan</span>
                         </a>
                     </li>
                     <li class="nav-item mt-3">
@@ -209,46 +209,46 @@
                     </li>
 
                     <li class="nav-item mt-3">
-                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Warehouse</h6>
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gudang PDKB</h6>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Alat Kerja") {
+                        <a class="nav-link <?php if ($title == "Inventaris Gudang PDKB Jaringan") {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>atasan/alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-tools text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Alat kerja</span>
+                            <span class="nav-link-text ms-1">Inventaris Gudang<br>PDKB Jaringan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Riwayat Alat Kerja") {
+                        <a class="nav-link <?php if ($title == 'Riwayat Gudang PDKB Jaringan') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>atasan/histori-alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Riwayat Alat Kerja</span>
+                            <span class="nav-link-text ms-1">Riwayat Gudang <br> PDKB Jaringan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Alat Tower ERS") {
+                        <a class="nav-link <?php if ($title == 'Investaris Gudang PDKB GI') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>atasan/alat-tower-ers">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-tools text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Alat Tower ERS</span>
+                            <span class="nav-link-text ms-1">Inventaris Gudang<br>PDKB GI</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Riwayat Gudang") {
+                        <a class="nav-link <?php if ($title == 'Riwayat Gudang PDKB GI') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>atasan/riwayat-gudang">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Riwayat Gudang</span>
+                            <span class="nav-link-text ms-1">Riwayat Gudang<br>PDKB GI</span>
                         </a>
                     </li>
 
@@ -324,13 +324,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Rencana Operasi") {
+                        <a class="nav-link <?php if ($title == "Rencana Pekerjaan") {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/rencana-operasi">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-list-stars text-success text-sm opacity-10 pb-1"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Rencana Operasi</span>
+                            <span class="nav-link-text ms-1">Rencana Pekerjaan</span>
                         </a>
                     </li>
                     <li class="nav-item mt-3">
@@ -368,46 +368,46 @@
                     </li>
 
                     <li class="nav-item mt-3">
-                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Warehouse</h6>
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gudang PDKB</h6>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Alat Kerja") {
+                        <a class="nav-link <?php if ($title == "Inventaris Gudang PDKB Jaringan") {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-tools text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Alat kerja</span>
+                            <span class="nav-link-text ms-1">Inventaris Gudang<br>PDKB Jaringan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Riwayat Alat Kerja") {
+                        <a class="nav-link <?php if ($title == 'Riwayat Gudang PDKB Jaringan') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/histori-alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Riwayat Alat Kerja</span>
+                            <span class="nav-link-text ms-1">Riwayat Gudang <br> PDKB Jaringan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Alat Tower ERS") {
+                        <a class="nav-link <?php if ($title == 'Investaris Gudang PDKB GI') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/alat-tower-ers">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-tools text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Alat Tower ERS</span>
+                            <span class="nav-link-text ms-1">Inventaris Gudang<br>PDKB GI</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Riwayat Gudang") {
+                        <a class="nav-link <?php if ($title == 'Riwayat Gudang PDKB GI') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>admin/riwayat-gudang">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Riwayat Gudang</span>
+                            <span class="nav-link-text ms-1">Riwayat Gudang<br>PDKB GI</span>
                         </a>
                     </li>
 
@@ -448,26 +448,7 @@
                             <span class="nav-link-text ms-1">Instruksi Kerja</span>
                         </a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Standar Operasional Prosedur") {
-                                                echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/sop">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">SOP</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Single Line Diagram GI") {
-                                                echo "active";
-                                            } ?> btn-aside" href="<?= base_url() ?>admin/sld-gi">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">Single Line Diagram GI</span>
-                        </a>
-                    </li> -->
+
                 <?php endif ?>
                 <!-- END ROLE ADMIN -->
 
@@ -504,13 +485,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Rencana Operasi") {
+                        <a class="nav-link <?php if ($title == "Rencana Pekerjaan") {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>jtc/rencana-operasi">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-list-stars text-success text-sm opacity-10 pb-1"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Rencana Operasi</span>
+                            <span class="nav-link-text ms-1">Rencana Pekerjaan</span>
                         </a>
                     </li>
                     <li class="nav-item mt-3">
@@ -548,46 +529,46 @@
                     </li>
 
                     <li class="nav-item mt-3">
-                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Warehouse</h6>
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gudang PDKB</h6>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Alat Kerja") {
+                        <a class="nav-link <?php if ($title == "Inventaris Gudang PDKB Jaringan") {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>jtc/alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-tools text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Alat kerja</span>
+                            <span class="nav-link-text ms-1">Inventaris Gudang<br>PDKB Jaringan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Riwayat Alat Kerja") {
+                        <a class="nav-link <?php if ($title == 'Riwayat Gudang PDKB Jaringan') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>jtc/histori-alat-kerja">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Riwayat Alat Kerja</span>
+                            <span class="nav-link-text ms-1">Riwayat Gudang <br> PDKB Jaringan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Alat Tower ERS") {
+                        <a class="nav-link <?php if ($title == 'Investaris Gudang PDKB GI') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>jtc/alat-tower-ers">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-tools text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Alat Tower ERS</span>
+                            <span class="nav-link-text ms-1">Inventaris Gudang<br>PDKB GI</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($title == "Riwayat Gudang") {
+                        <a class="nav-link <?php if ($title == 'Riwayat Gudang PDKB GI') {
                                                 echo "active";
                                             } ?> btn-aside" href="<?= base_url() ?>jtc/riwayat-gudang">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-app text-info text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Riwayat Gudang</span>
+                            <span class="nav-link-text ms-1">Riwayat Gudang<br>PDKB GI</span>
                         </a>
                     </li>
 
@@ -701,21 +682,6 @@
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mb-1" id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white" href="javascript:;">PDKB</a></li>
-                        <?php if ($this->uri->segment(2)) { ?>
-                            <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= str_replace('-', ' ', ucwords($this->uri->segment(2))) ?></li>
-                        <?php } else { ?>
-                            <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= str_replace('-', ' ', ucwords($this->uri->segment(1))) ?></li>
-                        <?php } ?>
-                    </ol>
-                    <?php if ($this->uri->segment(3)) { ?>
-                        <h6 class="font-weight-bolder text-white mb-0"><?= ucwords(str_replace('-', ' ', $this->uri->segment(3))) ?></h6>
-                    <?php } else { ?>
-                        <h6 class="font-weight-bolder text-white mb-0"></h6>
-                    <?php } ?>
-                </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group">

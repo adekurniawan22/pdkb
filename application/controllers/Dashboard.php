@@ -163,7 +163,7 @@ class Dashboard extends CI_Controller
 
 			if (!empty($p_rencana_operasi)) {
 				$content .= "<hr>";
-				$content .= "<h2>Pengingat Rencana Operasi :</h2>";
+				$content .= "<h2>Pengingat Rencana Pekerjaan :</h2>";
 				$content .= "Terdapat <strong>" . $jp_rencana_operasi . "</strong> rencana operasi yang belum dikerjakan dalam bulan ini.<br>";
 				$content .= "<ul>";
 				foreach ($p_rencana_operasi as $r) {

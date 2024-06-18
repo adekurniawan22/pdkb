@@ -20,7 +20,7 @@ class Riwayat_gudang extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'Riwayat Gudang';
+		$data['title'] = 'Riwayat Gudang PDKB GI';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$data['riwayat_gudang'] = $this->Riwayat_gudang_model->dapat_riwayat_gudang();
 			$this->load->view('templates/header', $data);
@@ -42,7 +42,7 @@ class Riwayat_gudang extends CI_Controller
 	public function tambah_riwayat_gudang()
 	{
 		$data['alat_tower_ers'] = $this->Alat_tower_ers_model->dapat_alat_tower_ers();
-		$data['title'] = 'Riwayat Gudang';
+		$data['title'] = 'Riwayat Gudang PDKB GI';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/riwayat_gudang/tambah_riwayat_gudang', $data);

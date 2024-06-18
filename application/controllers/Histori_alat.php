@@ -20,7 +20,7 @@ class Histori_alat extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'Riwayat Alat Kerja';
+		$data['title'] = 'Riwayat Gudang PDKB Jaringan';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$data['histori_alat'] = $this->Histori_alat_model->dapat_histori_alat();
 			$this->load->view('templates/header', $data);
@@ -42,7 +42,7 @@ class Histori_alat extends CI_Controller
 	public function tambah_histori_alat()
 	{
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_alat_kerja();
-		$data['title'] = 'Riwayat Alat Kerja';
+		$data['title'] = 'Riwayat Gudang PDKB Jaringan';
 
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);

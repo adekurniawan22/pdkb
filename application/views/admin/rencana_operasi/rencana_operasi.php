@@ -5,7 +5,7 @@
                 <div class="row mb-4">
                     <div class="col-6 d-flex align-items-center">
                         <div class="card-header pb-0 mt-2">
-                            <h5>Data Rencana Operasi</h5>
+                            <h5>Data Rencana Pekerjaan</h5>
                         </div>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                         <table class="table align-items-center mb-0" id="example">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Rencana Operasi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Rencana Pekerjaan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis Anomali</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Dikerjakan</th>

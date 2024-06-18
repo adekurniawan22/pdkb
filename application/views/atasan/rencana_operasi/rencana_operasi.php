@@ -5,12 +5,12 @@
                 <div class="row mb-4">
                     <div class="col-6 d-flex align-items-center">
                         <div class="card-header pb-0">
-                            <h5>Data Rencana Operasi</h5>
+                            <h5>Data Rencana Pekerjaan</h5>
                         </div>
                     </div>
                     <div class="col-6 pt-4 text-end">
                         <div class="mx-3">
-                            <a href="<?= base_url() ?>atasan/rencana-operasi/tambah-rencana-operasi" class="btn bg-gradient-dark">+ Tambah Rencana Operasi</a>
+                            <a href="<?= base_url() ?>atasan/rencana-operasi/tambah-rencana-operasi" class="btn bg-gradient-dark">+ Tambah Rencana Pekerjaan</a>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                         <table class="table align-items-center mb-0" id="example">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Rencana Operasi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Rencana Pekerjaan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis Anomali</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Dikerjakan</th>
@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <!-- Modal Status Rencana Operasi -->
+        <!-- Modal Status Rencana Pekerjaan -->
         <div class="modal fade" id="status<?= $am->id_rencana_operasi ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

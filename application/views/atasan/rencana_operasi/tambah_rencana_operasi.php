@@ -14,8 +14,8 @@
                             <?= form_error('jenis_anomali', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="nama_rencana" class="form-control-label">Nama Rencana Operasi</label>
-                            <input class="form-control" type="text" placeholder="Nama Rencana Operasi" id="nama_rencana" name="nama_rencana" value="<?php echo set_value('nama_rencana'); ?>">
+                            <label for="nama_rencana" class="form-control-label">Nama Rencana Pekerjaan</label>
+                            <input class="form-control" type="text" placeholder="Nama Rencana Pekerjaan" id="nama_rencana" name="nama_rencana" value="<?php echo set_value('nama_rencana'); ?>">
                             <?= form_error('nama_rencana', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
 

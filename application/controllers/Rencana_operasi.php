@@ -18,7 +18,7 @@ class Rencana_operasi extends CI_Controller
 	public function index()
 	{
 		$data['rencana_operasi'] = $this->Rencana_operasi_model->dapat_rencana_operasi();
-		$data['title'] = 'Rencana Operasi';
+		$data['title'] = 'Rencana Pekerjaan';
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/rencana_operasi/rencana_operasi', $data);
@@ -36,7 +36,7 @@ class Rencana_operasi extends CI_Controller
 
 	public function tambah_rencana_operasi()
 	{
-		$data['title'] = 'Rencana Operasi';
+		$data['title'] = 'Rencana Pekerjaan';
 		$this->load->view('templates/header', $data);
 		$this->load->view('atasan/rencana_operasi/tambah_rencana_operasi', $data);
 		$this->load->view('templates/footer');
@@ -45,8 +45,8 @@ class Rencana_operasi extends CI_Controller
 	public function proses_tambah_rencana_operasi()
 	{
 		$this->form_validation->set_rules('jenis_anomali', 'Jenis Anomali', 'required');
-		$this->form_validation->set_rules('nama_rencana', 'Nama Rencana Operasi', 'required|trim');
-		$this->form_validation->set_rules('keterangan', 'Keterangan Rencana Operasi', 'required|trim');
+		$this->form_validation->set_rules('nama_rencana', 'Nama Rencana Pekerjaan', 'required|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan Rencana Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('tanggal_dikerjakan', 'Tanggal Dikerjakan', 'required|trim');
 
 		if ($this->form_validation->run() == false) {
@@ -63,10 +63,10 @@ class Rencana_operasi extends CI_Controller
 			$result = $this->Rencana_operasi_model->tambah_rencana_operasi($data);
 
 			if ($result) {
-				$this->session->set_flashdata('message', '<strong>Data Rencana Operasi Berhasil Ditambahkan</strong>
+				$this->session->set_flashdata('message', '<strong>Data Rencana Pekerjaan Berhasil Ditambahkan</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 			} else {
-				$this->session->set_flashdata('message', '<strong>Data Rencana Operasi Gagal Ditambahkan</strong>
+				$this->session->set_flashdata('message', '<strong>Data Rencana Pekerjaan Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
 			redirect('atasan/rencana-operasi');
@@ -75,7 +75,7 @@ class Rencana_operasi extends CI_Controller
 
 	public function edit_rencana_operasi()
 	{
-		$data['title'] = 'Rencana Operasi';
+		$data['title'] = 'Rencana Pekerjaan';
 		$data['rencana_operasi'] = $this->Rencana_operasi_model->dapat_satu_rencana_operasi($this->input->post('id_rencana_operasi'));
 		$this->load->view('templates/header', $data);
 		$this->load->view('atasan/rencana_operasi/edit_rencana_operasi', $data);
@@ -85,8 +85,8 @@ class Rencana_operasi extends CI_Controller
 	public function proses_edit_rencana_operasi()
 	{
 		$this->form_validation->set_rules('jenis_anomali', 'Jenis Anomali', 'required');
-		$this->form_validation->set_rules('nama_rencana', 'Nama Rencana Operasi', 'required|trim');
-		$this->form_validation->set_rules('keterangan', 'Keterangan Rencana Operasi', 'required|trim');
+		$this->form_validation->set_rules('nama_rencana', 'Nama Rencana Pekerjaan', 'required|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan Rencana Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('tanggal_dikerjakan', 'Tanggal Dikerjakan', 'required|trim');
 		if ($this->input->post('tanggal_selesai')) {
 			$this->form_validation->set_rules('tanggal_selesai', 'Tanggal Selesai', 'required|trim');
@@ -111,10 +111,10 @@ class Rencana_operasi extends CI_Controller
 			$result = $this->Rencana_operasi_model->edit_rencana_operasi($this->input->post('id_rencana_operasi'), $data);
 
 			if ($result) {
-				$this->session->set_flashdata('message', '<strong>Data Rencana Operasi Berhasil Diedit</strong>
+				$this->session->set_flashdata('message', '<strong>Data Rencana Pekerjaan Berhasil Diedit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 			} else {
-				$this->session->set_flashdata('message', '<strong>Data Rencana Operasi Gagal Diedit</strong>
+				$this->session->set_flashdata('message', '<strong>Data Rencana Pekerjaan Gagal Diedit</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
 			redirect('atasan/rencana-operasi');
@@ -128,7 +128,7 @@ class Rencana_operasi extends CI_Controller
 		$this->db->where('id_rencana_operasi', $this->input->post('id_rencana_operasi'));
 		$this->db->update('t_rencana_operasi', ['status' => $status, 'tanggal_selesai' => $tanggal_sekarang]);
 
-		$this->session->set_flashdata('message', '<strong>Status Rencana Operasi Berhasil Diedit</strong>
+		$this->session->set_flashdata('message', '<strong>Status Rencana Pekerjaan Berhasil Diedit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 		redirect('atasan/rencana-operasi');
 	}
@@ -137,7 +137,7 @@ class Rencana_operasi extends CI_Controller
 	{
 		$this->db->where('id_rencana_operasi', $this->input->post('id_rencana_operasi'));
 		$this->db->delete('t_rencana_operasi');
-		$this->session->set_flashdata('message', '<strong>Data Rencana Operasi Berhasil Dihapus</strong>
+		$this->session->set_flashdata('message', '<strong>Data Rencana Pekerjaan Berhasil Dihapus</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 		redirect('atasan/rencana-operasi');
 	}
