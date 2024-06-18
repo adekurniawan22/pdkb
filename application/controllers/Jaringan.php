@@ -67,6 +67,7 @@ class Jaringan extends CI_Controller
 		$this->form_validation->set_rules('jumlah_titik', 'Jumlah Titik', 'required|trim|integer');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
 		$this->form_validation->set_rules('klasifikasi', 'Klasifikasi', 'required|trim');
+		$this->form_validation->set_rules('fasa', 'Fasa', 'required|trim');
 		$this->form_validation->set_rules('tanggal_eksekusi', 'Tanggal Eksekusi', 'required|trim');
 		$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
 
@@ -82,6 +83,7 @@ class Jaringan extends CI_Controller
 				'jumlah_titik' => $this->input->post('jumlah_titik'),
 				'keterangan' => $this->input->post('keterangan'),
 				'klasifikasi' => $this->input->post('klasifikasi'),
+				'fasa' => $this->input->post('fasa'),
 				'foto' => $foto,
 				'tanggal_eksekusi' => $this->input->post('tanggal_eksekusi'),
 			];
@@ -131,6 +133,7 @@ class Jaringan extends CI_Controller
 		$this->form_validation->set_rules('jumlah_titik', 'Jumlah Titik', 'required|trim|integer');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
 		$this->form_validation->set_rules('klasifikasi', 'Klasifikasi', 'required|trim');
+		$this->form_validation->set_rules('fasa', 'Fasa', 'required|trim');
 		$this->form_validation->set_rules('tanggal_eksekusi', 'Tanggal Eksekusi', 'required|trim');
 		$status_dikerjakan = ($this->input->post('status_dikerjakan') == 'on') ? '1' : '0';
 
@@ -151,6 +154,7 @@ class Jaringan extends CI_Controller
 				'jumlah_titik' => $this->input->post('jumlah_titik'),
 				'keterangan' => $this->input->post('keterangan'),
 				'klasifikasi' => $this->input->post('klasifikasi'),
+				'fasa' => $this->input->post('fasa'),
 				'tanggal_eksekusi' => $this->input->post('tanggal_eksekusi'),
 				'foto' => $foto,
 				'status_dikerjakan' => $status_dikerjakan,
@@ -270,8 +274,9 @@ class Jaringan extends CI_Controller
 			$jumlah_titik = $sheet->getCell('D' . $row->getRowIndex())->getValue();
 			$keterangan = $sheet->getCell('E' . $row->getRowIndex())->getFormattedValue();
 			$klasifikasi = $sheet->getCell('F' . $row->getRowIndex())->getFormattedValue();
-			$tanggal_eksekusi = $sheet->getCell('G' . $row->getRowIndex())->getFormattedValue();
-			$status = $sheet->getCell('H' . $row->getRowIndex())->getValue();
+			$fasa = $sheet->getCell('G' . $row->getRowIndex())->getFormattedValue();
+			$tanggal_eksekusi = $sheet->getCell('H' . $row->getRowIndex())->getFormattedValue();
+			$status = $sheet->getCell('I' . $row->getRowIndex())->getValue();
 
 			// Validasi jenis anomali
 			if (empty($jenis_anomali)) {
@@ -307,6 +312,11 @@ class Jaringan extends CI_Controller
 			// Validasi klasifikasi
 			if (empty($klasifikasi)) {
 				$errors[$row->getRowIndex()][] = 'Klasifikasi kosong';
+			}
+
+			// Validasi fasa
+			if (empty($fasa)) {
+				$errors[$row->getRowIndex()][] = 'Fasa kosong';
 			}
 
 			// Validasi tanggal_eksekusi
@@ -345,10 +355,10 @@ class Jaringan extends CI_Controller
 		} else {
 			// Jika tidak ada kesalahan, lakukan operasi tambah data
 			foreach ($sheet->getRowIterator(2) as $row) {
-				$tanggal_eksekusi = $sheet->getCell('G' . $row->getRowIndex())->getFormattedValue();
+				$tanggal_eksekusi = $sheet->getCell('H' . $row->getRowIndex())->getFormattedValue();
 				$tanggal_eksekusi_obj = date_create_from_format('d/m/Y', $tanggal_eksekusi);
 				$tanggal_eksekusi_formatted = $tanggal_eksekusi_obj->format('Y-m-d');
-				$status = strtolower($sheet->getCell('H' . $row->getRowIndex())->getValue());
+				$status = strtolower($sheet->getCell('I' . $row->getRowIndex())->getValue());
 
 				// Data sekarang diperoleh dalam loop
 				$data1 = [
@@ -359,6 +369,7 @@ class Jaringan extends CI_Controller
 					'jumlah_titik' => $sheet->getCell('D' . $row->getRowIndex())->getValue(),
 					'keterangan' => $sheet->getCell('E' . $row->getRowIndex())->getFormattedValue(),
 					'klasifikasi' => $sheet->getCell('F' . $row->getRowIndex())->getFormattedValue(),
+					'fasa' => $sheet->getCell('G' . $row->getRowIndex())->getFormattedValue(),
 					'tanggal_eksekusi' => $tanggal_eksekusi_formatted,
 					'status_dikerjakan' => $status  === "sudah" ? "1" : "0",
 				];

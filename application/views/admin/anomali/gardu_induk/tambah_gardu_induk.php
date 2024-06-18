@@ -35,6 +35,11 @@
                             <?= form_error('klasifikasi', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
+                            <label for="fasa" class="form-control-label">Fasa</label>
+                            <input class="form-control" type="text" placeholder="Fasa" id="fasa" name="fasa" value="<?php echo set_value('fasa'); ?>">
+                            <?= form_error('fasa', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+                        <div class="form-group">
                             <label for="tanggal_eksekusi" class="form-control-label">Tanggal Eksekusi</label>
                             <input class="form-control" type="date" name="tanggal_eksekusi" id="tanggal_eksekusi" value="<?php echo set_value('tanggal_eksekusi'); ?>">
                             <?= form_error('tanggal_eksekusi', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>

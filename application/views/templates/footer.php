@@ -192,6 +192,46 @@
         });
     });
 
+    $(document).ready(function() {
+        var commonSettings = {
+            "oLanguage": {
+                "sLengthMenu": "Tampilkan _MENU_ data",
+                "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                "emptyTable": "Tidak ada data"
+            },
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                ["10", "25", "50", "Semua"]
+            ],
+            columnDefs: [{
+                target: 0,
+                visible: false,
+                searchable: false
+            }],
+            "order": [
+                [0, "desc"]
+            ],
+            language: {
+                "search": "Cari:",
+                "paginate": {
+                    "first": "Pertama",
+                    "last": "Terakhir",
+                    "next": "<i class='fa fa-angle-right'></i>",
+                    "previous": "<i class='fa fa-angle-left'></i>"
+                }
+            }
+        };
+
+        $('#rencanaPekerjaanTable').DataTable(commonSettings);
+        $('#spkiTable').DataTable(commonSettings);
+        $('#laporanPekerjaanTable').DataTable(commonSettings);
+        $('#jsaTable').DataTable(commonSettings);
+        $('#historiAlatTable').DataTable(commonSettings);
+        $('#riwayatGudangTable').DataTable(commonSettings);
+        $('#garduIndukTable').DataTable(commonSettings);
+        $('#jaringanTable').DataTable(commonSettings);
+    });
+
 
     var ctx1 = document.getElementById("chart-line").getContext("2d");
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

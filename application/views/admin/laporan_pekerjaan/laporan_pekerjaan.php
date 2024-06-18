@@ -16,9 +16,10 @@
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0" id="example">
+                        <table class="table align-items-center mb-0" id="laporanPekerjaanTable">
                             <thead>
                                 <tr>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Judul Laporan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
@@ -29,6 +30,9 @@
                             <tbody>
                                 <?php foreach ($laporan_pekerjaan as $l) : ?>
                                     <tr>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $l->id_laporan_pekerjaan ?></p>
+                                        </td>
                                         <td>
                                             <div class="d-flex ms-3 py-1">
                                                 <?php

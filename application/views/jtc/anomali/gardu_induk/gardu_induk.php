@@ -11,9 +11,10 @@
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0" id="example">
+                        <table class="table align-items-center mb-0" id="garduIndukTable">
                             <thead>
                                 <tr>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis Anomali</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Gardu Induk</th>
@@ -21,6 +22,7 @@
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah Titik</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Klasifikasi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Fasa</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Eksekusi</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
@@ -29,6 +31,9 @@
                             <tbody>
                                 <?php foreach ($gardu_induk as $g) : ?>
                                     <tr>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $g->id_gardu_induk ?></p>
+                                        </td>
                                         <td>
                                             <div class="d-flex ms-3 py-1">
                                                 <?php
@@ -58,6 +63,9 @@
                                         </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->klasifikasi) ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->fasa) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($g->tanggal_eksekusi)) ?></p>

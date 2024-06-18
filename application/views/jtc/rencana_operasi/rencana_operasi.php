@@ -12,9 +12,10 @@
                 </style>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0" id="example">
+                        <table class="table align-items-center mb-0" id="rencanaPekerjaanTable">
                             <thead>
                                 <tr>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">ID</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Rencana Pekerjaan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis Anomali</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
@@ -26,6 +27,9 @@
                             <tbody>
                                 <?php foreach ($rencana_operasi as $r) : ?>
                                     <tr>
+                                        <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $r->id_rencana_operasi ?></p>
+                                        </td>
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $r->nama_rencana ?></p>
                                         </td>
