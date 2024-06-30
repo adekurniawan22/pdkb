@@ -104,7 +104,7 @@
                     <th style="text-align: center;">
                         <h3>BERITA ACARA PELAKSANAAN HASIL JSA</h3>
                         <div style="width: 500px; display:inline-block; margin-top:-20px">
-                            <h3 style="text-transform: uppercase;"><?= $query->dasar_pelaksanaan ?></h3>
+                            <h3 style="text-transform: uppercase;"><?= $query->judul_laporan ?></h3>
                         </div>
                     </th>
                 </tr>
@@ -177,7 +177,7 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>Pelaksanaan pekerjaan pada tanggal <?= date('d/m/Y', strtotime($query->waktu_pelaksanaan)) ?></td>
+                    <td>Pelaksanaan pekerjaan pada tanggal <?= date('d/m/Y', strtotime($query->mulai_pelaksanaan)) ?> sampai dengan <?= date('d/m/Y', strtotime($query->selesai_pelaksanaan)) ?></td>
                 </tr>
 
                 <!-- ISI -->

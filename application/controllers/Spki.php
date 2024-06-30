@@ -209,7 +209,6 @@ class Spki extends CI_Controller
 		}
 	}
 
-
 	public function proses_hapus_spki()
 	{
 		$this->db->where('id_spki', $this->input->post('id_spki'));

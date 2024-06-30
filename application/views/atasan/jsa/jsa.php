@@ -21,6 +21,7 @@
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Judul Laporan</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dasar Pelaksanaan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Waktu Pelaksanaan</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
@@ -46,10 +47,13 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $j->judul_laporan ?></p>
+                                        </td>
+                                        <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $j->dasar_pelaksanaan ?></p>
                                         </td>
                                         <td class="text-center">
-                                            <p class=" text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($j->waktu_pelaksanaan)) ?></p>
+                                            <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($j->mulai_pelaksanaan)) . ' - ' . date('d/m/Y', strtotime($j->selesai_pelaksanaan)) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <?php if ($j->sudah_disetujui == '1') : ?>
@@ -129,8 +133,16 @@
                             <input class="form-control" type="text" placeholder="Dasar Pelaksanaan" id="dasar_pelaksanaan" name="dasar_pelaksanaan" value="<?php echo $jm->dasar_pelaksanaan ?>" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="waktu_pelaksanaan" class="form-control-label">waktu_pelaksanaan</label>
-                            <input class="form-control" type="text" placeholder="waktu_pelaksanaan" id="waktu_pelaksanaan" name="waktu_pelaksanaan" value="<?php echo $jm->waktu_pelaksanaan ?>" disabled>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="mulai_pelaksanaan" class="form-control-label">Mulai Pelaksanaan</label>
+                                    <input class="form-control" type="text" id="mulai_pelaksanaan" name="mulai_pelaksanaan" value="<?php echo $sm->mulai_pelaksanaan ?>" disabled>
+                                </div>
+                                <div class="col-6">
+                                    <label for="selesai_pelaksanaan" class="form-control-label">Selesai Pelaksanaan</label>
+                                    <input class="form-control" type="text" id="selesai_pelaksanaan" name="selesai_pelaksanaan" value="<?php echo $sm->selesai_pelaksanaan ?>" disabled>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">

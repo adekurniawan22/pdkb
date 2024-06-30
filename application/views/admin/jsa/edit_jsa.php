@@ -6,14 +6,28 @@
                     <form action="<?= base_url() ?>admin/jsa/proses-edit-jsa" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id_jsa" value="<?= $jsa->id_jsa ?>">
                         <div class="form-group">
+                            <label for="judul_laporan" class="form-control-label">Judul Laporan</label>
+                            <input class="form-control" type="text" placeholder="Judul Laporan" id="judul_laporan" name="judul_laporan" value="<?php echo set_value('judul_laporan', $jsa->judul_laporan); ?>">
+                            <?= form_error('judul_laporan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+                        <div class="form-group">
                             <label for="dasar_pelaksanaan" class="form-control-label">Dasar Pelaksanaan</label>
                             <input class="form-control" type="text" placeholder="Dasar Pelaksanaan" id="dasar_pelaksanaan" name="dasar_pelaksanaan" value="<?php echo set_value('dasar_pelaksanaan', $jsa->dasar_pelaksanaan); ?>">
                             <?= form_error('dasar_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="waktu_pelaksanaan" class="form-control-label">Waktu Pelaksanaan</label>
-                            <input class="form-control" type="date" id="waktu_pelaksanaan" name="waktu_pelaksanaan" value="<?php echo set_value('waktu_pelaksanaan', $jsa->waktu_pelaksanaan); ?>">
-                            <?= form_error('waktu_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="mulai_pelaksanaan" class="form-control-label">Mulai Pelaksanaan</label>
+                                    <input class="form-control" type="date" id="mulai_pelaksanaan" name="mulai_pelaksanaan" value="<?php echo set_value('mulai_pelaksanaan', $jsa->mulai_pelaksanaan); ?>">
+                                    <?= form_error('mulai_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                                <div class="col-6">
+                                    <label for="selesai_pelaksanaan" class="form-control-label">Selesai Pelaksanaan</label>
+                                    <input class="form-control" type="date" id="selesai_pelaksanaan" name="selesai_pelaksanaan" value="<?php echo set_value('selesai_pelaksanaan', $jsa->selesai_pelaksanaan); ?>">
+                                    <?= form_error('selesai_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="lingkup_pekerjaan" class="form-control-label">Lingkup Pekerjaan</label>

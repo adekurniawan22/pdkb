@@ -66,8 +66,10 @@ class Jsa extends CI_Controller
 
 	public function proses_tambah_jsa()
 	{
+		$this->form_validation->set_rules('judul_laporan', 'Judul Laporan', 'required|trim');
 		$this->form_validation->set_rules('dasar_pelaksanaan', 'Dasar Pelaksanaan', 'required|trim');
-		$this->form_validation->set_rules('waktu_pelaksanaan', 'Waktu Pelaksanaan', 'required|trim');
+		$this->form_validation->set_rules('mulai_pelaksanaan', 'Mulai Pelaksanaan', 'required|trim');
+		$this->form_validation->set_rules('selesai_pelaksanaan', 'Selesai Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('lingkup_pekerjaan', 'Lingkup Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('hasil_pekerjaan', 'Hasil Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('kesimpulan', 'Kesimpulan', 'required|trim');
@@ -78,12 +80,15 @@ class Jsa extends CI_Controller
 
 			$data_jsa = [
 				'id_personil' => $this->session->userdata('id_personil'),
+				'judul_laporan' => $this->input->post('judul_laporan'),
 				'dasar_pelaksanaan' => $this->input->post('dasar_pelaksanaan'),
-				'waktu_pelaksanaan' => $this->input->post('waktu_pelaksanaan'),
+				'mulai_pelaksanaan' => $this->input->post('mulai_pelaksanaan'),
+				'selesai_pelaksanaan' => $this->input->post('selesai_pelaksanaan'),
 				'lingkup_pekerjaan' => $this->input->post('lingkup_pekerjaan'),
 				'hasil_pekerjaan' => $this->input->post('hasil_pekerjaan'),
 				'kesimpulan' => $this->input->post('kesimpulan'),
 			];
+
 			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 				$data_jsa['sudah_disetujui'] = '1';
 				$data_jsa['id_atasan'] = $this->session->userdata('id_personil');
@@ -174,8 +179,10 @@ class Jsa extends CI_Controller
 
 	public function proses_edit_jsa()
 	{
+		$this->form_validation->set_rules('judul_laporan', 'Judul Laporan', 'required|trim');
 		$this->form_validation->set_rules('dasar_pelaksanaan', 'Dasar Pelaksanaan', 'required|trim');
-		$this->form_validation->set_rules('waktu_pelaksanaan', 'Waktu Pelaksanaan', 'required|trim');
+		$this->form_validation->set_rules('mulai_pelaksanaan', 'Mulai Pelaksanaan', 'required|trim');
+		$this->form_validation->set_rules('selesai_pelaksanaan', 'Selesai Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('lingkup_pekerjaan', 'Lingkup Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('hasil_pekerjaan', 'Hasil Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('kesimpulan', 'Kesimpulan', 'required|trim');
@@ -186,8 +193,10 @@ class Jsa extends CI_Controller
 
 			$data_jsa = [
 				'id_personil' => $this->session->userdata('id_personil'),
+				'judul_laporan' => $this->input->post('judul_laporan'),
 				'dasar_pelaksanaan' => $this->input->post('dasar_pelaksanaan'),
-				'waktu_pelaksanaan' => $this->input->post('waktu_pelaksanaan'),
+				'mulai_pelaksanaan' => $this->input->post('mulai_pelaksanaan'),
+				'selesai_pelaksanaan' => $this->input->post('selesai_pelaksanaan'),
 				'lingkup_pekerjaan' => $this->input->post('lingkup_pekerjaan'),
 				'hasil_pekerjaan' => $this->input->post('hasil_pekerjaan'),
 				'kesimpulan' => $this->input->post('kesimpulan'),
