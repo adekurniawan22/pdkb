@@ -84,8 +84,26 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.min.js"></script>
+<script src="<?= base_url() ?>assets/select2/dist/js/select2.min.js"></script>
 
 <script>
+    $(document).ready(function() {
+        $('#selectPJ').select2();
+        $('#selectPengawas').select2();
+        $('#selectPengawasK3').select2();
+        $('#selectPelaksana').select2();
+
+        // $('#exampleSelect').on('change', function() {
+        //     var selectedValue = $(this).val();
+        //     var currentValues = $('#selectedValues').val();
+        //     if (currentValues) {
+        //         $('#selectedValues').val(currentValues + '\n' + selectedValue);
+        //     } else {
+        //         $('#selectedValues').val(selectedValue);
+        //     }
+        // });
+    });
+
     $(document).ready(function() {
         $('#message').modal('show');
     });

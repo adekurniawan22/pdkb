@@ -21,6 +21,8 @@
     <link id="pagestyle" href="<?= base_url() ?>assets/argon-master/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.min.css" rel="stylesheet">
+    <!-- Select2 CSS -->
+    <link href="<?= base_url() ?>assets/select2/dist/css/select2.min.css" rel="stylesheet">
 
     <style>
         #signatureCanvas {
