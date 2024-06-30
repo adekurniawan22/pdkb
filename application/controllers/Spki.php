@@ -42,6 +42,7 @@ class Spki extends CI_Controller
 	public function tambah_spki()
 	{
 		$data['title'] = 'SPKI';
+		$data['personil'] = $this->Personil_model->dapat_personil();
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/spki/tambah_spki', $data);
@@ -68,8 +69,8 @@ class Spki extends CI_Controller
 		$this->form_validation->set_rules('lokasi_pekerjaan', 'Lokasi Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('mulai_pelaksanaan', 'Mulai Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('selesai_pelaksanaan', 'Selesai Pelaksanaan', 'required|trim');
-		$this->form_validation->set_rules('pj', 'PJ', 'required|trim');
-		$this->form_validation->set_rules('pengawas', 'Pengawas', 'required|trim');
+		$this->form_validation->set_rules('pj', 'PJ Pekerjaan', 'required|trim');
+		$this->form_validation->set_rules('pengawas', 'Pengawas Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('pengawas_k3', 'Pengawas K3', 'required|trim');
 		$this->form_validation->set_rules('pelaksana', 'Pelaksana', 'required|trim');
 		$this->form_validation->set_rules('alat_kerja', 'Alat Kerja', 'required|trim');
@@ -77,23 +78,30 @@ class Spki extends CI_Controller
 		$this->form_validation->set_rules('uraian_kerja', 'Uraian Kerja', 'required|trim');
 		$this->form_validation->set_rules('catatan', 'Catatan', 'required|trim');
 
+
 		if ($this->form_validation->run() == false) {
 			$this->tambah_spki();
 		} else {
+			$kepada = $this->input->post('kepada') == "Lainnya" ? $this->input->post('lainnya_kepada') : $this->input->post('kepada');
+			$dari = $this->input->post('dari') == "Lainnya" ? $this->input->post('lainnya_dari') : $this->input->post('dari');
+			$pj = $this->input->post('pj') == "Lainnya" ? $this->input->post('lainnya_pj') : $this->input->post('pj');
+			$pengawas = $this->input->post('pengawas') == "Lainnya" ? $this->input->post('lainnya_pengawas') : $this->input->post('pengawas');
+			$pengawas_k3 = $this->input->post('pengawas_k3') == "Lainnya" ? $this->input->post('lainnya_pengawas_k3') : $this->input->post('pengawas_k3');
+
 			$data = array(
 				'id_personil' => $this->session->userdata('id_personil'),
 				'nomor' => $this->input->post('nomor'),
 				'bulan' => $this->input->post('bulan'),
 				'tahun' => $this->input->post('tahun'),
-				'kepada' => $this->input->post('kepada'),
-				'dari' => $this->input->post('dari'),
+				'kepada' => $kepada,
+				'dari' => $dari,
 				'macam_pekerjaan' => $this->input->post('macam_pekerjaan'),
 				'lokasi_pekerjaan' => $this->input->post('lokasi_pekerjaan'),
 				'mulai_pelaksanaan' => $this->input->post('mulai_pelaksanaan'),
 				'selesai_pelaksanaan' => $this->input->post('selesai_pelaksanaan'),
-				'pj' => $this->input->post('pj'),
-				'pengawas' => $this->input->post('pengawas'),
-				'pengawas_k3' => $this->input->post('pengawas_k3'),
+				'pj' => $pj,
+				'pengawas' => $pengawas,
+				'pengawas_k3' => $pengawas_k3,
 				'pelaksana' => $this->input->post('pelaksana'),
 				'alat_kerja' => $this->input->post('alat_kerja'),
 				'kendaraan' => $this->input->post('kendaraan'),
@@ -132,6 +140,7 @@ class Spki extends CI_Controller
 	{
 		$data['title'] = 'SPKI';
 		$data['spki'] = $this->SPKI_model->dapat_satu_spki($this->input->post('id_spki'));
+		$data['personil'] = $this->Personil_model->dapat_personil();
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/spki/edit_spki', $data);
@@ -158,8 +167,8 @@ class Spki extends CI_Controller
 		$this->form_validation->set_rules('lokasi_pekerjaan', 'Lokasi Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('mulai_pelaksanaan', 'Mulai Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('selesai_pelaksanaan', 'Selesai Pelaksanaan', 'required|trim');
-		$this->form_validation->set_rules('pj', 'PJ', 'required|trim');
-		$this->form_validation->set_rules('pengawas', 'Pengawas', 'required|trim');
+		$this->form_validation->set_rules('pj', 'PJ Pekerjaan', 'required|trim');
+		$this->form_validation->set_rules('pengawas', 'Pengawas Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('pengawas_k3', 'Pengawas K3', 'required|trim');
 		$this->form_validation->set_rules('pelaksana', 'Pelaksana', 'required|trim');
 		$this->form_validation->set_rules('alat_kerja', 'Alat Kerja', 'required|trim');
@@ -170,25 +179,32 @@ class Spki extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->edit_spki();
 		} else {
+			$kepada = $this->input->post('kepada') == "Lainnya" ? $this->input->post('lainnya_kepada') : $this->input->post('kepada');
+			$dari = $this->input->post('dari') == "Lainnya" ? $this->input->post('lainnya_dari') : $this->input->post('dari');
+			$pj = $this->input->post('pj') == "Lainnya" ? $this->input->post('lainnya_pj') : $this->input->post('pj');
+			$pengawas = $this->input->post('pengawas') == "Lainnya" ? $this->input->post('lainnya_pengawas') : $this->input->post('pengawas');
+			$pengawas_k3 = $this->input->post('pengawas_k3') == "Lainnya" ? $this->input->post('lainnya_pengawas_k3') : $this->input->post('pengawas_k3');
+
 			$data = array(
 				'nomor' => $this->input->post('nomor'),
 				'bulan' => $this->input->post('bulan'),
 				'tahun' => $this->input->post('tahun'),
-				'kepada' => $this->input->post('kepada'),
-				'dari' => $this->input->post('dari'),
+				'kepada' => $kepada,
+				'dari' => $dari,
 				'macam_pekerjaan' => $this->input->post('macam_pekerjaan'),
 				'lokasi_pekerjaan' => $this->input->post('lokasi_pekerjaan'),
 				'mulai_pelaksanaan' => $this->input->post('mulai_pelaksanaan'),
 				'selesai_pelaksanaan' => $this->input->post('selesai_pelaksanaan'),
-				'pj' => $this->input->post('pj'),
-				'pengawas' => $this->input->post('pengawas'),
-				'pengawas_k3' => $this->input->post('pengawas_k3'),
+				'pj' => $pj,
+				'pengawas' => $pengawas,
+				'pengawas_k3' => $pengawas_k3,
 				'pelaksana' => $this->input->post('pelaksana'),
 				'alat_kerja' => $this->input->post('alat_kerja'),
 				'kendaraan' => $this->input->post('kendaraan'),
 				'uraian_kerja' => $this->input->post('uraian_kerja'),
 				'catatan' => $this->input->post('catatan'),
 			);
+
 
 			$result = $this->SPKI_model->edit_spki($this->input->post('id_spki'), $data);
 
