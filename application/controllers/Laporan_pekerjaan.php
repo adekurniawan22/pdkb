@@ -64,7 +64,8 @@ class Laporan_pekerjaan extends CI_Controller
 	{
 		$this->form_validation->set_rules('judul_laporan', 'Judul Laporan', 'required|trim');
 		$this->form_validation->set_rules('dasar_pelaksanaan', 'Dasar Pelaksanaan', 'required|trim');
-		$this->form_validation->set_rules('waktu_pelaksanaan', 'Waktu Pelaksanaan', 'required|trim');
+		$this->form_validation->set_rules('mulai_pelaksanaan', 'Mulai Pelaksanaan', 'required|trim');
+		$this->form_validation->set_rules('selesai_pelaksanaan', 'Selesai Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('lingkup_pekerjaan', 'Lingkup Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('hasil_pekerjaan', 'Hasil Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('penutup', 'Penutup', 'required|trim');
@@ -76,7 +77,8 @@ class Laporan_pekerjaan extends CI_Controller
 				'id_personil' => $this->session->userdata('id_personil'),
 				'judul_laporan' => $this->input->post('judul_laporan'),
 				'dasar_pelaksanaan' => $this->input->post('dasar_pelaksanaan'),
-				'waktu_pelaksanaan' => $this->input->post('waktu_pelaksanaan'),
+				'mulai_pelaksanaan' => $this->input->post('mulai_pelaksanaan'),
+				'selesai_pelaksanaan' => $this->input->post('selesai_pelaksanaan'),
 				'lingkup_pekerjaan' => $this->input->post('lingkup_pekerjaan'),
 				'hasil_pekerjaan' => $this->input->post('hasil_pekerjaan'),
 				'penutup' => $this->input->post('penutup'),
@@ -144,7 +146,8 @@ class Laporan_pekerjaan extends CI_Controller
 	{
 		$this->form_validation->set_rules('judul_laporan', 'Judul Laporan', 'required|trim');
 		$this->form_validation->set_rules('dasar_pelaksanaan', 'Dasar Pelaksanaan', 'required|trim');
-		$this->form_validation->set_rules('waktu_pelaksanaan', 'Waktu Pelaksanaan', 'required|trim');
+		$this->form_validation->set_rules('mulai_pelaksanaan', 'Mulai Pelaksanaan', 'required|trim');
+		$this->form_validation->set_rules('selesai_pelaksanaan', 'Selesai Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('lingkup_pekerjaan', 'Lingkup Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('hasil_pekerjaan', 'Hasil Pekerjaan', 'required|trim');
 		$this->form_validation->set_rules('penutup', 'Penutup', 'required|trim');
@@ -156,7 +159,8 @@ class Laporan_pekerjaan extends CI_Controller
 			$data = [
 				'judul_laporan' => $this->input->post('judul_laporan'),
 				'dasar_pelaksanaan' => $this->input->post('dasar_pelaksanaan'),
-				'waktu_pelaksanaan' => $this->input->post('waktu_pelaksanaan'),
+				'mulai_pelaksanaan' => $this->input->post('mulai_pelaksanaan'),
+				'selesai_pelaksanaan' => $this->input->post('selesai_pelaksanaan'),
 				'lingkup_pekerjaan' => $this->input->post('lingkup_pekerjaan'),
 				'hasil_pekerjaan' => $this->input->post('hasil_pekerjaan'),
 				'penutup' => $this->input->post('penutup'),

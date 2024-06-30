@@ -15,9 +15,18 @@
                             <?= form_error('dasar_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="waktu_pelaksanaan" class="form-control-label">Waktu Pelaksanaan</label>
-                            <input class="form-control" type="date" id="waktu_pelaksanaan" name="waktu_pelaksanaan" value="<?php echo set_value('waktu_pelaksanaan'); ?>">
-                            <?= form_error('waktu_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="mulai_pelaksanaan" class="form-control-label">Mulai Pelaksanaan</label>
+                                    <input class="form-control" type="date" id="mulai_pelaksanaan" name="mulai_pelaksanaan" value="<?php echo set_value('mulai_pelaksanaan'); ?>">
+                                    <?= form_error('mulai_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                                <div class="col-6">
+                                    <label for="selesai_pelaksanaan" class="form-control-label">Selesai Pelaksanaan</label>
+                                    <input class="form-control" type="date" id="selesai_pelaksanaan" name="selesai_pelaksanaan" value="<?php echo set_value('selesai_pelaksanaan'); ?>">
+                                    <?= form_error('selesai_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="lingkup_pekerjaan" class="form-control-label">Lingkup Pekerjaan</label>

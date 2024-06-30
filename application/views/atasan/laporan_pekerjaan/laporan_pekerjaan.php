@@ -49,7 +49,7 @@
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $l->judul_laporan ?></p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($l->waktu_pelaksanaan)) ?></p>
+                                            <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($l->mulai_pelaksanaan)) . ' - ' . date('d/m/Y', strtotime($l->selesai_pelaksanaan)) ?></p>
                                         </td>
                                         <td class="text-center">
                                             <?php if ($l->sudah_disetujui == '1') : ?>
@@ -171,8 +171,16 @@
                             <input class="form-control" type="text" placeholder="Dasar Pelaksanaan" id="dasar_pelaksanaan" name="dasar_pelaksanaan" value="<?php echo $lm->dasar_pelaksanaan ?>" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="waktu_pelaksanaan" class="form-control-label">waktu_pelaksanaan</label>
-                            <input class="form-control" type="text" placeholder="waktu_pelaksanaan" id="waktu_pelaksanaan" name="waktu_pelaksanaan" value="<?php echo $lm->waktu_pelaksanaan ?>" disabled>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="mulai_pelaksanaan" class="form-control-label">Mulai Pelaksanaan</label>
+                                    <input class="form-control" type="text" id="mulai_pelaksanaan" name="mulai_pelaksanaan" value="<?php echo $lm->mulai_pelaksanaan ?>" disabled>
+                                </div>
+                                <div class="col-6">
+                                    <label for="selesai_pelaksanaan" class="form-control-label">Selesai Pelaksanaan</label>
+                                    <input class="form-control" type="text" id="selesai_pelaksanaan" name="selesai_pelaksanaan" value="<?php echo $lm->selesai_pelaksanaan ?>" disabled>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
