@@ -8,8 +8,20 @@
                             <div class="card-body px-0 pb-3">
                                 <h4 class="ms-4">Data Alat Kerja</h4>
                                 <hr class="bg-dark mx-4 mb-4">
+                                <div class="px-3 mb-4">
+                                    <div class="form-group">
+                                        <select id="kategoriDropdown" class="form-select" onchange="filterData()">
+                                            <option value="">Pilih Metode</option>
+                                            <option value="K3 DAN KOMUNIKASI">K3 DAN KOMUNIKASI</option>
+                                            <option value="JAR GANSOL-SAC H-FRAME">JAR GANSOL-SAC H-FRAME</option>
+                                            <option value="JAR GANSOL TENSION">JAR GANSOL TENSION</option>
+                                            <option value="JAR GANSOL-SAC SPIRAL WIRE TONG">JAR GANSOL-SAC SPIRAL WIRE TONG</option>
+                                            <option value="JAR PENGGANTIAN GSW">JAR PENGGANTIAN GSW</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
-                                    <table class="table align-items-center mb-0" id="example">
+                                    <table class="table align-items-center mb-0" id="alat">
                                         <thead>
                                             <tr>
                                                 <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis</th>
@@ -106,11 +118,68 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var textAlertCanvas = document.getElementById('textAlertCanvas');
         var canvas = document.getElementById('signatureCanvas');
         var ctx = canvas.getContext('2d');
         var drawing = false;
+
+        var table;
+
+        $(document).ready(function() {
+            table = $('#alat').DataTable({
+                "oLanguage": {
+                    "sLengthMenu": "Tampilkan _MENU_ data",
+                    "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    "emptyTable": "Tidak ada data",
+                    "zeroRecords": "Tidak ada data yang sesuai dengan pencarian",
+                },
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    ["10", "25", "50", "Semua"]
+                ],
+                "columnDefs": [{
+                    "targets": [3],
+                    "visible": false
+                }], // Kolom Metode disembunyikan
+                "language": {
+                    "search": "Cari:",
+                    "paginate": {
+                        "first": "Pertama",
+                        "last": "Terakhir",
+                        "next": "<i class='fa fa-angle-right'></i>",
+                        "previous": "<i class='fa fa-angle-left'></i>"
+                    }
+                },
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rowCount = api.rows({
+                        page: 'current'
+                    }).count();
+                    if (rowCount === 0) {
+                        $('#noSearchResults').show();
+                    } else {
+                        $('#noSearchResults').hide();
+                    }
+                }
+            });
+        });
+
+        function filterData() {
+            var kategoriNama = $('#kategoriDropdown').val();
+            var currentSearch = table.column(3).search();
+
+            // Memeriksa apakah filter sebelumnya sudah diterapkan
+            if (currentSearch) {
+                table.column(3).search('').draw();
+            }
+
+            // Menerapkan filter baru
+            if (kategoriNama !== '') {
+                table.column(3).search(kategoriNama).draw();
+            }
+        }
 
         // Menangani sentuhan pada perangkat mobile
         canvas.addEventListener('touchstart', function(e) {
