@@ -92,16 +92,6 @@
         $('#selectPengawas').select2();
         $('#selectPengawasK3').select2();
         $('#selectPelaksana').select2();
-
-        // $('#exampleSelect').on('change', function() {
-        //     var selectedValue = $(this).val();
-        //     var currentValues = $('#selectedValues').val();
-        //     if (currentValues) {
-        //         $('#selectedValues').val(currentValues + '\n' + selectedValue);
-        //     } else {
-        //         $('#selectedValues').val(selectedValue);
-        //     }
-        // });
     });
 
     $(document).ready(function() {
@@ -190,6 +180,7 @@
                 "sLengthMenu": "Tampilkan _MENU_ data",
                 "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
                 "emptyTable": "Tidak ada data",
+                "zeroRecords": "Tidak ada data yang sesuai dengan pencarian",
             },
             "lengthMenu": [
                 [10, 25, 50, -1],
@@ -210,12 +201,14 @@
         });
     });
 
+
     $(document).ready(function() {
         var commonSettings = {
             "oLanguage": {
                 "sLengthMenu": "Tampilkan _MENU_ data",
                 "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                "emptyTable": "Tidak ada data"
+                "emptyTable": "Tidak ada data",
+                "zeroRecords": "Tidak ada data yang sesuai dengan pencarian",
             },
             "lengthMenu": [
                 [10, 25, 50, -1],
