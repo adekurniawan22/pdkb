@@ -64,12 +64,14 @@ class Alat_kerja extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->tambah_alat_kerja();
 		} else {
+			$metode_array = !empty($_POST['metode']) ? implode(", ", $_POST['metode']) : "";
 			$data = array(
 				'jenis' => $this->input->post('jenis'),
 				'nama_alat_kerja' => $this->input->post('nama_alat_kerja'),
 				'spesifikasi' => $this->input->post('spesifikasi'),
 				'jumlah' => $this->input->post('jumlah'),
 				'satuan' => $this->input->post('satuan'),
+				'metode' => $metode_array
 			);
 
 			if ($this->input->post('tanggal_kadaluarsa')) {
@@ -99,6 +101,8 @@ class Alat_kerja extends CI_Controller
 	{
 		$data['title'] = 'Inventaris Gudang PDKB Jaringan';
 		$data['alat_kerja'] = $this->Alat_kerja_model->dapat_satu_alat_kerja($this->input->post('id_alat_kerja'));
+		$data['metode'] = explode(', ', $data['alat_kerja']->metode);
+
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_kerja/edit_alat_kerja', $data);
@@ -125,12 +129,14 @@ class Alat_kerja extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->edit_alat_kerja();
 		} else {
+			$metode_array = !empty($_POST['metode']) ? implode(", ", $_POST['metode']) : "";
 			$data = array(
 				'jenis' => $this->input->post('jenis'),
 				'nama_alat_kerja' => $this->input->post('nama_alat_kerja'),
 				'spesifikasi' => $this->input->post('spesifikasi'),
 				'jumlah' => $this->input->post('jumlah'),
 				'satuan' => $this->input->post('satuan'),
+				'metode' => $metode_array,
 			);
 
 			if ($this->input->post('tanggal_kadaluarsa')) {

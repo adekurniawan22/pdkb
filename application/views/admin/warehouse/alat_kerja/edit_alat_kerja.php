@@ -67,6 +67,31 @@
                                 <input class="form-control" type="date" name="tanggal_kadaluarsa" id="tanggal_kadaluarsa" value="<?php echo set_value('tanggal_kadaluarsa'); ?>">
                             </div>
                         <?php endif; ?>
+
+                        <div class="form-group">
+                            <label class="form-label">Metode</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="K3 DAN KOMUNIKASI" <?= in_array("K3 DAN KOMUNIKASI", $metode) ? "checked" : ""; ?>>
+                                <label class="form-check-label" for="K3">K3 DAN KOMUNIKASI</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="JAR GANSOL-SAC H-FRAME" <?= in_array("JAR GANSOL-SAC H-FRAME", $metode) ? "checked" : ""; ?>>
+                                <label class="form-check-label" for="GSHF">JAR GANSOL-SAC H-FRAME</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="JAR GANSOL TENSION" <?= in_array("JAR GANSOL TENSION", $metode) ? "checked" : ""; ?>>
+                                <label class="form-check-label" for="GST">JAR GANSOL TENSION</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="JAR GANSOL-SAC SPIRAL WIRE TONG" <?= in_array("JAR GANSOL-SAC SPIRAL WIRE TONG", $metode) ? "checked" : ""; ?>>
+                                <label class="form-check-label" for="GSWT">JAR GANSOL-SAC SPIRAL WIRE TONG</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="JAR PENGGANTIAN GSW" <?= in_array("JAR PENGGANTIAN GSW", $metode) ? "checked" : ""; ?>>
+                                <label class="form-check-label" for="PGSW">JAR PENGGANTIAN GSW</label>
+                            </div>
+                        </div>
+
                         <div class="mt-4 text-end">
                             <a href=" <?= base_url() ?>admin/alat-kerja" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Edit</button>

@@ -22,6 +22,7 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama ALat</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Spesifikasi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Metode</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Sedang Dipinjam</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Kadaluarsa</th>
@@ -40,6 +41,18 @@
                                         <td style="word-wrap: break-word; white-space: pre-line;">
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($a->spesifikasi) ?></p>
                                         </td>
+                                        <td>
+                                            <?php
+                                            $metodes = explode(',', $a->metode);
+                                            if (empty($a->metode)) {
+                                                echo '<p class="ms-3 text-sm font-weight-bold mb-0">Tidak ada</p>';
+                                            } else {
+                                                foreach ($metodes as $metode) {
+                                                    echo '<p class="ms-3 text-sm font-weight-bold mb-0">' . trim($metode) . '</p>';
+                                                }
+                                            }
+                                            ?>
+                                        </td>
                                         <td class="text-center">
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $a->jumlah . ' ' . $a->satuan ?></p>
                                         </td>
@@ -48,7 +61,7 @@
                                         </td>
                                         <td class="text-center">
                                             <?php if ($a->tanggal_kadaluarsa == null) : ?>
-                                                <p class="text-sm font-weight-bold mb-0">Tidak ada</p <?php else : ?> <p class="text-sm font-weight-bold mb-0"><?= $a->tanggal_kadaluarsa ?></p>
+                                                <p class="text-sm font-weight-bold mb-0">Tidak ada</p> <?php else : ?> <p class="text-sm font-weight-bold mb-0"><?= $a->tanggal_kadaluarsa ?></p>
                                             <?php endif ?>
                                         </td>
 
