@@ -66,6 +66,7 @@ class Alat_tower_ers extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->tambah_alat_tower_ers();
 		} else {
+			$metode_array = !empty($_POST['metode']) ? implode(", ", $_POST['metode']) : "";
 			$data = array(
 				'jenis' => $this->input->post('jenis'),
 				'nama_alat_tower_ers' => $this->input->post('nama_alat_tower_ers'),
@@ -74,6 +75,7 @@ class Alat_tower_ers extends CI_Controller
 				'jumlah' => $this->input->post('jumlah'),
 				'satuan' => $this->input->post('satuan'),
 				'tahun_pengadaan' => $this->input->post('tahun_pengadaan'),
+				'metode' => $metode_array,
 			);
 
 			if ($this->input->post('tanggal_kadaluarsa')) {
@@ -103,6 +105,7 @@ class Alat_tower_ers extends CI_Controller
 	{
 		$data['title'] = 'Investaris Gudang PDKB GI';
 		$data['alat_tower_ers'] = $this->Alat_tower_ers_model->dapat_satu_alat_tower_ers($this->input->post('id_alat_tower_ers'));
+		$data['metode'] = explode(', ', $data['alat_tower_ers']->metode);
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			$this->load->view('templates/header', $data);
 			$this->load->view('atasan/warehouse/alat_tower_ers/edit_alat_tower_ers', $data);
@@ -131,6 +134,7 @@ class Alat_tower_ers extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->tambah_alat_tower_ers();
 		} else {
+			$metode_array = !empty($_POST['metode']) ? implode(", ", $_POST['metode']) : "";
 			$data = array(
 				'jenis' => $this->input->post('jenis'),
 				'nama_alat_tower_ers' => $this->input->post('nama_alat_tower_ers'),
@@ -139,6 +143,7 @@ class Alat_tower_ers extends CI_Controller
 				'jumlah' => $this->input->post('jumlah'),
 				'satuan' => $this->input->post('satuan'),
 				'tahun_pengadaan' => $this->input->post('tahun_pengadaan'),
+				'metode' => $metode_array,
 			);
 
 			if ($this->input->post('tanggal_kadaluarsa')) {

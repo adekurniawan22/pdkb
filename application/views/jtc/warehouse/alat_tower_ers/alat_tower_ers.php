@@ -18,6 +18,7 @@
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nama Alat</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Merk</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Spesifikasi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Metode</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Sedang Dipinjam</th>
                                     <th class="text-center text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tahun Pengadaan</th>
@@ -38,6 +39,18 @@
                                         </td>
                                         <td style="word-wrap: break-word; white-space: pre-line;">
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($a->spesifikasi) ?></p>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            $metodes = explode(',', $a->metode);
+                                            if (empty($a->metode)) {
+                                                echo '<p class="ms-3 text-sm font-weight-bold mb-0">Tidak ada</p>';
+                                            } else {
+                                                foreach ($metodes as $metode) {
+                                                    echo '<p class="ms-3 text-sm font-weight-bold mb-0">' . trim($metode) . '</p>';
+                                                }
+                                            }
+                                            ?>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0"><?= $a->jumlah . ' ' . $a->satuan ?></p>

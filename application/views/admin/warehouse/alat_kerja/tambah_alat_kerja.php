@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Metode</label><br>
+                            <label class="form-label">Metode <em>(jika ada)</em></label><br>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" name="metode[]" value="K3 DAN KOMUNIKASI">
                                 <label class="form-check-label" for="K3">K3 DAN KOMUNIKASI</label>

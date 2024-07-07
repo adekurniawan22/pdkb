@@ -68,6 +68,27 @@
                             <input class="form-control" type="date" name="tanggal_kadaluarsa" id="tanggal_kadaluarsa" value="<?php echo set_value('tanggal_kadaluarsa'); ?>">
                         </div>
 
+                        <div class="form-group">
+                            <label class="form-label">Metode <em>(jika ada)</em></label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="K3 DAN KOMUNIKASI">
+                                <label class="form-check-label" for="K3">K3 DAN KOMUNIKASI</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="GI PERBAIKAN HOTSPOT">
+                                <label class="form-check-label" for="GSHF">GI PERBAIKAN HOTSPOT
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="GI PENGGANTIAN STRAIN CLAMP GSW">
+                                <label class="form-check-label" for="GST">GI PENGGANTIAN STRAIN CLAMP GSW</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="metode[]" value="GI GANSOLO SUSPENSION">
+                                <label class="form-check-label" for="GSWT">GI GANSOLO SUSPENSION</label>
+                            </div>
+                        </div>
+
                         <div class="text-end mt-5">
                             <a href=" <?= base_url() ?>admin/alat-tower-ers" class="btn btn-primary" type="button">Kembali</a>
                             <button class="btn btn-primary" type="submit">Tambah</button>
