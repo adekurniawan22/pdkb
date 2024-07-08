@@ -9,11 +9,32 @@
                             <input class="form-control" type="text" placeholder="Judul Laporan" id="judul_laporan" name="judul_laporan" value="<?php echo set_value('judul_laporan'); ?>">
                             <?= form_error('judul_laporan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
+
+                        <div class="form-group">
+                            <label for="lokasi_pekerjaan" class="form-control-label">Lokasi Pekerjaan</label>
+                            <input class="form-control" type="text" placeholder="Lokasi Pekerjaan" id="lokasi_pekerjaan" name="lokasi_pekerjaan" value="<?php echo set_value('lokasi_pekerjaan'); ?>">
+                            <?= form_error('lokasi_pekerjaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kepada" class="form-control-label">Kesimpulan</label>
+                            <select class="form-select" aria-label="Default select example" name="kepada" id="kepada">
+                                <option value="" selected>Pilih Kesimpulan</option>
+                                <option value="Dapat Dikerjakan Dengan Metode PDKB" <?php echo set_select('kepada', "Dapat Dikerjakan Dengan Metode PDKB"); ?>>Dapat Dikerjakan Dengan Metode PDKB</option>
+                                <option value="Tidak Dapat Dikerjakan Dengan Metode PDKB" <?php echo set_select('kepada', "Tidak Dapat Dikerjakan Dengan Metode PDKB"); ?>>Tidak Dapat Dikerjakan Dengan Metode PDKB</option>
+                                <option value="TEAM LEADER PDKB GI" <?php echo set_select('kepada', "TEAM LEADER PDKB GI"); ?>>TEAM LEADER PDKB GI</option>
+                                <option value="PLH TEAM LEADER PDKB GI" <?php echo set_select('kepada', "PLH TEAM LEADER PDKB GI"); ?>>PLH TEAM LEADER PDKB GI</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                            <?= form_error('kepada', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                        </div>
+
                         <div class="form-group">
                             <label for="dasar_pelaksanaan" class="form-control-label">Dasar Pelaksanaan</label>
                             <input class="form-control" type="text" placeholder="Dasar Pelaksanaan" id="dasar_pelaksanaan" name="dasar_pelaksanaan" value="<?php echo set_value('dasar_pelaksanaan'); ?>">
                             <?= form_error('dasar_pelaksanaan', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
@@ -28,6 +49,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="lingkup_pekerjaan" class="form-control-label">Lingkup Pekerjaan</label>
                             <textarea class="form-control" placeholder="Lingkup Pekerjaan" id="lingkup_pekerjaan" name="lingkup_pekerjaan" rows="3"><?php echo set_value('lingkup_pekerjaan'); ?></textarea>

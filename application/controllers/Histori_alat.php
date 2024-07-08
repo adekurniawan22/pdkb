@@ -61,6 +61,7 @@ class Histori_alat extends CI_Controller
 
 	public function proses_tambah_histori_alat()
 	{
+
 		$signatureData = $this->input->post('signature_image');
 		if (!empty($signatureData)) {
 			$randomBytes = random_bytes(16); // Mendapatkan 16 byte nilai acak
@@ -86,23 +87,25 @@ class Histori_alat extends CI_Controller
 				'tanda_tangan' => $fileName
 			];
 
+			// Konversi string JSON menjadi array PHP
+			$selectedItems = json_decode($_POST["selected_items"], true);
 
 			$result = $this->Histori_alat_model->tambah_histori_alat($data_histori_alat);
 			$id_histori_alat = $this->db->insert_id();
 
 
-			for ($i = 0; $i < count($_POST["select_alat_kerja"]); $i++) {
-				$this->db->where('id_alat_kerja', $_POST["select_alat_kerja"][$i]);
+			foreach ($selectedItems as $id => $item) {
+				$this->db->where('id_alat_kerja', $id);
 				$satuan = $this->db->get('t_alat_kerja')->row_array();
 				$data = [
 					'id_histori_alat' => $id_histori_alat,
-					'id_alat_kerja' => $_POST["select_alat_kerja"][$i],
-					'jumlah' => $_POST["select_jumlah"][$i] . ' ' . $satuan['satuan'],
+					'id_alat_kerja' => $id,
+					'jumlah' => $item['quantity'],
 				];
 
 				$this->db->insert('t_detail_histori_alat', $data);
 
-				$this->Alat_kerja_model->edit_alat_kerja($_POST["select_alat_kerja"][$i], ['sedang_dipinjam' => $satuan['sedang_dipinjam'] + $_POST["select_jumlah"][$i]]);
+				$this->Alat_kerja_model->edit_alat_kerja($id, ['sedang_dipinjam' => $satuan['sedang_dipinjam'] + $item['quantity']]);
 			}
 
 			if ($result) {

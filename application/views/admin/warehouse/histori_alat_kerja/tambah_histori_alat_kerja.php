@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="selected-items-input" name="selected_items" value="">
+                        <input type="hidden" id="selected-items-input" name="selected_items">
 
                         <div class="form-group">
                             <label for="nama_alat_kerja" class="form-control-label">Nama Alat Kerja</label>
@@ -131,7 +131,9 @@
         var table;
 
         $(document).ready(function() {
-            table = $('#alat').DataTable({
+            var selectedItems = {};
+
+            var table = $('#alat').DataTable({
                 "oLanguage": {
                     "sLengthMenu": "Tampilkan _MENU_ data",
                     "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
@@ -165,24 +167,89 @@
                     } else {
                         $('#noSearchResults').hide();
                     }
+                    restoreCheckboxes();
+                    updateTextarea(); // Memanggil fungsi updateTextarea saat tabel diinisialisasi ulang
                 }
             });
+
+            function filterData() {
+                var kategoriNama = $('#kategoriDropdown').val();
+                var currentSearch = table.column(3).search();
+
+                // Memeriksa apakah filter sebelumnya sudah diterapkan
+                if (currentSearch) {
+                    table.column(3).search('').draw();
+                }
+
+                // Menerapkan filter baru
+                if (kategoriNama !== '') {
+                    table.column(3).search(kategoriNama).draw();
+                }
+            }
+
+            $(document).on('change', '.select-checkbox', function() {
+                var $checkbox = $(this);
+                var $row = $checkbox.closest('tr');
+                var $lastTd = $row.find('td:last-child');
+                var id = $checkbox.val();
+
+                if ($checkbox.is(':checked')) {
+                    $lastTd.html('<input type="number" class="form-control" name="jumlah_pinjam[]" min="1" value="1" >');
+                    selectedItems[id] = {
+                        id: $checkbox.data('id'),
+                        name: $checkbox.data('name'),
+                        quantity: 1,
+                        lastCheckedTime: Date.now()
+                    }; // Menyimpan waktu terakhir dicentang
+                } else {
+                    $lastTd.empty();
+                    delete selectedItems[id];
+                }
+
+                updateTextarea();
+            });
+
+            $(document).on('input', 'input[type="number"]', function() {
+                var $input = $(this);
+                var $row = $input.closest('tr');
+                var id = $row.find('.select-checkbox').val();
+                var quantity = $input.val();
+                if (selectedItems[id]) {
+                    selectedItems[id].quantity = quantity;
+                }
+                updateTextarea();
+            });
+
+            function updateTextarea() {
+                var textareaContent = [];
+
+                // Menyusun konten textarea berdasarkan selectedItems
+                var selectedArray = Object.keys(selectedItems).map(function(key) {
+                    return selectedItems[key];
+                });
+
+                // Mengurutkan array berdasarkan waktu terakhir dicentang
+                selectedArray.sort(function(a, b) {
+                    return b.lastCheckedTime - a.lastCheckedTime;
+                });
+
+                // Mengisi textarea dengan konten yang disusun
+                $.each(selectedArray, function(index, item) {
+                    textareaContent.unshift(item.name + ': ' + item.quantity); // Menggunakan unshift untuk memasukkan di atas
+                });
+
+                // Mengubah teks area
+                console.log(selectedItems);
+                $('#nama_alat_kerja').val(textareaContent.join('\n'));
+                $('#selected-items-input').val(JSON.stringify(selectedItems));
+            }
+
+            function restoreCheckboxes() {
+                // Fungsi restoreCheckboxes lainnya
+            }
+
+            window.filterData = filterData;
         });
-
-        function filterData() {
-            var kategoriNama = $('#kategoriDropdown').val();
-            var currentSearch = table.column(3).search();
-
-            // Memeriksa apakah filter sebelumnya sudah diterapkan
-            if (currentSearch) {
-                table.column(3).search('').draw();
-            }
-
-            // Menerapkan filter baru
-            if (kategoriNama !== '') {
-                table.column(3).search(kategoriNama).draw();
-            }
-        }
 
         // Menangani sentuhan pada perangkat mobile
         canvas.addEventListener('touchstart', function(e) {
