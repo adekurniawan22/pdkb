@@ -142,7 +142,7 @@
                     ["10", "25", "50", "Semua"]
                 ],
                 "columnDefs": [{
-                    "targets": [3],
+                    "targets": [4],
                     "visible": false
                 }], // Kolom Metode disembunyikan
                 "language": {
@@ -171,16 +171,16 @@
 
             function filterData() {
                 var kategoriNama = $('#kategoriDropdown').val();
-                var currentSearch = table.column(3).search();
+                var currentSearch = table.column(4).search();
 
                 // Memeriksa apakah filter sebelumnya sudah diterapkan
                 if (currentSearch) {
-                    table.column(3).search('').draw();
+                    table.column(4).search('').draw();
                 }
 
                 // Menerapkan filter baru
                 if (kategoriNama !== '') {
-                    table.column(3).search(kategoriNama).draw();
+                    table.column(4).search(kategoriNama).draw();
                 }
             }
 

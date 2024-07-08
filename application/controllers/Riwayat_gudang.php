@@ -85,30 +85,32 @@ class Riwayat_gudang extends CI_Controller
 				'tanda_tangan' => $fileName
 			];
 
+			// Konversi string JSON menjadi array PHP
+			$selectedItems = json_decode($_POST["selected_items"], true);
 
 			$result = $this->Riwayat_gudang_model->tambah_riwayat_gudang($data_riwayat_gudang);
 			$id_riwayat_gudang = $this->db->insert_id();
 
 
-			for ($i = 0; $i < count($_POST["select_alat_kerja"]); $i++) {
-				$this->db->where('id_alat_tower_ers', $_POST["select_alat_kerja"][$i]);
+			foreach ($selectedItems as $id => $item) {
+				$this->db->where('id_alat_tower_ers', $id);
 				$satuan = $this->db->get('t_alat_tower_ers')->row_array();
 				$data = [
 					'id_riwayat_gudang' => $id_riwayat_gudang,
-					'id_alat_tower_ers' => $_POST["select_alat_kerja"][$i],
-					'jumlah' => $_POST["select_jumlah"][$i] . ' ' . $satuan['satuan'],
+					'id_alat_tower_ers' => $id,
+					'jumlah' => $item['quantity'],
 				];
 
 				$this->db->insert('t_detail_riwayat_gudang', $data);
 
-				$this->Alat_tower_ers_model->edit_alat_tower_ers($_POST["select_alat_kerja"][$i], ['sedang_dipinjam' => $satuan['sedang_dipinjam'] + $_POST["select_jumlah"][$i]]);
+				$this->Alat_tower_ers_model->edit_alat_tower_ers($id, ['sedang_dipinjam' => $satuan['sedang_dipinjam'] + $item['quantity']]);
 			}
 
 			if ($result) {
-				$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Tower ERS Kerja Berhasil Ditambahkan</strong>
+				$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang GI Kerja Berhasil Ditambahkan</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 			} else {
-				$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Tower ERS Kerja Gagal Ditambahkan</strong>
+				$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang GI Kerja Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
 			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
@@ -142,7 +144,7 @@ class Riwayat_gudang extends CI_Controller
 			$this->db->update('t_alat_tower_ers');
 		}
 
-		$this->session->set_flashdata('message', '<strong>Status Riwayat Gudang Alat Tower ERS Berhasil Diedit</strong>
+		$this->session->set_flashdata('message', '<strong>Status Riwayat Gudang GI Berhasil Diedit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
 			redirect('atasan/riwayat-gudang');
@@ -177,10 +179,10 @@ class Riwayat_gudang extends CI_Controller
 		$this->db->where('id_riwayat_gudang', $this->input->post('id_riwayat_gudang'));
 		$result = $this->db->delete('t_riwayat_gudang');
 		if ($result) {
-			$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Tower ERS Kerja Berhasil Dihapus</strong>
+			$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang GI Kerja Berhasil Dihapus</strong>
 												<i class="bi bi-check-circle-fill"></i>');
 		} else {
-			$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Tower ERS Kerja Gagal Dihapus</strong>
+			$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang GI Kerja Gagal Dihapus</strong>
 												<i class="bi bi-exclamation-circle-fill"></i>');
 		}
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {

@@ -109,10 +109,10 @@ class Histori_alat extends CI_Controller
 			}
 
 			if ($result) {
-				$this->session->set_flashdata('message', '<strong>Data Histori Alat Kerja Berhasil Ditambahkan</strong>
+				$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Jaringan Berhasil Ditambahkan</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 			} else {
-				$this->session->set_flashdata('message', '<strong>Data Histori Alat Kerja Gagal Ditambahkan</strong>
+				$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Jaringan Gagal Ditambahkan</strong>
 													<i class="bi bi-exclamation-circle-fill"></i>');
 			}
 			if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
@@ -146,7 +146,7 @@ class Histori_alat extends CI_Controller
 			$this->db->update('t_alat_kerja');
 		}
 
-		$this->session->set_flashdata('message', '<strong>Status Histori Alat Kerja Berhasil Diedit</strong>
+		$this->session->set_flashdata('message', '<strong>Status Riwayat Gudang Jaringan Berhasil Diedit</strong>
 													<i class="bi bi-check-circle-fill"></i>');
 
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
@@ -182,10 +182,10 @@ class Histori_alat extends CI_Controller
 		$this->db->where('id_histori_alat', $this->input->post('id_histori_alat'));
 		$result = $this->db->delete('t_histori_alat');
 		if ($result) {
-			$this->session->set_flashdata('message', '<strong>Data Histori Alat Kerja Berhasil Dihapus</strong>
+			$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Jaringan Berhasil Dihapus</strong>
 												<i class="bi bi-check-circle-fill"></i>');
 		} else {
-			$this->session->set_flashdata('message', '<strong>Data Histori Alat Kerja Gagal Dihapus</strong>
+			$this->session->set_flashdata('message', '<strong>Data Riwayat Gudang Jaringan Gagal Dihapus</strong>
 												<i class="bi bi-exclamation-circle-fill"></i>');
 		}
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
