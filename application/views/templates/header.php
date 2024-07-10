@@ -117,6 +117,22 @@
         .modal {
             z-index: 1050
         }
+
+        .form-progress-wizard {
+            position: relative;
+            height: 4px;
+            background-color: #e9ecef;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-wizard {
+            position: absolute;
+            height: 100%;
+            background-color: #007bff;
+            transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
     </style>
 </head>
 

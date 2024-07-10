@@ -66,6 +66,11 @@ class Jsa extends CI_Controller
 
 	public function proses_tambah_jsa()
 	{
+		echo "<pre>";
+		echo var_dump($_POST);
+		echo var_dump($_FILES);
+		echo "<pre>";
+		die();
 		$this->form_validation->set_rules('judul_laporan', 'Judul Laporan', 'required|trim');
 		$this->form_validation->set_rules('dasar_pelaksanaan', 'Dasar Pelaksanaan', 'required|trim');
 		$this->form_validation->set_rules('mulai_pelaksanaan', 'Mulai Pelaksanaan', 'required|trim');
@@ -152,6 +157,8 @@ class Jsa extends CI_Controller
 
 	public function edit_jsa()
 	{
+		echo "MAAF HALAMAN SEDANG DALAM MAINTENANCE!";
+		die();
 		if ($this->session->userdata('id_view_jsa')) {
 			$data['jsa'] = $this->db->get_where('t_jsa', ['id_jsa' => $this->session->userdata('id_view_jsa')])->row();
 		} else {
