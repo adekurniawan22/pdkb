@@ -107,7 +107,7 @@
                                         <label class="form-control-label">Titik Anomali Line</label>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="line1_0" value="Line 1" onclick="toggleFileSection(this)">
+                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="line1_0" value="line1" onclick="toggleFileSection(this)">
                                             <label class="form-check-label" for="line1_0">Line 1</label>
                                             <div id="file_section_line1_0" class="file-section" style="display: none;">
                                                 <button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput('line1_0')">Tambah Gambar</button>
@@ -115,7 +115,7 @@
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="line2_0" value="Line 2" onclick="toggleFileSection(this)">
+                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="line2_0" value="line2" onclick="toggleFileSection(this)">
                                             <label class="form-check-label" for="line2_0">Line 2</label>
                                             <div id="file_section_line2_0" class="file-section" style="display: none;">
                                                 <button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput('line2_0')">Tambah Gambar</button>
@@ -127,7 +127,7 @@
                                     <div class="form-group">
                                         <label class="form-control-label">Titik Anomali Fasa</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="fasaR_0" value="Fasa R" onclick="toggleFileSection(this)">
+                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="fasaR_0" value="fasaR" onclick="toggleFileSection(this)">
                                             <label class="form-check-label" for="fasaR_0">Fasa R</label>
                                             <div id="file_section_fasaR_0" class="file-section" style="display: none;">
                                                 <button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput('fasaR_0')">Tambah Gambar</button>
@@ -135,7 +135,7 @@
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="fasaS_0" value="Fasa S" onclick="toggleFileSection(this)">
+                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="fasaS_0" value="fasaS" onclick="toggleFileSection(this)">
                                             <label class="form-check-label" for="fasaS_0">Fasa S</label>
                                             <div id="file_section_fasaS_0" class="file-section" style="display: none;">
                                                 <button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput('fasaS_0')">Tambah Gambar</button>
@@ -143,7 +143,7 @@
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="fasaT_0" value="Fasa T" onclick="toggleFileSection(this)">
+                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="fasaT_0" value="fasaT" onclick="toggleFileSection(this)">
                                             <label class="form-check-label" for="fasaT_0">Fasa T</label>
                                             <div id="file_section_fasaT_0" class="file-section" style="display: none;">
                                                 <button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput('fasaT_0')">Tambah Gambar</button>
@@ -151,7 +151,7 @@
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="gsw_0" value="GSW" onclick="toggleFileSection(this)">
+                                            <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="gsw_0" value="gsw" onclick="toggleFileSection(this)">
                                             <label class="form-check-label" for="gsw_0">GSW</label>
                                             <div id="file_section_gsw_0" class="file-section" style="display: none;">
                                                 <button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput('gsw_0')">Tambah Gambar</button>
@@ -170,7 +170,6 @@
 
                                 </div>
                             </div>
-
 
                             <div class="mt-4">
                                 <button type="button" class="btn btn-success add-aspek-perencanaan">+ Tambah Aspek Perencanaa Baru</button>
@@ -497,6 +496,7 @@
             var fileSection = document.getElementById(sectionId);
             if (checkbox.checked) {
                 fileSection.style.display = 'block';
+                fileSection.innerHTML = '<button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput(\'' + checkbox.id + '\')">Tambah Gambar</button>';
             } else {
                 fileSection.style.display = 'none';
                 fileSection.innerHTML = '<button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput(\'' + checkbox.id + '\')">Tambah Gambar</button>';
@@ -579,7 +579,25 @@
 
                 // Clear input values in the new card
                 newCard.querySelectorAll('input, textarea').forEach(function(element) {
-                    element.value = '';
+                    // If it's not a checkbox, set value to empty string
+                    if (element.type !== 'checkbox') {
+                        element.value = '';
+                    } else {
+                        // Uncheck the checkbox
+                        element.checked = false;
+                    }
+                });
+
+
+                // Clear error spans if needed
+                newCard.querySelectorAll('[id^="error_"]').forEach(function(span) {
+                    span.textContent = '';
+                    span.style.display = 'none';
+                });
+
+                // Clear error spans if needed
+                newCard.querySelectorAll('.file-section').forEach(function(fileSelection) {
+                    fileSelection.innerHTML = '';
                 });
 
                 // Adjust input names and IDs to maintain sequential indices
@@ -624,7 +642,6 @@
                 var newSection = 'line' + indexPlus; // Adjust as per your section naming convention
                 fileInputCounts[newSection] = 1;
             });
-
             var kesimpulanSelect = document.getElementById('kesimpulan');
             var textareaContainer = document.getElementById('textarea-container');
 
