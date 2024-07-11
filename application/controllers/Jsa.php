@@ -25,7 +25,6 @@ class Jsa extends CI_Controller
 			$_SESSION['id_view_jsa']
 		);
 		$data['temuan_jsa'] = $this->Jsa_model->dapat_temuan_jsa();
-		$data['foto_jsa'] = $this->Jsa_model->dapat_foto_jsa();
 		$data['title'] = 'Laporan JSA';
 
 		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
@@ -219,7 +218,6 @@ class Jsa extends CI_Controller
 			$data['jsa'] = $this->db->get_where('t_jsa', ['id_jsa' => $this->input->post('id_jsa')])->row();
 		}
 		$data['temuan_jsa'] = $this->Jsa_model->dapat_temuan_jsa();
-		$data['foto_jsa'] = $this->Jsa_model->dapat_foto_jsa();
 
 		$data['title'] = 'Laporan JSA';
 

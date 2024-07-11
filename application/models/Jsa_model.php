@@ -50,20 +50,4 @@ class Jsa_model extends CI_Model
             return false;
         }
     }
-
-    public function dapat_foto_jsa()
-    {
-        $query = $this->db->get('t_foto_jsa');
-        return $query->result();
-    }
-
-    public function tambah_foto_jsa($data)
-    {
-        $this->db->insert('t_foto_jsa', $data);
-        if ($this->db->affected_rows() > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
