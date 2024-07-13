@@ -72,12 +72,15 @@
                                             <?php endif ?>
 
                                             <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_jsa<?= $j->id_jsa ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
-                                            <?php if ($j->sudah_disetujui == '1') : ?>
-                                            <?php endif; ?>
+
                                             <form action="<?= base_url() ?>jsa/cetak_jsa" method="post" class="d-inline-block" target="_blank">
                                                 <input type="hidden" name="id_jsa" value="<?= $j->id_jsa ?>">
                                                 <input type="hidden" name="id_atasan" value="<?= $j->id_atasan ?>">
-                                                <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
+                                                <?php if ($j->sudah_disetujui == '1') : ?>
+                                                    <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>PDF</Button>
+                                                <?php else : ?>
+                                                    <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="bi bi-download text-dark me-2" aria-hidden="true"></i>Preview PDF</Button>
+                                                <?php endif; ?>
                                             </form>
                                         </td>
                                     </tr>

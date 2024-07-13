@@ -821,7 +821,7 @@
 
                     } else if (currentStep === 1) {
                         var index = document.querySelectorAll('.card-aspek-perencanaan').length - 1;
-
+                        var isValid = true;
                         var inputsToValidate = [];
 
                         // Loop untuk menambahkan validasi sesuai dengan jumlah index
@@ -898,8 +898,6 @@
                                 hideError(titikAnomaliErrorElement);
                             }
                         }
-
-                        var isValid = true;
 
                         inputsToValidate.forEach(function(input) {
                             var inputValue = document.getElementById(input.id).value;
@@ -1005,6 +1003,11 @@
                                 id: 'foto_halaman_tower',
                                 errorId: 'error_foto_halaman_tower',
                                 message: 'Harap masukkan Foto Halaman Tower'
+                            },
+                            {
+                                id: 'foto_potensi_hewan',
+                                errorId: 'error_foto_potensi_hewan',
+                                message: 'Harap masukkan Foto Halaman Tower'
                             }
                         ]
 
@@ -1026,16 +1029,27 @@
                         fotoToValidate.forEach(function(input) {
                             var foto = document.getElementById(input.id);
                             var errorElement = document.getElementById(input.errorId);
-
-                            if (foto.files.length === 0) {
-                                showError(errorElement, input.message)
-                                isValid = false;
-                            } else if (foto.files[0].size > maxFileSize) {
-                                showError(errorElement, 'Ukuran file tidak boleh lebih dari 5MB');
-                                isValid = false;
+                            if (input.id == "foto_potensi_hewan") {
+                                if (foto.files.length > 0) {
+                                    if (foto.files[0].size > maxFileSize) {
+                                        showError(errorElement, 'Ukuran file tidak boleh lebih dari 5MB');
+                                        isValid = false;
+                                    } else {
+                                        hideError(errorElement)
+                                    }
+                                }
                             } else {
-                                hideError(errorElement)
+                                if (foto.files.length === 0) {
+                                    showError(errorElement, input.message)
+                                    isValid = false;
+                                } else if (foto.files[0].size > maxFileSize) {
+                                    showError(errorElement, 'Ukuran file tidak boleh lebih dari 5MB');
+                                    isValid = false;
+                                } else {
+                                    hideError(errorElement)
+                                }
                             }
+
                         });
 
                         if (isValid == false) {

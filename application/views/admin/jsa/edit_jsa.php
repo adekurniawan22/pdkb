@@ -253,8 +253,9 @@
                                     <div class="form-group">
                                         <label for="foto_akses_menuju_tower" class="form-control-label">Foto Akses Menuju Tower<em>(maksimal ukuran file 5MB)</em></label>
                                         <input class="form-control" type="file" id="foto_akses_menuju_tower" name="foto_akses_menuju_tower" accept="image/*">
+                                        <input type="hidden" id="foto_lama_akses_menuju_tower" name="foto_lama_akses_menuju_tower" value="<?= $detail_data['aspek_lingkungan']['foto_akses_menuju_tower'] ?>">
                                         <span id="error_foto_akses_menuju_tower" style="display: none;"></span>
-                                        <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_akses_menuju_tower']) ?>" alt="" width="200px" class="rounded mt-3">
+                                        <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_akses_menuju_tower']) ?>" alt="" width="200px" class="rounded mt-3 d-block">
                                     </div>
 
                                     <div class="form-group">
@@ -266,8 +267,9 @@
                                     <div class="form-group">
                                         <label for="foto_halaman_tower" class="form-control-label">Foto Halaman Tower <em>(maksimal ukuran file 5MB)</em></label>
                                         <input class="form-control" type="file" id="foto_halaman_tower" name="foto_halaman_tower" accept="image/*">
+                                        <input type="hidden" id="foto_lama_halaman_tower" name="foto_lama_halaman_tower" value="<?= $detail_data['aspek_lingkungan']['foto_halaman_tower'] ?>">
                                         <span id="error_foto_halaman_tower" style="display: none;"></span>
-                                        <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_halaman_tower']) ?>" alt="" width="200px" class="rounded mt-3">
+                                        <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_halaman_tower']) ?>" alt="" width="200px" class="rounded mt-3 d-block">
                                     </div>
 
                                     <div class="form-group">
@@ -300,9 +302,10 @@
                                     <div class="form-group">
                                         <label for="foto_potensi_hewan" class="form-control-label">Foto Potensi Hewan <em>(maksimal ukuran file 5MB)</em></label>
                                         <input class="form-control" type="file" id="foto_potensi_hewan" name="foto_potensi_hewan" accept="image/*">
+                                        <input type="hidden" id="foto_lama_potensi_hewan" name="foto_lama_potensi_hewan" value="<?= $detail_data['aspek_lingkungan']['foto_potensi_hewan'] ?>">
                                         <span id="error_foto_potensi_hewan" style="display: none;"></span>
                                         <?php if ($detail_data['aspek_lingkungan']['foto_potensi_hewan'] != null) : ?>
-                                            <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_potensi_hewan']) ?>" alt="" width="200px" class="rounded mt-3">
+                                            <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_potensi_hewan']) ?>" alt="" width="200px" class="rounded mt-3 d-block">
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -348,8 +351,9 @@
                                     <div class="form-group">
                                         <label for="foto_type_tower" class="form-control-label">Foto Type Tower<em>(maksimal ukuran file 5MB)</em></label>
                                         <input class="form-control" type="file" id="foto_type_tower" name="foto_type_tower" accept="image/*">
+                                        <input type="hidden" id="foto_lama_type_tower" name="foto_lama_type_tower" value="<?= $detail_data['aspek_konstruksi']['foto_type_tower'] ?>">
                                         <span id="error_foto_type_tower" style="display: none;"></span>
-                                        <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_type_tower']) ?>" alt="" width="200px" class="rounded mt-3">
+                                        <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_type_tower']) ?>" alt="" width="200px" class="rounded mt-3 d-block">
                                     </div>
 
                                     <div class="form-group">
@@ -381,8 +385,9 @@
                                     <div class="form-group">
                                         <label for="foto_jenis_stringset_isolator" class="form-control-label">Foto Jenis Stringset Isolator<em>(maksimal ukuran file 5MB)</em></label>
                                         <input class="form-control" type="file" id="foto_jenis_stringset_isolator" name="foto_jenis_stringset_isolator" accept="image/*">
+                                        <input type="hidden" id="foto_lama_jenis_stringset_isolator" name="foto_lama_jenis_stringset_isolator" value="<?= $detail_data['aspek_konstruksi']['foto_jenis_stringset_isolator'] ?>">
                                         <span id="error_foto_jenis_stringset_isolator" style="display: none;"></span>
-                                        <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_jenis_stringset_isolator']) ?>" alt="" width="200px" class="rounded mt-3">
+                                        <img src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_jenis_stringset_isolator']) ?>" alt="" width="200px" class="rounded mt-3 d-block">
                                     </div>
 
                                     <div class="form-group">
@@ -609,7 +614,7 @@
                             </div>
                             <div class="text-end mt-4">
                                 <button type="button" class="btn btn-primary prev-step"><i class="bi bi-arrow-left"></i> Sebelumnya</button>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
                             </div>
                         </div>
                     </form>
@@ -617,6 +622,7 @@
             </div>
         </div>
     </div>
+
     <script>
         function showError(element, message) {
             element.innerHTML = message;
@@ -756,9 +762,57 @@
             fileInputCounts[section]++;
         }
 
+        <?php
+        foreach ($detail_data['aspek_perencanaan'] as $index => $detail) {
+            // Data dari $detail['titik_anomali']
+            $titik_anomali = $detail['titik_anomali'];
 
+            // Loop untuk setiap titik anomali
+            foreach ($detail['titik_anomali'] as $subIndex => $anomali) {
+                // Echo kode JavaScript untuk mencentang checkbox secara otomatis
+                // Panggil fungsi toggleFileSection untuk memperlihatkan bagian file jika perlu
+                echo 'document.getElementById("' . $anomali . '_' . $index . '").checked = true;';
+                echo 'toggleFileSection(document.getElementById("' . $anomali . '_' . $index . '"));';
+                if ($anomali == "line1" || $anomali == "line2") {
+                    foreach ($detail["foto"][$subIndex] as $key => $foto) {
+                        echo 'document.getElementById("file_section_' . $anomali . '_' . $index . '_1").value = "' . $foto . '";';
+                    }
+                    // "file_section_' . $anomali . '_' . $index . '_1"
+                } elseif ($anomali == "fasaR" || $anomali == "fasaS" || $anomali == "fasaT" || $anomali == "gsw") {
 
+                    // Create a wrapping <div> element
+                    echo 'var wrapperDiv = document.createElement("div");';
+                    echo 'wrapperDiv.style.marginBottom = "20px";';
 
+                    foreach ($detail["foto"][$subIndex] as $key => $foto) {
+                        // Create the inner <img> element
+                        $imgSrc = base_url('assets/img/jsa/' . $foto); // Construct the full URL using base_url()
+
+                        echo 'var newImg = document.createElement("img");';
+                        echo 'newImg.src = "' . $imgSrc . '";'; // Set image source
+                        echo 'newImg.style.width = "150px";';
+                        echo 'newImg.style.display = "inline-block";';
+                        echo 'newImg.style.margin = "10px";';
+
+                        // Append the inner img to the wrapper div
+                        echo 'wrapperDiv.appendChild(newImg);';
+
+                        // Create hidden input for foto_lama[]
+                        echo 'var hiddenInput = document.createElement("input");';
+                        echo 'hiddenInput.type = "hidden";';
+                        echo 'hiddenInput.name = "foto_lama[]";';
+                        echo 'hiddenInput.value = "' . $foto . '";';
+
+                        // Append the hidden input to the wrapper div
+                        echo 'wrapperDiv.appendChild(hiddenInput);';
+                    }
+
+                    // Append the wrapper div to the existing element
+                    echo 'document.getElementById("file_section_' . $anomali . '_' . $index . '").appendChild(wrapperDiv);';
+                }
+            }
+        }
+        ?>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.add-aspek-perencanaan').addEventListener('click', function() {
                 var stepContainers = document.querySelectorAll('.card-aspek-perencanaan');
@@ -890,57 +944,7 @@
             form.querySelectorAll(".next-step").forEach(function(button) {
                 button.addEventListener("click", async function() {
                     if (currentStep === 0) {
-                        <?php
-                        foreach ($detail_data['aspek_perencanaan'] as $index => $detail) {
-                            // Data dari $detail['titik_anomali']
-                            $titik_anomali = $detail['titik_anomali'];
 
-                            // Loop untuk setiap titik anomali
-                            foreach ($detail['titik_anomali'] as $subIndex => $anomali) {
-                                // Echo kode JavaScript untuk mencentang checkbox secara otomatis
-                                // Panggil fungsi toggleFileSection untuk memperlihatkan bagian file jika perlu
-                                echo 'document.getElementById("' . $anomali . '_' . $index . '").checked = true;';
-                                echo 'toggleFileSection(document.getElementById("' . $anomali . '_' . $index . '"));';
-                                if ($anomali == "line1" || $anomali == "line2") {
-                                    foreach ($detail["foto"][$subIndex] as $key => $foto) {
-                                        echo 'document.getElementById("file_section_' . $anomali . '_' . $index . '_1").value = "' . $foto . '";';
-                                    }
-                                    // "file_section_' . $anomali . '_' . $index . '_1"
-                                } elseif ($anomali == "fasaR" || $anomali == "fasaS" || $anomali == "fasaT" || $anomali == "gsw") {
-
-                                    // Create a wrapping <div> element
-                                    echo 'var wrapperDiv = document.createElement("div");';
-                                    echo 'wrapperDiv.style.marginBottom = "20px";';
-
-                                    foreach ($detail["foto"][$subIndex] as $key => $foto) {
-                                        // Create the inner <img> element
-                                        $imgSrc = base_url('assets/img/jsa/' . $foto); // Construct the full URL using base_url()
-
-                                        echo 'var newImg = document.createElement("img");';
-                                        echo 'newImg.src = "' . $imgSrc . '";'; // Set image source
-                                        echo 'newImg.style.width = "150px";';
-                                        echo 'newImg.style.display = "inline-block";';
-                                        echo 'newImg.style.margin = "10px";';
-
-                                        // Append the inner img to the wrapper div
-                                        echo 'wrapperDiv.appendChild(newImg);';
-
-                                        // Create hidden input for foto_lama[]
-                                        echo 'var hiddenInput = document.createElement("input");';
-                                        echo 'hiddenInput.type = "hidden";';
-                                        echo 'hiddenInput.name = "foto_lama[]";';
-                                        echo 'hiddenInput.value = "' . $foto . '";';
-
-                                        // Append the hidden input to the wrapper div
-                                        echo 'wrapperDiv.appendChild(hiddenInput);';
-                                    }
-
-                                    // Append the wrapper div to the existing element
-                                    echo 'document.getElementById("file_section_' . $anomali . '_' . $index . '").appendChild(wrapperDiv);';
-                                }
-                            }
-                        }
-                        ?>
                         var inputsToValidate = [{
                                 id: 'judul_laporan',
                                 errorId: 'error_judul_laporan',
@@ -996,10 +1000,9 @@
                         };
 
                     } else if (currentStep === 1) {
-
                         var index = document.querySelectorAll('.card-aspek-perencanaan').length - 1;
-
                         var inputsToValidate = [];
+                        var isValid = true;
 
                         // Loop untuk menambahkan validasi sesuai dengan jumlah index
                         for (var i = 0; i <= index; i++) {
@@ -1075,8 +1078,6 @@
                                 hideError(titikAnomaliErrorElement);
                             }
                         }
-
-                        var isValid = true;
 
                         inputsToValidate.forEach(function(input) {
                             var inputValue = document.getElementById(input.id).value;
@@ -1182,6 +1183,11 @@
                                 id: 'foto_halaman_tower',
                                 errorId: 'error_foto_halaman_tower',
                                 message: 'Harap masukkan Foto Halaman Tower'
+                            },
+                            {
+                                id: 'foto_potensi_hewan',
+                                errorId: 'error_foto_potensi_hewan',
+                                message: 'Harap masukkan Foto Halaman Tower'
                             }
                         ]
 
@@ -1204,14 +1210,24 @@
                             var foto = document.getElementById(input.id);
                             var errorElement = document.getElementById(input.errorId);
 
-                            if (foto.files.length === 0) {
-                                showError(errorElement, input.message)
-                                isValid = false;
-                            } else if (foto.files[0].size > maxFileSize) {
-                                showError(errorElement, 'Ukuran file tidak boleh lebih dari 5MB');
-                                isValid = false;
+                            if (input.id == "foto_potensi_hewan") {
+                                if (foto.files.length > 0) {
+                                    if (foto.files[0].size > maxFileSize) {
+                                        showError(errorElement, 'Ukuran file tidak boleh lebih dari 5MB');
+                                        isValid = false;
+                                    } else {
+                                        hideError(errorElement)
+                                    }
+                                }
                             } else {
-                                hideError(errorElement)
+                                if (foto.files.length > 0) {
+                                    if (foto.files[0].size > maxFileSize) {
+                                        showError(errorElement, 'Ukuran file tidak boleh lebih dari 5MB');
+                                        isValid = false;
+                                    } else {
+                                        hideError(errorElement)
+                                    }
+                                }
                             }
                         });
 
@@ -1313,15 +1329,16 @@
                             var foto = document.getElementById(input.id);
                             var errorElement = document.getElementById(input.errorId);
 
-                            if (foto.files.length === 0) {
-                                showError(errorElement, input.message)
-                                isValid = false;
-                            } else if (foto.files[0].size > maxFileSize) {
-                                showError(errorElement, 'Ukuran file tidak boleh lebih dari 5MB');
-                                isValid = false;
-                            } else {
-                                hideError(errorElement)
+
+                            if (foto.files.length > 0) {
+                                if (foto.files[0].size > maxFileSize) {
+                                    showError(errorElement, 'Ukuran file tidak boleh lebih dari 5MB');
+                                    isValid = false;
+                                } else {
+                                    hideError(errorElement)
+                                }
                             }
+
                         });
 
                         if (isValid == false) {
