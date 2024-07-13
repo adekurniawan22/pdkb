@@ -13,6 +13,7 @@ class Pdfgenerator
     {
         $options = new Options();
         $options->set('isPhpEnabled', true); // Mengaktifkan evaluasi PHP dalam HTML
+        $options->set('isHtml5ParserEnabled', true);
         $this->dompdf = new Dompdf($options);
     }
 

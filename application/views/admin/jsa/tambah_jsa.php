@@ -110,7 +110,6 @@
                                             <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="line1_0" value="line1" onclick="toggleFileSection(this)">
                                             <label class="form-check-label" for="line1_0">Line 1</label>
                                             <div id="file_section_line1_0" class="file-section" style="display: none;">
-                                                <button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput('line1_0')">Tambah Gambar</button>
                                             </div>
                                         </div>
 
@@ -118,7 +117,6 @@
                                             <input class="form-check-input" type="checkbox" name="aspek_perencanaan[0][titik_anomali][]" id="line2_0" value="line2" onclick="toggleFileSection(this)">
                                             <label class="form-check-label" for="line2_0">Line 2</label>
                                             <div id="file_section_line2_0" class="file-section" style="display: none;">
-                                                <button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput('line2_0')">Tambah Gambar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -443,8 +441,10 @@
                                         <label for="sop" class="form-control-label">SOP PDKB</label>
                                         <select class="form-select" aria-label="Default select example" name="sop" id="sop">
                                             <option value="" selected disabled>Pilih SOP PDKB</option>
-                                            <option value="SOP 1">SOP 1</option>
-                                            <option value="SOP 2">SOP 2</option>
+                                            <option value="Prosedur Pelaksanaan Pekerjaan">Prosedur Pelaksanaan Pekerjaan</option>
+                                            <option value="Prosedur Pemeliharaan Peralatan PDKB">Prosedur Pemeliharaan Peralatan PDKB</option>
+                                            <option value="Prosedur Climb Up Inspection">Prosedur Climb Up Inspection</option>
+                                            <option value="Prosedur Dalam Kondisi Emergency">Prosedur Dalam Kondisi Emergency</option>
                                         </select>
                                         <span id="error_sop" style="display: none;"></span>
                                     </div>
@@ -453,8 +453,31 @@
                                         <label for="ik" class="form-control-label">IK PDKB</label>
                                         <select class="form-select" aria-label="Default select example" name="ik" id="ik">
                                             <option value="" selected disabled>Pilih IK PDKB</option>
-                                            <option value="IK 1">IK 1</option>
-                                            <option value="IK 2">IK 2</option>
+                                            <option value="Memanjat Tower Tiang">Memanjat Tower Tiang</option>
+                                            <option value="Inspeksi Visual SUTT-SUTET">Inspeksi Visual SUTT-SUTET</option>
+                                            <option value="Akses Hot End Crew">Akses Hot End Crew</option>
+                                            <option value="Tanggal Keadaan Darurat">Tanggal Keadaan Darurat</option>
+                                            <option value="Asesmen Insulator Dan Konduktor">Asesmen Insulator Dan Konduktor</option>
+                                            <option value="Pengambilan Benda Asing Pada SUTT-SUTET">Pengambilan Benda Asing Pada SUTT-SUTET</option>
+                                            <option value="Penggantian Insulator Suspension 70kV">Penggantian Insulator Suspension 70kV</option>
+                                            <option value="Penggantian Insulator Tension 70kV">Penggantian Insulator Tension 70kV</option>
+                                            <option value="Penggantian Insulator Suspension 150kV">Penggantian Insulator Suspension 150kV</option>
+                                            <option value="Penggantian Insulator Tension 150kV">Penggantian Insulator Tension 150kV</option>
+                                            <option value="Penggantian Insulator Support 150kV">Penggantian Insulator Support 150kV</option>
+                                            <option value="Pemasangan - Pembongkaran">Pemasangan - Pembongkaran</option>
+                                            <option value="Penggantian Insulator Suspension 275kV">Penggantian Insulator Suspension 275kV</option>
+                                            <option value="Penggantian Insulator Tension 275kV">Penggantian Insulator Tension 275kV</option>
+                                            <option value="Penggantian Insulator Support 275kV">Penggantian Insulator Support 275kV</option>
+                                            <option value="Penggantian Insulator Suspension 500kV">Penggantian Insulator Suspension 500kV</option>
+                                            <option value="Penggantian Insulator Tension 500kV">Penggantian Insulator Tension 500kV</option>
+                                            <option value="Penggantian Insulator Support 500kV">Penggantian Insulator Support 500kV</option>
+                                            <option value="Perbaikan Penggantian Aksesoris Pada SUTT-SUTET">Perbaikan Penggantian Aksesoris Pada SUTT-SUTET</option>
+                                            <option value="Perbaikan Penggantian Konduktor Jumper">Perbaikan Penggantian Konduktor Jumper</option>
+                                            <option value="Perbaikan dan Penggantian Aksesoris GSW OPGW">Perbaikan dan Penggantian Aksesoris GSW OPGW</option>
+                                            <option value="Perbaikan Eathwire, Konduktor Rantas, Dan Spacer">Perbaikan Eathwire, Konduktor Rantas, Dan Spacer</option>
+                                            <option value="Pemindahan Konduktor Pada Tower Emergency">Pemindahan Konduktor Pada Tower Emergency</option>
+                                            <option value="Pemindahan Isolator Pada SUTT-SUTET">Pemindahan Isolator Pada SUTT-SUTET</option>
+                                            <option value="Penggantian Traves SUTT 150kV">Penggantian Traves SUTT 150kV</option>
                                         </select>
                                         <span id="error_ik" style="display: none;"></span>
                                     </div>
@@ -494,12 +517,18 @@
         function toggleFileSection(checkbox) {
             var sectionId = 'file_section_' + checkbox.id;
             var fileSection = document.getElementById(sectionId);
+
             if (checkbox.checked) {
                 fileSection.style.display = 'block';
-                fileSection.innerHTML = '<button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput(\'' + checkbox.id + '\')">Tambah Gambar</button>';
+                if (checkbox.value === 'line1' || checkbox.value === 'line2') {
+                    // Menambahkan teks input secara otomatis
+                    addTextInput(checkbox.id);
+                } else {
+                    fileSection.innerHTML = '<button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput(\'' + checkbox.id + '\')">Tambah Gambar</button>';
+                }
             } else {
                 fileSection.style.display = 'none';
-                fileSection.innerHTML = '<button type="button" class="btn btn-dark add-image-btn" onclick="addFileInput(\'' + checkbox.id + '\')">Tambah Gambar</button>';
+                fileSection.innerHTML = '';
             }
         }
 
@@ -561,6 +590,49 @@
             // Increment the file input count for the section
             fileInputCounts[section]++;
         }
+
+        function addTextInput(section) {
+            // Initialize fileInputCount for the section if not already set
+            if (!fileInputCounts[section]) {
+                fileInputCounts[section] = 1;
+            }
+
+            var sectionId = 'file_section_' + section;
+            var fileSection = document.getElementById(sectionId);
+
+            // Create row
+            var row = document.createElement('div');
+            row.className = 'row align-items-center mb-3';
+
+            // Create column for file input (col-8)
+            var colFile = document.createElement('div');
+            colFile.className = 'col-lg-8 col-md-8 col-sm-12';
+            var inputFile = document.createElement('input');
+            var inputId = sectionId + '_' + fileInputCounts[section]; // Generate unique ID for input
+            inputFile.id = inputId;
+            inputFile.type = 'text';
+            inputFile.placeholder = 'Masukkan Teks';
+            inputFile.name = section + '_file[]';
+            inputFile.className = 'form-control';
+            colFile.appendChild(inputFile);
+
+            // Create span for error message
+            var errorSpan = document.createElement('span');
+            errorSpan.id = inputId + '_error'; // ID for error message span
+            errorSpan.className = 'text-danger'; // Example: style for error message
+            errorSpan.style.display = 'none'; // Initially hide error message
+            colFile.appendChild(errorSpan);
+
+            // Append column to row
+            row.appendChild(colFile);
+
+            // Append row to fileSection
+            fileSection.appendChild(row);
+
+            // Increment the file input count for the section
+            fileInputCounts[section]++;
+        }
+
 
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.add-aspek-perencanaan').addEventListener('click', function() {
@@ -787,9 +859,10 @@
 
                                 for (var j = 0; j < divIds.length; j++) {
                                     var divId = divIds[j];
-                                    var fileInputs = document.querySelectorAll('#' + divId + '_' + i + ' input[type="file"]');
-                                    if (fileInputs.length > 0) {
-                                        fileInputs.forEach(function(input) {
+                                    var fileInputsFile = document.querySelectorAll('#' + divId + '_' + i + ' input[type="file"]');
+                                    var fileInputsText = document.querySelectorAll('#' + divId + '_' + i + ' input[type="text"]');
+                                    if (fileInputsFile.length > 0) {
+                                        fileInputsFile.forEach(function(input) {
                                             var maxFileSize = 5 * 1024 * 1024;
                                             foto = document.getElementById(input.id);
                                             if (foto.files.length === 0) {
@@ -805,6 +878,20 @@
                                                 hideError(imageError);
                                             }
                                             // Lakukan apa yang perlu dilakukan dengan masing-masing input file di sini
+                                        });
+                                    }
+                                    if (fileInputsText.length > 0) {
+                                        fileInputsText.forEach(function(input) {
+                                            var maxFileSize = 5 * 1024 * 1024;
+                                            foto = document.getElementById(input.id);
+                                            if (!foto.value) {
+                                                var imageError = document.querySelector('#' + input.id + '_error');
+                                                imageAspekError(imageError, 'Harap isi teks');
+                                                isValid = false;
+                                            } else {
+                                                var imageError = document.querySelector('#' + input.id + '_error');
+                                                hideError(imageError);
+                                            }
                                         });
                                     }
                                 }
@@ -918,11 +1005,6 @@
                                 id: 'foto_halaman_tower',
                                 errorId: 'error_foto_halaman_tower',
                                 message: 'Harap masukkan Foto Halaman Tower'
-                            },
-                            {
-                                id: 'foto_potensi_hewan',
-                                errorId: 'error_foto_potensi_hewan',
-                                message: 'Harap masukkan Foto Potensi Hewan'
                             }
                         ]
 

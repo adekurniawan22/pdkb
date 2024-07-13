@@ -65,6 +65,7 @@ class Jsa extends CI_Controller
 
 	public function proses_tambah_jsa()
 	{
+
 		// Config JSA
 		$config_jsa = array(
 			'upload_path' => './assets/img/jsa',
@@ -76,27 +77,39 @@ class Jsa extends CI_Controller
 
 		//Data aspek perencanaan
 		$aspek_perencanaan = $this->input->post('aspek_perencanaan');
+
 		foreach ($aspek_perencanaan as $index => $aspek) {
 			foreach ($aspek['titik_anomali'] as $titik_index => $titik) {
 				$file_key = "{$titik}_{$index}_file";
-				foreach ($_FILES[$file_key]['name'] as $urutanFoto => $data) {
 
-					$_FILES['userfile']['name'] = $_FILES[$file_key]['name'][$urutanFoto];
-					$_FILES['userfile']['type'] = $_FILES[$file_key]['type'][$urutanFoto];
-					$_FILES['userfile']['tmp_name'] = $_FILES[$file_key]['tmp_name'][$urutanFoto];
-					$_FILES['userfile']['error'] = $_FILES[$file_key]['error'][$urutanFoto];
-					$_FILES['userfile']['size'] = $_FILES[$file_key]['size'][$urutanFoto];
+				if (isset($_FILES[$file_key])) {
+					// Iterate through each file
+					$total_files = count($_FILES[$file_key]['name']);
+					for ($urutanFoto = 0; $urutanFoto < $total_files; $urutanFoto++) {
+						$_FILES['userfile']['name'] = $_FILES[$file_key]['name'][$urutanFoto];
+						$_FILES['userfile']['type'] = $_FILES[$file_key]['type'][$urutanFoto];
+						$_FILES['userfile']['tmp_name'] = $_FILES[$file_key]['tmp_name'][$urutanFoto];
+						$_FILES['userfile']['error'] = $_FILES[$file_key]['error'][$urutanFoto];
+						$_FILES['userfile']['size'] = $_FILES[$file_key]['size'][$urutanFoto];
 
-					if ($this->upload->do_upload('userfile')) {
-						$upload_data = $this->upload->data();
-						$aspek_perencanaan[$index]['foto'][$titik_index][$urutanFoto] = $upload_data['file_name'];
-					} else {
-						$upload_error = $this->upload->display_errors();
-						echo "Upload error: " . $upload_error;
+						if ($this->upload->do_upload('userfile')) {
+							$upload_data = $this->upload->data();
+							$aspek_perencanaan[$index]['foto'][$titik_index][] = $upload_data['file_name']; // Menambahkan file name ke array tanpa menentukan indeks
+						} else {
+							$upload_error = $this->upload->display_errors();
+							echo "Upload error: " . $upload_error;
+						}
+					}
+				} else if (isset($_POST[$file_key])) {
+					// Jika ada file yang di-post
+					foreach ($_POST[$file_key] as $urutanFoto => $data) {
+						$aspek_perencanaan[$index]['foto'][$titik_index][] = $data; // Menambahkan data ke array tanpa menentukan indeks
 					}
 				}
 			}
 		}
+
+
 
 		//Data aspek sdm
 		$aspek_sdm = [
@@ -127,9 +140,13 @@ class Jsa extends CI_Controller
 			$aspek_lingkungan['foto_halaman_tower'] = $upload_data['file_name'];
 		}
 
-		if ($this->upload->do_upload('foto_potensi_hewan')) {
-			$upload_data = $this->upload->data();
-			$aspek_lingkungan['foto_potensi_hewan'] = $upload_data['file_name'];
+		if (isset($_FILES['foto_potensi_hewan'])) {
+			if ($this->upload->do_upload('foto_potensi_hewan')) {
+				$upload_data = $this->upload->data();
+				$aspek_lingkungan['foto_potensi_hewan'] = $upload_data['file_name'];
+			} else {
+				$aspek_lingkungan['foto_potensi_hewan'] = null;
+			}
 		}
 
 
@@ -210,8 +227,6 @@ class Jsa extends CI_Controller
 
 	public function edit_jsa()
 	{
-		echo "MAAF HALAMAN SEDANG DALAM MAINTENANCE!";
-		die();
 		if ($this->session->userdata('id_view_jsa')) {
 			$data['jsa'] = $this->db->get_where('t_jsa', ['id_jsa' => $this->session->userdata('id_view_jsa')])->row();
 		} else {
@@ -388,8 +403,9 @@ class Jsa extends CI_Controller
 		foreach ($detail_data['aspek_perencanaan'] as $data) {
 			foreach ($data['foto'] as $data2) {
 				foreach ($data2 as $data3) {
+					$foto_clean = str_replace(' ', '', $data3);
 					// Encode image to base64 if needed (assuming you have this method)
-					$this->encode_img_base64(base_url('assets/img/jsa/' . $data3));
+					$this->encode_img_base64(base_url('assets/img/jsa/' . $foto_clean));
 				}
 			}
 		}
@@ -419,6 +435,15 @@ class Jsa extends CI_Controller
 		$this->encode_img_base64(base_url('assets/img/sampul_pdf_jsa.png'));
 		$this->encode_img_base64(base_url('assets/img/orang_jsa.png'));
 		$this->encode_img_base64(base_url('assets/img/logo_pln.png'));
+
+		// $this->load->view(
+		// 	'admin/jsa/pdf',
+		// 	[
+		// 		'query' => $query,
+		// 		'atasan' => $atasan,
+		// 		'tanggal_sekarang' => $tanggal_sekarang,
+		// 	]
+		// );
 
 		if ($query) {
 			$html = $this->load->view('admin/jsa/pdf', [

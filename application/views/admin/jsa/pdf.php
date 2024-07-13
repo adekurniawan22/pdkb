@@ -1,8 +1,22 @@
+<?php
+$opacityStyle = !$atasan ? "opacity: 0.5;" : "";
+?>;
 <!DOCTYPE html>
 <html>
 
 <head>
+
+    <title>PDF Laporan JSA</title>
     <style>
+        .belum-disetujui {
+            color: red;
+            opacity: 1 !important;
+            font-size: 22px;
+            font-family: sans-serif;
+            text-align: center;
+            font-weight: bolder;
+        }
+
         .table-content {
             width: 100%;
             padding: 10px;
@@ -13,6 +27,7 @@
             padding: 8px;
             text-align: left;
             vertical-align: top;
+            <?php echo $opacityStyle; ?>
         }
 
         .signature {
@@ -21,6 +36,7 @@
             padding-top: 10px;
             text-align: center;
             page-break-inside: avoid;
+            <?php echo $opacityStyle; ?>
         }
 
         .table-sampul {
@@ -33,6 +49,7 @@
         .table-sampul th {
             /* border: 1px solid black; */
             padding: 8px;
+            <?php echo $opacityStyle; ?>
         }
 
         .table-hasil-jsa {
@@ -46,6 +63,7 @@
             padding: 8px;
             vertical-align: top;
             text-align: left;
+            <?php echo $opacityStyle; ?>
         }
 
         .table-hasil-jsa td {
@@ -56,6 +74,7 @@
             padding: 8px;
             vertical-align: top;
             text-align: left;
+            <?php echo $opacityStyle; ?>
         }
 
         .page-break {
@@ -99,6 +118,7 @@
             bottom: -50px;
             left: -50px;
             right: -50px;
+            <?php echo $opacityStyle; ?>
         }
 
         .img-orang {
@@ -108,6 +128,7 @@
             width: 90%;
             object-fit: cover;
             border-top-right-radius: 60%;
+            <?php echo $opacityStyle; ?>
         }
 
         .img-sampul-pln {
@@ -115,13 +136,24 @@
             position: absolute;
             right: 0px;
             top: -45px;
+            <?php echo $opacityStyle; ?>
+        }
+
+        .table-header td,
+        .table-header th {
+            background-color: white;
+            color: black;
+            border: 0px !important;
+            background-color: white;
+            color: black;
+            border: 0px !important;
+            <?php echo $opacityStyle; ?>
         }
     </style>
-    <title>PDF Laporan JSA</title>
 </head>
 
 <body>
-    <?php if (!empty($query)) { ?>
+    <?php if (!empty($query)) : ?>
         <div>
             <img src="<?= base_url('assets/img/sampul_pdf_jsa.png') ?>" class="img-sampul">
         </div>
@@ -135,11 +167,11 @@
         </div>
 
         <div>
-            <span style="position: absolute; top:-20px;left:50px;font-size:18px;font-weight:bold;">PT. PLN (PERSERO) UPT BALIKPAPAN BIDANG PDKB</span>
+            <span style="position: absolute; top:-20px;left:50px;font-size:18px;font-weight:bold;<?php echo $opacityStyle; ?>">PT. PLN (PERSERO) UPT BALIKPAPAN BIDANG PDKB</span>
         </div>
         <div class="container mt-5">
             <?php
-            $detail_data = json_decode($query->detail, true);;
+            $detail_data = json_decode($query->detail, true);
             ?>
 
             <!-- SAMPUL -->
@@ -151,18 +183,23 @@
                         <div style="line-height: 1.3;">
                             <span style="font-size: 52px; font-family: 'Arial', sans-serif;">Berita Acara</span><br>
                             <span style="font-size: 44px; color:#246A96; font-family: sans-serif; letter-spacing: 3px; font-weight:normal">Job Safety Analysis</span><br><br>
-                            <span style="font-size: 22px; font-family: sans-serif;"><?= $detail_data['judul_laporan'] ?></span>
+                            <span style="font-size: 22px; font-family: sans-serif;">
+                                <?= $detail_data['judul_laporan'] ?>
+                            </span>
                         </div>
                     </th>
                 </tr>
             </table>
+            <?php if (!$atasan) : ?>
+                <div class="belum-disetujui">(BELUM DI SETUJUI)</div>
+            <?php endif; ?>
             <!-- END SAMPUL -->
 
             <div class=" page-break">
             </div>
 
             <!-- HEADER -->
-            <table class="table-header" style="background-color: white; color: black; border: 0px !important">
+            <table class="table-header">
                 <tr>
                     <td style="margin: 0px !important;">
                         <img src="<?= base_url('assets/img/logo_pln.png') ?>" style="width: 40px;">
@@ -184,6 +221,7 @@
                 </tr>
             </table>
             <br>
+
             <table class="table-content">
                 <!-- ISI -->
                 <tr>
@@ -310,7 +348,7 @@
             <div class="page-break"></div>
 
             <!-- HEADER -->
-            <table class="table-header" style="background-color: white; color: black; border: 0px !important">
+            <table class="table-header">
                 <tr>
                     <td style="margin: 0px !important;">
                         <img src="<?= base_url('assets/img/logo_pln.png') ?>" style="width: 40px;">
@@ -360,9 +398,9 @@
                         <td style="width: 25%;">Metode Pekerjaan</td>
                         <td><?= $detail['metode_pekerjaan'] ?></td>
                     </tr>
-                    <?php foreach ($detail['titik_anomali'] as $subIndex => $data) { ?>
+                    <?php foreach ($detail['titik_anomali'] as $subIndex => $data) : ?>
                         <tr>
-                            <td style="width: 5%; text-align:center"><?php echo $nomor++; ?></td>
+                            <td style="width: 5%; text-align:center"><?= $nomor++; ?></td>
                             <td style="width: 25%;">
                                 <?php
                                 $mapping = [
@@ -378,12 +416,41 @@
                                 ?>
                             </td>
                             <td>
-                                <?php foreach ($detail['foto'][$subIndex] as $data) : ?>
-                                    <img src="<?= base_url('assets/img/jsa/' . $data) ?>" height="150px">
-                                <?php endforeach; ?>
+                                <?php
+                                $count = count($detail["foto"][$subIndex]); // Menghitung jumlah data
+                                $index = 0; // Inisialisasi index untuk menghitung jumlah td yang sudah ditambahkan
+                                ?>
+                                <table style="width: 100%; ">
+                                    <?php foreach ($detail["foto"][$subIndex] as $key => $foto) : ?>
+                                        <?php $foto_clean = str_replace(' ', '', $foto);
+                                        $foto_path = FCPATH . "assets/img/jsa/" . $foto_clean; ?>
+                                        <?php if (file_exists($foto_path)) : ?>
+                                            <?php if ($index % 2 == 0) : ?>
+                                                <tr>
+                                                <?php endif; ?>
+                                                <td style="width: 50%; padding:5px; margin-right:10px; border: 1px solid black; vertical-align: middle; text-align: center;">
+                                                    <div style="<?= ($key == $count - 1) ? 'margin-bottom: 0;' : 'margin-bottom: 10px;' ?>">
+                                                        <img src="<?= base_url("assets/img/jsa/" . $foto) ?>" style="width: 100%;">
+                                                    </div>
+                                                </td>
+                                                <?php if (($count - 1) == 0) : ?>
+                                                    <td width="50%" style="border: 0px;"></td>
+                                                <?php endif; ?>
+                                                <?php $index++; ?>
+                                                <?php if ($index % 2 == 0 || $index == $count) : ?>
+                                                </tr>
+                                            <?php endif; ?>
+                                        <?php else : ?>
+                                            <tr style="padding: 0; border: 0;">
+                                                <td style="padding: 0; border: 0;"><?= $foto ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </table>
                             </td>
+
                         </tr>
-                    <?php } ?>
+                    <?php endforeach; ?>
                     <tr>
                         <td style="width: 5%; text-align:center"><?php echo $nomor++; ?></td>
                         <td style="width: 25%;">Keterangan Line</td>
@@ -448,7 +515,7 @@
                     <td>
                         <?= $detail_data['aspek_lingkungan']['akses_menuju_tower'] ?><br>
                         Berikut foto dari akses menuju tower : <br>
-                        <img style="margin-top: 10px;" width="400px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_akses_menuju_tower']) ?>" alt="">
+                        <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_akses_menuju_tower']) ?>" alt="">
                     </td>
                 </tr>
                 <tr>
@@ -457,7 +524,7 @@
                     <td>
                         <?= $detail_data['aspek_lingkungan']['halaman_tower'] ?><br>
                         Berikut foto dari halaman tower : <br>
-                        <img style="margin-top: 10px;" width="400px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_halaman_tower']) ?>" alt="">
+                        <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_halaman_tower']) ?>" alt="">
                     </td>
                 </tr>
                 <tr>
@@ -473,8 +540,10 @@
                     <td style="width: 25%;">Potensi Hewan</td>
                     <td>
                         <?= $detail_data['aspek_lingkungan']['potensi_hewan'] ?><br>
-                        Berikut foto dari potensi hewan : <br>
-                        <img style="margin-top: 10px;" width="400px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_potensi_hewan']) ?>" alt="">
+                        <?php if ($detail_data['aspek_lingkungan']['foto_potensi_hewan'] != null) : ?>
+                            Berikut foto dari potensi hewan : <br>
+                            <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_potensi_hewan']) ?>" alt="">
+                        <?php endif; ?>
                     </td>
                 </tr>
             </table>
@@ -499,7 +568,7 @@
                     <td>
                         <?= $detail_data['aspek_konstruksi']['type_tower'] ?><br>
                         Berikut foto dari type tower : <br>
-                        <img style="margin-top: 10px;" width="400px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_type_tower']) ?>" alt="">
+                        <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_type_tower']) ?>" alt="">
                     </td>
                 </tr>
                 <tr>
@@ -508,7 +577,7 @@
                     <td>
                         <?= $detail_data['aspek_konstruksi']['jenis_stringset_isolator'] ?><br>
                         Berikut foto dari jenis stringset isolator : <br>
-                        <img style="margin-top: 10px;" width="400px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_jenis_stringset_isolator']) ?>" alt="">
+                        <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_jenis_stringset_isolator']) ?>" alt="">
                     </td>
                 </tr>
                 <tr>
@@ -574,9 +643,9 @@
                 </tr>
             </table>
 
-        <?php } else { ?>
+        <?php else : ?>
             <h2 style="text-align: center;">Gagal Memuat PDF</h2>
-        <?php } ?>
+        <?php endif ?>
         </div>
 </body>
 
