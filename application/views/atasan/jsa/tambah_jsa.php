@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="text-end">
-                                <a href="<?= base_url('admin/jsa') ?>" class="btn btn-dark">
+                                <a href="<?= base_url('atasan/jsa') ?>" class="btn btn-dark">
                                     <i class="bi bi-arrow-left"></i> Kembali
                                 </a>
                                 <button type="button" class="btn btn-primary next-step"> Selanjutnya <i class="bi bi-arrow-right"></i></button>

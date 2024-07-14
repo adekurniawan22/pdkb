@@ -19,6 +19,7 @@
                         <?php
                         $detail_data = json_decode($jsa->detail, true);;
                         ?>
+                        <input type="hidden" name="id_jsa" value="<?= $jsa->id_jsa ?>">
                         <div class="step">
                             <!-- Judul Laporan -->
                             <div class="form-group">
@@ -75,7 +76,7 @@
                             </div>
 
                             <div class="text-end">
-                                <a href="<?= base_url('admin/jsa') ?>" class="btn btn-dark">
+                                <a href="<?= base_url('jtc/jsa') ?>" class="btn btn-dark">
                                     <i class="bi bi-arrow-left"></i> Kembali
                                 </a>
                                 <button type="button" class="btn btn-primary next-step"> Selanjutnya <i class="bi bi-arrow-right"></i></button>
@@ -800,7 +801,7 @@
                         // Create hidden input for foto_lama[]
                         echo 'var hiddenInput = document.createElement("input");';
                         echo 'hiddenInput.type = "hidden";';
-                        echo 'hiddenInput.name = "foto_lama[]";';
+                        echo 'hiddenInput.name = "' . $anomali . '_' . $index . '_file[]";';
                         echo 'hiddenInput.value = "' . $foto . '";';
 
                         // Append the hidden input to the wrapper div

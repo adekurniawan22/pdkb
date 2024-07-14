@@ -247,9 +247,6 @@ class Jsa extends CI_Controller
 
 	public function proses_edit_jsa()
 	{
-		echo "PROSES EDIT DATA JSA KE DATABASE MASIH MAINTENANCE";
-		die();
-
 		// Config JSA
 		$config_jsa = array(
 			'upload_path' => './assets/img/jsa',
@@ -261,7 +258,6 @@ class Jsa extends CI_Controller
 
 		//Data aspek perencanaan
 		$aspek_perencanaan = $this->input->post('aspek_perencanaan');
-
 		foreach ($aspek_perencanaan as $index => $aspek) {
 			foreach ($aspek['titik_anomali'] as $titik_index => $titik) {
 				$file_key = "{$titik}_{$index}_file";
@@ -283,8 +279,12 @@ class Jsa extends CI_Controller
 							$upload_error = $this->upload->display_errors();
 							echo "Upload error: " . $upload_error;
 						}
+
+						unlink(FCPATH . 'assets/img/jsa/' . $upload_data['file_name']);
 					}
-				} else if (isset($_POST[$file_key])) {
+				}
+
+				if (isset($_POST[$file_key])) {
 					// Jika ada file yang di-post
 					foreach ($_POST[$file_key] as $urutanFoto => $data) {
 						$aspek_perencanaan[$index]['foto'][$titik_index][] = $data; // Menambahkan data ke array tanpa menentukan indeks
@@ -292,8 +292,6 @@ class Jsa extends CI_Controller
 				}
 			}
 		}
-
-
 
 		//Data aspek sdm
 		$aspek_sdm = [
@@ -304,7 +302,7 @@ class Jsa extends CI_Controller
 			'layanan_kesehatan_terdekat' => $this->input->post('layanan_kesehatan_terdekat'),
 		];
 
-		//Data aspek lingkungan
+		// Data aspek lingkungan
 		$aspek_lingkungan = [
 			'alamat_tower' => $this->input->post('alamat_tower'),
 			'akses_menuju_tower' => $this->input->post('akses_menuju_tower'),
@@ -314,25 +312,38 @@ class Jsa extends CI_Controller
 			'potensi_hewan' => $this->input->post('potensi_hewan'),
 		];
 
-		if ($this->upload->do_upload('foto_akses_menuju_tower')) {
-			$upload_data = $this->upload->data();
-			$aspek_lingkungan['foto_akses_menuju_tower'] = $upload_data['file_name'];
+		// Foto akses menuju tower
+		if (!empty($_FILES['foto_akses_menuju_tower']['name'])) {
+			if ($this->upload->do_upload('foto_akses_menuju_tower')) {
+				$upload_data = $this->upload->data();
+				$aspek_lingkungan['foto_akses_menuju_tower'] = $upload_data['file_name'];
+				unlink(FCPATH . 'assets/img/jsa/' . $this->input->post('foto_lama_akses_menuju_tower'));
+			}
+		} else {
+			$aspek_lingkungan['foto_akses_menuju_tower'] = $this->input->post('foto_lama_akses_menuju_tower');
 		}
 
-		if ($this->upload->do_upload('foto_halaman_tower')) {
-			$upload_data = $this->upload->data();
-			$aspek_lingkungan['foto_halaman_tower'] = $upload_data['file_name'];
+		// Foto halaman tower
+		if (!empty($_FILES['foto_halaman_tower']['name'])) {
+			if ($this->upload->do_upload('foto_halaman_tower')) {
+				$upload_data = $this->upload->data();
+				$aspek_lingkungan['foto_halaman_tower'] = $upload_data['file_name'];
+				unlink(FCPATH . 'assets/img/jsa/' . $this->input->post('foto_lama_halaman_tower'));
+			}
+		} else {
+			$aspek_lingkungan['foto_halaman_tower'] = $this->input->post('foto_lama_halaman_tower');
 		}
 
-		if (isset($_FILES['foto_potensi_hewan'])) {
+		// Foto potensi hewan
+		if (!empty($_FILES['foto_potensi_hewan']['name'])) {
 			if ($this->upload->do_upload('foto_potensi_hewan')) {
 				$upload_data = $this->upload->data();
 				$aspek_lingkungan['foto_potensi_hewan'] = $upload_data['file_name'];
-			} else {
-				$aspek_lingkungan['foto_potensi_hewan'] = null;
+				unlink(FCPATH . 'assets/img/jsa/' . $this->input->post('foto_lama_potensi_hewan'));
 			}
+		} else {
+			$aspek_lingkungan['foto_potensi_hewan'] = !empty($this->input->post('foto_lama_potensi_hewan')) ? $this->input->post('foto_lama_potensi_hewan') : null;
 		}
-
 
 		//Data aspek konstrksi
 		$aspek_konstruksi = [
@@ -350,13 +361,24 @@ class Jsa extends CI_Controller
 			'jarak_antar_traves' => $this->input->post('jarak_antar_traves'),
 		];
 
-		if ($this->upload->do_upload('foto_type_tower')) {
-			$upload_data = $this->upload->data();
-			$aspek_konstruksi['foto_type_tower'] = $upload_data['file_name'];
+		if (!empty($_FILES['foto_type_tower']['name'])) {
+			if ($this->upload->do_upload('foto_type_tower')) {
+				$upload_data = $this->upload->data();
+				$aspek_konstruksi['foto_type_tower'] = $upload_data['file_name'];
+				unlink(FCPATH . 'assets/img/jsa/' . $this->input->post('foto_lama_type_tower'));
+			}
+		} else {
+			$aspek_konstruksi['foto_type_tower'] = $this->input->post('foto_lama_type_tower');
 		}
-		if ($this->upload->do_upload('foto_jenis_stringset_isolator')) {
-			$upload_data = $this->upload->data();
-			$aspek_konstruksi['foto_jenis_stringset_isolator'] = $upload_data['file_name'];
+
+		if (!empty($_FILES['foto_jenis_stringset_isolator']['name'])) {
+			if ($this->upload->do_upload('foto_jenis_stringset_isolator')) {
+				$upload_data = $this->upload->data();
+				$aspek_konstruksi['foto_jenis_stringset_isolator'] = $upload_data['file_name'];
+				unlink(FCPATH . 'assets/img/jsa/' . $this->input->post('foto_lama_jenis_stringset_isolator'));
+			}
+		} else {
+			$aspek_konstruksi['foto_jenis_stringset_isolator'] = $this->input->post('foto_lama_jenis_stringset_isolator');
 		}
 
 		// Data aspek pelaksanaan
@@ -380,23 +402,15 @@ class Jsa extends CI_Controller
 		];
 
 		$data_real = [
-			'id_personil' => $this->session->userdata('id_personil'),
 			'detail' => json_encode($data_jsa), // Convert $data_jsa to JSON string
 		];
 
-		if ($this->session->userdata('id_jabatan') == '1' or $this->session->userdata('id_jabatan') == '2' or $this->session->userdata('id_jabatan') == '3') {
-			$data_real['sudah_disetujui'] = '1';
-			$data_real['id_atasan'] = $this->session->userdata('id_personil');
-		} else {
-			$data_real['sudah_disetujui'] = '0';
-		}
-
-		$result = $this->Jsa_model->tambah_jsa($data_real);
+		$result = $this->Jsa_model->edit_jsa($this->input->post('id_jsa'), $data_real);
 		if ($result) {
-			$this->session->set_flashdata('message', '<strong>Data Laporan JSA Berhasil Ditambahkan</strong>
+			$this->session->set_flashdata('message', '<strong>Data Laporan JSA Berhasil Diedit</strong>
 															<i class="bi bi-check-circle-fill"></i>');
 		} else {
-			$this->session->set_flashdata('message', '<strong>Data Laporan JSA Gagal Ditambahkan</strong>
+			$this->session->set_flashdata('message', '<strong>Data Laporan JSA Gagal Diedit</strong>
 															<i class="bi bi-exclamation-circle-fill"></i>');
 		}
 
@@ -464,7 +478,11 @@ class Jsa extends CI_Controller
 		$id_atasan = $this->input->post('id_atasan');
 
 		$atasan = $this->Personil_model->dapat_satu_personil_dan_jabatan($id_atasan);
-		$nama_file_pdf = "JSA_" . $id_jsa;
+		if ($atasan) {
+			$nama_file_pdf = "JSA_" . $id_jsa;
+		} else {
+			$nama_file_pdf = "PREVIEW_JSA_" . $id_jsa;
+		}
 
 		$this->db->where('id_jsa =', $id_jsa);
 		$query = $this->db->get('t_jsa')->row();
@@ -505,15 +523,6 @@ class Jsa extends CI_Controller
 		$this->encode_img_base64(base_url('assets/img/sampul_pdf_jsa.png'));
 		$this->encode_img_base64(base_url('assets/img/orang_jsa.png'));
 		$this->encode_img_base64(base_url('assets/img/logo_pln.png'));
-
-		// $this->load->view(
-		// 	'admin/jsa/pdf',
-		// 	[
-		// 		'query' => $query,
-		// 		'atasan' => $atasan,
-		// 		'tanggal_sekarang' => $tanggal_sekarang,
-		// 	]
-		// );
 
 		if ($query) {
 			$html = $this->load->view('admin/jsa/pdf', [

@@ -6,7 +6,11 @@ $opacityStyle = !$atasan ? "opacity: 0.5;" : "";
 
 <head>
 
-    <title>PDF Laporan JSA</title>
+    <title>
+        <?php
+        echo !$atasan ? "Preview PDF Laporan JSA" : "PDF Laporan JSA";
+        ?>
+    </title>
     <style>
         .belum-disetujui {
             color: red;
@@ -515,7 +519,9 @@ $opacityStyle = !$atasan ? "opacity: 0.5;" : "";
                     <td>
                         <?= $detail_data['aspek_lingkungan']['akses_menuju_tower'] ?><br>
                         Berikut foto dari akses menuju tower : <br>
-                        <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_akses_menuju_tower']) ?>" alt="">
+                        <div style="width: 100%;">
+                            <img style="margin-top: 10px;" width="50%" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_akses_menuju_tower']) ?>" alt="">
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -524,7 +530,9 @@ $opacityStyle = !$atasan ? "opacity: 0.5;" : "";
                     <td>
                         <?= $detail_data['aspek_lingkungan']['halaman_tower'] ?><br>
                         Berikut foto dari halaman tower : <br>
-                        <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_halaman_tower']) ?>" alt="">
+                        <div style="width: 100%;">
+                            <img style="margin-top: 10px;" width="50%" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_halaman_tower']) ?>" alt="">
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -542,7 +550,9 @@ $opacityStyle = !$atasan ? "opacity: 0.5;" : "";
                         <?= $detail_data['aspek_lingkungan']['potensi_hewan'] ?><br>
                         <?php if ($detail_data['aspek_lingkungan']['foto_potensi_hewan'] != null) : ?>
                             Berikut foto dari potensi hewan : <br>
-                            <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_potensi_hewan']) ?>" alt="">
+                            <div style="width: 100%;">
+                                <img style="margin-top: 10px;" width="50%" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_lingkungan']['foto_potensi_hewan']) ?>" alt="">
+                            </div>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -568,7 +578,9 @@ $opacityStyle = !$atasan ? "opacity: 0.5;" : "";
                     <td>
                         <?= $detail_data['aspek_konstruksi']['type_tower'] ?><br>
                         Berikut foto dari type tower : <br>
-                        <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_type_tower']) ?>" alt="">
+                        <div style="width: 100%;">
+                            <img style="margin-top: 10px;" width="50%" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_type_tower']) ?>" alt="">
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -577,7 +589,9 @@ $opacityStyle = !$atasan ? "opacity: 0.5;" : "";
                     <td>
                         <?= $detail_data['aspek_konstruksi']['jenis_stringset_isolator'] ?><br>
                         Berikut foto dari jenis stringset isolator : <br>
-                        <img style="margin-top: 10px;" height="150px" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_jenis_stringset_isolator']) ?>" alt="">
+                        <div style="width: 100%;">
+                            <img style="margin-top: 10px;" width="50%" src="<?= base_url('assets/img/jsa/' . $detail_data['aspek_konstruksi']['foto_jenis_stringset_isolator']) ?>" alt="">
+                        </div>
                     </td>
                 </tr>
                 <tr>
