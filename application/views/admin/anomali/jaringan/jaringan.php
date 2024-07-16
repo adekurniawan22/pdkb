@@ -24,14 +24,7 @@
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis Anomali</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Bay Line</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Nomor Tower</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah Titik</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Klasifikasi</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Fasa</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Eksekusi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Detail</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
@@ -55,29 +48,73 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $j->jenis_anomali ?></p>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Jenis Anomali :
+                                                            <span class="text-xs text-secondary mb-0"><?= $j->jenis_anomali ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Nomor Tower :
+                                                            <span class="text-xs text-secondary mb-0"><?= $j->no_tower   ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Bay Line :
+                                                            <span class="text-xs text-secondary mb-0"><?= nl2br($j->bay_line) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Jumlah Titik :
+                                                            <span class="text-xs text-secondary mb-0"><?= $j->jumlah_titik ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Keterangan :
+                                                            <span class="text-xs text-secondary mb-0"><?= nl2br($j->keterangan) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Klasifikasi :
+                                                            <span class="text-xs text-secondary mb-0"><?= nl2br($j->klasifikasi) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Fasa :
+                                                            <span class="text-xs text-secondary mb-0"><?= nl2br($j->fasa) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Tanggal Inspeksi :
+                                                            <span class="text-xs text-secondary mb-0"><?= date('d/m/Y', strtotime($j->tanggal_inspeksi)) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Tanggal EWS :
+                                                            <span class="text-xs text-secondary mb-0"><?= date('d/m/Y', strtotime($j->tanggal_ews)) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($j->bay_line) ?></p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0"><?= $j->no_tower ?></p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0"><?= $j->jumlah_titik ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($j->keterangan) ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($j->klasifikasi) ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($j->fasa) ?></p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($j->tanggal_eksekusi)) ?></p>
-                                        </td>
+
                                         <td class="text-center">
                                             <?php if ($j->status_dikerjakan == '1') : ?>
                                                 <span class="badge badge-sm bg-gradient-success">Sudah Dikerjakan</span>

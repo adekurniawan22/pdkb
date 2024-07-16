@@ -39,10 +39,22 @@
                             <input class="form-control" type="text" placeholder="Fasa" id="fasa" name="fasa" value="<?php echo set_value('fasa'); ?>">
                             <?= form_error('fasa', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
                         </div>
-                        <div class="form-group">
-                            <label for="tanggal_eksekusi" class="form-control-label">Tanggal Eksekusi</label>
-                            <input class="form-control" type="date" name="tanggal_eksekusi" id="tanggal_eksekusi" value="<?php echo set_value('tanggal_eksekusi'); ?>">
-                            <?= form_error('tanggal_eksekusi', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="tanggal_inspeksi" class="form-control-label">Tanggal Inspeksi</label>
+                                    <input class="form-control" type="date" name="tanggal_inspeksi" id="tanggal_inspeksi" value="<?php echo set_value('tanggal_inspeksi'); ?>">
+                                    <?= form_error('tanggal_inspeksi', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="tanggal_ews" class="form-control-label">Tanggal EWS</label>
+                                    <input class="form-control" type="date" name="tanggal_ews" id="tanggal_ews" value="<?php echo set_value('tanggal_ews'); ?>">
+                                    <?= form_error('tanggal_ews', '<p style="font-size: 12px;color: red;" class="my-2">', '</p>'); ?>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
