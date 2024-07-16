@@ -50,17 +50,17 @@ class Dashboard extends CI_Controller
 			$data['p_alat_tower_ers'] = $this->db->get('t_alat_tower_ers')->result();
 			$data['jp_alat_tower_ers'] = count($data['p_alat_tower_ers']);
 
-			$this->db->where('status_dikerjakan', '0');
-			$this->db->where('tanggal_eksekusi >=', $tanggal_mulai);
-			$this->db->where('tanggal_eksekusi <=', $tanggal_selesai);
-			$data['p_gardu_induk'] = $this->db->get('t_gardu_induk')->result();
-			$data['jp_gardu_induk'] = count($data['p_gardu_induk']);
+			// $this->db->where('status_dikerjakan', '0');
+			// $this->db->where('tanggal_eksekusi >=', $tanggal_mulai);
+			// $this->db->where('tanggal_eksekusi <=', $tanggal_selesai);
+			// $data['p_gardu_induk'] = $this->db->get('t_gardu_induk')->result();
+			// $data['jp_gardu_induk'] = count($data['p_gardu_induk']);
 
-			$this->db->where('status_dikerjakan', '0');
-			$this->db->where('tanggal_eksekusi >=', $tanggal_mulai);
-			$this->db->where('tanggal_eksekusi <=', $tanggal_selesai);
-			$data['p_jaringan'] = $this->db->get('t_jaringan')->result();
-			$data['jp_jaringan'] = count($data['p_jaringan']);
+			// $this->db->where('status_dikerjakan', '0');
+			// $this->db->where('tanggal_eksekusi >=', $tanggal_mulai);
+			// $this->db->where('tanggal_eksekusi <=', $tanggal_selesai);
+			// $data['p_jaringan'] = $this->db->get('t_jaringan')->result();
+			// $data['jp_jaringan'] = count($data['p_jaringan']);
 
 			$this->db->select('t_sertifikat.*, t_personil.*');
 			$this->db->from('t_sertifikat');

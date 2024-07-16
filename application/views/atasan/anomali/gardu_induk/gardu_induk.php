@@ -16,14 +16,7 @@
                                 <tr>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
                                     <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Dibuat Oleh</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Jenis Anomali</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Gardu Induk</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Bay</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Jumlah Titik</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Keterangan</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Klasifikasi</th>
-                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Fasa</th>
-                                    <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Tanggal Eksekusi</th>
+                                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Detail</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7" data-sortable="false">Aksi</th>
                                 </tr>
@@ -34,7 +27,7 @@
                                         <td>
                                             <p class="ms-3 text-sm font-weight-bold mb-0"><?= $g->id_gardu_induk ?></p>
                                         </td>
-                                        <td>
+                                        <td style="vertical-align: top;">
                                             <div class="d-flex ms-3 py-1">
                                                 <?php
                                                 $this->load->model('Personil_model');
@@ -47,31 +40,74 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $g->jenis_anomali ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= $g->gardu_induk ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->bay) ?></p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0"><?= $g->jumlah_titik ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->keterangan) ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->klasifikasi) ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="ms-3 text-sm font-weight-bold mb-0"><?= nl2br($g->fasa) ?></p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0"><?= date('d/m/Y', strtotime($g->tanggal_eksekusi)) ?></p>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Jenis Anomali :
+                                                            <span class="text-xs text-secondary mb-0"><?= $g->jenis_anomali ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Gardu Induk :
+                                                            <span class="text-xs text-secondary mb-0"><?= $g->gardu_induk ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Bay :
+                                                            <span class="text-xs text-secondary mb-0"><?= nl2br($g->bay) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Jumlah Titik :
+                                                            <span class="text-xs text-secondary mb-0"><?= $g->jumlah_titik ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Keterangan :
+                                                            <span class="text-xs text-secondary mb-0"><?= nl2br($g->keterangan) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Klasifikasi :
+                                                            <span class="text-xs text-secondary mb-0"><?= nl2br($g->klasifikasi) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Fasa :
+                                                            <span class="text-xs text-secondary mb-0"><?= nl2br($g->fasa) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Tanggal Inspeksi :
+                                                            <span class="text-xs text-secondary mb-0"><?= date('d/m/Y', strtotime($g->tanggal_inspeksi)) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="ms-3 text-sm font-weight-bold mb-1">Tanggal EWS :
+                                                            <span class="text-xs text-secondary mb-0"><?= date('d/m/Y', strtotime($g->tanggal_ews)) ?></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
 
-                                        <td class="text-center">
+                                        <td class="text-center" style="vertical-align: top;">
                                             <?php if ($g->status_dikerjakan == '1') : ?>
                                                 <span class="badge badge-sm bg-gradient-success">Sudah Dikerjakan</span>
                                             <?php else : ?>
@@ -79,9 +115,16 @@
                                             <?php endif; ?>
                                         </td>
 
-                                        <td class="text-center">
+                                        <td class="text-center" style="vertical-align: top;">
                                             <button class="btn btn-link text-dark text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#lihat_foto<?= $g->id_gardu_induk ?>"><i class="bi bi-eye-fill me-2" aria-hidden="true"></i>Foto</button>
+
+                                            <form action="<?= base_url() ?>admin/gardu-induk/edit-gardu-induk" method="post" class="d-inline-block">
+                                                <input type="hidden" name="id_gardu_induk" value="<?= $g->id_gardu_induk ?>">
+                                                <button type="submit" class="btn btn-link text-dark p-2 mb-0"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</Button>
+                                            </form>
+                                            <button class="btn btn-link text-danger text-gradient p-2 mb-0" data-bs-toggle="modal" data-bs-target="#hapus_gardu_induk<?= $g->id_gardu_induk ?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Hapus</button>
                                         </td>
+
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

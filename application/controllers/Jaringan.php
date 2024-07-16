@@ -68,7 +68,8 @@ class Jaringan extends CI_Controller
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
 		$this->form_validation->set_rules('klasifikasi', 'Klasifikasi', 'required|trim');
 		$this->form_validation->set_rules('fasa', 'Fasa', 'required|trim');
-		$this->form_validation->set_rules('tanggal_eksekusi', 'Tanggal Eksekusi', 'required|trim');
+		$this->form_validation->set_rules('tanggal_inspeksi', 'Tanggal Inspeksi', 'required|trim');
+		$this->form_validation->set_rules('tanggal_ews', 'Tanggal EWS', 'required|trim');
 		$this->form_validation->set_rules('foto', 'Foto', 'callback_validasi_foto');
 
 		if ($this->form_validation->run() == false) {
@@ -85,7 +86,8 @@ class Jaringan extends CI_Controller
 				'klasifikasi' => $this->input->post('klasifikasi'),
 				'fasa' => $this->input->post('fasa'),
 				'foto' => $foto,
-				'tanggal_eksekusi' => $this->input->post('tanggal_eksekusi'),
+				'tanggal_inspeksi' => $this->input->post('tanggal_inspeksi'),
+				'tanggal_ews' => $this->input->post('tanggal_ews'),
 			];
 
 			$result = $this->Jaringan_model->tambah_jaringan($data_jaringan);
@@ -134,7 +136,8 @@ class Jaringan extends CI_Controller
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
 		$this->form_validation->set_rules('klasifikasi', 'Klasifikasi', 'required|trim');
 		$this->form_validation->set_rules('fasa', 'Fasa', 'required|trim');
-		$this->form_validation->set_rules('tanggal_eksekusi', 'Tanggal Eksekusi', 'required|trim');
+		$this->form_validation->set_rules('tanggal_inspeksi', 'Tanggal Inspeksi', 'required|trim');
+		$this->form_validation->set_rules('tanggal_ews', 'Tanggal EWS', 'required|trim');
 		$status_dikerjakan = ($this->input->post('status_dikerjakan') == 'on') ? '1' : '0';
 
 		if (isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) {
@@ -155,7 +158,8 @@ class Jaringan extends CI_Controller
 				'keterangan' => $this->input->post('keterangan'),
 				'klasifikasi' => $this->input->post('klasifikasi'),
 				'fasa' => $this->input->post('fasa'),
-				'tanggal_eksekusi' => $this->input->post('tanggal_eksekusi'),
+				'tanggal_inspeksi' => $this->input->post('tanggal_inspeksi'),
+				'tanggal_ews' => $this->input->post('tanggal_ews'),
 				'foto' => $foto,
 				'status_dikerjakan' => $status_dikerjakan,
 			];
@@ -275,8 +279,9 @@ class Jaringan extends CI_Controller
 			$keterangan = $sheet->getCell('E' . $row->getRowIndex())->getFormattedValue();
 			$klasifikasi = $sheet->getCell('F' . $row->getRowIndex())->getFormattedValue();
 			$fasa = $sheet->getCell('G' . $row->getRowIndex())->getFormattedValue();
-			$tanggal_eksekusi = $sheet->getCell('H' . $row->getRowIndex())->getFormattedValue();
-			$status = $sheet->getCell('I' . $row->getRowIndex())->getValue();
+			$tanggal_inspeksi = $sheet->getCell('H' . $row->getRowIndex())->getFormattedValue();
+			$tanggal_ews = $sheet->getCell('I' . $row->getRowIndex())->getFormattedValue();
+			$status = $sheet->getCell('J' . $row->getRowIndex())->getValue();
 
 			// Validasi jenis anomali
 			if (empty($jenis_anomali)) {
@@ -320,11 +325,23 @@ class Jaringan extends CI_Controller
 			}
 
 			// Validasi tanggal_eksekusi
-			if (empty($tanggal_eksekusi)) {
-				$errors[$row->getRowIndex()][] = 'Tanggal eksekusi kosong';
+			if (empty($tanggal_inspeksi)) {
+				$errors[$row->getRowIndex()][] = 'Tanggal inspeksi kosong';
 			} else {
 				// Ubah format tanggal_langganan ke format 'Y-m-d'
-				$mulai_berlangganan_obj = date_create_from_format('d/m/Y', $tanggal_eksekusi);
+				$mulai_berlangganan_obj = date_create_from_format('d/m/Y', $tanggal_inspeksi);
+
+				if (!$mulai_berlangganan_obj) {
+					$errors[$row->getRowIndex()][] = 'Format tanggal langganan tidak sesuai';
+				}
+			}
+
+			// Validasi tanggal_ews
+			if (empty($tanggal_ews)) {
+				$errors[$row->getRowIndex()][] = 'Tanggal ews kosong';
+			} else {
+				// Ubah format tanggal_langganan ke format 'Y-m-d'
+				$mulai_berlangganan_obj = date_create_from_format('d/m/Y', $tanggal_ews);
 
 				if (!$mulai_berlangganan_obj) {
 					$errors[$row->getRowIndex()][] = 'Format tanggal langganan tidak sesuai';
@@ -355,10 +372,15 @@ class Jaringan extends CI_Controller
 		} else {
 			// Jika tidak ada kesalahan, lakukan operasi tambah data
 			foreach ($sheet->getRowIterator(2) as $row) {
-				$tanggal_eksekusi = $sheet->getCell('H' . $row->getRowIndex())->getFormattedValue();
-				$tanggal_eksekusi_obj = date_create_from_format('d/m/Y', $tanggal_eksekusi);
-				$tanggal_eksekusi_formatted = $tanggal_eksekusi_obj->format('Y-m-d');
-				$status = strtolower($sheet->getCell('I' . $row->getRowIndex())->getValue());
+				$tanggal_inspeksi = $sheet->getCell('H' . $row->getRowIndex())->getFormattedValue();
+				$tanggal_inspeksi_obj = date_create_from_format('m/d/Y', $tanggal_inspeksi);
+				$tanggal_inspeksi_formatted = $tanggal_inspeksi_obj->format('Y-m-d');
+
+				$tanggal_ews = $sheet->getCell('I' . $row->getRowIndex())->getFormattedValue();
+				$tanggal_ews_obj = date_create_from_format('m/d/Y', $tanggal_ews);
+				$tanggal_ews_formatted = $tanggal_ews_obj->format('Y-m-d');
+
+				$status = strtolower($sheet->getCell('J' . $row->getRowIndex())->getValue());
 
 				// Data sekarang diperoleh dalam loop
 				$data1 = [
@@ -370,7 +392,8 @@ class Jaringan extends CI_Controller
 					'keterangan' => $sheet->getCell('E' . $row->getRowIndex())->getFormattedValue(),
 					'klasifikasi' => $sheet->getCell('F' . $row->getRowIndex())->getFormattedValue(),
 					'fasa' => $sheet->getCell('G' . $row->getRowIndex())->getFormattedValue(),
-					'tanggal_eksekusi' => $tanggal_eksekusi_formatted,
+					'tanggal_inspeksi' => $tanggal_inspeksi_formatted,
+					'tanggal_ews' => $tanggal_ews_formatted,
 					'status_dikerjakan' => $status  === "sudah" ? "1" : "0",
 				];
 
