@@ -206,7 +206,7 @@
                     Baca aturan untuk import data dibawah ini :
                     <ul>
                         <li>File yang hanya dapat diinputkan hanya .xlsx</li>
-                        <li>Silahkan lihat contoh format file yang dapat di upload <a href="https://docs.google.com/spreadsheets/d/1c-7zt-uq1Ca_zhtV735UpNyPMZCkcToT/edit?usp=sharing&ouid=100799364152492885109&rtpof=true&sd=true" target="_blank" style="text-decoration: underline; color: blue;">disini</a></li>
+                        <li>Silahkan lihat contoh format file yang dapat di upload <a href="https://docs.google.com/spreadsheets/d/1c26QIYrgjvoDZYofhFUTi4g2FPVQFXKS/edit?usp=drive_link&ouid=100799364152492885109&rtpof=true&sd=true" target="_blank" style="text-decoration: underline; color: blue;">disini</a></li>
                     </ul>
                     <hr class="horizontal dark mt-0">
                     <form action="<?= base_url() ?>gardu_induk/import_data_excel" method="post" enctype="multipart/form-data">

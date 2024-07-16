@@ -131,7 +131,7 @@
                   <?php endif ?>
 
                   <!-- Peringatan Rencana Pekerjaan -->
-                  <?php if (!empty($p_rencana_operasi)) : ?>
+                  <!-- <?php if (!empty($p_rencana_operasi)) : ?>
                     <li class="">
                       <h6 class="text-sm font-weight-normal mb-1">
                         <span class="font-weight-bold text-dark">Rencana Pekerjaan</span>
@@ -156,7 +156,7 @@
                       </ul>
                     </li>
                     <hr class="bg-secondary mx-0">
-                  <?php endif ?>
+                  <?php endif ?> -->
 
                   <!-- Peringatan Anomali Gardu Induk -->
                   <?php if (!empty($p_gardu_induk)) : ?>
@@ -180,7 +180,7 @@
                               Fasa : <?= nl2br($r->fasa) ?>
                             </p>
                             <p class="text-xs text-secondary mb-0">
-                              Rencana dieksekusi pada tanggal <?= date('d/m/Y', strtotime($r->tanggal_eksekusi)) ?>
+                              Rencana dieksekusi pada tanggal <?= date('d/m/Y', strtotime($r->tanggal_ews)) ?>
                             </p>
                           </li>
                         <?php endforeach; ?>
@@ -211,7 +211,7 @@
                               Fasa : <?= nl2br($r->fasa) ?>
                             </p>
                             <p class="text-xs text-secondary mb-0">
-                              Rencana dieksekusi pada tanggal <?= date('d/m/Y', strtotime($r->tanggal_eksekusi)) ?>
+                              Rencana dieksekusi pada tanggal <?= date('d/m/Y', strtotime($r->tanggal_ews)) ?>
                             </p>
                           </li>
                         <?php endforeach; ?>

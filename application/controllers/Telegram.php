@@ -18,10 +18,20 @@ class Telegram extends CI_Controller
 	public function index()
 	{
 		$data = $this->data_laporan();
+		$data2 = $this->data_laporan_anomali();
+
 		$isEmpty = true;
 		foreach ($data as $key => $value) {
 			if (!empty($value)) {
 				$isEmpty = false;
+				break;
+			}
+		}
+
+		$isEmpty2 = true;
+		foreach ($data2 as $key => $value) {
+			if (!empty($value)) {
+				$isEmpty2 = false;
 				break;
 			}
 		}
@@ -32,7 +42,16 @@ class Telegram extends CI_Controller
 
 			// Send PDF via Telegram
 			$this->sendTelegramMessage($telegram_chat_id, $content);
-			$this->sendTelegramMessage(5390004052, $content);
+			// $this->sendTelegramMessage(5390004052, $content);
+		}
+
+		if (!$isEmpty2) {
+			$content = $data2['message'];
+			$telegram_chat_id = 1375998661;
+
+			// Send PDF via Telegram
+			$this->sendTelegramMessage($telegram_chat_id, $content);
+			// $this->sendTelegramMessage(5390004052, $content);
 		}
 
 		exit();
@@ -91,10 +110,6 @@ class Telegram extends CI_Controller
 		$data['jp_alat_kerja'] = count($data['p_alat_kerja']);
 		$data['p_alat_tower_ers'] = $this->getAlatTowerErs($tanggal_mulai, $tanggal_selesai);
 		$data['jp_alat_tower_ers'] = count($data['p_alat_tower_ers']);
-		$data['p_gardu_induk'] = $this->getGarduInduk($tanggal_mulai, $tanggal_selesai);
-		$data['jp_gardu_induk'] = count($data['p_gardu_induk']);
-		$data['p_jaringan'] = $this->getJaringan($tanggal_mulai, $tanggal_selesai);
-		$data['jp_jaringan'] = count($data['p_jaringan']);
 
 		$this->db->select('t_sertifikat.*, t_personil.*');
 		$this->db->from('t_sertifikat');
@@ -114,6 +129,35 @@ class Telegram extends CI_Controller
 
 		if (!$isEmpty) {
 			$content = $this->generateContent($data);
+			$data['message'] = $content;
+		} else {
+			$data['message'] = "";
+		}
+
+		return $data;
+	}
+
+	private function data_laporan_anomali()
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$tanggal_mulai = date('Y-m-d');
+		$tanggal_selesai = date('Y-m-d', strtotime('+1 month'));
+
+		$data['p_gardu_induk'] = $this->getGarduInduk($tanggal_mulai, $tanggal_selesai);
+		$data['jp_gardu_induk'] = count($data['p_gardu_induk']);
+		$data['p_jaringan'] = $this->getJaringan($tanggal_mulai, $tanggal_selesai);
+		$data['jp_jaringan'] = count($data['p_jaringan']);
+
+		$isEmpty = true;
+		foreach ($data as $key => $value) {
+			if (!empty($value)) {
+				$isEmpty = false;
+				break;
+			}
+		}
+
+		if (!$isEmpty) {
+			$content = $this->generateContentAnomali($data);
 			$data['message'] = $content;
 		} else {
 			$data['message'] = "";
@@ -147,16 +191,14 @@ class Telegram extends CI_Controller
 	private function getGarduInduk($start_date, $end_date)
 	{
 		$this->db->where('status_dikerjakan', '0');
-		$this->db->where('tanggal_eksekusi >=', $start_date);
-		$this->db->where('tanggal_eksekusi <=', $end_date);
+		$this->db->where('tanggal_ews =', $start_date);
 		return $this->db->get('t_gardu_induk')->result();
 	}
 
 	private function getJaringan($start_date, $end_date)
 	{
 		$this->db->where('status_dikerjakan', '0');
-		$this->db->where('tanggal_eksekusi >=', $start_date);
-		$this->db->where('tanggal_eksekusi <=', $end_date);
+		$this->db->where('tanggal_ews =', $start_date);
 		return $this->db->get('t_jaringan')->result();
 	}
 
@@ -173,29 +215,13 @@ class Telegram extends CI_Controller
 			$content .= "\n";
 		}
 
-		if (!empty($data['p_rencana_operasi'])) {
-			$content .= "*Terdapat " . $data['jp_rencana_operasi'] . " Notifikasi Rencana Pekerjaan :*\n";
-			foreach ($data['p_rencana_operasi'] as $r) {
-				$content .= "*[#]* Rencana pekerjaan _" . $r->nama_rencana . "_ dengan keterangan _" . '"' . $r->keterangan . '"_' . " direncanakan akan diselesaikan pada tanggal _" . date('d/m/Y', strtotime($r->tanggal_dikerjakan)) . "._ \n\n";
-			}
-			$content .= "\n";
-		}
-
-		if (!empty($data['p_gardu_induk'])) {
-			$content .= "*Terdapat " . $data['jp_gardu_induk'] . " Notifikasi dari Anomali Gardu Induk :*\n";
-			foreach ($data['p_gardu_induk'] as $r) {
-				$content .= "*[#]* Gardu induk _" . $r->gardu_induk . "_ dengan _jenis anomali " . $r->jenis_anomali . "_ , _bay (" . str_replace("\n", ", ", $r->bay) . ")_ , _jumlah titik " . $r->jumlah_titik . "_ direncanakan akan dikerjakan pada tanggal _" . date('d/m/Y', strtotime($r->tanggal_eksekusi)) . "._ \n\n";
-			}
-			$content .= "\n";
-		}
-
-		if (!empty($data['p_jaringan'])) {
-			$content .= "*Terdapat " . $data['jp_jaringan'] . " Notifikasi dari Anomali Jaringan :*\n";
-			foreach ($data['p_jaringan'] as $r) {
-				$content .= "*[#]* Jaringan dengan _nomor tower " . $r->no_tower . "_ dengan _jenis anomali " . $r->jenis_anomali . "_ , _bay (" . str_replace("\n", ", ", $r->bay_line) . ")_ , _jumlah titik " . $r->jumlah_titik . "_ direncanakan akan dikerjakan pada tanggal _" . date('d/m/Y', strtotime($r->tanggal_eksekusi)) . "._ \n\n";
-			}
-			$content .= "\n";
-		}
+		// if (!empty($data['p_rencana_operasi'])) {
+		// 	$content .= "*Terdapat " . $data['jp_rencana_operasi'] . " Notifikasi Rencana Pekerjaan :*\n";
+		// 	foreach ($data['p_rencana_operasi'] as $r) {
+		// 		$content .= "*[#]* Rencana pekerjaan _" . $r->nama_rencana . "_ dengan keterangan _" . '"' . $r->keterangan . '"_' . " direncanakan akan diselesaikan pada tanggal _" . date('d/m/Y', strtotime($r->tanggal_dikerjakan)) . "._ \n\n";
+		// 	}
+		// 	$content .= "\n";
+		// }
 
 		if (!empty($data['p_alat_kerja'])) {
 			$content .= "*Terdapat " . $data['jp_alat_kerja'] . " Notifikasi dari Gudang PDKB Jaringan :*\n";
@@ -209,6 +235,30 @@ class Telegram extends CI_Controller
 			$content .= "*Terdapat " . $data['jp_alat_tower_ers'] . " Notifikasi dari Gudang PDKB Gardu Induk :*\n";
 			foreach ($data['p_alat_tower_ers'] as $r) {
 				$content .= "*[#]* Alat kerja _" . $r->nama_alat_tower_ers . "_ dengan _jenis " . $r->jenis . "_ dan _jumlah " . $r->jumlah . " " . $r->satuan . "_ akan kadaluarsa pada tanggal _" . date('d/m/Y', strtotime($r->tanggal_kadaluarsa)) . "._ \n\n";
+			}
+			$content .= "\n";
+		}
+
+		return $content;
+	}
+
+	private function generateContentAnomali($data)
+	{
+		$content = "";
+		$content .= "Halo 👋,\nSaya mengirimkan pemberitahuan perkembangan anomali dari sistem\n\n";
+
+		if (!empty($data['p_gardu_induk'])) {
+			$content .= "*Terdapat " . $data['jp_gardu_induk'] . " Notifikasi dari Anomali Gardu Induk :*\n";
+			foreach ($data['p_gardu_induk'] as $r) {
+				$content .= "*[#]* Gardu induk _" . $r->gardu_induk . "_ dengan _jenis anomali " . $r->jenis_anomali . "_ , _bay (" . str_replace("\n", ", ", $r->bay) . ")_ , _jumlah titik " . $r->jumlah_titik . "_ , tanggal inspeksi _" . date('d/m/Y', strtotime($r->tanggal_inspeksi)) . "_ lalu, diharapkan segera melakukan upaya preventif. \n\n";
+			}
+			$content .= "\n";
+		}
+
+		if (!empty($data['p_jaringan'])) {
+			$content .= "*Terdapat " . $data['jp_jaringan'] . " Notifikasi dari Anomali Jaringan :*\n";
+			foreach ($data['p_jaringan'] as $r) {
+				$content .= "*[#]* Jaringan dengan _nomor tower " . $r->no_tower . "_ dengan _jenis anomali " . $r->jenis_anomali . "_ , _bay (" . str_replace("\n", ", ", $r->bay_line) . ")_ , _jumlah titik " . $r->jumlah_titik . "_ , tanggal inspeksi _" . date('d/m/Y', strtotime($r->tanggal_inspeksi)) . "_ lalu, diharapkan segera melakukan upaya preventif. \n\n";
 			}
 			$content .= "\n";
 		}

@@ -32,14 +32,15 @@ class Dashboard extends CI_Controller
 			$this->load->view('templates/footer');
 		} else if ($this->session->userdata('id_jabatan') == '4') {
 			date_default_timezone_set('Asia/Jakarta');
-			$this->db->where('YEAR(tanggal_dikerjakan)', date('Y'));
-			$this->db->where('MONTH(tanggal_dikerjakan)', date('m'));
-			$this->db->where('status', '0');
-			$data['p_rencana_operasi'] = $this->db->get('t_rencana_operasi')->result();
-			$data['jp_rencana_operasi'] = count($data['p_rencana_operasi']);
+			// $this->db->where('YEAR(tanggal_dikerjakan)', date('Y'));
+			// $this->db->where('MONTH(tanggal_dikerjakan)', date('m'));
+			// $this->db->where('status', '0');
+			// $data['p_rencana_operasi'] = $this->db->get('t_rencana_operasi')->result();
+			// $data['jp_rencana_operasi'] = count($data['p_rencana_operasi']);
 
 			$tanggal_mulai = date('Y-m-d');
 			$tanggal_selesai = date('Y-m-d', strtotime('+1 month'));
+
 			$this->db->where('tanggal_kadaluarsa >=', $tanggal_mulai);
 			$this->db->where('tanggal_kadaluarsa <=', $tanggal_selesai);
 			$data['p_alat_kerja'] = $this->db->get('t_alat_kerja')->result();
@@ -50,17 +51,15 @@ class Dashboard extends CI_Controller
 			$data['p_alat_tower_ers'] = $this->db->get('t_alat_tower_ers')->result();
 			$data['jp_alat_tower_ers'] = count($data['p_alat_tower_ers']);
 
-			// $this->db->where('status_dikerjakan', '0');
-			// $this->db->where('tanggal_eksekusi >=', $tanggal_mulai);
-			// $this->db->where('tanggal_eksekusi <=', $tanggal_selesai);
-			// $data['p_gardu_induk'] = $this->db->get('t_gardu_induk')->result();
-			// $data['jp_gardu_induk'] = count($data['p_gardu_induk']);
+			$this->db->where('status_dikerjakan', '0');
+			$this->db->where('tanggal_ews =', $tanggal_mulai);
+			$data['p_gardu_induk'] = $this->db->get('t_gardu_induk')->result();
+			$data['jp_gardu_induk'] = count($data['p_gardu_induk']);
 
-			// $this->db->where('status_dikerjakan', '0');
-			// $this->db->where('tanggal_eksekusi >=', $tanggal_mulai);
-			// $this->db->where('tanggal_eksekusi <=', $tanggal_selesai);
-			// $data['p_jaringan'] = $this->db->get('t_jaringan')->result();
-			// $data['jp_jaringan'] = count($data['p_jaringan']);
+			$this->db->where('status_dikerjakan', '0');
+			$this->db->where('tanggal_ews =', $tanggal_mulai);
+			$data['p_jaringan'] = $this->db->get('t_jaringan')->result();
+			$data['jp_jaringan'] = count($data['p_jaringan']);
 
 			$this->db->select('t_sertifikat.*, t_personil.*');
 			$this->db->from('t_sertifikat');
@@ -71,7 +70,8 @@ class Dashboard extends CI_Controller
 			$data['jp_sertifikat'] = count($data['p_sertifikat']);
 
 			// Menghitung total jp_*
-			$data['total_jp'] = $data['jp_rencana_operasi'] + $data['jp_alat_kerja'] + $data['jp_alat_tower_ers'] +
+			// $data['total_jp'] = $data['jp_rencana_operasi'] + $data['jp_alat_kerja'] + $data['jp_alat_tower_ers'] +
+			$data['total_jp'] =  $data['jp_alat_kerja'] + $data['jp_alat_tower_ers'] +
 				$data['jp_gardu_induk'] + $data['jp_jaringan'] + $data['jp_sertifikat'];
 
 			$this->load->view('templates/header', $data);
